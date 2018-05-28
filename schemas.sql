@@ -152,6 +152,70 @@ CREATE TABLE camera (
 		CHECK ( certificacaoIP ~ '^IP[0-9]{2,3}[a-zA-Z]{0,1}$' )
 );
 
+/* TABELA 12 */
+CREATE TABLE registros (
+	id BIGINT,
+	registro CHAR(9), /* São 9 dígitos pela SISANT */ 
+	CONSTRAINT pk_registros
+		PRIMARY KEY (id),
+	CONSTRAINT fk_registros
+		FOREIGN KEY (id)
+		REFERENCES drone
+);
+
+/* TABELA 13 */
+CREATE TABLE cameraAerea (
+	camera BIGINT,
+	drone BIGINT,
+	data DATE,
+	quantidade INTEGER NOT NULL,
+	CONSTRAINT pk_cameraAerea
+		PRIMARY KEY (camera, drone, data),
+	CONSTRAINT fk1_cameraAerea
+		FOREIGN KEY (camera)
+		REFERENCES camera,
+	CONSTRAINT fk2_cameraAerea
+		FOREIGN KEY (drone)
+		REFERENCES drone
+);
+
+/* TABELA 14 */
+CREATE TABLE musico (
+	cpf CHAR(14),
+	nome VARCHAR(128) NOT NULL,
+	CONSTRAINT pk_musico
+		PRIMARY KEY (cpf),
+	CONSTRAINT ck1_musico
+		CHECK ( cpf ~ '^[0-9]{3}\.[0-9]{3}\.[0-9]{3}\-[0-9]{2}$' )
+);
+
+/* TABELA 15 */
+CREATE TABLE banda (
+	nome VARCHAR(64),
+	dataCriacao DATE,
+	estiloMusical VARCHAR(64),
+	tipo CHAR(10),
+	CONSTRAINT pk_banda
+		PRIMARY KEY (nome, dataCriacao),
+	CONSTRAINT ck_banda
+		CHECK ( tipo IN ('PARTICULAR', 'CONTRATADA') )
+);
+
+/* TABELA 16 */
+CREATE TABLE compoe (
+	cpfMusico CHAR (14),
+	nomeBanda VARCHAR(64),
+	dataCriacaoBanda DATE,
+	CONSTRAINT pk_compoe
+		PRIMARY KEY (cpfMusico, nomeBanda, dataCriacaoBanda),
+	CONSTRAINT fk1_compoe
+		FOREIGN KEY (cpfMusico)
+		REFERENCES musico,
+	CONSTRAINT fk2_compoe
+		FOREIGN KEY (nomeBanda, dataCriacaoBanda)
+		REFERENCES banda
+);
+
 
 
 /* For debugging currently */
