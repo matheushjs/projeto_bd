@@ -66,6 +66,7 @@ CREATE TABLE assistente(
 	CONSTRAINT fk_assistente
 		FOREIGN KEY (cpf)
 		REFERENCES funcionario
+		ON DELETE CASCADE
 );
 
 /* TABELA 6 */
@@ -77,6 +78,7 @@ CREATE TABLE opcamera (
 	CONSTRAINT fk_opcamera
 		FOREIGN KEY (cpf)
 		REFERENCES funcionario
+		ON DELETE CASCADE
 );
 
 
@@ -105,6 +107,7 @@ CREATE TABLE estruturacao (
 	CONSTRAINT fk_estruturacao
 		FOREIGN KEY (id)
 		REFERENCES equipamento
+		ON DELETE CASCADE
 );
 
 /* TABELA 9 */
@@ -118,6 +121,7 @@ CREATE TABLE drone (
 	CONSTRAINT fk_drone
 		FOREIGN KEY (id)
 		REFERENCES equipamento
+		ON DELETE CASCADE
 );
 
 /* TABELA 10 */
@@ -130,6 +134,7 @@ CREATE TABLE sonorizacao (
 	CONSTRAINT fk_sonorizacao
 		FOREIGN KEY (id)
 		REFERENCES equipamento
+		ON DELETE CASCADE
 );
 
 /* TABELA 11 */
@@ -146,7 +151,8 @@ CREATE TABLE camera (
 		PRIMARY KEY (id),
 	CONSTRAINT fk_camera
 		FOREIGN KEY (id)
-		REFERENCES equipamento,
+		REFERENCES equipamento
+		ON DELETE CASCADE,
 	CONSTRAINT ck_camera
 		/* Deve ter 2 ou 3 dígitos em sequencia e talvez terminar com uma letra */
 		CHECK ( certificacaoIP ~ '^IP[0-9]{2,3}[a-zA-Z]{0,1}$' )
@@ -154,13 +160,14 @@ CREATE TABLE camera (
 
 /* TABELA 12 */
 CREATE TABLE registros (
-	id BIGINT,
+	idDrone BIGINT,
 	registro CHAR(9), /* São 9 dígitos pela SISANT */ 
 	CONSTRAINT pk_registros
-		PRIMARY KEY (id),
+		PRIMARY KEY (registro),
 	CONSTRAINT fk_registros
-		FOREIGN KEY (id)
+		FOREIGN KEY (idDrone)
 		REFERENCES drone
+		ON DELETE RESTRICT /* O usuário deve retirar os registros antes de deletar um drone. */
 );
 
 /* TABELA 13 */
@@ -173,10 +180,12 @@ CREATE TABLE cameraAerea (
 		PRIMARY KEY (camera, drone, data),
 	CONSTRAINT fk1_cameraAerea
 		FOREIGN KEY (camera)
-		REFERENCES camera,
+		REFERENCES camera
+		ON DELETE RESTRICT, /* Para guardar histórico */
 	CONSTRAINT fk2_cameraAerea
 		FOREIGN KEY (drone)
 		REFERENCES drone
+		ON DELETE RESTRICT /* Para guardar histórico */
 );
 
 /* TABELA 14 */
@@ -210,10 +219,12 @@ CREATE TABLE compoe (
 		PRIMARY KEY (cpfMusico, nomeBanda, dataCriacaoBanda),
 	CONSTRAINT fk1_compoe
 		FOREIGN KEY (cpfMusico)
-		REFERENCES musico,
+		REFERENCES musico
+		ON DELETE RESTRICT, /* Não é para deletar essas informações! */
 	CONSTRAINT fk2_compoe
 		FOREIGN KEY (nomeBanda, dataCriacaoBanda)
 		REFERENCES banda
+		ON DELETE RESTRICT /* Não é para deletar essas informações! */
 );
 
 
