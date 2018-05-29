@@ -203,11 +203,11 @@ CREATE TABLE banda (
 	nome VARCHAR(64),
 	dataCriacao DATE,
 	estiloMusical VARCHAR(64),
-	tipo CHAR(10),
+	tipo CHAR(10) NOT NULL,
 	CONSTRAINT pk_banda
 		PRIMARY KEY (nome, dataCriacao),
 	CONSTRAINT ck_banda
-		CHECK ( tipo IN ('PARTICULAR', 'CONTRATADA') )
+		CHECK ( upper(tipo) IN ('PARTICULAR', 'CONTRATADA') )
 );
 
 /* TABELA 16 */
@@ -227,6 +227,155 @@ CREATE TABLE compoe (
 		ON DELETE RESTRICT /* Não é para deletar essas informações! */
 );
 
+/* TABELA 17 */
+CREATE TABLE festaNoCruzeiro (
+	IMO INTEGER, /* Exemplo IMO: 9710880, 1009613, 8852356 */
+	dataInicio DATE,
+	dataFim DATE,
+	numeroConvidados INTEGER,
+	nome VARCHAR(128) NOT NULL,
+	CONSTRAINT pk_festaNoCruzeiro
+		PRIMARY KEY (IMO, dataInicio)
+);
+
+/* TABELA 18 */
+CREATE TABLE locaisCruzeiro (
+	IMO INTEGER,
+	dataFesta DATE,
+	local VARCHAR(128),
+	CONSTRAINT pk_locaisCruzeiro
+		PRIMARY KEY (IMO, dataFesta),
+	CONSTRAINT fk_locaisCruzeiro
+		FOREIGN KEY (IMO, dataFesta)
+		REFERENCES festaNoCruzeiro
+		ON DELETE RESTRICT /* Para armazenar histórico */
+);
+
+/* TABELA 19 */
+CREATE TABLE show (
+	id BIGSERIAL,
+	IMO INTEGER NOT NULL,
+	dataFesta DATE NOT NULL,
+	nomeBanda VARCHAR(64) NOT NULL,
+	dataCriacaoBanda DATE NOT NULL,
+	data DATE NOT NULL,
+	horaInicio TIME NOT NULL,
+	terminoPrevisto TIMESTAMP, /* TIMESTAMP guarda hora e data */
+	contrato VARCHAR(64), /* Qual é o tamanho do número de contrato? */
+	CONSTRAINT pk_show
+		PRIMARY KEY (id),
+	CONSTRAINT un1_show
+		UNIQUE (IMO, dataFesta, nomeBanda, dataCriacaoBanda),
+	CONSTRAINT un2_show
+		UNIQUE (contrato),
+	CONSTRAINT fk1_show
+		FOREIGN KEY (IMO, dataFesta)
+		REFERENCES festaNoCruzeiro
+		ON DELETE RESTRICT, /* Histórico! */
+	CONSTRAINT fk2_show
+		FOREIGN KEY (nomeBanda, dataCriacaoBanda)
+		REFERENCES banda
+		ON DELETE RESTRICT /* Histórico! */
+);
+
+/* TABELA 20 */
+CREATE TABLE showSonorizacao (
+	showId BIGINT,
+	sonorizacaoId BIGINT,
+	CONSTRAINT pk_showSonorizacao
+		PRIMARY KEY (showId, sonorizacaoId),
+	CONSTRAINT fk1_showSonorizacao
+		FOREIGN KEY (showId)
+		REFERENCES show
+		ON DELETE RESTRICT, /* Histórico */
+	CONSTRAINT fk2_showSonorizacao
+		FOREIGN KEY (sonorizacaoId)
+		REFERENCES sonorizacao
+		ON DELETE RESTRICT /* Histórico */
+);
+
+/* TABELA 21 */
+CREATE TABLE album (
+	id BIGSERIAL,
+	IMOFesta INTEGER NOT NULL,
+	dataFesta DATE NOT NULL,
+	CONSTRAINT pk_album
+		PRIMARY KEY(id),
+	CONSTRAINT un_album
+		UNIQUE (IMOFesta, dataFesta),
+	CONSTRAINT fk_album
+		FOREIGN KEY (IMOFesta, dataFesta)
+		REFERENCES festaNoCruzeiro
+		ON DELETE RESTRICT /* Histórico */
+);
+
+/* TABELA 22 */
+CREATE TABLE makingof (
+	id BIGSERIAL,
+	IMOFesta INTEGER NOT NULL,
+	dataFesta DATE NOT NULL,
+	CONSTRAINT pk_makingof
+		PRIMARY KEY(id),
+	CONSTRAINT un_makingof
+		UNIQUE (IMOFesta, dataFesta),
+	CONSTRAINT fk_makingof
+		FOREIGN KEY (IMOFesta, dataFesta)
+		REFERENCES festaNoCruzeiro
+		ON DELETE RESTRICT /* Histórico */
+);
+
+/* TABELA 23 */
+CREATE TABLE opComCamera (
+	cpfOpCamera CHAR(14),
+	data DATE,
+	camera BIGINT NOT NULL,
+	tipo CHAR(12) NOT NULL,
+	CONSTRAINT pk_opComCamera
+		PRIMARY KEY (cpfOpCamera, data),
+	CONSTRAINT fk_opComCamera
+		FOREIGN KEY (cpfOpCamera)
+		REFERENCES opCamera
+		ON DELETE RESTRICT, /* Histórico */ 
+	CONSTRAINT ck_opComCamera
+		CHECK ( upper(tipo) IN ('PARQUE', 'FOTOGRAFO', 'CINEGRAFISTA' ) )
+);
+
+/* TABELA 24 */
+CREATE TABLE fotografoCruzeiro (
+	cpfOpCamera CHAR(14),
+	data DATE,
+	categoria CHAR(12) NOT NULL,
+	idAlbum BIGINT NOT NULL,
+	CONSTRAINT pk_fotografoCruzeiro
+		PRIMARY KEY (cpfOpCamera, data),
+	CONSTRAINT fk1_fotografoCruzeiro
+		FOREIGN KEY (cpfOpCamera, data)
+		REFERENCES opComCamera
+		ON DELETE RESTRICT, /* Histórico */
+	CONSTRAINT fk2_fotografoCruzeiro
+		FOREIGN KEY (idAlbum)
+		REFERENCES album
+		ON DELETE RESTRICT, /* Historico */
+	CONSTRAINT ck_fotografoCruzeiro
+		CHECK ( upper(categoria) IN ('ESPECIALISTA', 'TECNICO', 'JUNIOR') )
+);
+
+/* TABELA 25 */
+CREATE TABLE cinegrafistaCruzeiro (
+	cpfOpCamera CHAR(14),
+	data DATE,
+	idMakingof BIGINT NOT NULL,
+	CONSTRAINT pk_cinegrafistaCruzeiro
+		PRIMARY KEY (cpfOpCamera, data),
+	CONSTRAINT fk1_cinegrafistaCruzeiro
+		FOREIGN KEY (cpfOpCamera, data)
+		REFERENCES opComCamera
+		ON DELETE RESTRICT, /* Histórico */
+	CONSTRAINT fk2_cinegrafistaCruzeiro
+		FOREIGN KEY (idMakingof)
+		REFERENCES makingof
+		ON DELETE RESTRICT /* Historico */
+);
 
 
 /* For debugging currently */
