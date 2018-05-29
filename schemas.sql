@@ -377,6 +377,212 @@ CREATE TABLE cinegrafistaCruzeiro (
 		ON DELETE RESTRICT /* Historico */
 );
 
+/* TABELA 26 */
+CREATE TABLE parque (
+	cnpj CHAR(18), /* Exemplo: 07.414.674/0001-81 */
+	nome VARCHAR(64) NOT NULL,
+	mapaFilePath VARCHAR(128) NOT NULL,
+	endereco VARCHAR(128) NOT NULL,
+	CONSTRAINT pk_parque
+		PRIMARY KEY (cnpj),
+	CONSTRAINT ck_parque
+		CHECK ( cnpj ~ '^[0-9]{2}\.[0-9]{3}\.[0-9]{3}\/[0-9]{4}\-[0-9]{2}$' )
+);
+
+/* TABELA 27 */
+CREATE TABLE festaNoParque (
+	cnpjParque CHAR(18),
+	dataInicio DATE,
+	dataFim DATE,
+	numeroConvidados INTEGER NOT NULL,
+	nome VARCHAR(64) NOT NULL,
+	CONSTRAINT pk_festaNoParque
+		PRIMARY KEY (cnpjParque, dataInicio),
+	CONSTRAINT fk_festaNoParque
+		FOREIGN KEY (cnpjParque)
+		REFERENCES parque
+		ON DELETE RESTRICT
+);
+
+/* TABELA 28 */
+CREATE TABLE atracao (
+	cnpjParque CHAR(18),
+	dataFesta DATE,
+	numero INTEGER,
+	nome VARCHAR(64),
+	poligono INTEGER[10][3] NOT NULL, /* Um polígono com no máximo 10 pontos */
+	CONSTRAINT pk_atracao
+		PRIMARY KEY (cnpjParque, dataFesta, numero, nome),
+	CONSTRAINT fk_atracao
+		FOREIGN KEY (cnpjParque, dataFesta)
+		REFERENCES festaNoParque
+		ON DELETE RESTRICT
+);
+
+/* TABELA 29 */
+CREATE TABLE opParque (
+	cpfOpCamera CHAR(14),
+	data DATE,
+	idCameraSecundaria BIGINT,
+	cnpjParque CHAR(18) NOT NULL,
+	dataInicioParque DATE NOT NULL,
+	cpfAssistente CHAR(14) NOT NULL,
+	CONSTRAINT pk_opParque
+		PRIMARY KEY (cpfOpCamera, data, idCameraSecundaria),
+	CONSTRAINT un_opParque
+		UNIQUE (cnpjParque, dataInicioParque, cpfAssistente),
+	CONSTRAINT fk1_opParque
+		FOREIGN KEY (cpfOpCamera, data)
+		REFERENCES opComCamera
+		ON DELETE RESTRICT,
+	CONSTRAINT fk2_opParque
+		FOREIGN KEY (idCameraSecundaria)
+		REFERENCES camera
+		ON DELETE RESTRICT,
+	CONSTRAINT fk3_opParque
+		FOREIGN KEY (cnpjParque, dataInicioParque)
+		REFERENCES festaNoParque
+		ON DELETE RESTRICT,
+	CONSTRAINT fk4_opParque
+		FOREIGN KEY (cpfAssistente)
+		REFERENCES assistente
+		ON DELETE RESTRICT
+);
+
+/* TABELA 30 */
+CREATE TABLE pontoInstalacao (
+	cnpjParque CHAR(18),
+	coordenadas INTEGER[3],
+	descricao VARCHAR(128),
+	conectividade VARCHAR(32),
+	iluminacao CHAR(5),
+	contatoAgua BOOLEAN,
+	fonteAlimentacao VARCHAR(32),
+	CONSTRAINT pk_pontoInstalacao
+		PRIMARY KEY (cnpjParque, coordenadas),
+	CONSTRAINT fk_pontoInstalacao
+		FOREIGN KEY (cnpjParque)
+		REFERENCES parque
+		ON DELETE RESTRICT,
+	CONSTRAINT ck_pontoInstalacao
+		CHECK ( upper(iluminacao) IN ('ALTA', 'MEDIA', 'BAIXA') )
+);
+
+/* TABELA 31 */
+CREATE TABLE pontoCamera (
+	idCamera BIGINT,
+	cnpjParque CHAR(18),
+	coordenadas INTEGER[3],
+	data DATE,
+	quantidade INTEGER NOT NULL,
+	CONSTRAINT pk_pontoCamera
+		PRIMARY KEY (idCamera, cnpjParque, coordenadas, data),
+	CONSTRAINT fk1_pontoCamera
+		FOREIGN KEY (idCamera)
+		REFERENCES camera
+		ON DELETE RESTRICT,
+	CONSTRAINT fk2_pontoCamera
+		FOREIGN KEY (cnpjParque, coordenadas)
+		REFERENCES pontoInstalacao
+		ON DELETE RESTRICT
+);
+
+/* TABELA 32 */
+CREATE TABLE pontoEstrutura (
+	idEstruturacao BIGINT,
+	cnpjParque CHAR(18),
+	coordenadas INTEGER[3],
+	data DATE,
+	quantidade INTEGER NOT NULL,
+	CONSTRAINT pk_pontoEstrutura
+		PRIMARY KEY (idEstruturacao, cnpjParque, coordenadas, data),
+	CONSTRAINT fk1_pontoEstrutura
+		FOREIGN KEY (idEstruturacao)
+		REFERENCES estruturacao
+		ON DELETE RESTRICT,
+	CONSTRAINT fk2_pontoEstrutura
+		FOREIGN KEY (cnpjParque, coordenadas)
+		REFERENCES pontoInstalacao
+		ON DELETE RESTRICT
+);
+
+/* TABELA 33 */
+CREATE TABLE pontoSom (
+	idSonorizacao BIGINT,
+	cnpjParque CHAR(18),
+	coordenadas INTEGER[3],
+	data DATE,
+	quantidade INTEGER NOT NULL,
+	numeroGrafo INTEGER,
+	CONSTRAINT fk1_pontoSom
+		FOREIGN KEY (idSonorizacao)
+		REFERENCES sonorizacao
+		ON DELETE RESTRICT,
+	CONSTRAINT fk2_pontoSom
+		FOREIGN KEY (cnpjParque, coordenadas)
+		REFERENCES pontoInstalacao
+		ON DELETE RESTRICT
+);
+
+/* TABELA 34 */
+CREATE TABLE opera (
+	cnpjParque CHAR(18),
+	dataFesta DATE,
+	cpfPiloto CHAR(14),
+	idDrone BIGINT NOT NULL, /* No MR não é chave estrangeira!!!??? */
+	CONSTRAINT pk_opera
+		PRIMARY KEY (cnpjParque, dataFesta, cpfPiloto),
+	CONSTRAINT fk1_opera
+		FOREIGN KEY (cnpjParque, dataFesta)
+		REFERENCES festaNoParque
+		ON DELETE RESTRICT,
+	CONSTRAINT fk2_opera
+		FOREIGN KEY (cpfPiloto)
+		REFERENCES piloto
+		ON DELETE RESTRICT
+);
+
+/* TABELA 35 */
+CREATE TABLE auxilia (
+	cnpjParque CHAR(18),
+	dataFesta DATE,
+	cpfPiloto CHAR(14),
+	cpfCopiloto CHAR(14) NOT NULL,
+	CONSTRAINT pk_auxilia
+		PRIMARY KEY (cnpjParque, dataFesta, cpfPiloto),
+	CONSTRAINT un_auxilia
+		UNIQUE (cpfCopiloto),
+	CONSTRAINT fk1_auxilia
+		FOREIGN KEY (cnpjParque, dataFesta)
+		REFERENCES festaNoParque
+		ON DELETE RESTRICT,
+	CONSTRAINT fk2_auxilia
+		FOREIGN KEY (cpfPiloto)
+		REFERENCES piloto
+		ON DELETE RESTRICT,
+	CONSTRAINT fk3_auxilia
+		FOREIGN KEY (cpfCopiloto)
+		REFERENCES copiloto
+		ON DELETE RESTRICT
+);
+
+/* TABELA 36 */
+CREATE TABLE manutencao (
+	cpfTecnico CHAR(14),
+	idEquipamento BIGINT,
+	data DATE,
+	CONSTRAINT pk_manutencao
+		PRIMARY KEY (cpfTecnico, idEquipamento, data),
+	CONSTRAINT fk1_manutencao
+		FOREIGN KEY (cpfTecnico)
+		REFERENCES tecnico
+		ON DELETE RESTRICT,
+	CONSTRAINT fk2_manutencao
+		FOREIGN KEY (idEquipamento)
+		REFERENCES equipamento
+		ON DELETE RESTRICT
+);
+
 
 /* For debugging currently */
 ROLLBACK;
