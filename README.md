@@ -36,10 +36,11 @@
       - Equipamento;
       - Técnico que fez a manutenção;
       - Festas as quais o equipamento foi utilizado.
-  - Funcionários
-  
-  - Festas
+  - Funcionários da empresa  
+  - Equipamentos da empresa
+  - Festas que a empresa participou
 - Montar e alocar equipes de filmagem
+- Alocar câmeras nos drones
 - Alocar atrações e shows
 - Definir pontos de instalação
 - Alocar equipamentos nos pontos de instalação
