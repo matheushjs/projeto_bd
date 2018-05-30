@@ -59,7 +59,8 @@ evento assim como acessar o álbum e o making of que lhe pertence.`
 `Com este histórico armazenado, será possível consultar quais bandas e quais artistas trabalharam
 com a EISE.`
 
-## Informações que a base de dados já deve possuir cadastradas
+## Alimentação inicial da base de dados
+Para tornar mais simples a aplicação, considera-se que as informações das seguintes entidades já estarão cadastradas na base de dados:
 - Funcionários
 - Equipamentos
 - Bandas
