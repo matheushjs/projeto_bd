@@ -30,3 +30,11 @@
 - Emitir relatórios
 - Montar e alocar equipes de filmagem
 - Alocar atrações e shows
+- Definir pontos de instalação
+- Alocar equipamentos nos pontos de instalação
+
+## Informações que a base de dados já deve possuir cadastradas
+- Funcionários
+- Equipamentos
+- Bandas
+- Músicos
