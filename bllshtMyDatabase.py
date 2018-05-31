@@ -78,11 +78,18 @@ def initColumnMetadata(attrType='', maxSize=-1):
 		'FK': ''
 	}
 
+
+"""
+	
+"""
+def processTokens(match, sep=','):
+	return regex.sub('\s+', '', match.groups()[0]).split(sep)
+
 """
 	In this version, the explicit constraints are just 
 	removed (work this in future)
 """
-def processConstraints(structuredTableCommands):
+def processConstraints(structuredTableCommands, sep=','):
 	"""
 	dbStructure = {
 		columnName_1: (attrType_1, maxSize_1, permittedValues_1,
@@ -107,7 +114,8 @@ def processConstraints(structuredTableCommands):
 	reConstraintUn=regex.compile(
 		r'UNIQUE\s*\(([^)]+)\)', regex.IGNORECASE)
 	reConstraintCI=regex.compile(
-		r'CHECK.+IN\s*\(([^)]+)\)', regex.IGNORECASE)
+		r'\CHECK\s*\([^(]*\(([^)]+)\)'+
+		'\s*IN\s*\(([^)]+)\)\s*\)', regex.IGNORECASE)
 	reConstraintNN=regex.compile(
 		r'([^\s]+).*NOT\s*NULL\s*', regex.IGNORECASE)
 	reConstraintDF=regex.compile(
@@ -120,10 +128,38 @@ def processConstraints(structuredTableCommands):
 	for key in structuredTableCommands:
 		currentList = structuredTableCommands[key]
 		for i in range(len(currentList)):
-			match=reConstraintDetect.search(currentList[i])
-			if match:
+			checkConstraint=reConstraintDetect.search(currentList[i])
+			if checkConstraint:
 				# Constraint declaration
-				pass
+				
+				# Check UNIQUE
+				matchUnique=reConstraintUn.search(currentList[i])
+				if matchUnique:
+						refColumns=processTokens(matchUnique, sep)
+						for r in refColumns:
+							dbStructure[r]['UNIQUE']=True
+
+				# Check CHECK IN
+				matchCheckIn=reConstraintCI.search(currentList[i])
+				if matchCheckIn:
+					refColumn=matchCheckIn.groups()[0]
+					dbStructure[refColumn]['PERMITTEDVALUES']=set(
+						(regex.sub('\s+|\'', '', 
+						matchCheckIn.groups()[1])).split(sep))
+
+				# Check PRIMARY KEY
+				matchPK=reConstraintPK.search(currentList[i])
+				if matchPK:
+						refColumns=processTokens(matchPK, sep)
+						for r in refColumns:
+							dbStructure[r]['PK']=True
+
+				# Check FOREIGN KEY
+				matchFK=reConstraintFK.search(currentList[i])
+				if matchFK:
+						refColumns=processTokens(matchFK, sep)
+						for r in refColumns:
+							dbStructure[r]['FK']=matchFK.group(2)
 			else:
 				# Attribute/Column declaration
 				match=reDeclareAttr.search(currentList[i])
@@ -149,7 +185,7 @@ def processConstraints(structuredTableCommands):
 					# Check if current column has DEFAULT VALUE
 					defaultValueMatch=reConstraintDF.search(currentList[i])
 					if defaultValueMatch:
-						dbStructure[attrName]['DEFVAL']=set(defaultValueMatch.groups(1))
+						dbStructure[attrName]['DEFVAL']=defaultValueMatch.groups()[0]
 
 	return dbStructure
 
