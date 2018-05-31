@@ -12,6 +12,25 @@ import random
 """
 
 """
+	This class hold script configuration used to generate
+	the pseudo-random data of the INSERT commands.
+"""
+class scriptConfig:
+	# MAX_INT=2**(8*4)-1
+	# MAX_INT=-2**(8*4)
+	# MAX_BIGINT=2**(8*8)-1
+	# MAX_BIGINT=-2**(8*8)
+	# MIN_YEAR=1900
+	# MAX_YEAR=2050
+	MAX_INT=900000
+	MIN_INT=100000
+	MAX_BIGINT=90000000
+	MIN_BIGINT=10000000
+	MIN_YEAR=2000
+	MAX_YEAR=2018
+
+
+"""
 	Regular expression that get a TABLE from the source file.
 """
 reGetTable=regex.compile(
@@ -245,14 +264,14 @@ def processConstraints(structuredTableCommands, sep=','):
 def _randDATE():
 	m=random.randint(1, 12)
 	d=random.randint(1, 31-(m%2+(m==2)))
-	y=random.randint(2000, 2018)
+	y=random.randint(scriptConfig.MIN_YEAR, 
+		scriptConfig.MAX_YEAR)
 	m=str(m)
 	d=str(d)
 	y=str(y)
-	return '-'.join(
-		[('0' if len(d)==1 else '')+d, 
-		('0' if len(d)==1 else '')+m, 
-		y])
+	return '-'.join([y,
+		('0' if len(m)==1 else '')+m,
+		('0' if len(d)==1 else '')+d])
 
 """
 
@@ -266,9 +285,18 @@ def _randTIME():
 		('0' if len(m)==1 else '')+m,
 		('0' if len(s)==1 else '')+s
 	])
-	
 
-def genValue(valType, valMaxValue):
+"""
+
+"""
+def quotes(string):
+	return '\''+string+'\''
+
+
+"""
+
+"""
+def genValue(valType, valMaxValue, fkTable):
 	"""
 	POSTGRESQL DATATYPES:
 	
@@ -283,15 +311,19 @@ def genValue(valType, valMaxValue):
 	TIME: 'hh:mm:ss'
 	TIMESTAMP: 'yyyy-mm-dd hh:mm:ss'
 	"""
+
 	canonicalVT = valType.upper()
 	if canonicalVT == 'INTEGER':
-		return random.randint(-2**(8*4), 2**(8*4)-1)
+		return random.randint(scriptConfig.MIN_INT, 
+			scriptConfig.MAX_INT)
 
 	elif canonicalVT == 'BIGINT':
-		return random.randint(-2**(8*8), 2**(8*8)-1)
+		return random.randint(scriptConfig.MIN_BIGINT, 
+			scriptConfig.MAX_BIGINT)
 
 	elif canonicalVT == 'DATE':
-		return _randDATE()
+		return 'to_date (' + quotes(_randDATE()) +\
+			', '+ quotes('yyyy-mm-dd') + ')'
 
 	elif canonicalVT == 'BOOLEAN':
 		return random.sample(('TRUE', 'FALSE'), k=1)[0]
@@ -305,13 +337,15 @@ def genValue(valType, valMaxValue):
 		data=''
 		for i in range(size):
 			data += chr(random.randint(ord('a'), ord('z')))
-		return data 
+		return quotes(data)
 
 	elif canonicalVT == 'TIME':
-		return _randTIME()
+		return quotes(_randTIME())
 
 	elif canonicalVT == 'TIMESTAMP':
-		return _randDATE() + ' ' + _randTIME()
+		return 'to_timestamp (' + quotes( _randDATE() +\
+			' ' + _randTIME()) + ', ' +\
+			quotes('yyyy-mm-dd hh:mm:ss') +')'
 
 	return None
 
