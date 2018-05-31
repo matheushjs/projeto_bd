@@ -14,7 +14,7 @@
   - Sonorização
 - Festa no Cruzeiro
   - Making Of
-  - Album
+  - Álbum
   - Bandas (Contratada/Particular)
     - Músicos
   - Shows  
@@ -42,10 +42,10 @@
 - Montar e alocar equipes de filmagem
 - Alocar câmeras nos drones
 - Alocar atrações e shows
-- Definir pontos de instalação<sup>[*](#myfootnote1)</sup>
+- Definir pontos de instalação [(?)](#myfootnote1)
 - Alocar equipamentos nos pontos de instalação
-- Cadastrar Festa no Parque
-- Cadastrar Festa no Cruzeiro
+- Cadastrar Festas em Parques
+- Cadastrar Festas em Cruzeiros
 
 `A partir do sistema de banco de dados, será possível consultar quais operadores de câmera
 trabalharam com quais modelos de câmeras e em quais festas, as características dessas câmeras,
@@ -70,6 +70,6 @@ Para tornar mais simples a aplicação, considera-se que as informações das se
 - Músicos
 - Parques
 - Manutenções
-- Pontos de Instalação<sup>[*](#myfootnote1)</sup>
+- Pontos de Instalação [(?)](#myfootnote1)
 
-<a name="myfootnote1">*</a>: Pode estar inicialmente na base de dados como também pode ser inserido por meio da aplicação, decidir qual o mais interessante para a aplicação.
+<a name="myfootnote1">(?)</a>: Pode estar inicialmente na base de dados como também pode ser inserido por meio da aplicação, decidir qual o mais interessante para a aplicação.
