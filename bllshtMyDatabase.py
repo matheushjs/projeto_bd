@@ -216,28 +216,70 @@ def processConstraints(structuredTableCommands, sep=','):
 					except:
 						attrMaxSize=-1
 
-					# Init current column metadata
-					curTable[attrName]=initColumnMetadata(
-						attrType, attrMaxSize)
+					if attrName in curTable:
+						# In case that the column is declared
+						# twice in the same table
+						curErrorTable.append(matchUnique.groups())
+						errorCounter+=1
+					else:
+						# Init current column metadata
+						curTable[attrName]=initColumnMetadata(
+							attrType, attrMaxSize)
 
-					# Check if current column is NOT NULL
-					notNullMatch=reConstraintNN.search(currentCommand)
-					if notNullMatch:
-						curTable[attrName]['NOTNULL']=True
+						# Check if current column is NOT NULL
+						notNullMatch=reConstraintNN.search(currentCommand)
+						if notNullMatch:
+							curTable[attrName]['NOTNULL']=True
 
-					# Check if current column has DEFAULT VALUE
-					defaultValueMatch=reConstraintDF.search(currentCommand)
-					if defaultValueMatch:
-						curTable[attrName]['DEFVAL']=defaultValueMatch.groups()[0]
+						# Check if current column has DEFAULT VALUE
+						defaultValueMatch=reConstraintDF.search(currentCommand)
+						if defaultValueMatch:
+							curTable[attrName]['DEFVAL']=defaultValueMatch.groups()[0]
 
 	return dbStructure, errorCounter
+
+def genValue(valType, valMaxValue):
+	"""
+	POSTGRESQL DATATYPES:
+
+	INTEGER: 4B
+	BIGINT: 8B
+	DATE: 'yyyy-mm-dd'
+	BIGSERIAL: 8B (autoincrementable) 
+	TYPE[N] (VECTOR) 
+	BOOLEAN: TRUE/FALSE
+	VARCHAR 
+	CHAR 
+	TIME: 'hh:mm:ss'
+	TIMESTAMP: 'yyyy-mm-dd hh:mm:ss'
+	"""
 
 """
 	Generate the SQL INSERT commands.
 	This is the very last step of this program.
 """
-def genInsertCommands(dbStrucure, numInst=5):
-	None
+def genInsertCommands(dbStructure, numInst=5):
+	# First, ignore the NULL non-constraints
+	tableNumTotal=0
+	for table in dbStructure:
+		tableNumTotal+=1
+		curTable=dbStructure[table]
+		print('/* TABLE', table, '*/')
+
+
+		for i in range(numInst):
+			command='INSERT INTO '+ table + ' ( ' +\
+				', '.join(curTable.keys())+ ' )\n\tVALUES ( '
+			counter=0
+			for column in curTable:
+				counter+=1
+				curEnd=', ' if counter < len(curTable) else ''
+				command+=column+curEnd
+			command+=' );'
+
+			print(command)
+		print()
+	print('/* TABLE NUMBER TOTAL:', tableNumTotal, '*/')
 
 if __name__ == '__main__':
 	if len(sys.argv) < 2:
