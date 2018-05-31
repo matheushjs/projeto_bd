@@ -64,24 +64,38 @@ def getCommands(rawDataCommands):
 	return structuredT
 
 """
+
+"""
+def initColumnMetadata(attrType='', maxSize=-1):
+	return {
+		'TYPE': attrType, 
+		'MAXSIZE': maxSize, 
+		'PERMITTEDVALUES': set(),
+		'PK': False, 
+		'UNIQUE': False, 
+		'DEFVAL': '', 
+		'NOTNULL': False, 
+		'FK': ''
+	}
+
+"""
 	In this version, the explicit constraints are just 
 	removed (work this in future)
 """
 def processConstraints(structuredTableCommands):
 	"""
-	dbStructure = [
-		(columnName_1, attrType_1, maxSize_1, permitedValues_1,
-			PRIMARYKEY?_1, UNIQUE?_1, DEFVAL_1, NOTNULL?_1, FK?_1)
-		(columnName_2, attrType_2, maxSize_2, permitedValues_2,
-			PRIMARYKEY?_2, UNIQUE?_2, DEFVAL_2, NOTNULL?_2, FK?_2)
-		(columnName_3, attrType_3, maxSize_3, permitedValues_3,
-			PRIMARYKEY?_3, UNIQUE?_3, DEFVAL_3, NOTNULL?_3, FK?_3)
-		...
-		(columnName_n, attrType_n, maxSize_n, permitedValues_n,
-			PRIMARYKEY?_n, UNIQUE?_n, DEFVAL_n, NOTNULL?_n, FK?_n)
-	]
+	dbStructure = {
+		columnName_1: (attrType_1, maxSize_1, permittedValues_1,
+			PK?_1, UNIQUE?_1, DEFVAL_1, NOTNULL?_1, FK_1),
+		columnName_2: (attrType_2, maxSize_2, permittedValues_2,
+			PK?_2, UNIQUE?_2, DEFVAL_2, NOTNULL?_2, FK_2),
+		columnName_3: (attrType_3, maxSize_3, permittedValues_3,
+			PK?_3, UNIQUE?_3, DEFVAL_3, NOTNULL?_3, FK_3),
+		...,
+		columnName_n: (attrType_n, maxSize_n, permittedValues_n,
+			PK?_n, UNIQUE?_n, DEFVAL_n, NOTNULL?_n, FK_n)
+	}
 	"""
-	dbStructure=[]
 
 	reConstraintDetect=regex.compile(r'CONSTRAINT', 
 		regex.IGNORECASE)
@@ -99,8 +113,10 @@ def processConstraints(structuredTableCommands):
 	reConstraintDF=regex.compile(
 		r'\s*DEFAULT\s*([^\s]+)\s*', regex.IGNORECASE)
 	reDeclareAttr=regex.compile(
-		r'([^\s]+)\s+([^\s(]+)[^(]*(?:\(\s*(\d+)\s*\))?', regex.IGNORECASE)
+		r'([^\s]+)\s+([^\s(]+)[^(]*(?:\(\s*(\d+)\s*\))?', 
+		regex.IGNORECASE)
 
+	dbStructure={}
 	for key in structuredTableCommands:
 		currentList = structuredTableCommands[key]
 		for i in range(len(currentList)):
@@ -110,10 +126,32 @@ def processConstraints(structuredTableCommands):
 				pass
 			else:
 				# Attribute/Column declaration
-				m=reDeclareAttr.search(currentList[i])
-				if m:
-					print(m.groups(0))
+				match=reDeclareAttr.search(currentList[i])
+				if match:
+					matchData=match.groups()
+					attrName=matchData[0]
+					attrType=matchData[1]
 
+					try:
+						attrMaxSize=int(matchData[2])
+					except:
+						attrMaxSize=-1
+
+					# Init current column metadata
+					dbStructure[attrName]=initColumnMetadata(
+						attrType, attrMaxSize)
+
+					# Check if current column is NOT NULL
+					notNullMatch=reConstraintNN.search(currentList[i])
+					if notNullMatch:
+						dbStructure[attrName]['NOTNULL']=True
+
+					# Check if current column has DEFAULT VALUE
+					defaultValueMatch=reConstraintDF.search(currentList[i])
+					if defaultValueMatch:
+						dbStructure[attrName]['DEFVAL']=set(defaultValueMatch.groups(1))
+
+	return dbStructure
 
 if __name__ == '__main__':
 	if len(sys.argv) < 2:
@@ -130,4 +168,7 @@ if __name__ == '__main__':
 
 	structuredTableCommands=getCommands(rawTableCommands)
 
-	processConstraints(structuredTableCommands)
+	dbStructure=processConstraints(structuredTableCommands)
+
+	for key in dbStructure:
+		print('COLUMN NAME:', key,'\nMETADATA:', dbStructure[key])
