@@ -199,6 +199,10 @@ def processConstraints(structuredTableCommands, sep=','):
 							else:
 								curErrorTable.append(matchUnique.groups())
 								errorCounter+=1
+
+				# check REGULAR EXPRESSION
+				# for a future update...
+
 			else:
 				# Attribute/Column declaration
 				match=reDeclareAttr.search(currentCommand)
@@ -228,11 +232,32 @@ def processConstraints(structuredTableCommands, sep=','):
 
 	return dbStructure, errorCounter
 
+"""
+	Generate the SQL INSERT commands.
+	This is the very last step of this program.
+"""
+def genInsertCommands(dbStrucure, numInst=5):
+	None
+
 if __name__ == '__main__':
 	if len(sys.argv) < 2:
 		print('usage:', sys.argv[0], 
-			'< .sql file with CREATE TABLE commands >')
+			'< .sql file with CREATE TABLE commands >',
+			'[# of valid instances for each table (default to 5)]')
 		exit(1)
+
+	instNum=5
+	if len(sys.argv) >= 3:
+		try:
+			instNum=int(sys.argv[2])
+			if instNum <= 0:
+				raise Exception;
+		except:
+			print('Incorrent parameter type/value (\'' + 
+				sys.argv[2] + '\').',
+				'Must be a positive integer value.',
+				'Setting to default value (5).')
+			instNum=5
 
 	# Get the file content	
 	data=readData(sys.argv[1])
@@ -254,14 +279,15 @@ if __name__ == '__main__':
 	dbStructure, errorCounter=processConstraints(structuredTableCommands)
 
 	# DEBUG purposes
-	for table in dbStructure:
-		print('TABLE NAME:', table)
-		for column in dbStructure[table]:
-				print('\tCOLUMN NAME:', column)
-				for constraint in dbStructure[table][column]:
-						print('\t\t'+constraint+':', 
-							dbStructure[table][column][constraint])
-		print('END OF TABLE', table, '\n\n')
+	if False:
+		for table in dbStructure:
+			print('TABLE NAME:', table)
+			for column in dbStructure[table]:
+					print('\tCOLUMN NAME:', column)
+					for constraint in dbStructure[table][column]:
+							print('\t\t'+constraint+':', 
+								dbStructure[table][column][constraint])
+			print('END OF TABLE', table, '\n\n')
 
 	print('TOTAL OF', errorCounter, 
 		'ERRORS WHILE BUILDING METADATA STRUCTURE.')
@@ -273,5 +299,7 @@ if __name__ == '__main__':
 				print('\tIN COMMAND:', dbStructure[table][column])
 			print('END ERROR SECTION OF TABLE', table, '\n\n')	
 
-	# Finally, produce INSERT commands now
-	# To do....
+	else:
+					# If everything was correct til now...
+					# Finally, produce INSERT commands now
+					genInsertCommands(dbStructure)
