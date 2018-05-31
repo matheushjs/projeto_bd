@@ -1,5 +1,6 @@
 import regex
 import sys
+import random
 
 """
 	DESCRIPTION:
@@ -238,10 +239,39 @@ def processConstraints(structuredTableCommands, sep=','):
 
 	return dbStructure, errorCounter
 
+"""
+
+"""
+def _randDATE():
+	m=random.randint(1, 12)
+	d=random.randint(1, 31-(m%2+(m==2)))
+	y=random.randint(2000, 2018)
+	m=str(m)
+	d=str(d)
+	y=str(y)
+	return '-'.join(
+		[('0' if len(d)==1 else '')+d, 
+		('0' if len(d)==1 else '')+m, 
+		y])
+
+"""
+
+"""
+def _randTIME():
+	h=str(random.randint(0, 23))
+	m=str(random.randint(0, 59))
+	s=str(random.randint(0, 59))
+	return ':'.join([
+		('0' if len(h)==1 else '')+h,
+		('0' if len(m)==1 else '')+m,
+		('0' if len(s)==1 else '')+s
+	])
+	
+
 def genValue(valType, valMaxValue):
 	"""
 	POSTGRESQL DATATYPES:
-
+	
 	INTEGER: 4B
 	BIGINT: 8B
 	DATE: 'yyyy-mm-dd'
@@ -253,6 +283,49 @@ def genValue(valType, valMaxValue):
 	TIME: 'hh:mm:ss'
 	TIMESTAMP: 'yyyy-mm-dd hh:mm:ss'
 	"""
+	canonicalVT = valType.upper()
+	if canonicalVT == 'INTEGER':
+		return random.randint(-2**(8*4), 2**(8*4)-1)
+
+	elif canonicalVT == 'BIGINT':
+		return random.randint(-2**(8*8), 2**(8*8)-1)
+
+	elif canonicalVT == 'DATE':
+		return _randDATE()
+
+	elif canonicalVT == 'BOOLEAN':
+		return random.sample(('TRUE', 'FALSE'), k=1)[0]
+
+	elif canonicalVT == 'VARCHAR' or canonicalVT == 'CHAR':
+		
+		size=valMaxValue 
+		if canonicalVT == 'CHAR': 
+			random.randint(valMaxValue//2, valMaxValue)
+
+		data=''
+		for i in range(size):
+			data += chr(random.randint(ord('a'), ord('z')))
+		return data 
+
+	elif canonicalVT == 'TIME':
+		return _randTIME()
+
+	elif canonicalVT == 'TIMESTAMP':
+		return _randDATE() + ' ' + _randTIME()
+
+	return None
+
+
+"""
+		'TYPE': attrType, 
+		'MAXSIZE': maxSize, 
+		'PERMITTEDVALUES': set(),
+		'PK': False, 
+		'UNIQUE': False, 
+		'DEFVAL': '', 
+		'NOTNULL': False, 
+		'FK': ''
+"""
 
 """
 	Generate the SQL INSERT commands.
@@ -266,15 +339,20 @@ def genInsertCommands(dbStructure, numInst=5):
 		curTable=dbStructure[table]
 		print('/* TABLE', table, '*/')
 
-
 		for i in range(numInst):
 			command='INSERT INTO '+ table + ' ( ' +\
 				', '.join(curTable.keys())+ ' )\n\tVALUES ( '
 			counter=0
 			for column in curTable:
+				curColumn = curTable[column]
+
 				counter+=1
 				curEnd=', ' if counter < len(curTable) else ''
-				command+=column+curEnd
+				command+=str(
+					genValue(curColumn['TYPE'], 
+					curColumn['MAXSIZE'],
+					curColumn['FK']
+					))+curEnd
 			command+=' );'
 
 			print(command)
