@@ -1,3 +1,13 @@
+"""
+	TO DO:
+	- VERIFY FOREIGN KEY
+	- SUPPORT ARRAYS
+	- VERIFY UNIQUE (PK, SK, TK...)
+	-		VERIFY COMPOSITE KEYS
+	- SUPPORT REGEX CONSTRAINTS
+	- CREATE SUPPORT FOR WORD DICTIONARY
+"""
+
 import regex
 import sys
 import random
@@ -16,6 +26,7 @@ import random
 	the pseudo-random data of the INSERT commands.
 """
 class scriptConfig:
+	GEN_NULL_VALUES=True
 	# MAX_INT=2**(8*4)-1
 	# MAX_INT=-2**(8*4)
 	# MAX_BIGINT=2**(8*8)-1
@@ -361,6 +372,37 @@ def genValue(valType, valMaxValue, fkTable):
 		'FK': ''
 """
 
+def _removeSerial(keys, types):
+	rmIndexes=[]
+	for i in range(len(keys)):
+		if types[i].find('SERIAL') != -1:
+			rmIndexes.append(i)
+	for i in sorted(rmIndexes, reverse=True):
+		keys.pop(i)
+	return keys
+
+def printCommand(table, curTable, nonSerialColumn, genNullAt=-1):
+	command='INSERT INTO '+ table + ' ( ' +\
+		', '.join(nonSerialColumn)+ ' )\n\tVALUES ( '
+
+	counter=0
+	for column in nonSerialColumn:
+		curColumn = curTable[column]
+
+		counter+=1
+		curEnd=', ' if counter < len(curTable) else ''
+		if counter != genNullAt:
+			command+=str(
+				genValue(curColumn['TYPE'], 
+				curColumn['MAXSIZE'],
+				curColumn['FK']
+				))
+		else:
+			command+='NULL'
+		command+=curEnd
+	command+=' );'
+	print(command)
+
 """
 	Generate the SQL INSERT commands.
 	This is the very last step of this program.
@@ -370,27 +412,36 @@ def genInsertCommands(dbStructure, numInst=5):
 	tableNumTotal=0
 	for table in dbStructure:
 		tableNumTotal+=1
+
+		# Auxiliary variable to help reducing verbosity
+		# inside this function.
 		curTable=dbStructure[table]
+
+		# Remove autoincrementable (SERIAL or BIGSERIAL)
+		# columns.
+		nonSerialColumn=_removeSerial(list(curTable.keys()),
+			[curTable[column]['TYPE'] for column in curTable])
+
 		print('/* TABLE', table, '*/')
 
+		# Generate common instances (with non null values)
 		for i in range(numInst):
-			command='INSERT INTO '+ table + ' ( ' +\
-				', '.join(curTable.keys())+ ' )\n\tVALUES ( '
-			counter=0
-			for column in curTable:
-				curColumn = curTable[column]
+			printCommand(table, curTable, nonSerialColumn)
 
-				counter+=1
-				curEnd=', ' if counter < len(curTable) else ''
-				command+=str(
-					genValue(curColumn['TYPE'], 
-					curColumn['MAXSIZE'],
-					curColumn['FK']
-					))+curEnd
-			command+=' );'
+		# If configured, the program will generate additional 
+		# instances each one with a NULL value for each possible 
+		# column that hasn't a 'NOT NULL' constraint and, obviously,
+		# is neither a PRIMARY KEY.
+		if scriptConfig.GEN_NULL_VALUES:
+			for i in range(len(nonSerialColumn)):
+				curNSColumn=nonSerialColumn[i]
+				if not curTable[curNSColumn]['NOTNULL']:
+					printCommand(table, curTable, nonSerialColumn, i)
 
-			print(command)
+		# NEW LINE, to keep INSERT commands of each table
+		# nicely separated between each other.
 		print()
+
 	print('/* TABLE NUMBER TOTAL:', tableNumTotal, '*/')
 
 if __name__ == '__main__':
