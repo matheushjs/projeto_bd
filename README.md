@@ -28,7 +28,7 @@
   
 ## Operações disponíveis na aplicação
 - Emitir relatórios
-  - Funcionários escalados para uma festa (<s>técnicos</s>)
+  - Funcionários escalados para uma festa (~~técnicos~~)
   - Manutenções feitas em um ou todos os equipamentos
     - Possívels filtros: 
       - Data; 
@@ -42,8 +42,10 @@
 - Montar e alocar equipes de filmagem
 - Alocar câmeras nos drones
 - Alocar atrações e shows
-- Definir pontos de instalação
+- Definir pontos de instalação<sup>[*](#myfootnote1)</sup>
 - Alocar equipamentos nos pontos de instalação
+- Cadastrar Festa no Parque
+- Cadastrar Festa no Cruzeiro
 
 `A partir do sistema de banco de dados, será possível consultar quais operadores de câmera
 trabalharam com quais modelos de câmeras e em quais festas, as características dessas câmeras,
@@ -66,3 +68,8 @@ Para tornar mais simples a aplicação, considera-se que as informações das se
 - Equipamentos
 - Bandas
 - Músicos
+- Parques
+- Manutenções
+- Pontos de Instalação<sup>[*](#myfootnote1)</sup>
+
+<a name="myfootnote1">*</a>: Pode estar inicialmente na base de dados como também pode ser inserido por meio da aplicação, decidir qual o mais interessante para a aplicação.
