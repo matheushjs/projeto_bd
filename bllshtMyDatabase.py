@@ -83,26 +83,36 @@ def processConstraints(structuredTableCommands):
 	"""
 	dbStructure=[]
 
+	reConstraintDetect=regex.compile(r'CONSTRAINT', 
+		regex.IGNORECASE)
 	reConstraintFK=regex.compile(
-		r'CONSTRAINT.+FOREIGN\s+KEY\s*\(([^\s]+)\)'+
+		r'FOREIGN\s+KEY\s*\(([^\s]+)\)'+
 		'\s*REFERENCES\s*([^\s]+)', regex.IGNORECASE)
 	reConstraintPK=regex.compile(
-		r'CONSTRAINT.+PRIMARY\s+KEY\s*\(([^\s]+)\)', regex.IGNORECASE)
+		r'PRIMARY\s+KEY\s*\(([^\s]+)\)', regex.IGNORECASE)
 	reConstraintUn=regex.compile(
-		r'CONSTRAINT.+UNIQUE\s*\(([^)]+)\)', regex.IGNORECASE)
+		r'UNIQUE\s*\(([^)]+)\)', regex.IGNORECASE)
 	reConstraintCI=regex.compile(
-		r'CONSTRAINT.+CHECK.+IN\s*\(([^)]+)\)', regex.IGNORECASE)
+		r'CHECK.+IN\s*\(([^)]+)\)', regex.IGNORECASE)
 	reConstraintNN=regex.compile(
 		r'([^\s]+).*NOT\s*NULL\s*', regex.IGNORECASE)
 	reConstraintDF=regex.compile(
 		r'\s*DEFAULT\s*([^\s]+)\s*', regex.IGNORECASE)
+	reDeclareAttr=regex.compile(
+		r'([^\s]+)\s+([^\s(]+)[^(]*(?:\(\s*(\d+)\s*\))?', regex.IGNORECASE)
 
 	for key in structuredTableCommands:
 		currentList = structuredTableCommands[key]
 		for i in range(len(currentList)):
-			match=reConstraintFK.search(currentList[i])
+			match=reConstraintDetect.search(currentList[i])
 			if match:
-				print(match.groups(0))
+				# Constraint declaration
+				pass
+			else:
+				# Attribute/Column declaration
+				m=reDeclareAttr.search(currentList[i])
+				if m:
+					print(m.groups(0))
 
 
 if __name__ == '__main__':
