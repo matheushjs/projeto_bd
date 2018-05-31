@@ -55,7 +55,9 @@ def processCommands(text, stop=','):
 	return result
 
 """
-
+	Get a base structure that links a table name with a list
+	containing all its SQL commands to latter be processed
+	into valid INSERT commands.
 """
 def getCommands(rawDataCommands):
 	structuredT = {}
@@ -64,7 +66,9 @@ def getCommands(rawDataCommands):
 	return structuredT
 
 """
-
+	Init a empty block of attribute information. All this
+	information will be necessary to construct correct
+	INSERT commands.
 """
 def initColumnMetadata(attrType='', maxSize=-1):
 	return {
@@ -80,30 +84,26 @@ def initColumnMetadata(attrType='', maxSize=-1):
 
 
 """
-	
+	Just an auxilliary function for multivalue regex matching
+	(for example, a PRIMARY KEY constraint, that may have
+	multiple values related to a single command).
 """
 def processTokens(match, sep=','):
 	return regex.sub('\s+', '', match.groups()[0]).split(sep)
 
 """
-	In this version, the explicit constraints are just 
-	removed (work this in future)
+	Preprocess all data into a big hashtable (Python dictionary),
+	transforming all writen SQL commands into information. Latter,
+	all this information will be used to construct the INSERT
+	commands.
 """
 def processConstraints(structuredTableCommands, sep=','):
-	"""
-	dbStructure = {
-		columnName_1: (attrType_1, maxSize_1, permittedValues_1,
-			PK?_1, UNIQUE?_1, DEFVAL_1, NOTNULL?_1, FK_1),
-		columnName_2: (attrType_2, maxSize_2, permittedValues_2,
-			PK?_2, UNIQUE?_2, DEFVAL_2, NOTNULL?_2, FK_2),
-		columnName_3: (attrType_3, maxSize_3, permittedValues_3,
-			PK?_3, UNIQUE?_3, DEFVAL_3, NOTNULL?_3, FK_3),
-		...,
-		columnName_n: (attrType_n, maxSize_n, permittedValues_n,
-			PK?_n, UNIQUE?_n, DEFVAL_n, NOTNULL?_n, FK_n)
-	}
-	"""
 
+	"""
+	Regular expressions used to convert SQL commands
+	into information necessary to generate correct
+	INSERT commands.
+	"""
 	reConstraintDetect=regex.compile(r'CONSTRAINT', 
 		regex.IGNORECASE)
 	reConstraintFK=regex.compile(
@@ -124,45 +124,84 @@ def processConstraints(structuredTableCommands, sep=','):
 		r'([^\s]+)\s+([^\s(]+)[^(]*(?:\(\s*(\d+)\s*\))?', 
 		regex.IGNORECASE)
 
+	"""
+	Check out "initColumnMetadata" for the model of a
+	basic column-relate information block. All the blocks
+	will be linked to the correspondent table name inside
+	"dbStructure" hashtable. This data structure will be
+	the information core necessary to produce valid
+	INSERT commands.
+	"""
 	dbStructure={}
+	errorTable={}
+	errorCounter=0
 	for key in structuredTableCommands:
-		currentList = structuredTableCommands[key]
-		for i in range(len(currentList)):
-			checkConstraint=reConstraintDetect.search(currentList[i])
-			if checkConstraint:
+		# Each table has its own sub-hashtable for each of its own
+		# columns/attributes.
+		dbStructure[key]={}
+		errorTable[key]=[]
+		
+		# Auxilliary variables to reduce verbosity level through
+		# this function.
+		curList=structuredTableCommands[key]
+		curTable=dbStructure[key]
+		curErrorTable=errorTable[key]
+
+		for i in range(len(curList)):
+			# Another auxiliary variable to reduce verbosity level
+			currentCommand=curList[i]
+
+			checkConstraint=reConstraintDetect.search(currentCommand)
+			if checkConstraint:				
 				# Constraint declaration
 				
 				# Check UNIQUE
-				matchUnique=reConstraintUn.search(currentList[i])
+				matchUnique=reConstraintUn.search(currentCommand)
 				if matchUnique:
 						refColumns=processTokens(matchUnique, sep)
 						for r in refColumns:
-							dbStructure[r]['UNIQUE']=True
+							if r in curTable:
+									curTable[r]['UNIQUE']=True
+							else:
+								curErrorTable.append(matchUnique.groups())
+								errorCounter+=1
 
 				# Check CHECK IN
-				matchCheckIn=reConstraintCI.search(currentList[i])
+				matchCheckIn=reConstraintCI.search(currentCommand)
 				if matchCheckIn:
 					refColumn=matchCheckIn.groups()[0]
-					dbStructure[refColumn]['PERMITTEDVALUES']=set(
-						(regex.sub('\s+|\'', '', 
-						matchCheckIn.groups()[1])).split(sep))
+					if refColumn in curTable:
+						curTable[refColumn]['PERMITTEDVALUES']=set(
+							(regex.sub('\s+|\'', '', 
+							matchCheckIn.groups()[1])).split(sep))
+					else:
+						curErrorTable.append(matchUnique.groups())
+						errorCounter+=1
 
 				# Check PRIMARY KEY
-				matchPK=reConstraintPK.search(currentList[i])
+				matchPK=reConstraintPK.search(currentCommand)
 				if matchPK:
 						refColumns=processTokens(matchPK, sep)
 						for r in refColumns:
-							dbStructure[r]['PK']=True
+							if r in curTable:
+								curTable[r]['PK']=True
+							else:
+								curErrorTable.append(matchUnique.groups())
+								errorCounter+=1
 
 				# Check FOREIGN KEY
-				matchFK=reConstraintFK.search(currentList[i])
+				matchFK=reConstraintFK.search(currentCommand)
 				if matchFK:
 						refColumns=processTokens(matchFK, sep)
 						for r in refColumns:
-							dbStructure[r]['FK']=matchFK.group(2)
+							if r in curTable:
+								curTable[r]['FK']=matchFK.group(2)
+							else:
+								curErrorTable.append(matchUnique.groups())
+								errorCounter+=1
 			else:
 				# Attribute/Column declaration
-				match=reDeclareAttr.search(currentList[i])
+				match=reDeclareAttr.search(currentCommand)
 				if match:
 					matchData=match.groups()
 					attrName=matchData[0]
@@ -174,20 +213,20 @@ def processConstraints(structuredTableCommands, sep=','):
 						attrMaxSize=-1
 
 					# Init current column metadata
-					dbStructure[attrName]=initColumnMetadata(
+					curTable[attrName]=initColumnMetadata(
 						attrType, attrMaxSize)
 
 					# Check if current column is NOT NULL
-					notNullMatch=reConstraintNN.search(currentList[i])
+					notNullMatch=reConstraintNN.search(currentCommand)
 					if notNullMatch:
-						dbStructure[attrName]['NOTNULL']=True
+						curTable[attrName]['NOTNULL']=True
 
 					# Check if current column has DEFAULT VALUE
-					defaultValueMatch=reConstraintDF.search(currentList[i])
+					defaultValueMatch=reConstraintDF.search(currentCommand)
 					if defaultValueMatch:
-						dbStructure[attrName]['DEFVAL']=defaultValueMatch.groups()[0]
+						curTable[attrName]['DEFVAL']=defaultValueMatch.groups()[0]
 
-	return dbStructure
+	return dbStructure, errorCounter
 
 if __name__ == '__main__':
 	if len(sys.argv) < 2:
@@ -202,9 +241,37 @@ if __name__ == '__main__':
 	# (with CREATE TABLE commands)
 	rawTableCommands=reGetTable.findall(data) 
 
+	# First preprocessing of the data:
+	# Links table name with each one of its creation commands
+	# in the form of character strings separated inside a Python list.
 	structuredTableCommands=getCommands(rawTableCommands)
 
-	dbStructure=processConstraints(structuredTableCommands)
+	# Final preprocessing stage, where all data is converted
+	# into true TABLE information, heavily structured into a
+	# hashtable that links the table name with a dictionary of
+	# "all possible" POSTGRES constraints and information needed to
+	# construct valid INSERT commands.
+	dbStructure, errorCounter=processConstraints(structuredTableCommands)
 
-	for key in dbStructure:
-		print('COLUMN NAME:', key,'\nMETADATA:', dbStructure[key])
+	# DEBUG purposes
+	for table in dbStructure:
+		print('TABLE NAME:', table)
+		for column in dbStructure[table]:
+				print('\tCOLUMN NAME:', column)
+				for constraint in dbStructure[table][column]:
+						print('\t\t'+constraint+':', 
+							dbStructure[table][column][constraint])
+		print('END OF TABLE', table, '\n\n')
+
+	print('TOTAL OF', errorCounter, 
+		'ERRORS WHILE BUILDING METADATA STRUCTURE.')
+	if errorCounter:
+		print('SHOWING ERRORS FOR EACH TABLE:')
+		for table in dbStructure:
+			print('ERROR IN TABLE', table)	
+			for column in dbStructure[table]:
+				print('\tIN COMMAND:', dbStructure[table][column])
+			print('END ERROR SECTION OF TABLE', table, '\n\n')	
+
+	# Finally, produce INSERT commands now
+	# To do....
