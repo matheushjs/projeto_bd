@@ -70,12 +70,12 @@ CREATE TABLE assistente(
 );
 
 /* TABELA 6 */
-CREATE TABLE opcamera (
+CREATE TABLE opCamera (
 	cpf CHAR(14),
 	inicioCarreira DATE NOT NULL,
-	CONSTRAINT pk_opcamera
+	CONSTRAINT pk_opCamera
 		PRIMARY KEY (cpf),
-	CONSTRAINT fk_opcamera
+	CONSTRAINT fk_opCamera
 		FOREIGN KEY (cpf)
 		REFERENCES funcionario
 		ON DELETE CASCADE
