@@ -149,7 +149,7 @@ def processConstraints(structuredTableCommands, sep=','):
 		r'FOREIGN\s+KEY\s*\(([^)]+)\)'+
 		'\s*REFERENCES\s*([^\s]+)', regex.IGNORECASE)
 	reConstraintPK=regex.compile(
-		r'PRIMARY\s+KEY\s*\(([^\s]+)\)', regex.IGNORECASE)
+		r'PRIMARY\s+KEY\s*\(([^)]+)\)', regex.IGNORECASE)
 	reConstraintUn=regex.compile(
 		r'UNIQUE\s*\(([^)]+)\)', regex.IGNORECASE)
 	reConstraintCI=regex.compile(
@@ -208,7 +208,8 @@ def processConstraints(structuredTableCommands, sep=','):
 							if r in curTable:
 									curTable[r]['UNIQUE']=True
 							else:
-								curErrorTable.append(matchUnique.groups())
+								curErrorTable.append(('COLUMN NOT EXISTS',
+									currentCommand))
 								errorCounter+=1
 
 				# Check CHECK IN
@@ -220,7 +221,8 @@ def processConstraints(structuredTableCommands, sep=','):
 							(regex.sub('\s+|\'', '', 
 							matchCheckIn.groups()[1])).split(sep))
 					else:
-						curErrorTable.append(matchUnique.groups())
+						curErrorTable.append(('COLUMN NOT EXISTS',
+							currentCommand))
 						errorCounter+=1
 
 				# Check PRIMARY KEY
@@ -237,7 +239,8 @@ def processConstraints(structuredTableCommands, sep=','):
 								curTable[r]['NOTNULL']=True
 								curTable[r]['UNIQUE']=True
 							else:
-								curErrorTable.append(matchUnique.groups())
+								curErrorTable.append(('COLUMN NOT EXISTS',
+									currentCommand))
 								errorCounter+=1
 
 				# Check FOREIGN KEY
@@ -264,7 +267,8 @@ def processConstraints(structuredTableCommands, sep=','):
 								curTable[r]['FK']=fkTable
 								curTable[r]['NOTNULL']=True
 							else:
-								curErrorTable.append(matchUnique.groups())
+								curErrorTable.append(('COLUMN NOT EXISTS', 
+									currentCommand))
 								errorCounter+=1
 
 				# check REGULAR EXPRESSION
@@ -286,7 +290,8 @@ def processConstraints(structuredTableCommands, sep=','):
 					if attrName in curTable:
 						# In case that the column is declared
 						# twice in the same table
-						curErrorTable.append(matchUnique.groups())
+						curErrorTable.append(('COLUMN DECLARED TWITCE', 
+							currentCommand))
 						errorCounter+=1
 					else:
 						# Init current column metadata
@@ -303,7 +308,19 @@ def processConstraints(structuredTableCommands, sep=','):
 						if defaultValueMatch:
 							curTable[attrName]['DEFVAL']=defaultValueMatch.groups()[0]
 
-	return dbStructure, errorCounter, dbFKHandler
+
+	# Check if there is incorrect FK references
+	foreignKeys=dbFKHandler['FK'].keys()
+	primaryKeys=dbFKHandler['PK'].keys()
+	for fkTable in foreignKeys:
+		if fkTable not in primaryKeys:
+			# In this case, the FK references a non-
+			# existent table.
+				curErrorTable.append(('NONEXISTENT FK REFERENCE', 
+					str(fkTable)))
+				errorCounter+=1
+
+	return dbStructure, errorCounter, errorTable, dbFKHandler
 
 """
 	Generate a random SQL DATE value.
@@ -496,8 +513,10 @@ def printCommand(
 				# Otherwise, it must not be one of the previously
 				# generated values.
 
-				validValue = (not curColumn['UNIQUE']) or +\
-					(value not in curGenValues[column])
+				validValue = (not curColumn['UNIQUE']) or (value not in curGenValues[column])
+
+				# DEBUG --------------------------
+				validValue = validValue | (value == 'None')
 
 		else:
 			# The specified column was solicited to assume a NULL
@@ -606,7 +625,7 @@ if __name__ == '__main__':
 	# hashtable that links the table name with a dictionary of
 	# "all possible" POSTGRES constraints and information needed to
 	# construct valid INSERT commands.
-	dbStructure, errorCounter, dbFKHandler=processConstraints(structuredTableCommands)
+	dbStructure, errorCounter, errorTable, dbFKHandler=processConstraints(structuredTableCommands)
 
 	# DEBUG purposes
 	if False:
@@ -623,18 +642,20 @@ if __name__ == '__main__':
 		'ERRORS WHILE BUILDING METADATA STRUCTURE.')
 	if errorCounter:
 		print('SHOWING ERRORS FOR EACH TABLE:')
-		for table in dbStructure:
-			print('ERROR IN TABLE', table)	
-			for column in dbStructure[table]:
-				print('\tIN COMMAND:', dbStructure[table][column])
-			print('END ERROR SECTION OF TABLE', table, '\n\n')	
+		for table in errorTable:
+			if len(errorTable[table]):
+				print('SHOWING ERROR IN TABLE', table)	
+				for error in errorTable[table]:
+					print('\tERROR TYPE:', error[0], '\n\tCOMMAND:', error[1])
+				print('END ERROR SECTION OF TABLE', table, '\n\n')	
 
 	else:
 					# If everything was correct til now...
 					# Finally, produce INSERT commands now
 					genInsertCommands(dbStructure, dbFKHandler, instNum)
 
-	for tables in dbFKHandler['FK']:
-		print('CUR TABLE:', tables)
-		for t in dbFKHandler['FK'][tables]:
-			print('\t', t)
+#	for tables in dbFKHandler['FK']:
+#		print('CUR TABLE:', tables)
+#		for t in dbFKHandler['FK'][tables]:
+#			print('\t', t)
+#			print('\t', dbFKHandler['PK'][t['REFTABLE']])
