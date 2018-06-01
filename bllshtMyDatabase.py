@@ -7,9 +7,10 @@
 	- CREATE SUPPORT FOR WORD DICTIONARY
 """
 
+from collections import OrderedDict
 import regex
 import sys
-import random
+import numpy.random as random
 
 """
 	DESCRIPTION:
@@ -29,10 +30,9 @@ class scriptConfig:
 	# received NULL values?
 	GEN_NULL_VALUES=True
 
-	# Special symbol used for FOREIGN KEY processing.
-	# Should be a 'invalid' symbol in SQL code, because 
-	# it will be used as reference point through this program.
-	FK_SYM=':#:@_'
+	# Default size of a VARCHAR with non explicity
+	# defined size.
+	VARCHAR_DEFSIZE=10
 
 	# A set of extreme values
 	# MAX_INT=2**(8*4)-1
@@ -48,13 +48,6 @@ class scriptConfig:
 	MIN_YEAR=2000
 	MAX_YEAR=2018
 
-
-"""
-	Regular expression that get a TABLE from the source file.
-"""
-reGetTable=regex.compile(
-	r'\s*CREATE\s*TABLE\s*([^\s(]+)\s*\(([^;]*)\);', 
-	regex.IGNORECASE | regex.MULTILINE)
 
 """
 	Read all data from the .sql source file, 
@@ -99,7 +92,7 @@ def processCommands(text, stop=','):
 	into valid INSERT commands.
 """
 def getCommands(rawDataCommands):
-	structuredT = {}
+	structuredT = OrderedDict()
 	for r in rawDataCommands:
 		structuredT[r[0]] = processCommands(r[1])
 	return structuredT
@@ -171,7 +164,7 @@ def processConstraints(structuredTableCommands, sep=','):
 	the information core necessary to produce valid
 	INSERT commands.
 	"""
-	dbStructure={}
+	dbStructure=OrderedDict()
 	dbFKHandler={'PK': {}, 'FK': {}}
 	errorTable={}
 	errorCounter=0
@@ -401,7 +394,7 @@ def genValue(
 	# values, then just sample a random value from
 	# this set
 	if permittedValues is not None and len(permittedValues) > 0:
-		smpVal=random.sample(permittedValues, k=1)[0]
+		smpVal=random.choice(list(permittedValues))
 		if canonicalVT == 'INTEGER' or canonicalVT == 'BIGINT':
 			return smpVal
 		return quotes(smpVal)
@@ -424,8 +417,9 @@ def genValue(
 	elif canonicalVT == 'VARCHAR' or canonicalVT == 'CHAR':
 		
 		size=valMaxSize 
-		if canonicalVT == 'VARCHAR': 
-			random.randint(valMaxSize//2, valMaxSize)
+		if canonicalVT == 'VARCHAR':
+			size=random.randint(valMaxSize//2, valMaxSize) \
+				if valMaxSize != -1 else scriptConfig.VARCHAR_DEFSIZE
 
 		data=''
 		for i in range(size):
@@ -464,6 +458,7 @@ def printCommand(
 	table, 
 	curTable, 
 	nonSerialColumn, 
+	curTableFKValues,
 	genNullAt=-1):
 
 	# Auxiliary variable that helps reducing verbosity
@@ -488,13 +483,9 @@ def printCommand(
 
 		if curFK in genValues:
 			# The current column has a valid foreign key.
-			# Create a special marker to get a valid value
-			# from the specified table by the FK later,
-			# after processing all other columns. This is
-			# necessary because, generally, FK are composite
-			# keys that effect several columns. 
-
-			value=scriptConfig.FK_SYM+column
+			# Just insert the given value		
+			print('DEBUG:', column)
+			value=curTableFKValues[column].pop()
 
 		elif counter != genNullAt:
 			# From now, it is important to use the previous
@@ -519,7 +510,8 @@ def printCommand(
 				# Otherwise, it must not be one of the previously
 				# generated values.
 
-				validValue = (not curColumn['UNIQUE']) or (value not in curGenValues[column])
+				validValue = (not curColumn['UNIQUE']) \
+					or (value not in curGenValues[column])
 
 				# DEBUG --------------------------
 				validValue = validValue | (value == 'None')
@@ -536,15 +528,35 @@ def printCommand(
 		command+=value+curEnd
 	command+=' );'
 
-	# Process FK values now. Note that the 'special mark'
-	# used is configSymbol+COLUMNNAME (concatenated), where 
-	# COLUMNNAME is really the column name. Note that the
-	# original order of the declared PRIMARY KEY of the
-	# referenced table by the FOREIGN KEY and the FOREIGN
-	# KEY attributes must match.
-	#...........................
-
 	print(command)
+
+def getFKValues(table, dbFKHandler, genValues):
+	curInsertionFKValues={}
+	if table in dbFKHandler['FK']:
+		curInsertionFKColumns=dbFKHandler['PK']
+		for dic in dbFKHandler['FK'][table]:
+			fkTable=dic['REFTABLE']
+
+			# NOTE: In order to use all instances, future 
+			# NOT NULL checking must be done right here. 
+			# Arbitrarily get a table from the referenced table
+			# and counts how many instances it have inserted
+			# totalInst=len(random.choice(list(genValues[fkTable].items()))[1])
+
+			# For simplicity, do not consider the NULL values instances
+			sampleInst=random.randint(0, instNum, instNum)
+
+			# Mount the dictionary of FOREIGN KEY 
+			# values with the sampled values
+			fkCols=dic['FKCOLS']
+			for col, keys in zip(fkCols, curInsertionFKColumns[fkTable]):
+				curInsertionFKValues[col]=[]
+				for i in sampleInst:
+					curInsertionFKValues[col].append(
+						genValues[fkTable][keys][i] \
+						if keys in genValues[fkTable] else str(i))
+
+	return curInsertionFKValues
 
 """
 	Generate the SQL INSERT commands.
@@ -554,7 +566,7 @@ def genInsertCommands(dbStructure, dbFKHandler, numInst=5):
 	# Structure used to keep track of all inserted values
 	# to prevent UNIQUE duplication and generate correct
 	# inserts of FOREIGN KEYS.
-	genValues={}
+	genValues=OrderedDict()
 
 	tableNumTotal=0
 	for table in dbStructure:
@@ -572,9 +584,20 @@ def genInsertCommands(dbStructure, dbFKHandler, numInst=5):
 		print('/* TABLE', table, '*/')
 		genValues[table] = {}
 
+		# Get the PRIMARY KEY values of the tables referenced 
+		# by the current tableFOREIGN keys
+		curInsertFKValues=getFKValues(table, 
+			dbFKHandler, genValues)
+
 		# Generate common instances (with non null values)
 		for i in range(numInst):
-			printCommand(genValues, table, curTable, nonSerialColumn)
+			printCommand(
+				genValues, 
+				table, 
+				curTable, 
+				nonSerialColumn,
+				curInsertFKValues,
+				-1)
 
 		# If configured, the program will generate additional 
 		# instances each one with a NULL value for each possible 
@@ -586,7 +609,13 @@ def genInsertCommands(dbStructure, dbFKHandler, numInst=5):
 				if not curTable[curNSColumn]['NOTNULL']:
 					print('/* NULL INSERTION FOR ATTRIBUTE', 
 						curNSColumn, 'AT TABLE', table, ' */')
-					printCommand(genValues, table, curTable, nonSerialColumn, i)
+					printCommand(
+						genValues, 
+						table, 
+						curTable, 
+						nonSerialColumn,
+						curInsertFKValues,
+						i)
 
 		# NEW LINE, to keep INSERT commands of each table
 		# nicely separated between each other.
@@ -617,6 +646,11 @@ if __name__ == '__main__':
 	# Get the file content	
 	data=readData(sys.argv[1])
 
+	# Regular expression that get a TABLE from the source file.
+	reGetTable=regex.compile(
+		r'\s*CREATE\s*TABLE\s*([^\s(]+)\s*\(([^;]*)\);', 
+		regex.IGNORECASE | regex.MULTILINE)
+
 	# Extract all tables from .sql file 
 	# (with CREATE TABLE commands)
 	rawTableCommands=reGetTable.findall(data) 
@@ -634,16 +668,6 @@ if __name__ == '__main__':
 	dbStructure, errorCounter, errorTable, dbFKHandler=processConstraints(structuredTableCommands)
 
 	# DEBUG purposes
-	if False:
-		for table in dbStructure:
-			print('TABLE NAME:', table)
-			for column in dbStructure[table]:
-					print('\tCOLUMN NAME:', column)
-					for constraint in dbStructure[table][column]:
-							print('\t\t'+constraint+':', 
-								dbStructure[table][column][constraint])
-			print('END OF TABLE', table, '\n\n')
-
 	print('TOTAL OF', errorCounter, 
 		'ERRORS WHILE BUILDING METADATA STRUCTURE.')
 	if errorCounter:
@@ -654,14 +678,11 @@ if __name__ == '__main__':
 				for error in errorTable[table]:
 					print('\tERROR TYPE:', error[0], '\n\tCOMMAND:', error[1])
 				print('END ERROR SECTION OF TABLE', table, '\n\n')	
+		print('DONE WITH ERRORS. FIX THEN IN',
+			'ORDER TO USED THE PROGRAM.')
 
 	else:
-					# If everything was correct til now...
-					# Finally, produce INSERT commands now
-					genInsertCommands(dbStructure, dbFKHandler, instNum)
+		# If everything was correct til now...
+		# Finally, produce INSERT commands now
+		genInsertCommands(dbStructure, dbFKHandler, instNum)
 
-#	for tables in dbFKHandler['FK']:
-#		print('CUR TABLE:', tables)
-#		for t in dbFKHandler['FK'][tables]:
-#			print('\t', t)
-#			print('\t', dbFKHandler['PK'][t['REFTABLE']])
