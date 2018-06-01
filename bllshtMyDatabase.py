@@ -146,7 +146,7 @@ def processConstraints(structuredTableCommands, sep=','):
 	reConstraintDetect=regex.compile(r'CONSTRAINT', 
 		regex.IGNORECASE)
 	reConstraintFK=regex.compile(
-		r'FOREIGN\s+KEY\s*\(([^\s]+)\)'+
+		r'FOREIGN\s+KEY\s*\(([^)]+)\)'+
 		'\s*REFERENCES\s*([^\s]+)', regex.IGNORECASE)
 	reConstraintPK=regex.compile(
 		r'PRIMARY\s+KEY\s*\(([^\s]+)\)', regex.IGNORECASE)
@@ -633,3 +633,8 @@ if __name__ == '__main__':
 					# If everything was correct til now...
 					# Finally, produce INSERT commands now
 					genInsertCommands(dbStructure, dbFKHandler, instNum)
+
+	for tables in dbFKHandler['FK']:
+		print('CUR TABLE:', tables)
+		for t in dbFKHandler['FK'][tables]:
+			print('\t', t)
