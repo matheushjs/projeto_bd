@@ -198,19 +198,19 @@ def processConstraints(structuredTableCommands, sep=','):
 				# Check UNIQUE
 				matchUnique=reConstraintUn.search(currentCommand)
 				if matchUnique:
-						# Differently for the PRIMARY and FOREIGN KEYS,
-						# keeping the original order of the UNIQUE keys
-						# isn't important, as it will never be part of
-						# a foreign key without being explicity declared
-						# with a FOREIGN KEY constraint.
-						refColumns=processTokens(matchUnique, sep)
-						for r in refColumns:
-							if r in curTable:
-									curTable[r]['UNIQUE']=True
-							else:
-								curErrorTable.append(('COLUMN NOT EXISTS',
-									currentCommand))
-								errorCounter+=1
+					# Differently for the PRIMARY and FOREIGN KEYS,
+					# keeping the original order of the UNIQUE keys
+					# isn't important, as it will never be part of
+					# a foreign key without being explicity declared
+					# with a FOREIGN KEY constraint.
+					refColumns=processTokens(matchUnique, sep)
+					for r in refColumns:
+						if r in curTable:
+							curTable[r]['UNIQUE']=True
+						else:
+							curErrorTable.append(('COLUMN NOT EXISTS',
+								currentCommand))
+							errorCounter+=1
 
 				# Check CHECK IN
 				matchCheckIn=reConstraintCI.search(currentCommand)
@@ -228,48 +228,48 @@ def processConstraints(structuredTableCommands, sep=','):
 				# Check PRIMARY KEY
 				matchPK=reConstraintPK.search(currentCommand)
 				if matchPK:
-						refColumns=processTokens(matchPK, sep)
-						# Keeping the primary key attributes with its
-						# original order is crucial for matching
-						# possible foreign keys.
-						dbFKHandler['PK'][key]=refColumns
-						for r in refColumns:
-							if r in curTable:
-								curTable[r]['PK']=True
-								curTable[r]['NOTNULL']=True
-								curTable[r]['UNIQUE']=True
-							else:
-								curErrorTable.append(('COLUMN NOT EXISTS',
-									currentCommand))
-								errorCounter+=1
+					refColumns=processTokens(matchPK, sep)
+					# Keeping the primary key attributes with its
+					# original order is crucial for matching
+					# possible foreign keys.
+					dbFKHandler['PK'][key]=refColumns
+					for r in refColumns:
+						if r in curTable:
+							curTable[r]['PK']=True
+							curTable[r]['NOTNULL']=True
+							curTable[r]['UNIQUE']=True
+						else:
+							curErrorTable.append(('COLUMN NOT EXISTS',
+								currentCommand))
+							errorCounter+=1
 
 				# Check FOREIGN KEY
 				matchFK=reConstraintFK.search(currentCommand)
 				if matchFK:
-						refColumns=processTokens(matchFK, sep)
-						# Keeping the foreign key attributes with its
-						# original order is crucial for matching the
-						# primary key. It's extremelly important to
-						# note that a single table must contain various
-						# different foreign keys, so it's necessary to
-						# list then all with the referenced table.
-						fkTable=matchFK.group(2)
+					refColumns=processTokens(matchFK, sep)
+					# Keeping the foreign key attributes with its
+					# original order is crucial for matching the
+					# primary key. It's extremelly important to
+					# note that a single table must contain various
+					# different foreign keys, so it's necessary to
+					# list then all with the referenced table.
+					fkTable=matchFK.group(2)
 
-						if key not in dbFKHandler['FK']:
-							dbFKHandler['FK'][key]=[]
+					if key not in dbFKHandler['FK']:
+						dbFKHandler['FK'][key]=[]
 
-						dbFKHandler['FK'][key].append({
-							'REFTABLE': fkTable, 
-							'FKCOLS': refColumns})
+					dbFKHandler['FK'][key].append({
+						'REFTABLE': fkTable, 
+						'FKCOLS': refColumns})
 
-						for r in refColumns:
-							if r in curTable:
-								curTable[r]['FK']=fkTable
-								curTable[r]['NOTNULL']=True
-							else:
-								curErrorTable.append(('COLUMN NOT EXISTS', 
-									currentCommand))
-								errorCounter+=1
+					for r in refColumns:
+						if r in curTable:
+							curTable[r]['FK']=fkTable
+							curTable[r]['NOTNULL']=True
+						else:
+							curErrorTable.append(('COLUMN NOT EXISTS', 
+								currentCommand))
+							errorCounter+=1
 
 				# check REGULAR EXPRESSION
 				# for a future update...
@@ -310,14 +310,20 @@ def processConstraints(structuredTableCommands, sep=','):
 
 
 	# Check if there is incorrect FK references
-	foreignKeys=dbFKHandler['FK'].keys()
+	# That structure is kinda messy and heavy, but
+	# is a powerful mechanims to keep everything in
+	# place.
+	tablesWithFK=dbFKHandler['FK'].keys()
 	primaryKeys=dbFKHandler['PK'].keys()
-	for fkTable in foreignKeys:
-		if fkTable not in primaryKeys:
-			# In this case, the FK references a non-
-			# existent table.
-				curErrorTable.append(('NONEXISTENT FK REFERENCE', 
-					str(fkTable)))
+	for table in tablesWithFK:
+		curTableAllFKMetadata=dbFKHandler['FK'][table]
+		for curMetadata in curTableAllFKMetadata:
+			fk=curMetadata['REFTABLE']
+			if fk not in primaryKeys:
+				# In this case, the FK references a non-
+				# existent table.
+				errorTable[table].append(('NONEXISTENT FK REFERENCE', 
+					str(fk)))
 				errorCounter+=1
 
 	return dbStructure, errorCounter, errorTable, dbFKHandler
