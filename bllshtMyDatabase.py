@@ -1,9 +1,8 @@
 """
 	TO DO:
 	- VERIFY FOREIGN KEY
-	- SUPPORT ARRAYS
-	- VERIFY UNIQUE (PK, SK, TK...)
-	-		VERIFY COMPOSITE KEYS
+	- SUPPORT ARRAYS DATA TYPE
+	-	VERIFY COMPOSITE KEYS
 	- SUPPORT REGEX CONSTRAINTS
 	- CREATE SUPPORT FOR WORD DICTIONARY
 """
@@ -26,7 +25,16 @@ import random
 	the pseudo-random data of the INSERT commands.
 """
 class scriptConfig:
+	# Should the values that haven't the 'NOT NULL' constraint
+	# received NULL values?
 	GEN_NULL_VALUES=True
+
+	# Special symbol used for FOREIGN KEY processing.
+	# Should be a 'invalid' symbol in SQL code, because 
+	# it will be used as reference point through this program.
+	FK_SYM=':#:@_'
+
+	# A set of extreme values
 	# MAX_INT=2**(8*4)-1
 	# MAX_INT=-2**(8*4)
 	# MAX_BIGINT=2**(8*8)-1
@@ -189,6 +197,11 @@ def processConstraints(structuredTableCommands, sep=','):
 				# Check UNIQUE
 				matchUnique=reConstraintUn.search(currentCommand)
 				if matchUnique:
+						# Differently for the PRIMARY and FOREIGN KEYS,
+						# keeping the original order of the UNIQUE keys
+						# isn't important, as it will never be part of
+						# a foreign key without being explicity declared
+						# with a FOREIGN KEY constraint.
 						refColumns=processTokens(matchUnique, sep)
 						for r in refColumns:
 							if r in curTable:
@@ -213,6 +226,10 @@ def processConstraints(structuredTableCommands, sep=','):
 				matchPK=reConstraintPK.search(currentCommand)
 				if matchPK:
 						refColumns=processTokens(matchPK, sep)
+						# Keeping the primary key attributes with its
+						# original order is crucial for matching
+						# possible foreign keys.
+						curTable[scriptConfig.FK_SYM+r]=refColumns
 						for r in refColumns:
 							if r in curTable:
 								curTable[r]['PK']=True
@@ -226,9 +243,14 @@ def processConstraints(structuredTableCommands, sep=','):
 				matchFK=reConstraintFK.search(currentCommand)
 				if matchFK:
 						refColumns=processTokens(matchFK, sep)
+						# Keeping the foreign key attributes with its
+						# original order is crucial for matching the
+						# primary key.
+						curTable[scriptConfig.FK_SYM+r]=refColumns
 						for r in refColumns:
 							if r in curTable:
 								curTable[r]['FK']=matchFK.group(2)
+								curTable[r]['NOTNULL']=True
 							else:
 								curErrorTable.append(matchUnique.groups())
 								errorCounter+=1
@@ -272,7 +294,7 @@ def processConstraints(structuredTableCommands, sep=','):
 	return dbStructure, errorCounter
 
 """
-
+	Generate a random SQL DATE value.
 """
 def _randDATE():
 	m=random.randint(1, 12)
@@ -282,12 +304,18 @@ def _randDATE():
 	m=str(m)
 	d=str(d)
 	y=str(y)
-	return '-'.join([y,
+
+	# Make sure that the year is 'yyyy' (four digits)
+	# because it is based on a user-controlled config.
+	while len(y) < 4:
+		y='0'+y
+	
+	return '-'.join([y[:4],
 		('0' if len(m)==1 else '')+m,
 		('0' if len(d)==1 else '')+d])
 
 """
-	Renerate a random SQL TIME value.
+	Generate a random SQL TIME value.
 """
 def _randTIME():
 	h=str(random.randint(0, 23))
@@ -314,7 +342,6 @@ def quotes(string):
 def genValue(
 	valType, 
 	valMaxSize, 
-	fkTable, 
 	permittedValues):
 
 	"""
@@ -398,37 +425,88 @@ def _removeSerial(keys, types):
 	Creates a entire valid INSERT command
 """
 def printCommand(
-	curGenValues, 
+	genValues, 
 	table, 
 	curTable, 
 	nonSerialColumn, 
 	genNullAt=-1):
+
+	# Auxiliary variable that helps reducing verbosity
+	# level through this function
+	curGenValues=genValues[table]
 
 	command='INSERT INTO '+ table + ' ( ' +\
 		', '.join(nonSerialColumn)+ ' )\n\tVALUES ( '
 
 	counter=0
 	for column in nonSerialColumn:
-		curColumn = curTable[column]
+		if column not in curGenValues:
+			curGenValues[column]=[]
+
+		# Auxiliary variables to help reduzing verbosity
+		# level through the function
+		curColumn=curTable[column]
+		curFK=curColumn['FK']
 
 		counter+=1
 		curEnd=', ' if counter < len(curTable) else ''
-		if counter != genNullAt:
-			value=str(
-				genValue(curColumn['TYPE'], 
-				curColumn['MAXSIZE'],
-				curColumn['FK'],
-				curColumn['PERMITTEDVALUES']
-				))
+
+		if curFK in genValues:
+			# The current column has a valid foreign key.
+			# Create a special marker to get a valid value
+			# from the specified table by the FK later,
+			# after processing all other columns. This is
+			# necessary because, generally, FK are composite
+			# keys that effect several columns. 
+
+			value=scriptConfig.FK_SYM+column
+
+		elif counter != genNullAt:
+			# From now, it is important to use the previous
+			# created values in order to keep UNIQUE values,
+			# unique. For now, each UNIQUE value is treated
+			# separatelly, which means that a composite key
+			# with n attributes is viewed a set of different
+			# keys up to n. This makes codification simplier
+			# and should not be a big problem for now.
+
+			validValue=False
+			while not validValue:
+
+				value=str(
+					genValue(curColumn['TYPE'], 
+					curColumn['MAXSIZE'],
+					curColumn['PERMITTEDVALUES']
+					))
+
+				# Desconsidering the FOREIGN KEY constraint,
+				# a not UNIQUE value is automatically a valid value.
+				# Otherwise, it must not be one of the previously
+				# generated values.
+
+				validValue = (not curColumn['UNIQUE']) or +\
+					(value not in curGenValues[column])
+
 		else:
+			# The specified column was solicited to assume a NULL
+			# value
 			value='NULL'
 
 		# Keep track of each generated value, to check
 		# for UNIQUE and FOREIGN KES constraints
-		curGenValues[column]=value
+		curGenValues[column].append(value)
 
 		command+=value+curEnd
 	command+=' );'
+
+	# Process FK values now. Note that the 'special mark'
+	# used is configSymbol+COLUMNNAME (concatenated), where 
+	# COLUMNNAME is really the column name. Note that the
+	# original order of the declared PRIMARY KEY of the
+	# referenced table by the FOREIGN KEY and the FOREIGN
+	# KEY attributes must match.
+	#...........................
+
 	print(command)
 
 """
@@ -456,11 +534,10 @@ def genInsertCommands(dbStructure, numInst=5):
 
 		print('/* TABLE', table, '*/')
 		genValues[table] = {}
-		curGenValues=genValues[table]
 
 		# Generate common instances (with non null values)
 		for i in range(numInst):
-			printCommand(curGenValues, table, curTable, nonSerialColumn)
+			printCommand(genValues, table, curTable, nonSerialColumn)
 
 		# If configured, the program will generate additional 
 		# instances each one with a NULL value for each possible 
@@ -472,7 +549,7 @@ def genInsertCommands(dbStructure, numInst=5):
 				if not curTable[curNSColumn]['NOTNULL']:
 					print('/* NULL INSERTION FOR ATTRIBUTE', 
 						curNSColumn, 'AT TABLE', table, ' */')
-					printCommand(curGenValues, table, curTable, nonSerialColumn, i)
+					printCommand(genValues, table, curTable, nonSerialColumn, i)
 
 		# NEW LINE, to keep INSERT commands of each table
 		# nicely separated between each other.
