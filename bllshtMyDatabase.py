@@ -461,7 +461,7 @@ def printCommand(
 		curFK=curColumn['FK']
 
 		counter+=1
-		curEnd=', ' if counter < len(curTable) else ''
+		curEnd=', ' if counter < len(nonSerialColumn) else ''
 
 		if curFK in genValues:
 			# The current column has a valid foreign key.
