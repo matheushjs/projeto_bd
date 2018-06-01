@@ -216,6 +216,8 @@ def processConstraints(structuredTableCommands, sep=','):
 						for r in refColumns:
 							if r in curTable:
 								curTable[r]['PK']=True
+								curTable[r]['NOTNULL']=True
+								curTable[r]['UNIQUE']=True
 							else:
 								curErrorTable.append(matchUnique.groups())
 								errorCounter+=1
@@ -285,7 +287,7 @@ def _randDATE():
 		('0' if len(d)==1 else '')+d])
 
 """
-
+	Renerate a random SQL TIME value.
 """
 def _randTIME():
 	h=str(random.randint(0, 23))
@@ -298,16 +300,23 @@ def _randTIME():
 	])
 
 """
-
+	Auxiliary function to enquote a string. Helps reducing
+	verbority level through the code when managing values.
 """
 def quotes(string):
 	return '\''+string+'\''
 
 
 """
-
+	Generate a random value, based on various constraints
+	specified on the CREATE TABLE commands.
 """
-def genValue(valType, valMaxValue, fkTable):
+def genValue(
+	valType, 
+	valMaxSize, 
+	fkTable, 
+	permittedValues):
+
 	"""
 	POSTGRESQL DATATYPES:
 	
@@ -323,8 +332,19 @@ def genValue(valType, valMaxValue, fkTable):
 	TIMESTAMP: 'yyyy-mm-dd hh:mm:ss'
 	"""
 
+	# Canonical (UPPERCASE) attribute type
 	canonicalVT = valType.upper()
-	if canonicalVT == 'INTEGER':
+
+	# If exists a constraint of a set of permitted
+	# values, then just sample a random value from
+	# this set
+	if permittedValues is not None and len(permittedValues) > 0:
+		smpVal=random.sample(permittedValues, k=1)[0]
+		if canonicalVT == 'INTEGER' or canonicalVT == 'BIGINT':
+			return smpVal
+		return quotes(smpVal)
+
+	elif canonicalVT == 'INTEGER':
 		return random.randint(scriptConfig.MIN_INT, 
 			scriptConfig.MAX_INT)
 
@@ -341,9 +361,9 @@ def genValue(valType, valMaxValue, fkTable):
 
 	elif canonicalVT == 'VARCHAR' or canonicalVT == 'CHAR':
 		
-		size=valMaxValue 
-		if canonicalVT == 'CHAR': 
-			random.randint(valMaxValue//2, valMaxValue)
+		size=valMaxSize 
+		if canonicalVT == 'VARCHAR': 
+			random.randint(valMaxSize//2, valMaxSize)
 
 		data=''
 		for i in range(size):
@@ -360,18 +380,11 @@ def genValue(valType, valMaxValue, fkTable):
 
 	return None
 
-
 """
-		'TYPE': attrType, 
-		'MAXSIZE': maxSize, 
-		'PERMITTEDVALUES': set(),
-		'PK': False, 
-		'UNIQUE': False, 
-		'DEFVAL': '', 
-		'NOTNULL': False, 
-		'FK': ''
+	Remove all SERIAL/BIGSERIAL column types,
+	because they're not needed to build up a
+	valid INSERT command.
 """
-
 def _removeSerial(keys, types):
 	rmIndexes=[]
 	for i in range(len(keys)):
@@ -381,7 +394,16 @@ def _removeSerial(keys, types):
 		keys.pop(i)
 	return keys
 
-def printCommand(table, curTable, nonSerialColumn, genNullAt=-1):
+"""
+	Creates a entire valid INSERT command
+"""
+def printCommand(
+	curGenValues, 
+	table, 
+	curTable, 
+	nonSerialColumn, 
+	genNullAt=-1):
+
 	command='INSERT INTO '+ table + ' ( ' +\
 		', '.join(nonSerialColumn)+ ' )\n\tVALUES ( '
 
@@ -392,14 +414,20 @@ def printCommand(table, curTable, nonSerialColumn, genNullAt=-1):
 		counter+=1
 		curEnd=', ' if counter < len(curTable) else ''
 		if counter != genNullAt:
-			command+=str(
+			value=str(
 				genValue(curColumn['TYPE'], 
 				curColumn['MAXSIZE'],
-				curColumn['FK']
+				curColumn['FK'],
+				curColumn['PERMITTEDVALUES']
 				))
 		else:
-			command+='NULL'
-		command+=curEnd
+			value='NULL'
+
+		# Keep track of each generated value, to check
+		# for UNIQUE and FOREIGN KES constraints
+		curGenValues[column]=value
+
+		command+=value+curEnd
 	command+=' );'
 	print(command)
 
@@ -408,7 +436,11 @@ def printCommand(table, curTable, nonSerialColumn, genNullAt=-1):
 	This is the very last step of this program.
 """
 def genInsertCommands(dbStructure, numInst=5):
-	# First, ignore the NULL non-constraints
+	# Structure used to keep track of all inserted values
+	# to prevent UNIQUE duplication and generate correct
+	# inserts of FOREIGN KEYS.
+	genValues={}
+
 	tableNumTotal=0
 	for table in dbStructure:
 		tableNumTotal+=1
@@ -423,10 +455,12 @@ def genInsertCommands(dbStructure, numInst=5):
 			[curTable[column]['TYPE'] for column in curTable])
 
 		print('/* TABLE', table, '*/')
+		genValues[table] = {}
+		curGenValues=genValues[table]
 
 		# Generate common instances (with non null values)
 		for i in range(numInst):
-			printCommand(table, curTable, nonSerialColumn)
+			printCommand(curGenValues, table, curTable, nonSerialColumn)
 
 		# If configured, the program will generate additional 
 		# instances each one with a NULL value for each possible 
@@ -436,7 +470,9 @@ def genInsertCommands(dbStructure, numInst=5):
 			for i in range(len(nonSerialColumn)):
 				curNSColumn=nonSerialColumn[i]
 				if not curTable[curNSColumn]['NOTNULL']:
-					printCommand(table, curTable, nonSerialColumn, i)
+					print('/* NULL INSERTION FOR ATTRIBUTE', 
+						curNSColumn, 'AT TABLE', table, ' */')
+					printCommand(curGenValues, table, curTable, nonSerialColumn, i)
 
 		# NEW LINE, to keep INSERT commands of each table
 		# nicely separated between each other.
@@ -448,7 +484,7 @@ if __name__ == '__main__':
 	if len(sys.argv) < 2:
 		print('usage:', sys.argv[0], 
 			'< .sql file with CREATE TABLE commands >',
-			'[# of valid instances for each table (default to 5)]')
+			'[# of valid w/o NULL values instances for each table (default to 5)]')
 		exit(1)
 
 	instNum=5
