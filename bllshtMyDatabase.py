@@ -172,6 +172,7 @@ def processConstraints(structuredTableCommands, sep=','):
 	INSERT commands.
 	"""
 	dbStructure={}
+	dbFKHandler={'PK': {}, 'FK': {}}
 	errorTable={}
 	errorCounter=0
 	for key in structuredTableCommands:
@@ -229,7 +230,7 @@ def processConstraints(structuredTableCommands, sep=','):
 						# Keeping the primary key attributes with its
 						# original order is crucial for matching
 						# possible foreign keys.
-						curTable[scriptConfig.FK_SYM+r]=refColumns
+						dbFKHandler['PK'][key]=refColumns
 						for r in refColumns:
 							if r in curTable:
 								curTable[r]['PK']=True
@@ -245,11 +246,22 @@ def processConstraints(structuredTableCommands, sep=','):
 						refColumns=processTokens(matchFK, sep)
 						# Keeping the foreign key attributes with its
 						# original order is crucial for matching the
-						# primary key.
-						curTable[scriptConfig.FK_SYM+r]=refColumns
+						# primary key. It's extremelly important to
+						# note that a single table must contain various
+						# different foreign keys, so it's necessary to
+						# list then all with the referenced table.
+						fkTable=matchFK.group(2)
+
+						if key not in dbFKHandler['FK']:
+							dbFKHandler['FK'][key]=[]
+
+						dbFKHandler['FK'][key].append({
+							'REFTABLE': fkTable, 
+							'FKCOLS': refColumns})
+
 						for r in refColumns:
 							if r in curTable:
-								curTable[r]['FK']=matchFK.group(2)
+								curTable[r]['FK']=fkTable
 								curTable[r]['NOTNULL']=True
 							else:
 								curErrorTable.append(matchUnique.groups())
@@ -291,7 +303,7 @@ def processConstraints(structuredTableCommands, sep=','):
 						if defaultValueMatch:
 							curTable[attrName]['DEFVAL']=defaultValueMatch.groups()[0]
 
-	return dbStructure, errorCounter
+	return dbStructure, errorCounter, dbFKHandler
 
 """
 	Generate a random SQL DATE value.
@@ -513,7 +525,7 @@ def printCommand(
 	Generate the SQL INSERT commands.
 	This is the very last step of this program.
 """
-def genInsertCommands(dbStructure, numInst=5):
+def genInsertCommands(dbStructure, dbFKHandler, numInst=5):
 	# Structure used to keep track of all inserted values
 	# to prevent UNIQUE duplication and generate correct
 	# inserts of FOREIGN KEYS.
@@ -594,7 +606,7 @@ if __name__ == '__main__':
 	# hashtable that links the table name with a dictionary of
 	# "all possible" POSTGRES constraints and information needed to
 	# construct valid INSERT commands.
-	dbStructure, errorCounter=processConstraints(structuredTableCommands)
+	dbStructure, errorCounter, dbFKHandler=processConstraints(structuredTableCommands)
 
 	# DEBUG purposes
 	if False:
@@ -620,4 +632,4 @@ if __name__ == '__main__':
 	else:
 					# If everything was correct til now...
 					# Finally, produce INSERT commands now
-					genInsertCommands(dbStructure)
+					genInsertCommands(dbStructure, dbFKHandler, instNum)
