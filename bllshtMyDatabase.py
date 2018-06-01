@@ -484,7 +484,6 @@ def printCommand(
 		if curFK in genValues:
 			# The current column has a valid foreign key.
 			# Just insert the given value		
-			print('DEBUG:', column)
 			value=curTableFKValues[column].pop()
 
 		elif counter != genNullAt:
