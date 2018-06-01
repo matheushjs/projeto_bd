@@ -27,8 +27,8 @@ import rstr
 	the pseudo-random data of the INSERT commands.
 """
 class scriptConfig:
-	# Should the values that haven't the 'NOT NULL' constraint
-	# received NULL values?
+	# Should the values that haven't the 'NOT NULL'
+	# constraint receive NULL values?
 	GEN_NULL_VALUES=True
 
 	# Default size of a VARCHAR with non explicity
@@ -408,7 +408,7 @@ def genValue(
 	# values, then just sample a random value from
 	# this set
 	if regex != '':
-		return rstr.xeger(regex)
+		return quotes(rstr.xeger(regex))
 	elif permittedValues is not None and len(permittedValues) > 0:
 		smpVal=random.choice(list(permittedValues))
 		if canonicalVT == 'INTEGER' or canonicalVT == 'BIGINT':
@@ -475,7 +475,7 @@ def printCommand(
 	curTable, 
 	nonSerialColumn, 
 	curTableFKValues,
-	genNullAt=-1):
+	genNullAt=''):
 
 	# Auxiliary variable that helps reducing verbosity
 	# level through this function
@@ -502,7 +502,7 @@ def printCommand(
 			# Just insert the given value		
 			value=curTableFKValues[column].pop()
 
-		elif counter != genNullAt:
+		elif column != genNullAt:
 			# From now, it is important to use the previous
 			# created values in order to keep UNIQUE values,
 			# unique. For now, each UNIQUE value is treated
@@ -617,7 +617,7 @@ def genInsertCommands(dbStructure, dbFKHandler, numInst=5):
 				curTable, 
 				nonSerialColumn,
 				curInsertFKValues,
-				-1)
+				'')
 
 		# If configured, the program will generate additional 
 		# instances each one with a NULL value for each possible 
@@ -635,7 +635,7 @@ def genInsertCommands(dbStructure, dbFKHandler, numInst=5):
 						curTable, 
 						nonSerialColumn,
 						curInsertFKValues,
-						i)
+						curNSColumn)
 
 		# NEW LINE, to keep INSERT commands of each table
 		# nicely separated between each other.
@@ -688,8 +688,8 @@ if __name__ == '__main__':
 	dbStructure, errorCounter, errorTable, dbFKHandler=processConstraints(structuredTableCommands)
 
 	# DEBUG purposes
-	print('TOTAL OF', errorCounter, 
-		'ERRORS WHILE BUILDING METADATA STRUCTURE.')
+	print('/* TOTAL OF', errorCounter, 
+		'ERRORS WHILE BUILDING METADATA STRUCTURE. */')
 	if errorCounter:
 		print('SHOWING ERRORS FOR EACH TABLE:')
 		for table in errorTable:
