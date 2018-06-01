@@ -11,6 +11,7 @@ from collections import OrderedDict
 import regex
 import sys
 import numpy.random as random
+import rstr
 
 """
 	DESCRIPTION:
@@ -111,7 +112,8 @@ def initColumnMetadata(attrType='', maxSize=-1):
 		'UNIQUE': False, 
 		'DEFVAL': '', 
 		'NOTNULL': False, 
-		'FK': ''
+		'FK': '',
+		'REGEX': ''
 	}
 
 
@@ -140,14 +142,17 @@ def processConstraints(structuredTableCommands, sep=','):
 		regex.IGNORECASE)
 	reConstraintFK=regex.compile(
 		r'FOREIGN\s+KEY\s*\(([^)]+)\)'+
-		'\s*REFERENCES\s*([^\s]+)', regex.IGNORECASE)
+		r'\s*REFERENCES\s*([^\s]+)', regex.IGNORECASE)
 	reConstraintPK=regex.compile(
 		r'PRIMARY\s+KEY\s*\(([^)]+)\)', regex.IGNORECASE)
 	reConstraintUn=regex.compile(
 		r'UNIQUE\s*\(([^)]+)\)', regex.IGNORECASE)
 	reConstraintCI=regex.compile(
 		r'\CHECK\s*\([^(]*\(([^)]+)\)'+
-		'\s*IN\s*\(([^)]+)\)\s*\)', regex.IGNORECASE)
+		r'\s*IN\s*\(([^)]+)\)\s*\)', regex.IGNORECASE)
+	reConstraintRE=regex.compile(
+		r'\CHECK\s*\(\s*([^\s]+)'+
+		r"\s*~\s*'([^']+)'\s*\)", regex.IGNORECASE)
 	reConstraintNN=regex.compile(
 		r'([^\s]+).*NOT\s*NULL\s*', regex.IGNORECASE)
 	reConstraintDF=regex.compile(
@@ -201,8 +206,8 @@ def processConstraints(structuredTableCommands, sep=','):
 						if r in curTable:
 							curTable[r]['UNIQUE']=True
 						else:
-							curErrorTable.append(('COLUMN NOT EXISTS',
-								currentCommand))
+							curErrorTable.append(('UNIQUE:', 
+								'COLUMN NOT EXISTS', currentCommand))
 							errorCounter+=1
 
 				# Check CHECK IN
@@ -214,8 +219,8 @@ def processConstraints(structuredTableCommands, sep=','):
 							(regex.sub('\s+|\'', '', 
 							matchCheckIn.groups()[1])).split(sep))
 					else:
-						curErrorTable.append(('COLUMN NOT EXISTS',
-							currentCommand))
+						curErrorTable.append(('CHECK IN:', 
+							'COLUMN NOT EXISTS', currentCommand))
 						errorCounter+=1
 
 				# Check PRIMARY KEY
@@ -232,8 +237,8 @@ def processConstraints(structuredTableCommands, sep=','):
 							curTable[r]['NOTNULL']=True
 							curTable[r]['UNIQUE']=True
 						else:
-							curErrorTable.append(('COLUMN NOT EXISTS',
-								currentCommand))
+							curErrorTable.append(('PRIMARY KEY:',
+								'COLUMN NOT EXISTS', currentCommand))
 							errorCounter+=1
 
 				# Check FOREIGN KEY
@@ -260,13 +265,21 @@ def processConstraints(structuredTableCommands, sep=','):
 							curTable[r]['FK']=fkTable
 							curTable[r]['NOTNULL']=True
 						else:
-							curErrorTable.append(('COLUMN NOT EXISTS', 
-								currentCommand))
+							curErrorTable.append(('FOREIGN KEY:',
+								'COLUMN NOT EXISTS', currentCommand))
 							errorCounter+=1
 
 				# check REGULAR EXPRESSION
-				# for a future update...
-
+				matchRe=reConstraintRE.search(currentCommand)
+				if matchRe:
+					refTable=matchRe.groups()[0]
+					if refTable in curTable:
+						reg=matchRe.groups()[1]
+						curTable[refTable]['REGEX']=reg
+					else:
+						curErrorTable.append(('REGEX:',
+							'COLUMN NOT EXITS', currentCommand))
+						errorCounter+=1
 			else:
 				# Attribute/Column declaration
 				match=reDeclareAttr.search(currentCommand)
@@ -370,7 +383,8 @@ def quotes(string):
 def genValue(
 	valType, 
 	valMaxSize, 
-	permittedValues):
+	permittedValues,
+	regex=''):
 
 	"""
 	POSTGRESQL DATATYPES:
@@ -393,7 +407,9 @@ def genValue(
 	# If exists a constraint of a set of permitted
 	# values, then just sample a random value from
 	# this set
-	if permittedValues is not None and len(permittedValues) > 0:
+	if regex != '':
+		return rstr.xeger(regex)
+	elif permittedValues is not None and len(permittedValues) > 0:
 		smpVal=random.choice(list(permittedValues))
 		if canonicalVT == 'INTEGER' or canonicalVT == 'BIGINT':
 			return smpVal
@@ -501,7 +517,8 @@ def printCommand(
 				value=str(
 					genValue(curColumn['TYPE'], 
 					curColumn['MAXSIZE'],
-					curColumn['PERMITTEDVALUES']
+					curColumn['PERMITTEDVALUES'],
+					curColumn['REGEX']
 					))
 
 				# Desconsidering the FOREIGN KEY constraint,
