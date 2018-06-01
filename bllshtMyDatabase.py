@@ -412,7 +412,7 @@ def genValue(
 			', '+ quotes('yyyy-mm-dd') + ')'
 
 	elif canonicalVT == 'BOOLEAN':
-		return random.sample(('TRUE', 'FALSE'), k=1)[0]
+		return random.choice(['TRUE', 'FALSE'])
 
 	elif canonicalVT == 'VARCHAR' or canonicalVT == 'CHAR':
 		
@@ -530,7 +530,7 @@ def printCommand(
 
 	print(command)
 
-def getFKValues(table, dbFKHandler, genValues):
+def getFKValues(table, dbFKHandler, genValues, curTable):
 	curInsertionFKValues={}
 	if table in dbFKHandler['FK']:
 		curInsertionFKColumns=dbFKHandler['PK']
@@ -541,10 +541,14 @@ def getFKValues(table, dbFKHandler, genValues):
 			# NOT NULL checking must be done right here. 
 			# Arbitrarily get a table from the referenced table
 			# and counts how many instances it have inserted
-			# totalInst=len(random.choice(list(genValues[fkTable].items()))[1])
+
+			nullInstCount=0
+			for col in curTable:
+				nullInstCount+=(not curTable[col]['NOTNULL'])
 
 			# For simplicity, do not consider the NULL values instances
-			sampleInst=random.randint(0, instNum, instNum)
+			sampleInst=random.randint(0, instNum, 
+				size=nullInstCount+instNum)
 
 			# Mount the dictionary of FOREIGN KEY 
 			# values with the sampled values
@@ -587,7 +591,7 @@ def genInsertCommands(dbStructure, dbFKHandler, numInst=5):
 		# Get the PRIMARY KEY values of the tables referenced 
 		# by the current tableFOREIGN keys
 		curInsertFKValues=getFKValues(table, 
-			dbFKHandler, genValues)
+			dbFKHandler, genValues, curTable)
 
 		# Generate common instances (with non null values)
 		for i in range(numInst):
