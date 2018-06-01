@@ -477,6 +477,11 @@ def printCommand(
 	curTableFKValues,
 	genNullAt=''):
 
+	# FLAG variable to block invalid INSERT commands
+	# mainly to the fact that this program does not
+	# support composite key checking.
+	blockCommand=False
+
 	# Auxiliary variable that helps reducing verbosity
 	# level through this function
 	curGenValues=genValues[table]
@@ -500,7 +505,11 @@ def printCommand(
 		if curFK in genValues:
 			# The current column has a valid foreign key.
 			# Just insert the given value		
-			value=curTableFKValues[column].pop()
+			value=''
+			if len(curTableFKValues[column]):
+				value=curTableFKValues[column].pop()
+			else:
+				blockCommand=True
 
 		elif column != genNullAt:
 			# From now, it is important to use the previous
@@ -544,7 +553,11 @@ def printCommand(
 		command+=value+curEnd
 	command+=' );'
 
-	print(command)
+	if not blockCommand:
+		print(command)
+	else:
+		print('/* COMMAND DISCARDED TIL'
+			'PROGRAM SUPPORTS COMPOSITE KEYS */')
 
 def getFKValues(table, dbFKHandler, genValues, curTable):
 	curInsertionFKValues={}
@@ -558,13 +571,24 @@ def getFKValues(table, dbFKHandler, genValues, curTable):
 			# Arbitrarily get a table from the referenced table
 			# and counts how many instances it have inserted
 
-			nullInstCount=0
+			uniqueInstCol=False
 			for col in curTable:
-				nullInstCount+=(not curTable[col]['NOTNULL'])
+				uniqueInstCol |= curTable[col]['UNIQUE']
 
-			# For simplicity, do not consider the NULL values instances
-			sampleInst=random.randint(0, instNum, 
-				size=nullInstCount+instNum)
+			if uniqueInstCol:
+				# Due to current unsupported check of composite keys,
+				# it is forbidden to repeat UNIQUE keys even they're
+				# UNIQUE by composition.
+				sampleInst=list(range(instNum))
+				random.shuffle(sampleInst)
+			else:
+				nullInstCount=0
+				for col in curTable:
+					nullInstCount+=(not curTable[col]['NOTNULL'])
+
+				# For simplicity, do not consider the NULL values instances
+				sampleInst=random.randint(0, instNum, 
+					size=nullInstCount+instNum)
 
 			# Mount the dictionary of FOREIGN KEY 
 			# values with the sampled values
@@ -572,9 +596,10 @@ def getFKValues(table, dbFKHandler, genValues, curTable):
 			for col, keys in zip(fkCols, curInsertionFKColumns[fkTable]):
 				curInsertionFKValues[col]=[]
 				for i in sampleInst:
-					curInsertionFKValues[col].append(
-						genValues[fkTable][keys][i] \
-						if keys in genValues[fkTable] else str(i))
+					newVal=genValues[fkTable][keys][i] \
+						if keys in genValues[fkTable] else str(1+i)
+
+					curInsertionFKValues[col].append(newVal)
 
 	return curInsertionFKValues
 
