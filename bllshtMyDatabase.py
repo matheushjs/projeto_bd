@@ -1,9 +1,6 @@
 """
 	TO DO:
-	- VERIFY FOREIGN KEY
-	- SUPPORT ARRAYS DATA TYPE
-	-	VERIFY COMPOSITE KEYS
-	- SUPPORT REGEX CONSTRAINTS
+	- VERIFY COMPOSITE KEYS
 	- CREATE SUPPORT FOR WORD DICTIONARY
 """
 
@@ -27,6 +24,9 @@ import rstr
 	the pseudo-random data of the INSERT commands.
 """
 class scriptConfig:
+	# Begin transaction before any INSERT command?
+	BEGIN_TRANSACTION=True
+
 	# Should the values that haven't the 'NOT NULL'
 	# constraint receive NULL values?
 	GEN_NULL_VALUES=True
@@ -48,7 +48,6 @@ class scriptConfig:
 	MIN_BIGINT=10000000
 	MIN_YEAR=2000
 	MAX_YEAR=2018
-
 
 """
 	Read all data from the .sql source file, 
@@ -384,31 +383,52 @@ def genValue(
 	valType, 
 	valMaxSize, 
 	permittedValues,
-	regex=''):
+	regexPat=''):
 
 	"""
 	POSTGRESQL DATATYPES:
 	
 	INTEGER: 4B
 	BIGINT: 8B
-	DATE: 'yyyy-mm-dd'
+	DATE: 'YYYY-MI-DD'
+	SERIAL: 4B (autoincrementable)
 	BIGSERIAL: 8B (autoincrementable) 
 	TYPE[N] (VECTOR) 
 	BOOLEAN: TRUE/FALSE
 	VARCHAR 
 	CHAR 
-	TIME: 'hh:mm:ss'
-	TIMESTAMP: 'yyyy-mm-dd hh:mm:ss'
+	TIME: 'HH24:MI:SS'
+	TIMESTAMP: 'YYYY-MM-DD HH24:MI:SS'
 	"""
+
+	# Regex used to find for array-type attributes
+	reCheckArray=regex.compile(r'(\w+)\s*\[(\d+)\](.*)')
 
 	# Canonical (UPPERCASE) attribute type
 	canonicalVT = valType.upper()
 
+	# Check for array-type attribute
+	arrayMatch=reCheckArray.search(canonicalVT)
+	if arrayMatch:
+		valType=arrayMatch.groups()[0]
+		arraySize=int(arrayMatch.groups()[1])
+		additionalDims=arrayMatch.groups()[2]
+
+		partialRes=[]
+		for i in range(arraySize):
+			partialRes.append(genValue(
+				valType+additionalDims, 
+				valMaxSize, 
+				permittedValues, 
+				regexPat))
+
+		return '{' + ', '.join(partialRes) + '}'
+
 	# If exists a constraint of a set of permitted
 	# values, then just sample a random value from
 	# this set
-	if regex != '':
-		return quotes(rstr.xeger(regex))
+	elif regexPat != '':
+		return quotes(rstr.xeger(regexPat))
 	elif permittedValues is not None and len(permittedValues) > 0:
 		smpVal=random.choice(list(permittedValues))
 		if canonicalVT == 'INTEGER' or canonicalVT == 'BIGINT':
@@ -416,16 +436,16 @@ def genValue(
 		return quotes(smpVal)
 
 	elif canonicalVT == 'INTEGER':
-		return random.randint(scriptConfig.MIN_INT, 
-			scriptConfig.MAX_INT)
+		return str(random.randint(scriptConfig.MIN_INT, 
+			scriptConfig.MAX_INT))
 
 	elif canonicalVT == 'BIGINT':
-		return random.randint(scriptConfig.MIN_BIGINT, 
-			scriptConfig.MAX_BIGINT)
+		return str(random.randint(scriptConfig.MIN_BIGINT, 
+			scriptConfig.MAX_BIGINT))
 
 	elif canonicalVT == 'DATE':
 		return 'to_date (' + quotes(_randDATE()) +\
-			', '+ quotes('yyyy-mm-dd') + ')'
+			', '+ quotes('YYYY-MM-DD') + ')'
 
 	elif canonicalVT == 'BOOLEAN':
 		return random.choice(['TRUE', 'FALSE'])
@@ -448,7 +468,7 @@ def genValue(
 	elif canonicalVT == 'TIMESTAMP':
 		return 'to_timestamp (' + quotes( _randDATE() +\
 			' ' + _randTIME()) + ', ' +\
-			quotes('yyyy-mm-dd hh:mm:ss') +')'
+			quotes('YYYY-MM-DD HH24:MI:SS') +')'
 
 	return None
 
@@ -530,6 +550,11 @@ def printCommand(
 					curColumn['REGEX']
 					))
 
+				# POSTGRESQL want single quotes around thw
+				# very first curly brackets set
+				if curColumn['TYPE'].find('[') != -1:
+					value=quotes(value)
+
 				# Desconsidering the FOREIGN KEY constraint,
 				# a not UNIQUE value is automatically a valid value.
 				# Otherwise, it must not be one of the previously
@@ -538,8 +563,11 @@ def printCommand(
 				validValue = (not curColumn['UNIQUE']) \
 					or (value not in curGenValues[column])
 
-				# DEBUG --------------------------
-				validValue = validValue | (value == 'None')
+				# 'None' will be used as a bugged 'valid' type,
+				# because is probably caused by:
+				# -	Bad SQL input code
+				# -	Unsupported column type by this script
+				validValue |= (value == 'None')
 
 		else:
 			# The specified column was solicited to assume a NULL
@@ -729,5 +757,9 @@ if __name__ == '__main__':
 	else:
 		# If everything was correct til now...
 		# Finally, produce INSERT commands now
+		if scriptConfig.BEGIN_TRANSACTION:
+				  print('BEGIN TRANSACTION;')
 		genInsertCommands(dbStructure, dbFKHandler, instNum)
+		if scriptConfig.BEGIN_TRANSACTION:
+				  print('END TRANSACTION;')
 
