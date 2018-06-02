@@ -27,6 +27,11 @@ class scriptConfig:
 	# Begin transaction before any INSERT command?
 	BEGIN_TRANSACTION=True
 
+	# Turn on this if you want a ROLLBACK ate the
+	# end of the transaction. This flag only has
+	# effect if BEGIN_TRANSACTION flag is True
+	ROLLBACK_AT_END=True
+
 	# Should the values that haven't the 'NOT NULL'
 	# constraint receive NULL values?
 	GEN_NULL_VALUES=True
@@ -477,13 +482,16 @@ def genValue(
 	because they're not needed to build up a
 	valid INSERT command.
 """
-def _removeSerial(keys, types):
+def removeSerial(keys, types):
 	rmIndexes=[]
+
 	for i in range(len(keys)):
 		if types[i].find('SERIAL') != -1:
 			rmIndexes.append(i)
+
 	for i in sorted(rmIndexes, reverse=True):
 		keys.pop(i)
+
 	return keys
 
 """
@@ -511,9 +519,6 @@ def printCommand(
 
 	counter=0
 	for column in nonSerialColumn:
-		if column not in curGenValues:
-			curGenValues[column]=[]
-
 		# Auxiliary variables to help reduzing verbosity
 		# level through the function
 		curColumn=curTable[column]
@@ -578,10 +583,16 @@ def printCommand(
 		# for UNIQUE and FOREIGN KES constraints
 		curGenValues[column].append(value)
 
-		command+=value+curEnd
+		command+=str(value)+curEnd
 	command+=' );'
 
 	if not blockCommand:
+		for column in curGenValues.keys():
+			if column not in nonSerialColumn:
+				curId=1
+				if len(curGenValues[column]):
+					curId=max(curGenValues[column])+1
+				curGenValues[column].append(curId)
 		print(command)
 	else:
 		print('/* COMMAND DISCARDED TIL'
@@ -621,12 +632,11 @@ def getFKValues(table, dbFKHandler, genValues, curTable):
 			# Mount the dictionary of FOREIGN KEY 
 			# values with the sampled values
 			fkCols=dic['FKCOLS']
+			global autoincrement
 			for col, keys in zip(fkCols, curInsertionFKColumns[fkTable]):
 				curInsertionFKValues[col]=[]
 				for i in sampleInst:
-					newVal=genValues[fkTable][keys][i] \
-						if keys in genValues[fkTable] else str(1+i)
-
+					newVal=genValues[fkTable][keys][i]
 					curInsertionFKValues[col].append(newVal)
 
 	return curInsertionFKValues
@@ -651,11 +661,13 @@ def genInsertCommands(dbStructure, dbFKHandler, numInst=5):
 
 		# Remove autoincrementable (SERIAL or BIGSERIAL)
 		# columns.
-		nonSerialColumn=_removeSerial(list(curTable.keys()),
+		nonSerialColumn=removeSerial(list(curTable.keys()),
 			[curTable[column]['TYPE'] for column in curTable])
 
 		print('/* TABLE', table, '*/')
-		genValues[table] = {}
+		genValues[table]={}
+		for column in curTable.keys():
+			genValues[table][column]=[]
 
 		# Get the PRIMARY KEY values of the tables referenced 
 		# by the current tableFOREIGN keys
@@ -689,7 +701,7 @@ def genInsertCommands(dbStructure, dbFKHandler, numInst=5):
 						nonSerialColumn,
 						curInsertFKValues,
 						curNSColumn)
-
+						
 		# NEW LINE, to keep INSERT commands of each table
 		# nicely separated between each other.
 		print()
@@ -758,8 +770,9 @@ if __name__ == '__main__':
 		# If everything was correct til now...
 		# Finally, produce INSERT commands now
 		if scriptConfig.BEGIN_TRANSACTION:
-				  print('BEGIN TRANSACTION;')
+			print('BEGIN TRANSACTION;')
 		genInsertCommands(dbStructure, dbFKHandler, instNum)
 		if scriptConfig.BEGIN_TRANSACTION:
-				  print('END TRANSACTION;')
+			print('ROLLBACK;' if scriptConfig.ROLLBACK_AT_END \
+			else 'END TRANSACTION;')
 
