@@ -10,7 +10,6 @@
 """
 	TO DO:
 	- VERIFY COMPOSITE KEYS
-	- CREATE SUPPORT FOR WORD DICTIONARY
 """
 
 from collections import OrderedDict
