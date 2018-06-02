@@ -1,4 +1,13 @@
 """
+	DESCRIPTION:
+
+	This script should create INSERT commands for PostgreSQL
+	automatically, using a .sql document with all the CREATE 
+	TABLE command. The .sql file must be passed as program
+	argument.
+"""
+
+"""
 	TO DO:
 	- VERIFY COMPOSITE KEYS
 	- CREATE SUPPORT FOR WORD DICTIONARY
@@ -9,15 +18,28 @@ import regex
 import sys
 import numpy.random as random
 import rstr
+from faker import Faker
 
 """
-	DESCRIPTION:
-
-	This script should create INSERT commands for PostgreSQL
-	automatically, using a .sql document with all the CREATE 
-	TABLE command. The .sql file must be passed as program
-	argument.
+	Powerful python library to generate fake data
+	See more: https://github.com/joke2k/faker
 """
+fake=Faker(locale='pt_BR')
+
+
+"""
+	Put there every column name and the correspondent
+	random value generation function. CHAR and VARCHAR
+	without a correspondent function will receive a
+	sequence of random lower case characters by default.
+"""
+specialDataFuncs={
+	'nome': fake.name,
+	'nomeBanda': fake.name,
+	'endereco': fake.address,
+	'endereco': fake.address,
+	'descricao': fake.text,
+}
 
 """
 	This class hold script configuration used to generate
@@ -385,6 +407,7 @@ def quotes(string):
 	specified on the CREATE TABLE commands.
 """
 def genValue(
+	columnName,
 	valType, 
 	valMaxSize, 
 	permittedValues,
@@ -422,6 +445,7 @@ def genValue(
 		partialRes=[]
 		for i in range(arraySize):
 			partialRes.append(genValue(
+				columnName,
 				valType+additionalDims, 
 				valMaxSize, 
 				permittedValues, 
@@ -429,11 +453,19 @@ def genValue(
 
 		return '{' + ', '.join(partialRes) + '}'
 
+	# Check if current column don't have a custom
+	# value generator
+	elif columnName in specialDataFuncs:
+		text=str(specialDataFuncs[columnName]())[:valMaxSize]
+		processed=regex.sub(r"[\n']", ' ', text)
+		return quotes(processed)
+
+	elif regexPat != '':
+		return quotes(rstr.xeger(regexPat))
+
 	# If exists a constraint of a set of permitted
 	# values, then just sample a random value from
 	# this set
-	elif regexPat != '':
-		return quotes(rstr.xeger(regexPat))
 	elif permittedValues is not None and len(permittedValues) > 0:
 		smpVal=random.choice(list(permittedValues))
 		if canonicalVT == 'INTEGER' or canonicalVT == 'BIGINT':
@@ -461,7 +493,6 @@ def genValue(
 		if canonicalVT == 'VARCHAR':
 			size=random.randint(valMaxSize//2, valMaxSize) \
 				if valMaxSize != -1 else scriptConfig.VARCHAR_DEFSIZE
-
 		data=''
 		for i in range(size):
 			data += chr(random.randint(ord('a'), ord('z')))
@@ -549,7 +580,9 @@ def printCommand(
 			while not validValue:
 
 				value=str(
-					genValue(curColumn['TYPE'], 
+					genValue(
+					column,
+					curColumn['TYPE'], 
 					curColumn['MAXSIZE'],
 					curColumn['PERMITTEDVALUES'],
 					curColumn['REGEX']
