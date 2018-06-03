@@ -507,7 +507,7 @@ def genValue(
 				data += chr(random.randint(ord('a'), ord('z')))
 		else:
 			# Generate "true" words otherwise.
-			data=fake.text()[:size]
+			data=regex.sub(r"['\n\t]", '', fake.text()[:size])
 
 		return quotes(data)
 
