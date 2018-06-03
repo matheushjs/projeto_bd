@@ -30,7 +30,7 @@ fake=Faker(locale='pt_BR')
 	Put there every column name and the correspondent
 	random value generation function. CHAR and VARCHAR
 	without a correspondent function will receive a
-	sequence of random lower case characters by default.
+	random text by default.
 """
 specialDataFuncs={
 	'nome': fake.name,
@@ -60,6 +60,11 @@ class scriptConfig:
 	# Default size of a VARCHAR with non explicity
 	# defined size.
 	VARCHAR_DEFSIZE=10
+	
+	# Should columns with types CHAR and VARCHAR
+	# without custom data generator function be
+	# filled only with random lower case characters?
+	genRandomChars=False
 
 	# A set of extreme values
 	# MAX_INT=2**(8*4)-1
@@ -492,9 +497,18 @@ def genValue(
 		if canonicalVT == 'VARCHAR':
 			size=random.randint(valMaxSize//2, valMaxSize) \
 				if valMaxSize != -1 else scriptConfig.VARCHAR_DEFSIZE
-		data=''
-		for i in range(size):
-			data += chr(random.randint(ord('a'), ord('z')))
+		if scriptConfig.genRandomChars:
+			# In case the script was configured to generate
+			# random lower case characters on a column with
+			# type CHAR or VARCHAR w/o a custom data generator
+			# function.
+			data=''
+			for i in range(size):
+				data += chr(random.randint(ord('a'), ord('z')))
+		else:
+			# Generate "true" words otherwise.
+			data=fake.text()[:size]
+
 		return quotes(data)
 
 	elif canonicalVT == 'TIME':
@@ -590,6 +604,11 @@ def printCommand(
 				# POSTGRESQL want single quotes around thw
 				# very first curly brackets set
 				if curColumn['TYPE'].find('[') != -1:
+					# Single-quotes within a array must be
+					# converted to double-quotes.
+					value=value.replace("'", '"')
+					# Then, finally, single-quotes the entire
+					# array.
 					value=quotes(value)
 
 				# Desconsidering the FOREIGN KEY constraint,
