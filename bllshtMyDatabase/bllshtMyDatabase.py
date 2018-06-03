@@ -139,7 +139,7 @@ def initColumnMetadata(attrType='', maxSize=-1):
 		'MAXSIZE': maxSize, 
 		'PERMITTEDVALUES': set(),
 		'PK': False, 
-		'UNIQUE': False, 
+		'UNIQUE': 0, 
 		'DEFVAL': '', 
 		'NOTNULL': False, 
 		'FK': '',
@@ -232,9 +232,14 @@ def processConstraints(structuredTableCommands, sep=','):
 					# a foreign key without being explicity declared
 					# with a FOREIGN KEY constraint.
 					refColumns=processTokens(matchUnique, sep)
+					uniqueLevel=0
+					for column in curTable:
+						uniqueLevel=max(uniqueLevel, 
+							curTable[column]['UNIQUE'])
+					uniqueLevel+=1
 					for r in refColumns:
 						if r in curTable:
-							curTable[r]['UNIQUE']=True
+							curTable[r]['UNIQUE']=uniqueLevel
 						else:
 							curErrorTable.append(('UNIQUE:', 
 								'COLUMN NOT EXISTS', currentCommand))
@@ -265,7 +270,7 @@ def processConstraints(structuredTableCommands, sep=','):
 						if r in curTable:
 							curTable[r]['PK']=True
 							curTable[r]['NOTNULL']=True
-							curTable[r]['UNIQUE']=True
+							curTable[r]['UNIQUE']=1
 						else:
 							curErrorTable.append(('PRIMARY KEY:',
 								'COLUMN NOT EXISTS', currentCommand))
@@ -646,7 +651,7 @@ def printCommand(
 				curGenValues[column].append(curId)
 		print(command)
 	else:
-		print('/* COMMAND DISCARDED TIL'
+		print('/* COMMAND DISCARDED TIL',
 			'PROGRAM SUPPORTS COMPOSITE KEYS */')
 
 def getFKValues(table, dbFKHandler, genValues, curTable):
