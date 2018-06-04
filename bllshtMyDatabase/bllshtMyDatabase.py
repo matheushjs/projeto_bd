@@ -568,7 +568,7 @@ def printCommand(
 
 	counter=0
 	for column in nonSerialColumn:
-		# Auxiliary variables to help reduzing verbosity
+		# Auxiliary variables to help reducing verbosity
 		# level through the function
 		curColumn=curTable[column]
 		curFK=curColumn['FK']
@@ -576,7 +576,7 @@ def printCommand(
 		counter+=1
 		curEnd=', ' if counter < len(nonSerialColumn) else ''
 
-		if curFK in genValues:
+		if curFK in genValues or (column != genNullAt and curTable[column]['UNIQUE']):
 			# The current column has a valid foreign key.
 			# Just insert the given value		
 			value=''
@@ -649,53 +649,101 @@ def printCommand(
 				if len(curGenValues[column]):
 					curId=max(curGenValues[column])+1
 				curGenValues[column].append(curId)
-		print(command)
-	else:
-		print('/* COMMAND DISCARDED TIL',
-			'PROGRAM SUPPORTS COMPOSITE KEYS */')
+		return command
+	return None
 
-def getFKValues(table, dbFKHandler, genValues, curTable):
-	curInsertionFKValues={}
-	if table in dbFKHandler['FK']:
-		curInsertionFKColumns=dbFKHandler['PK']
-		for dic in dbFKHandler['FK'][table]:
-			fkTable=dic['REFTABLE']
+"""
 
-			# NOTE: In order to use all instances, future 
-			# NOT NULL checking must be done right here. 
-			# Arbitrarily get a table from the referenced table
-			# and counts how many instances it have inserted
+"""
+def getFKValues(table, dbFKHandler, genValues, curTable, instNum):
+	# 
+	maxUniqueLevel=0
+	for column in curTable:
+		maxUniqueLevel=max(maxUniqueLevel, 
+			curTable[column]['UNIQUE'])
 
-			uniqueInstCol=False
-			for col in curTable:
-				uniqueInstCol |= curTable[col]['UNIQUE']
+	predefValues={}
+	for column in curTable:
+		predefValues[column]=[]
 
-			if uniqueInstCol:
-				# Due to current unsupported check of composite keys,
-				# it is forbidden to repeat UNIQUE keys even they're
-				# UNIQUE by composition.
-				sampleInst=list(range(instNum))
-				random.shuffle(sampleInst)
-			else:
-				nullInstCount=0
-				for col in curTable:
-					nullInstCount+=(not curTable[col]['NOTNULL'])
+	# 
+	nullInstCount=0
+	for col in curTable:
+		nullInstCount+=(not curTable[col]['NOTNULL'])
+
+	sampleInst={}
+
+	i=0
+	secCount=0
+	defSize=nullInstCount+instNum
+	while i < defSize:
+		#
+		validArray=[False]*(1+maxUniqueLevel)
+
+		# SERIAL/BIGSERIAL column types should
+		# not be a problem
+		for column in curTable:
+			curColumn=curTable[column]
+			if curColumn['TYPE'].find('SERIAL') != -1:
+				validArray[curColumn['UNIQUE']]=True
+					
+
+		# Treat UNIQUE values that has FOREIGN
+		# KEY constraints
+		if table in dbFKHandler['FK']:
+			for dic in dbFKHandler['FK'][table]:
+				fkTable=dic['REFTABLE']
 
 				# For simplicity, do not consider the NULL values instances
-				sampleInst=random.randint(0, instNum, 
-					size=nullInstCount+instNum)
+				# at the table corresponding to the FOREIGN KEYS
+				sampleInst[fkTable]=random.randint(0, instNum, 
+					size=defSize)
 
-			# Mount the dictionary of FOREIGN KEY 
-			# values with the sampled values
-			fkCols=dic['FKCOLS']
-			global autoincrement
-			for col, keys in zip(fkCols, curInsertionFKColumns[fkTable]):
-				curInsertionFKValues[col]=[]
-				for i in sampleInst:
-					newVal=genValues[fkTable][keys][i]
-					curInsertionFKValues[col].append(newVal)
+				for curTableCol, refTableCol in zip(dic['FKCOLS'],
+					dbFKHandler['PK'][fkTable]):
+					if genValues[fkTable][refTableCol][sampleInst[fkTable][i]] \
+						not in predefValues[curTableCol]:
+						validArray[curTable[curTableCol]['UNIQUE']]=True	
 
-	return curInsertionFKValues
+		# Treat the UNIQUE values that are not part of
+		# FOREIGN KEY constraints
+		auxVals={}
+		for column in predefValues:
+			curColumn=curTable[column]
+			if curColumn['FK']=='' and curColumn['UNIQUE']:
+				auxVals[column]=str(genValue(
+						column,
+						curColumn['TYPE'], 
+						curColumn['MAXSIZE'],
+						curColumn['PERMITTEDVALUES'],
+						curColumn['REGEX']
+						))
+	
+				if auxVals[column] not in predefValues[column]:
+					validArray[curTable[column]['UNIQUE']]=True
+	
+		# Test if the combination is valid
+		if sum(validArray[1:])==maxUniqueLevel:
+			if table in dbFKHandler['FK']:
+				for dic in dbFKHandler['FK'][table]:
+					fkTable=dic['REFTABLE']
+					for curTableCol, fkTableCol in zip(dic['FKCOLS'],
+						dbFKHandler['PK'][fkTable]):
+						predefValues[curTableCol].append(\
+							genValues[fkTable][fkTableCol][sampleInst[fkTable][i]])
+			for column in predefValues:
+				if column in auxVals:
+					predefValues[column].append(auxVals[column])
+			i+=1
+			secCount=0
+		else:
+			secCount+=1
+			if secCount > instNum*5:
+				# Can't generate valid combinations
+				i+=1
+				secCount=0
+
+	return predefValues
 
 """
 	Generate the SQL INSERT commands.
@@ -726,19 +774,20 @@ def genInsertCommands(dbStructure, dbFKHandler, numInst=5):
 			genValues[table][column]=[]
 
 		# Get the PRIMARY KEY values of the tables referenced 
-		# by the current tableFOREIGN keys
+		# by the current table FOREIGN keys
 		curInsertFKValues=getFKValues(table, 
-			dbFKHandler, genValues, curTable)
+			dbFKHandler, genValues, curTable, instNum)
 
 		# Generate common instances (with non null values)
 		for i in range(numInst):
-			printCommand(
+			command=printCommand(
 				genValues, 
 				table, 
 				curTable, 
 				nonSerialColumn,
 				curInsertFKValues,
 				'')
+			print(command)
 
 		# If configured, the program will generate additional 
 		# instances each one with a NULL value for each possible 
@@ -748,15 +797,16 @@ def genInsertCommands(dbStructure, dbFKHandler, numInst=5):
 			for i in range(len(nonSerialColumn)):
 				curNSColumn=nonSerialColumn[i]
 				if not curTable[curNSColumn]['NOTNULL']:
-					print('/* NULL INSERTION FOR ATTRIBUTE', 
-						curNSColumn, 'AT TABLE', table, ' */')
-					printCommand(
+					command=printCommand(
 						genValues, 
 						table, 
 						curTable, 
 						nonSerialColumn,
 						curInsertFKValues,
 						curNSColumn)
+					if command:
+						print('/* NULL INSERTION FOR ATTRIBUTE', 
+							curNSColumn, 'AT TABLE', table, ' */\n', command)
 						
 		# NEW LINE, to keep INSERT commands of each table
 		# nicely separated between each other.
