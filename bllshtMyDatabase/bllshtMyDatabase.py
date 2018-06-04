@@ -526,6 +526,26 @@ def genValue(
 
 	return None
 
+def genCanonicalValue(column, varType, maxSize, permittedVals, regex):
+	value=str(genValue(
+		column,
+		varType, 
+		maxSize,
+		permittedVals,
+		regex
+		))
+
+	# POSTGRESQL want single quotes around thw
+	# very first curly brackets set
+	if varType.find('[') != -1:
+		# Single-quotes within a array must be
+		# converted to double-quotes.
+		value=value.replace("'", '"')
+		# Then, finally, single-quotes the entire
+		# array.
+		value=quotes(value)
+	return value
+
 """
 	Remove all SERIAL/BIGSERIAL column types,
 	because they're not needed to build up a
@@ -597,24 +617,13 @@ def printCommand(
 			validValue=False
 			while not validValue:
 
-				value=str(
-					genValue(
+				value=genCanonicalValue( 
 					column,
 					curColumn['TYPE'], 
 					curColumn['MAXSIZE'],
 					curColumn['PERMITTEDVALUES'],
 					curColumn['REGEX']
-					))
-
-				# POSTGRESQL want single quotes around thw
-				# very first curly brackets set
-				if curColumn['TYPE'].find('[') != -1:
-					# Single-quotes within a array must be
-					# converted to double-quotes.
-					value=value.replace("'", '"')
-					# Then, finally, single-quotes the entire
-					# array.
-					value=quotes(value)
+					)
 
 				# Desconsidering the FOREIGN KEY constraint,
 				# a not UNIQUE value is automatically a valid value.
@@ -711,13 +720,13 @@ def getFKValues(table, dbFKHandler, genValues, curTable, instNum):
 		for column in predefValues:
 			curColumn=curTable[column]
 			if curColumn['FK']=='' and curColumn['UNIQUE']:
-				auxVals[column]=str(genValue(
+				auxVals[column]=genCanonicalValue(
 						column,
 						curColumn['TYPE'], 
 						curColumn['MAXSIZE'],
 						curColumn['PERMITTEDVALUES'],
 						curColumn['REGEX']
-						))
+						)
 	
 				if auxVals[column] not in predefValues[column]:
 					validArray[curTable[column]['UNIQUE']]=True
