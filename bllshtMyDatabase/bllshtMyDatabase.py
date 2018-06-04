@@ -7,11 +7,6 @@
 	argument.
 """
 
-"""
-	TO DO:
-	- VERIFY COMPOSITE KEYS
-"""
-
 from collections import OrderedDict
 import regex
 import sys
