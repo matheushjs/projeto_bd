@@ -14,6 +14,7 @@
 #include <QLineEdit>
 #include <QDateEdit>
 #include <QSpinBox>
+#include <QRadioButton>
 
 class MainWindow : public QWidget
 {
@@ -22,6 +23,10 @@ class MainWindow : public QWidget
 public:
     MainWindow();
     ~MainWindow();
+
+private slots:
+    void CruiseChecked();
+    void ParkChecked();
 
 private:
     void drawTab1(QWidget *parent);
@@ -48,6 +53,11 @@ private:
     QLineEdit *m_partyName;
     QSpinBox *m_imoNumber;
     QLineEdit *m_location;
+    QRadioButton *m_pCruise;
+    QRadioButton *m_pPark;
+    QFormLayout *m_partyInCruise;
+    QFormLayout *m_partyInPark;
+    QGroupBox *m_partyInfos;
 
 };
 
