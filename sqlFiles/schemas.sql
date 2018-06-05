@@ -585,4 +585,4 @@ CREATE TABLE manutencao (
 
 
 /* For debugging currently */
-ROLLBACK;
+END TRANSACTION;
