@@ -46,18 +46,25 @@ void MainWindow::drawTab1(QWidget *parent)
     //2. Creating and drawing the GroupBox
 
     //2.1 GroupBox about the party informations
+
+    //2.1.1 Defining the layouts
     QVBoxLayout *partyLayout = new QVBoxLayout;
-    QGroupBox *location = new QGroupBox("Party Informations");
-    QFormLayout *partyFormLayout = new QFormLayout(location);
+    QHBoxLayout *partyEltsLayout = new QHBoxLayout;
+    QVBoxLayout *radioButtonsLayout = new QVBoxLayout;
 
-    QStringList partyType = {"Festa no cruzeiro", "Festa no parque"};
-    m_partyType = new QComboBox;
-    m_partyType->addItems(partyType);
-    partyFormLayout->addRow("&Party Type:",m_partyType);
+    m_partyInfos = new QGroupBox;
 
+    //2.1.2 Defining the elements
+    m_pCruise = new QRadioButton("Festa no Cruzeiro");
+    m_pPark = new QRadioButton("Festa no parque");
+    QPushButton *insertParty = new QPushButton("Insert",m_partyInfos);
 
-    QPushButton *insertParty = new QPushButton("Insert",location);
-    partyLayout->addWidget(location);
+    radioButtonsLayout->addWidget(m_pCruise);
+    radioButtonsLayout->addWidget(m_pPark);
+    partyEltsLayout->addLayout(radioButtonsLayout);
+    partyEltsLayout->addWidget(m_partyInfos);
+
+    partyLayout->addLayout(partyEltsLayout);
     partyLayout->addWidget(insertParty,0,Qt::AlignLeft);
 
     //2.2 Groupbox about the Employees informations
@@ -99,6 +106,9 @@ void MainWindow::drawTab1(QWidget *parent)
     vbox->addLayout(hbox);
 
     parent->setLayout(vbox);
+    QObject::connect(m_pCruise,SIGNAL(pressed()),this,SLOT(CruiseChecked()));
+    QObject::connect(m_pPark,SIGNAL(pressed()),this,SLOT(ParkChecked()));
+
 }
 void MainWindow::drawTab2(QWidget *parent)
 {
@@ -106,10 +116,35 @@ void MainWindow::drawTab2(QWidget *parent)
 }
 void MainWindow::drawTab3(QWidget *parent)
 {}
+
 void MainWindow::drawTab4(QWidget *parent)
 {}
 
 MainWindow::~MainWindow()
 {
 
+}
+
+void MainWindow::CruiseChecked()
+{
+    //m_partyInCruise->setParent(m_partyInfos);
+    m_partyInfos->setTitle("Festa no Cruzeiro");
+    delete m_partyInfos->layout();
+    m_partyInCruise = new QFormLayout;
+    QStringList partyType = {"Festa no cruzeiro", "Festa no parque"};
+    QComboBox *m_partyType = new QComboBox;
+    m_partyType->addItems(partyType);
+    m_partyInCruise->addRow("&'Party Type:",m_partyType);
+    m_partyInfos->setLayout(m_partyInCruise);
+}
+void MainWindow::ParkChecked()
+{
+    //m_partyInPark->setParent(m_partyInfos);
+    m_partyInfos->setTitle("Festa no Park");
+    delete m_partyInfos->layout();
+    m_partyInPark = new QFormLayout;
+    m_partyName = new QLineEdit();
+
+    m_partyInPark->addRow("&Nome da festa:",m_partyName);
+    m_partyInfos->setLayout(m_partyInPark);
 }
