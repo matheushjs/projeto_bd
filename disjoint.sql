@@ -52,6 +52,18 @@ ALTER TABLE cinegrafistaCruzeiro ADD CONSTRAINT fk1_cinegrafistaCruzeiro
 		REFERENCES opComCamera
 		ON DELETE CASCADE; /* RESTRICT -> CASCADE */ 
 
+ALTER TABLE opParque DROP CONSTRAINT fk1_opParque;
+ALTER TABLE opParque ADD CONSTRAINT fk1_opParque
+                FOREIGN KEY (cpfOpCamera, data)
+                REFERENCES opComCamera
+                ON DELETE CASCADE; /* RESTRICT -> CASCADE */
+
+
+ALTER TABLE manutencao DROP CONSTRAINT fk1_manutencao;
+ALTER TABLE manutencao ADD CONSTRAINT fk1_manutencao
+                FOREIGN KEY (cpfTecnico)
+                REFERENCES tecnico
+                ON DELETE CASCADE; /* RESTRICT -> CASCADE */
 
 /* Mantém somente os copilotos na tabela de Copilotos */
 DELETE FROM copiloto WHERE cpf IN 
@@ -79,7 +91,7 @@ DELETE FROM opCamera WHERE cpf IN
 
 /* Mantém somente os tecnicos na tabela de tecnicos */
 DELETE FROM tecnico WHERE cpf IN 
-	(SELECT T.cpf FROM tecnicos T, 
+	(SELECT T.cpf FROM tecnico T, 
 		funcionario F WHERE T.cpf = F.cpf AND 
 		F.cargo <> 'TECNICO');
 
@@ -125,4 +137,16 @@ ALTER TABLE cinegrafistaCruzeiro DROP CONSTRAINT fk1_cinegrafistaCruzeiro;
 ALTER TABLE cinegrafistaCruzeiro ADD CONSTRAINT fk1_cinegrafistaCruzeiro
 		FOREIGN KEY (cpfOpCamera, data)
 		REFERENCES opComCamera
-		ON DELETE RESTRICT; 
+		ON DELETE RESTRICT;
+
+ALTER TABLE opParque DROP CONSTRAINT fk1_opParque;
+ALTER TABLE opParque ADD CONSTRAINT fk1_opParque
+                FOREIGN KEY (cpfOpCamera, data)
+                REFERENCES opComCamera
+                ON DELETE RESTRICT;
+
+ALTER TABLE manutencao DROP CONSTRAINT fk1_manutencao;
+ALTER TABLE manutencao ADD CONSTRAINT fk1_manutencao
+                FOREIGN KEY (cpfTecnico)
+                REFERENCES tecnico
+                ON DELETE RESTRICT;
