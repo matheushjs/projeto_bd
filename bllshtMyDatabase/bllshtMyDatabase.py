@@ -27,12 +27,32 @@ fake=Faker(locale='pt_BR')
 	without a correspondent function will receive a
 	random text by default.
 """
+"""
+	MODEL:
+
+	'columnName_1': {
+		'table_1': genFunctionA, 
+		'table_2': genFunctionB, 
+		'DEFAULT': genFunctionDefault}}
+
+	'columnName_2': genFunctionAllTables
+
+	...
+
+	'columnName_n': {
+		'table_c': genFunctionZ,
+		'table_d': genFunctionW
+		}
+	
+"""
 specialDataFuncs={
-	'nome': fake.name,
+	'nome': {'equipamento': fake.name, 'DEFAULT': fake.name},
+	'RG': fake.ssn,
 	'nomeBanda': fake.name,
 	'endereco': fake.address,
 	'endereco': fake.address,
 	'descricao': fake.text,
+	'telefoneCsv': fake.phone_number,
 }
 
 """
@@ -46,7 +66,7 @@ class scriptConfig:
 	# Turn on this if you want a ROLLBACK ate the
 	# end of the transaction. This flag only has
 	# effect if BEGIN_TRANSACTION flag is True
-	ROLLBACK_AT_END=True
+	ROLLBACK_AT_END=False
 
 	# Should the values that haven't the 'NOT NULL'
 	# constraint receive NULL values?
@@ -68,6 +88,11 @@ class scriptConfig:
 	# MAX_BIGINT=-2**(8*8)
 	# MIN_YEAR=1900
 	# MAX_YEAR=2050
+	MAX_REAL=1.0e+5-1
+	MIN_REAL=-1.0e+5
+	REAL_PRECISION=2
+	MAX_SMALLINT=2**(8*2)-1
+	MIN_SMALLINT=-2**(8*2)
 	MAX_INT=900000
 	MIN_INT=100000
 	MAX_BIGINT=90000000
@@ -371,7 +396,7 @@ def _randDATE():
 	m=random.randint(1, 12)
 	d=random.randint(1, 31-(m%2+(m==2)))
 	y=random.randint(scriptConfig.MIN_YEAR, 
-		scriptConfig.MAX_YEAR)
+		scriptConfig.MAX_YEAR+1)
 	m=str(m)
 	d=str(d)
 	y=str(y)
@@ -411,6 +436,7 @@ def quotes(string):
 	specified on the CREATE TABLE commands.
 """
 def genValue(
+	tableName,
 	columnName,
 	valType, 
 	valMaxSize, 
@@ -449,6 +475,7 @@ def genValue(
 		partialRes=[]
 		for i in range(arraySize):
 			partialRes.append(genValue(
+				tableName,
 				columnName,
 				valType+additionalDims, 
 				valMaxSize, 
@@ -460,9 +487,25 @@ def genValue(
 	# Check if current column don't have a custom
 	# value generator
 	elif columnName in specialDataFuncs:
-		text=str(specialDataFuncs[columnName]())[:valMaxSize]
-		processed=regex.sub(r"[\n']", ' ', text)
-		return quotes(processed)
+		genObject=specialDataFuncs[columnName]
+		if type(genObject) == type({}):
+			# Nested custom generator configuration
+			if tableName in genObject:
+				genObject=genObject[tableName]
+			elif 'DEFAULT' in genObject:
+				genObject=genObject['DEFAULT']
+			else:
+				genObject=None
+
+		if genObject:
+			text=genObject()
+			text=str(text)[:valMaxSize]
+			processed=regex.sub(r"[\n']", ' ', text)
+			return quotes(processed)
+
+		# In case everything goes wrong.
+		# This is probably due to bad user configurarion.
+		return 'NULL'
 
 	elif regexPat != '':
 		return quotes(rstr.xeger(regexPat))
@@ -476,13 +519,24 @@ def genValue(
 			return smpVal
 		return quotes(smpVal)
 
+	elif canonicalVT == 'SMALLINT':
+		return str(random.randint(scriptConfig.MIN_SMALLINT, 
+			scriptConfig.MAX_SMALLINT+1))
+
+	elif canonicalVT == 'REAL':
+		val=random.random()
+		val*=(scriptConfig.MAX_REAL-scriptConfig.MIN_REAL)
+		val+=scriptConfig.MIN_REAL
+		val=round(val, scriptConfig.REAL_PRECISION)
+		return str(val)
+
 	elif canonicalVT == 'INTEGER':
 		return str(random.randint(scriptConfig.MIN_INT, 
-			scriptConfig.MAX_INT))
+			scriptConfig.MAX_INT+1))
 
 	elif canonicalVT == 'BIGINT':
 		return str(random.randint(scriptConfig.MIN_BIGINT, 
-			scriptConfig.MAX_BIGINT))
+			scriptConfig.MAX_BIGINT+1))
 
 	elif canonicalVT == 'DATE':
 		return 'to_date (' + quotes(_randDATE()) +\
@@ -495,7 +549,7 @@ def genValue(
 		
 		size=valMaxSize 
 		if canonicalVT == 'VARCHAR':
-			size=random.randint(valMaxSize//2, valMaxSize) \
+			size=random.randint(valMaxSize//2, valMaxSize+1) \
 				if valMaxSize != -1 else scriptConfig.VARCHAR_DEFSIZE
 		if scriptConfig.genRandomChars:
 			# In case the script was configured to generate
@@ -521,8 +575,16 @@ def genValue(
 
 	return None
 
-def genCanonicalValue(column, varType, maxSize, permittedVals, regex):
+def genCanonicalValue(
+	tableName,
+	column, 
+	varType, 
+	maxSize, 
+	permittedVals, 
+	regex):
+
 	value=str(genValue(
+		tableName,
 		column,
 		varType, 
 		maxSize,
@@ -613,6 +675,7 @@ def printCommand(
 			while not validValue:
 
 				value=genCanonicalValue( 
+					table,
 					column,
 					curColumn['TYPE'], 
 					curColumn['MAXSIZE'],
@@ -716,6 +779,7 @@ def getFKValues(table, dbFKHandler, genValues, curTable, instNum):
 			curColumn=curTable[column]
 			if curColumn['FK']=='' and curColumn['UNIQUE']:
 				auxVals[column]=genCanonicalValue(
+						table,
 						column,
 						curColumn['TYPE'], 
 						curColumn['MAXSIZE'],
