@@ -1,4 +1,6 @@
 /* 
+	This script ensures disjoint at funcionario table.	
+
 	Make constraint modification necessary to 
 	the instances deletion (it will be rever-
 	sed back at the end of this script).
