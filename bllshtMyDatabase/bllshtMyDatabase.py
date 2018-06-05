@@ -397,6 +397,11 @@ def _randDATE():
 	d=random.randint(1, 31-(m%2+(m==2)))
 	y=random.randint(scriptConfig.MIN_YEAR, 
 		scriptConfig.MAX_YEAR+1)
+
+	# For simplicity, don't consider leap years
+	if m==2:
+		d%=29
+
 	m=str(m)
 	d=str(d)
 	y=str(y)
