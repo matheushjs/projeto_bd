@@ -1,8 +1,12 @@
 #!/bin/bash
 
+# Usage: ./run.sh NUM_INSERTS
+
 # Variáveis de Ambiente
 USER=`whoami`
-NUM_INSERTS=20
+ARGS=$1
+DEFAULT_NUM_INSERTS=20
+NUM_INSERTS=${ARGS:-$DEFAULT_NUM_INSERTS}
 DATABASE=projeto_bd
 TABLE_NAMES=`cat tableNames.txt`
 INSERT_OUT=inserts.sql
