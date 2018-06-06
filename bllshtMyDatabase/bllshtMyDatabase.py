@@ -726,7 +726,8 @@ def printCommand(
 	
 	# Command blocked, remove generate values
 	for column in curGenValues:
-		curGenValues[column].pop()
+		if len(curGenValues[column]):
+			curGenValues[column].pop()
 	return None
 
 """
@@ -853,8 +854,14 @@ def genInsertCommands(dbStructure, dbFKHandler, numInst=5):
 
 		# Get the PRIMARY KEY values of the tables referenced 
 		# by the current table FOREIGN keys
-		curInsertFKValues=getFKValues(table, 
-			dbFKHandler, genValues, curTable, instNum)
+		errorFlag=True
+		while errorFlag:
+			try:
+				curInsertFKValues=getFKValues(table, 
+					dbFKHandler, genValues, curTable, instNum)
+				errorFlag=False
+			except:
+				continue
 
 		# Generate common instances (with non null values)
 		for i in range(numInst):
