@@ -53,6 +53,7 @@ specialDataFuncs={
 	'endereco': fake.address,
 	'descricao': fake.text,
 	'telefoneCsv': fake.phone_number,
+	'equipe': None,
 }
 
 """
@@ -722,6 +723,10 @@ def printCommand(
 					curId=max(curGenValues[column])+1
 				curGenValues[column].append(curId)
 		return command
+	
+	# Command blocked, remove generate values
+	for column in curGenValues:
+		curGenValues[column].pop()
 	return None
 
 """
@@ -860,7 +865,11 @@ def genInsertCommands(dbStructure, dbFKHandler, numInst=5):
 				nonSerialColumn,
 				curInsertFKValues,
 				'')
-			print(command)
+
+			if command:
+				print(command)
+			else:
+				print('/* COMMAND BLOCKED */')
 
 		# If configured, the program will generate additional 
 		# instances each one with a NULL value for each possible 
