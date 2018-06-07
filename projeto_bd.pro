@@ -14,10 +14,12 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    insertioninterface.cpp
+    insertioninterface.cpp \
+    reportsinterface.cpp
 
 HEADERS  += mainwindow.h \
-    insertioninterface.h
+    insertioninterface.h \
+    reportsinterface.h
 CONFIG += qt
 
 QMAKE_CXXFLAGS += -std=c++11
