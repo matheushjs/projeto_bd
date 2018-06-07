@@ -40,9 +40,8 @@ class InsertionInterface : public QWidget
     QLineEdit *m_location;
     QRadioButton *m_pCruise;
     QRadioButton *m_pPark;
-    QFormLayout *m_partyInCruise;
-    QFormLayout *m_partyInPark;
     QGroupBox *m_partyInfos;
+    QGroupBox *m_cruiserInfos;
 
 
 public:

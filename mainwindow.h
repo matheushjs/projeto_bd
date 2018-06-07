@@ -16,12 +16,6 @@ class MainWindow : public QWidget
 public:
     MainWindow();
     ~MainWindow();
-
-private:
-    void drawTab1(QWidget *parent);
-    void drawTab2(QWidget *parent);
-    void drawTab3(QWidget *parent);
-    void drawTab4(QWidget *parent);
 };
 
 #endif // MAINWINDOW_H

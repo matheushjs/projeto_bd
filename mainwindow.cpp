@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include <QDesktopWidget>
+#include <QApplication>
 
 MainWindow::MainWindow()
   :
@@ -13,14 +14,14 @@ MainWindow::MainWindow()
     int width = rec.width();
     this->setGeometry(width/2 - 400, height/2 - 400, 800, 800);
 
-    //1.Drawing the interface
+    // Set layout (Any will do)
     QVBoxLayout *vbox = new QVBoxLayout(this);
 
-    //1.1 Drawing the TabWidget
+    // Configuring the TabWidget
     m_tabs->setTabShape(QTabWidget::Triangular);
     vbox->addWidget(m_tabs);
 
-    //1.6 Adding the tabs to the TabWidget
+    // Add the tabs
     m_tabs->addTab(m_insertionInterface, "Insert Informations");
     m_tabs->addTab(new QWidget, "Consult Informations");
     m_tabs->addTab(new QWidget, "Print Relates");

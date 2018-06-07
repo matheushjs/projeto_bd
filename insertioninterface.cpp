@@ -1,33 +1,47 @@
 #include "insertioninterface.h"
 
-InsertionInterface::InsertionInterface(QWidget *parent) : QWidget(parent)
+InsertionInterface::InsertionInterface(QWidget *parent)
+  : QWidget(parent)
 {
-    //1. Especify the layout
-    QVBoxLayout *vbox = new QVBoxLayout(parent);
+    // Set layout
+    QVBoxLayout *vbox = new QVBoxLayout(this);
 
-    //2. Creating and drawing the GroupBox
-
-    //2.1 GroupBox about the party informations
-
-    //2.1.1 Defining the layouts
-    QVBoxLayout *partyLayout = new QVBoxLayout;
-    QHBoxLayout *partyEltsLayout = new QHBoxLayout;
-    QVBoxLayout *radioButtonsLayout = new QVBoxLayout;
-
-    m_partyInfos = new QGroupBox;
-
-    //2.1.2 Defining the elements
+    // Set up Radio Buttons box
     m_pCruise = new QRadioButton("Festa no Cruzeiro");
     m_pPark = new QRadioButton("Festa no parque");
-    QPushButton *insertParty = new QPushButton("Insert",m_partyInfos);
-
+    QVBoxLayout *radioButtonsLayout = new QVBoxLayout;
     radioButtonsLayout->addWidget(m_pCruise);
     radioButtonsLayout->addWidget(m_pPark);
-    partyEltsLayout->addLayout(radioButtonsLayout);
-    partyEltsLayout->addWidget(m_partyInfos);
 
-    partyLayout->addLayout(partyEltsLayout);
-    partyLayout->addWidget(insertParty,0,Qt::AlignLeft);
+    // Set up the first insert button box
+    QPushButton *insertParty = new QPushButton("Insert");
+    QVBoxLayout *buttonLayout1 = new QVBoxLayout;
+    buttonLayout1->addWidget(insertParty, 0, Qt::AlignLeft);
+
+    QFormLayout *flayout;
+
+    // Create party information group box
+    m_partyInfos = new QGroupBox("Festa no Parque");
+    flayout = new QFormLayout;
+    m_partyName = new QLineEdit();
+    flayout->addRow("&Nome da festa:",m_partyName);
+    m_partyInfos->setLayout(flayout);
+
+    // Create cruiser information group box
+    m_cruiserInfos = new QGroupBox("Festa no Cruzeiro");
+    flayout = new QFormLayout;
+    QComboBox *m_partyType = new QComboBox;
+    m_partyType->addItems({"Festa no cruzeiro", "Festa no parque"});
+    flayout->addRow("&Party Type:", m_partyType);
+    m_cruiserInfos->setLayout(flayout);
+
+    // Add Party and Cruiser information into a layout
+    // They should initially be invisible
+    QHBoxLayout *partyEltsLayout = new QHBoxLayout;
+    partyEltsLayout->addWidget(m_partyInfos);
+    partyEltsLayout->addWidget(m_cruiserInfos);
+    m_partyInfos->setVisible(false);
+    m_cruiserInfos->setVisible(false);
 
     //2.2 Groupbox about the Employees informations
     QGroupBox *employees = new QGroupBox("Employees Informations");
@@ -62,37 +76,26 @@ InsertionInterface::InsertionInterface(QWidget *parent) : QWidget(parent)
     hbox->addWidget(m_insertButton,0,Qt::AlignRight);
     hbox->addWidget(m_cancelButton,0,Qt::AlignLeft);
 
-    vbox->addLayout(partyLayout);
+    vbox->addLayout(radioButtonsLayout);
+    vbox->addLayout(buttonLayout1);
+    vbox->addLayout(partyEltsLayout);
     vbox->addWidget(employees);
     vbox->addWidget(equipments);
     vbox->addLayout(hbox);
 
-    parent->setLayout(vbox);
+    this->setLayout(vbox);
     QObject::connect(m_pCruise,SIGNAL(pressed()),this,SLOT(CruiseChecked()));
     QObject::connect(m_pPark,SIGNAL(pressed()),this,SLOT(ParkChecked()));
 }
 
 void InsertionInterface::CruiseChecked()
 {
-    //m_partyInCruise->setParent(m_partyInfos);
-    m_partyInfos->setTitle("Festa no Cruzeiro");
-    delete m_partyInfos->layout();
-    m_partyInCruise = new QFormLayout;
-    QStringList partyType = {"Festa no cruzeiro", "Festa no parque"};
-    QComboBox *m_partyType = new QComboBox;
-    m_partyType->addItems(partyType);
-    m_partyInCruise->addRow("&Party Type:",m_partyType);
-    m_partyInfos->setLayout(m_partyInCruise);
+    m_partyInfos->setVisible(false);
+    m_cruiserInfos->setVisible(true);
 }
 
 void InsertionInterface::ParkChecked()
 {
-    //m_partyInPark->setParent(m_partyInfos);
-    m_partyInfos->setTitle("Festa no Park");
-    delete m_partyInfos->layout();
-    m_partyInPark = new QFormLayout;
-    m_partyName = new QLineEdit();
-
-    m_partyInPark->addRow("&Nome da festa:",m_partyName);
-    m_partyInfos->setLayout(m_partyInPark);
+    m_partyInfos->setVisible(true);
+    m_cruiserInfos->setVisible(false);
 }
