@@ -53,7 +53,6 @@ specialDataFuncs={
 	'endereco': fake.address,
 	'descricao': fake.text,
 	'telefoneCsv': fake.phone_number,
-	'equipe': None,
 }
 
 """
@@ -394,12 +393,15 @@ def processConstraints(structuredTableCommands, sep=','):
 	Generate a random SQL DATE value.
 """
 def _randDATE():
-	m=random.randint(1, 12)
+	m=random.randint(1, 13)
+
+	# Don't generate day 31' for simplicity.
 	d=random.randint(1, 31-(m%2+(m==2)))
 	y=random.randint(scriptConfig.MIN_YEAR, 
 		scriptConfig.MAX_YEAR+1)
 
-	# For simplicity, don't consider leap years
+	# Do not check leap years for simplicity.
+	# (avoid 29 of february)
 	if m==2:
 		d%=29
 
@@ -420,9 +422,9 @@ def _randDATE():
 	Generate a random SQL TIME value.
 """
 def _randTIME():
-	h=str(random.randint(0, 23))
-	m=str(random.randint(0, 59))
-	s=str(random.randint(0, 59))
+	h=str(random.randint(0, 24))
+	m=str(random.randint(0, 60))
+	s=str(random.randint(0, 60))
 	return ':'.join([
 		('0' if len(h)==1 else '')+h,
 		('0' if len(m)==1 else '')+m,
@@ -723,9 +725,9 @@ def printCommand(
 					curId=max(curGenValues[column])+1
 				curGenValues[column].append(curId)
 		return command
-	
+
 	# Command blocked, remove generate values
-	for column in curGenValues:
+	for column in nonSerialColumn:
 		if len(curGenValues[column]):
 			curGenValues[column].pop()
 	return None
@@ -837,75 +839,77 @@ def genInsertCommands(dbStructure, dbFKHandler, numInst=5):
 	tableNumTotal=0
 	for table in dbStructure:
 		tableNumTotal+=1
-
-		# Auxiliary variable to help reducing verbosity
-		# inside this function.
-		curTable=dbStructure[table]
-
-		# Remove autoincrementable (SERIAL or BIGSERIAL)
-		# columns.
-		nonSerialColumn=removeSerial(list(curTable.keys()),
-			[curTable[column]['TYPE'] for column in curTable])
-
 		print('/* TABLE', table, '*/')
-		genValues[table]={}
-		for column in curTable.keys():
-			genValues[table][column]=[]
-
-		# Get the PRIMARY KEY values of the tables referenced 
-		# by the current table FOREIGN keys
-		errorFlag=True
-		while errorFlag:
+		tableErrorTries=75
+		while tableErrorTries > 0:
 			try:
+				tableCommands=[]
+
+				# Auxiliary variable to help reducing verbosity
+				# inside this function.
+				curTable=dbStructure[table]
+
+				# Remove autoincrementable (SERIAL or BIGSERIAL)
+				# columns.
+				nonSerialColumn=removeSerial(list(curTable.keys()),
+					[curTable[column]['TYPE'] for column in curTable])
+
+				genValues[table]={}
+				for column in curTable.keys():
+					genValues[table][column]=[]
+
+				# Get the PRIMARY KEY values of the tables referenced 
+				# by the current table FOREIGN keys
 				curInsertFKValues=getFKValues(table, 
 					dbFKHandler, genValues, curTable, instNum)
-				errorFlag=False
+
+				# Generate common instances (with non null values)
+				for i in range(numInst):
+					command=printCommand(
+						genValues, 
+						table, 
+						curTable, 
+						nonSerialColumn,
+						curInsertFKValues,
+						'')
+
+					if command:
+						tableCommands.append(command)
+					else:
+						tableCommands.append('/* COMMAND BLOCKED ' +\
+							'(CAN\'T SOLVE FK). */')
+
+				# If configured, the program will generate additional 
+				# instances each one with a NULL value for each possible 
+				# column that hasn't a 'NOT NULL' constraint and, obviously,
+				# is neither a PRIMARY KEY.
+				if scriptConfig.GEN_NULL_VALUES:
+					for i in range(len(nonSerialColumn)):
+						curNSColumn=nonSerialColumn[i]
+						if not curTable[curNSColumn]['NOTNULL']:
+							command=printCommand(
+								genValues, 
+								table, 
+								curTable, 
+								nonSerialColumn,
+								curInsertFKValues,
+								curNSColumn)
+							if command:
+								tableCommands.append('/* NULL INSERTION FOR ATTRIBUTE' +\
+									curNSColumn + 'AT TABLE' + table + ' */\n' + command)
+								
+				# Finally, print commands
+				while len(tableCommands):
+					print(tableCommands.pop())
+
+				# NEW LINE, to keep INSERT commands of each table
+				# nicely separated between each other.
+				print()
+
+				tableErrorTries=0
+				# Finished current table.
 			except:
-				continue
-
-		# Generate common instances (with non null values)
-		for i in range(numInst):
-			try:
-				command=printCommand(
-					genValues, 
-					table, 
-					curTable, 
-					nonSerialColumn,
-					curInsertFKValues,
-					'')
-
-				if command:
-					print(command)
-				else:
-					print('/* COMMAND BLOCKED */')
-			except:
-				print('/* ERROR PASSED */')
-
-		# If configured, the program will generate additional 
-		# instances each one with a NULL value for each possible 
-		# column that hasn't a 'NOT NULL' constraint and, obviously,
-		# is neither a PRIMARY KEY.
-		if scriptConfig.GEN_NULL_VALUES:
-			for i in range(len(nonSerialColumn)):
-				curNSColumn=nonSerialColumn[i]
-				if not curTable[curNSColumn]['NOTNULL']:
-					try:
-						command=printCommand(
-							genValues, 
-							table, 
-							curTable, 
-							nonSerialColumn,
-							curInsertFKValues,
-							curNSColumn)
-						if command:
-							print('/* NULL INSERTION FOR ATTRIBUTE', 
-								curNSColumn, 'AT TABLE', table, ' */\n', command)
-					except:
-						print('/* ERROR PASSED */')	
-						
-		# NEW LINE, to keep INSERT commands of each table
-		# nicely separated between each other.
-		print()
+				tableErrorTries-=1
 
 	print('/* TABLE NUMBER TOTAL:', tableNumTotal, '*/')
 
