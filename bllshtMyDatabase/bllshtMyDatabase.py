@@ -53,6 +53,7 @@ specialDataFuncs={
 	'endereco': fake.address,
 	'descricao': fake.text,
 	'telefoneCsv': fake.phone_number,
+	'equipe': None,
 }
 
 """
