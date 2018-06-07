@@ -4,6 +4,7 @@
 #include <QTextEdit>
 
 #include "reportsinterface.h"
+#include "eisedatabase.h"
 
 ReportsInterface::ReportsInterface(QWidget *parent)
   : QWidget(parent),
@@ -24,8 +25,15 @@ ReportsInterface::ReportsInterface(QWidget *parent)
     for(QPushButton *but: m_buttons)
         butLayout->addWidget(but);
 
+    // Build html
+    QString html = "<h2>Lista de Tabelas no Banco</h2>";
+    QStringList list = EISEDatabase().getTableNames();
+    for(QString &str: list){
+        html += "<p>" + str + "</p>";
+    }
+
     // Set text edit
-    m_textEdit->setHtml("<h2><b>Olá! Esse é o querido lugar onde serão dispostos os relatórios.</b></h2>");
+    m_textEdit->setHtml(html);
     m_textEdit->setReadOnly(true);
 
     // Add widgets to main layout

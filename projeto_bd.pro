@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core
+QT       += core sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -15,11 +15,13 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     insertioninterface.cpp \
-    reportsinterface.cpp
+    reportsinterface.cpp \
+    eisedatabase.cpp
 
 HEADERS  += mainwindow.h \
     insertioninterface.h \
-    reportsinterface.h
+    reportsinterface.h \
+    eisedatabase.h
 CONFIG += qt
 
 QMAKE_CXXFLAGS += -std=c++11
