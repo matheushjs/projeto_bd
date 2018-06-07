@@ -17,3 +17,5 @@ SOURCES += main.cpp\
 
 HEADERS  += mainwindow.h
 CONFIG += qt
+
+QMAKE_CXXFLAGS += -std=c++11
