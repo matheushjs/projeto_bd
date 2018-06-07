@@ -1,0 +1,7 @@
+*.user*
+*~
+*.swp
+*.o
+moc_*
+projeto_bd
+Makefile
