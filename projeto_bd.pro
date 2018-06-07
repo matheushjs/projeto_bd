@@ -13,9 +13,11 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    insertioninterface.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    insertioninterface.h
 CONFIG += qt
 
 QMAKE_CXXFLAGS += -std=c++11
