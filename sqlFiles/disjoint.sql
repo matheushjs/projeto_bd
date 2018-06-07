@@ -1,11 +1,16 @@
 /* 
 	This script ensures disjoint at funcionario table.	
-
-	Make constraint modification necessary to 
-	the instances deletion (it will be rever-
-	sed back at the end of this script).
-
 */
+
+/*
+	First,
+
+	Modify some constraints related to 
+	the instances that will be deleted 
+	(it will be reverted back at the end 
+	of this script).
+*/
+
 ALTER TABLE auxilia DROP CONSTRAINT fk2_auxilia;
 ALTER TABLE auxilia ADD CONSTRAINT fk2_auxilia
                 FOREIGN KEY (cpfPiloto)
@@ -67,6 +72,60 @@ ALTER TABLE manutencao ADD CONSTRAINT fk1_manutencao
                 REFERENCES tecnico
                 ON DELETE CASCADE; /* RESTRICT -> CASCADE */
 
+ALTER TABLE showsonorizacao DROP CONSTRAINT fk2_showsonorizacao;
+ALTER TABLE showsonorizacao ADD CONSTRAINT fk2_showsonorizacao
+                FOREIGN KEY (sonorizacaoid)
+                REFERENCES sonorizacao
+                ON DELETE CASCADE; /* RESTRICT -> CASCADE */
+
+ALTER TABLE pontosom DROP CONSTRAINT fk1_pontosom;
+ALTER TABLE pontosom ADD CONSTRAINT fk1_pontosom
+                FOREIGN KEY (idsonorizacao)
+                REFERENCES sonorizacao
+                ON DELETE CASCADE; /* RESTRICT -> CASCADE */
+
+ALTER TABLE cameraaerea DROP CONSTRAINT fk2_cameraaerea;
+ALTER TABLE cameraaerea ADD CONSTRAINT fk2_cameraaerea
+                FOREIGN KEY (drone)
+                REFERENCES drone
+                ON DELETE CASCADE; /* RESTRICT -> CASCADE */
+
+ALTER TABLE registros DROP CONSTRAINT fk_registros;
+ALTER TABLE registros ADD CONSTRAINT fk_registros
+                FOREIGN KEY (iddrone)
+                REFERENCES drone
+                ON DELETE CASCADE; /* RESTRICT -> CASCADE */
+
+ALTER TABLE pontoestrutura DROP CONSTRAINT fk1_pontoestrutura;
+ALTER TABLE pontoestrutura ADD CONSTRAINT fk1_pontoestrutura
+                FOREIGN KEY (idestruturacao)
+                REFERENCES estruturacao
+                ON DELETE CASCADE; /* RESTRICT -> CASCADE */
+
+ALTER TABLE pontocamera DROP CONSTRAINT fk1_pontocamera;
+ALTER TABLE pontocamera ADD CONSTRAINT fk1_pontocamera
+                FOREIGN KEY (idcamera)
+                REFERENCES camera
+                ON DELETE CASCADE; /* RESTRICT -> CASCADE */
+
+ALTER TABLE opparque DROP CONSTRAINT fk2_opparque;
+ALTER TABLE opparque ADD CONSTRAINT fk2_opparque
+                FOREIGN KEY (idcamerasecundaria)
+                REFERENCES camera
+                ON DELETE CASCADE; /* RESTRICT -> CASCADE */
+
+ALTER TABLE cameraaerea DROP CONSTRAINT fk1_cameraaerea;
+ALTER TABLE cameraaerea ADD CONSTRAINT fk1_cameraaerea
+                FOREIGN KEY (camera)
+                REFERENCES camera
+                ON DELETE CASCADE; /* RESTRICT -> CASCADE */
+
+/*
+	Now, 
+
+	Effectively delete instances
+*/
+
 /* Mantém somente os copilotos na tabela de Copilotos */
 DELETE FROM copiloto WHERE cpf IN 
 	(SELECT C.cpf FROM copiloto C, 
@@ -98,7 +157,84 @@ DELETE FROM tecnico WHERE cpf IN
 		F.cargo <> 'TECNICO');
 
 
-/* Turn modified constraints back to original form */
+/* Mantém somente SONORIZACAO na tabela de sonorizacao */
+DELETE FROM sonorizacao WHERE id IN 
+	(SELECT S.id FROM sonorizacao S, 
+		equipamento E WHERE E.id = S.id AND 
+		E.tipo <> 'SONORIZACAO');
+
+/* Mantém somente DRONE na tabela de drone */
+DELETE FROM drone WHERE id IN 
+	(SELECT D.id FROM drone D, 
+		equipamento E WHERE E.id = D.id AND 
+		E.tipo <> 'DRONE');
+
+/* Mantém somente ESTRUTURACAO na tabela de estruturacao */
+DELETE FROM estruturacao WHERE id IN 
+	(SELECT S.id FROM estruturacao S, 
+		equipamento E WHERE E.id = S.id AND 
+		E.tipo <> 'ESTRUTURACAO');
+
+/* Mantém somente CAMERA na tabela de camera */
+DELETE FROM camera WHERE id IN 
+	(SELECT C.id FROM camera C, 
+		equipamento E WHERE E.id = C.id AND 
+		E.tipo <> 'CAMERA');
+
+/* 
+	Finally, 
+	
+	Turn back modified constraints back to
+	its original form 
+*/
+ALTER TABLE pontocamera DROP CONSTRAINT fk1_pontocamera;
+ALTER TABLE pontocamera ADD CONSTRAINT fk1_pontocamera
+                FOREIGN KEY (idcamera)
+                REFERENCES camera
+                ON DELETE RESTRICT; 
+
+ALTER TABLE opparque DROP CONSTRAINT fk2_opparque;
+ALTER TABLE opparque ADD CONSTRAINT fk2_opparque
+                FOREIGN KEY (idcamerasecundaria)
+                REFERENCES camera
+                ON DELETE RESTRICT; 
+
+ALTER TABLE cameraaerea DROP CONSTRAINT fk1_cameraaerea;
+ALTER TABLE cameraaerea ADD CONSTRAINT fk1_cameraaerea
+                FOREIGN KEY (camera)
+                REFERENCES camera
+                ON DELETE RESTRICT; 
+
+ALTER TABLE pontoestrutura DROP CONSTRAINT fk1_pontoestrutura;
+ALTER TABLE pontoestrutura ADD CONSTRAINT fk1_pontoestrutura
+                FOREIGN KEY (idestruturacao)
+                REFERENCES estruturacao
+                ON DELETE RESTRICT; 
+
+ALTER TABLE cameraaerea DROP CONSTRAINT fk2_cameraaerea;
+ALTER TABLE cameraaerea ADD CONSTRAINT fk2_cameraaerea
+                FOREIGN KEY (drone)
+                REFERENCES drone
+                ON DELETE RESTRICT; 
+
+ALTER TABLE registros DROP CONSTRAINT fk_registros;
+ALTER TABLE registros ADD CONSTRAINT fk_registros
+                FOREIGN KEY (iddrone)
+                REFERENCES drone
+                ON DELETE RESTRICT; 
+
+ALTER TABLE pontosom DROP CONSTRAINT fk1_pontosom;
+ALTER TABLE pontosom ADD CONSTRAINT fk1_pontosom
+                FOREIGN KEY (idsonorizacao)
+                REFERENCES sonorizacao
+                ON DELETE RESTRICT;
+
+ALTER TABLE showsonorizacao DROP CONSTRAINT fk2_showsonorizacao;
+ALTER TABLE showsonorizacao ADD CONSTRAINT fk2_showsonorizacao
+                FOREIGN KEY (sonorizacaoid)
+                REFERENCES sonorizacao
+                ON DELETE RESTRICT;
+
 ALTER TABLE auxilia DROP CONSTRAINT fk2_auxilia;
 ALTER TABLE auxilia ADD CONSTRAINT fk2_auxilia
                 FOREIGN KEY (cpfPiloto)
