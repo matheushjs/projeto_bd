@@ -4,7 +4,8 @@
 #include <QWidget>
 #include <QTabWidget>
 
-#include "insertioninterface.h"
+class InsertionInterface;
+class ReportsInterface;
 
 class MainWindow : public QWidget
 {
@@ -12,6 +13,7 @@ class MainWindow : public QWidget
 
     QTabWidget *m_tabs;
     InsertionInterface *m_insertionInterface;
+    ReportsInterface *m_reportsInterface;
 
 public:
     MainWindow();
