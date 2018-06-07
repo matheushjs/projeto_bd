@@ -1,15 +1,22 @@
 #include "mainwindow.h"
+#include <QDesktopWidget>
 
 MainWindow::MainWindow()
 {
+    // Configuring the window
+    this->setWindowTitle("Sistema de Gerenciamento de Imagem e Som");
+    QRect rec = QApplication::desktop()->screenGeometry(this);
+    int height = rec.height();
+    int width = rec.width();
+    this->setGeometry(width/2 - 400, height/2 - 400, 800, 800);
+
     //1.Drawing the interface
+    QVBoxLayout *vbox = new QVBoxLayout(this);
 
     //1.1 Drawing the TabWidget
     QTabWidget *tabs = new QTabWidget(this);
-    this->setWindowTitle("Sistema de Gerenciamento de Imagem e Som");
-    this->setFixedSize(800,800);
-    tabs->setGeometry(0, 0, 800, 800);
     tabs->setTabShape(QTabWidget::Triangular);
+    vbox->addWidget(tabs);
 
     //1.2 Creating and drawing the tab1
     QWidget *data = new QWidget;
@@ -33,7 +40,6 @@ MainWindow::MainWindow()
     tabs->addTab(queries, "Consult Informations");
     tabs->addTab(relates, "Print Relates");
     tabs->addTab(about, "About");
-
 }
 
 void MainWindow::drawTab1(QWidget *parent)
