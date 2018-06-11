@@ -26,20 +26,20 @@ ReportsInterface::ReportsInterface(QWidget *parent)
     for(QPushButton *but: m_buttons)
         butLayout->addWidget(but);
 
-    // Build html
-    QString html;
+    // Add heading
+    QString header =
+"Para todos os músicos: seu cpf, bandas onde já trabalhou, \
+o contrato dos shows que essas bandas já realizaram, e o nome \
+da festa no cruzeiro associada.\n\n";
+    m_textEdit->setFontWeight(QFont::Bold);
+    m_textEdit->setText(header);
 
-    html += "<h2>Relatório 1</h2>";
-    html += "<h3>Para todos os músicos: seu cpf, bandas onde já trabalhou, \
-o contrato dos shows que essas bandas já realizaram, e o nome da festa no cruzeiro associada.</h3>";
 
-    QStringList list = m_database.getReport1();
-    for(QString &str: list){
-        html += "<p>" + str + "</p>";
-    }
-
-    // Set text edit
-    m_textEdit->setHtml(html);
+    // Add table values
+    QString str = m_database.getReport1();
+    m_textEdit->setFontWeight(QFont::Normal);
+    m_textEdit->setAlignment(Qt::AlignLeft);
+    m_textEdit->append(str);
     m_textEdit->setReadOnly(true);
 
     // Add widgets to main layout

@@ -12,7 +12,7 @@ public:
     EISEDatabase();
 
     QStringList getTableNames();
-    QStringList getReport1();
+    QString getReport1();
 };
 
 #endif // EISEDATABASE_H
