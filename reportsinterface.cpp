@@ -9,7 +9,7 @@
 ReportsInterface::ReportsInterface(QWidget *parent)
   : QWidget(parent),
     m_buttons({
-        new QPushButton("Botão 1"),
+        new QPushButton("Relatório 1"),
         new QPushButton("Botão 2"),
         new QPushButton("Botao 3"),
         new QPushButton("Botao 4")
@@ -26,14 +26,20 @@ ReportsInterface::ReportsInterface(QWidget *parent)
     for(QPushButton *but: m_buttons)
         butLayout->addWidget(but);
 
+    connect(m_buttons[0], SIGNAL(clicked(bool)), this, SLOT(displayReport1()));
+
+    // Add widgets to main layout
+    mainLayout->addWidget(buttonBox);
+    mainLayout->addWidget(m_textEdit);
+}
+
+void ReportsInterface::displayReport1(){
     // Add heading
-    QString header =
-"Para todos os músicos: seu cpf, bandas onde já trabalhou, \
-o contrato dos shows que essas bandas já realizaram, e o nome \
-da festa no cruzeiro associada.\n\n";
+    QString header = "Para todos os músicos: seu cpf, bandas onde já trabalhou, "
+                     "o contrato dos shows que essas bandas já realizaram, e o nome "
+                     "da festa no cruzeiro associada.\n\n";
     m_textEdit->setFontWeight(QFont::Bold);
     m_textEdit->setText(header);
-
 
     // Add table values
     QString str = m_database.getReport1();
@@ -41,8 +47,4 @@ da festa no cruzeiro associada.\n\n";
     m_textEdit->setAlignment(Qt::AlignLeft);
     m_textEdit->append(str);
     m_textEdit->setReadOnly(true);
-
-    // Add widgets to main layout
-    mainLayout->addWidget(buttonBox);
-    mainLayout->addWidget(m_textEdit);
 }

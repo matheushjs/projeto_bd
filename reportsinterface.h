@@ -20,6 +20,8 @@ class ReportsInterface : public QWidget
 public:
     explicit ReportsInterface(QWidget *parent = 0);
 
+private slots:
+    void displayReport1();
 };
 
 #endif // REPORTSINTERFACE_H
