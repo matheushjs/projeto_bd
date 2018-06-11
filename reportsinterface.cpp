@@ -14,7 +14,8 @@ ReportsInterface::ReportsInterface(QWidget *parent)
         new QPushButton("Botao 3"),
         new QPushButton("Botao 4")
       }),
-    m_textEdit(new QTextEdit)
+    m_textEdit(new QTextEdit),
+    m_database()
 {
     // Set layout
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
@@ -26,8 +27,13 @@ ReportsInterface::ReportsInterface(QWidget *parent)
         butLayout->addWidget(but);
 
     // Build html
-    QString html = "<h2>Lista de Tabelas no Banco</h2>";
-    QStringList list = EISEDatabase().getTableNames();
+    QString html;
+
+    html += "<h2>Relatório 1</h2>";
+    html += "<h3>Para todos os músicos: seu cpf, bandas onde já trabalhou, \
+o contrato dos shows que essas bandas já realizaram, e o nome da festa no cruzeiro associada.</h3>";
+
+    QStringList list = m_database.getReport1();
     for(QString &str: list){
         html += "<p>" + str + "</p>";
     }
@@ -40,4 +46,3 @@ ReportsInterface::ReportsInterface(QWidget *parent)
     mainLayout->addWidget(buttonBox);
     mainLayout->addWidget(m_textEdit);
 }
-

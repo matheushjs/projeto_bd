@@ -4,6 +4,8 @@
 #include <QWidget>
 #include <QVector>
 
+#include "eisedatabase.h"
+
 class QPushButton;
 class QTextEdit;
 
@@ -13,6 +15,7 @@ class ReportsInterface : public QWidget
 
     QVector<QPushButton *> m_buttons;
     QTextEdit *m_textEdit;
+    EISEDatabase m_database;
 
 public:
     explicit ReportsInterface(QWidget *parent = 0);
