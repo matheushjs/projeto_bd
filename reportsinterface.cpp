@@ -1,8 +1,9 @@
 #include <QVBoxLayout>
+#include <QHBoxLayout>
 #include <QGroupBox>
 #include <QPushButton>
 #include <QTextEdit>
-
+#include <QScrollBar>
 #include "reportsinterface.h"
 #include "eisedatabase.h"
 
@@ -10,9 +11,11 @@ ReportsInterface::ReportsInterface(QWidget *parent)
   : QWidget(parent),
     m_buttons({
         new QPushButton("Relatório 1"),
-        new QPushButton("Botão 2"),
-        new QPushButton("Botao 3"),
-        new QPushButton("Botao 4")
+        new QPushButton("Relatório 2"),
+        new QPushButton("Relatório 3"),
+        new QPushButton("Relatório 4"),
+        new QPushButton("Relatório 5"),
+        new QPushButton("Relatório 6"),
       }),
     m_textEdit(new QTextEdit),
     m_database()
@@ -22,15 +25,36 @@ ReportsInterface::ReportsInterface(QWidget *parent)
 
     // Set buttons box
     QGroupBox *buttonBox = new QGroupBox();
-    QHBoxLayout *butLayout = new QHBoxLayout(buttonBox);
-    for(QPushButton *but: m_buttons)
-        butLayout->addWidget(but);
+
+    QVBoxLayout *mainButLayout = new QVBoxLayout(buttonBox);
+    QHBoxLayout *butLayout1 = new QHBoxLayout();
+    QHBoxLayout *butLayout2 = new QHBoxLayout();
+    mainButLayout->addLayout(butLayout1);
+    mainButLayout->addLayout(butLayout2);
+
+    butLayout1->addWidget(m_buttons[0]);
+    butLayout1->addWidget(m_buttons[1]);
+    butLayout1->addWidget(m_buttons[2]);
+
+    butLayout2->addWidget(m_buttons[3]);
+    butLayout2->addWidget(m_buttons[4]);
+    butLayout2->addWidget(m_buttons[5]);
 
     connect(m_buttons[0], SIGNAL(clicked(bool)), this, SLOT(displayReport1()));
+    connect(m_buttons[1], SIGNAL(clicked(bool)), this, SLOT(displayReport2()));
+    connect(m_buttons[2], SIGNAL(clicked(bool)), this, SLOT(displayReport3()));
+    connect(m_buttons[3], SIGNAL(clicked(bool)), this, SLOT(displayReport4()));
+    connect(m_buttons[4], SIGNAL(clicked(bool)), this, SLOT(displayReport5()));
+    connect(m_buttons[5], SIGNAL(clicked(bool)), this, SLOT(displayReport6()));
 
     // Add widgets to main layout
     mainLayout->addWidget(buttonBox);
     mainLayout->addWidget(m_textEdit);
+}
+
+void ReportsInterface::scrollToTop(){
+    QScrollBar *vScrollBar = m_textEdit->verticalScrollBar();
+    vScrollBar->triggerAction(QScrollBar::SliderToMinimum);
 }
 
 void ReportsInterface::displayReport1(){
@@ -47,4 +71,41 @@ void ReportsInterface::displayReport1(){
     m_textEdit->setAlignment(Qt::AlignLeft);
     m_textEdit->append(str);
     m_textEdit->setReadOnly(true);
+
+    this->scrollToTop();
+}
+
+void ReportsInterface::displayReport2(){
+    QString str = m_database.getReport2();
+    m_textEdit->setText(str);
+
+    this->scrollToTop();
+}
+
+void ReportsInterface::displayReport3(){
+    QString str = m_database.getReport2();
+    m_textEdit->setText(str);
+
+    this->scrollToTop();
+}
+
+void ReportsInterface::displayReport4(){
+    QString str = m_database.getReport2();
+    m_textEdit->setText(str);
+
+    this->scrollToTop();
+}
+
+void ReportsInterface::displayReport5(){
+    QString str = m_database.getReport2();
+    m_textEdit->setText(str);
+
+    this->scrollToTop();
+}
+
+void ReportsInterface::displayReport6(){
+    QString str = m_database.getReport2();
+    m_textEdit->setText(str);
+
+    this->scrollToTop();
 }

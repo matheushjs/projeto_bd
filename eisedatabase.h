@@ -13,6 +13,11 @@ public:
 
     QStringList getTableNames();
     QString getReport1();
+    QString getReport2();
+    QString getReport3();
+    QString getReport4();
+    QString getReport5();
+    QString getReport6();
 };
 
 #endif // EISEDATABASE_H

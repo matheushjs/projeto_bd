@@ -22,9 +22,8 @@ QString EISEDatabase::getReport1(){
     /*
     Dado um músico de nome M, quero saber as banda onde ele já trabalhou, seu cpf, o contrato dos shows que essas bandas já realizaram, e o nome da festa no cruzeiro associada.
     Se o músico está cadastrado, mas não realizou nenhum show, isso deve também ser mostrado.
-
-
     */
+
     const static QString query = "\
         SELECT M.nome AS nome_musico,\
             M.cpf AS cpf_musico,\
@@ -51,4 +50,24 @@ QString EISEDatabase::getReport1(){
     }
 
     return retval;
+}
+
+QString EISEDatabase::getReport2(){
+    return QString("Nothing yet!");
+}
+
+QString EISEDatabase::getReport3(){
+    return QString("Nothing yet!");
+}
+
+QString EISEDatabase::getReport4(){
+    return QString("Nothing yet!");
+}
+
+QString EISEDatabase::getReport5(){
+    return QString("Nothing yet!");
+}
+
+QString EISEDatabase::getReport6(){
+    return QString("Nothing yet!");
 }

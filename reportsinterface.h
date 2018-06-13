@@ -17,11 +17,19 @@ class ReportsInterface : public QWidget
     QTextEdit *m_textEdit;
     EISEDatabase m_database;
 
+    /* Scrolls the TextEdit to the top portion. */
+    void scrollToTop();
+
 public:
     explicit ReportsInterface(QWidget *parent = 0);
 
 private slots:
     void displayReport1();
+    void displayReport2();
+    void displayReport3();
+    void displayReport4();
+    void displayReport5();
+    void displayReport6();
 };
 
 #endif // REPORTSINTERFACE_H
