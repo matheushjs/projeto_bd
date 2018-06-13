@@ -3,6 +3,12 @@
 #include <QLibraryInfo>
 #include <QTranslator>
 #include <QLocale>
+#include <QPlastiqueStyle>
+#include <QCleanlooksStyle>
+#include <QWindowsXPStyle>
+#include <QWindowsVistaStyle>
+#include <QMotifStyle>
+#include <QCDEStyle>
 
 int main(int argc, char *argv[])
 {
@@ -13,6 +19,17 @@ int main(int argc, char *argv[])
     a.installTranslator(&translator);
     MainWindow w;
     w.show();
+
+   // QApplication::setStyle(new QPlastiqueStyle());
+    //QApplication::setPalette()
+    QApplication::setStyle(new QCleanlooksStyle());
+   //QApplication::setStyle(new QCleanlooksStyle());
+    //QApplication::setStyle(new QWindowsXPStyle());
+   //QApplication::setStyle(new QWindowsVistaStyle());
+  //QApplication::setStyle(new QMotifStyle());
+   //QApplication::setStyle(new QCDEStyle());
+
+
 
     return a.exec();
 }

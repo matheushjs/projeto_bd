@@ -4,6 +4,7 @@ InsertionInterface::InsertionInterface(QWidget *parent)
   : QWidget(parent)
 {
     // Set layout
+
     QVBoxLayout *vbox = new QVBoxLayout(this);
 
     // Set up Radio Buttons box
@@ -30,9 +31,18 @@ InsertionInterface::InsertionInterface(QWidget *parent)
     // Create cruiser information group box
     m_cruiserInfos = new QGroupBox("Festa no Cruzeiro");
     flayout = new QFormLayout;
-    QComboBox *m_partyType = new QComboBox;
-    m_partyType->addItems({"Festa no cruzeiro", "Festa no parque"});
-    flayout->addRow("&Party Type:", m_partyType);
+    m_startDate = new QDateEdit(QDate::currentDate());
+    m_endDate = new QDateEdit(QDate::currentDate());
+    m_nOfGuest = new QSpinBox;
+    m_partyName = new QLineEdit;
+    m_imoNumber = new QSpinBox;
+    m_location = new QLineEdit;
+    flayout->addRow("&Nome", m_partyName);
+    flayout->addRow("&IMO:", m_imoNumber);
+    flayout->addRow("&Data Inicio:", m_startDate);
+    flayout->addRow("&Data Fim:", m_endDate);
+    flayout->addRow("&No Convidados:", m_nOfGuest);
+    flayout->addRow("&Local", m_location);
     m_cruiserInfos->setLayout(flayout);
 
     // Add Party and Cruiser information into a layout
