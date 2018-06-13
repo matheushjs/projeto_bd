@@ -4,6 +4,8 @@
 #include <QtSql/QtSql>
 #include <QStringList>
 
+#include "reporttextdata.h"
+
 class EISEDatabase
 {
     QSqlDatabase m_database;
@@ -12,12 +14,12 @@ public:
     EISEDatabase();
 
     QStringList getTableNames();
-    QString getReport1();
-    QString getReport2();
-    QString getReport3();
-    QString getReport4();
-    QString getReport5();
-    QString getReport6();
+    ReportTextData getReport1();
+    ReportTextData getReport2();
+    ReportTextData getReport3();
+    ReportTextData getReport4();
+    ReportTextData getReport5();
+    ReportTextData getReport6();
 };
 
 #endif // EISEDATABASE_H

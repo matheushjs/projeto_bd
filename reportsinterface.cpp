@@ -50,6 +50,7 @@ ReportsInterface::ReportsInterface(QWidget *parent)
     connect(m_buttons[5], SIGNAL(clicked(bool)), this, SLOT(displayReport6()));
 
     m_textEdit->setFontPointSize(m_normalFontSize);
+    m_textEdit->setReadOnly(true);
 
     // Add widgets to main layout
     mainLayout->addWidget(buttonBox);
@@ -61,7 +62,7 @@ void ReportsInterface::scrollToTop(){
     vScrollBar->triggerAction(QScrollBar::SliderToMinimum);
 }
 
-void ReportsInterface::addHeading(QString &heading){
+void ReportsInterface::addHeading(QString heading){
     auto oldWeight = m_textEdit->fontWeight();
     auto oldAlign = m_textEdit->alignment();
 
@@ -78,52 +79,47 @@ void ReportsInterface::addHeading(QString &heading){
 }
 
 void ReportsInterface::displayReport1(){
-    // Add heading
-    QString header = "Para todos os músicos: seu cpf, bandas onde já trabalhou, "
-                     "o contrato dos shows que essas bandas já realizaram, e o nome "
-                     "da festa no cruzeiro associada.\n";
+    ReportTextData rep = m_database.getReport1();
 
-    this->addHeading(header);
+    this->addHeading(rep.header());
 
     // Add table values
-    QString str = m_database.getReport1();
-    m_textEdit->append(str);
-    m_textEdit->setReadOnly(true);
+    m_textEdit->append(rep.text());
 
     this->scrollToTop();
 }
 
 void ReportsInterface::displayReport2(){
-    QString str = m_database.getReport2();
-    m_textEdit->setText(str);
+    ReportTextData rep = m_database.getReport2();
+    m_textEdit->setText(rep.text());
 
     this->scrollToTop();
 }
 
 void ReportsInterface::displayReport3(){
-    QString str = m_database.getReport2();
-    m_textEdit->setText(str);
+    ReportTextData rep = m_database.getReport3();
+    m_textEdit->setText(rep.text());
 
     this->scrollToTop();
 }
 
 void ReportsInterface::displayReport4(){
-    QString str = m_database.getReport2();
-    m_textEdit->setText(str);
+    ReportTextData rep = m_database.getReport4();
+    m_textEdit->setText(rep.text());
 
     this->scrollToTop();
 }
 
 void ReportsInterface::displayReport5(){
-    QString str = m_database.getReport2();
-    m_textEdit->setText(str);
+    ReportTextData rep = m_database.getReport5();
+    m_textEdit->setText(rep.text());
 
     this->scrollToTop();
 }
 
 void ReportsInterface::displayReport6(){
-    QString str = m_database.getReport2();
-    m_textEdit->setText(str);
+    ReportTextData rep = m_database.getReport6();
+    m_textEdit->setText(rep.text());
 
     this->scrollToTop();
 }

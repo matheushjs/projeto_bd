@@ -18,7 +18,7 @@ QStringList EISEDatabase::getTableNames(){
     return m_database.tables();
 }
 
-QString EISEDatabase::getReport1(){
+ReportTextData EISEDatabase::getReport1(){
     /*
     Dado um músico de nome M, quero saber as banda onde ele já trabalhou, seu cpf, o contrato dos shows que essas bandas já realizaram, e o nome da festa no cruzeiro associada.
     Se o músico está cadastrado, mas não realizou nenhum show, isso deve também ser mostrado.
@@ -49,25 +49,42 @@ QString EISEDatabase::getReport1(){
         retval +="}\n";
     }
 
-    return retval;
+    QString header = "Para todos os músicos: seu cpf, bandas onde já trabalhou, "
+                     "o contrato dos shows que essas bandas já realizaram, e o nome "
+                     "da festa no cruzeiro associada.\n";
+
+    ReportTextData ret;
+    ret.setText(retval);
+    ret.setHeader(header);
+    return ret;
 }
 
-QString EISEDatabase::getReport2(){
-    return QString("Nothing yet!");
+ReportTextData EISEDatabase::getReport2(){
+    ReportTextData ret;
+    ret.setText("Nothing yet!");
+    return ret;
 }
 
-QString EISEDatabase::getReport3(){
-    return QString("Nothing yet!");
+ReportTextData EISEDatabase::getReport3(){
+    ReportTextData ret;
+    ret.setText("Nothing yet!");
+    return ret;
 }
 
-QString EISEDatabase::getReport4(){
-    return QString("Nothing yet!");
+ReportTextData EISEDatabase::getReport4(){
+    ReportTextData ret;
+    ret.setText("Nothing yet!");
+    return ret;
 }
 
-QString EISEDatabase::getReport5(){
-    return QString("Nothing yet!");
+ReportTextData EISEDatabase::getReport5(){
+    ReportTextData ret;
+    ret.setText("Nothing yet!");
+    return ret;
 }
 
-QString EISEDatabase::getReport6(){
-    return QString("Nothing yet!");
+ReportTextData EISEDatabase::getReport6(){
+    ReportTextData ret;
+    ret.setText("Nothing yet!");
+    return ret;
 }

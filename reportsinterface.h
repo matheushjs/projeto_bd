@@ -23,7 +23,7 @@ class ReportsInterface : public QWidget
     void scrollToTop();
 
     /* Adds text to the TextEdit, with heading stylization */
-    void addHeading(QString &heading);
+    void addHeading(QString heading);
 
 public:
     explicit ReportsInterface(QWidget *parent = 0);
