@@ -18,7 +18,9 @@ ReportsInterface::ReportsInterface(QWidget *parent)
         new QPushButton("Relatório 6"),
       }),
     m_textEdit(new QTextEdit),
-    m_database()
+    m_database(),
+    m_normalFontSize(12.0),
+    m_headingFontSize(28.0)
 {
     // Set layout
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
@@ -47,6 +49,8 @@ ReportsInterface::ReportsInterface(QWidget *parent)
     connect(m_buttons[4], SIGNAL(clicked(bool)), this, SLOT(displayReport5()));
     connect(m_buttons[5], SIGNAL(clicked(bool)), this, SLOT(displayReport6()));
 
+    m_textEdit->setFontPointSize(m_normalFontSize);
+
     // Add widgets to main layout
     mainLayout->addWidget(buttonBox);
     mainLayout->addWidget(m_textEdit);
@@ -57,18 +61,32 @@ void ReportsInterface::scrollToTop(){
     vScrollBar->triggerAction(QScrollBar::SliderToMinimum);
 }
 
+void ReportsInterface::addHeading(QString &heading){
+    auto oldWeight = m_textEdit->fontWeight();
+    auto oldAlign = m_textEdit->alignment();
+
+    m_textEdit->setFontWeight(QFont::Bold);
+    m_textEdit->setFontPointSize(m_headingFontSize);
+    m_textEdit->setAlignment(Qt::AlignJustify);
+
+    m_textEdit->setText(heading);
+
+    /* Restore old values */
+    m_textEdit->setFontWeight(oldWeight);
+    m_textEdit->setFontPointSize(m_normalFontSize);
+    m_textEdit->setAlignment(oldAlign);
+}
+
 void ReportsInterface::displayReport1(){
     // Add heading
     QString header = "Para todos os músicos: seu cpf, bandas onde já trabalhou, "
                      "o contrato dos shows que essas bandas já realizaram, e o nome "
-                     "da festa no cruzeiro associada.\n\n";
-    m_textEdit->setFontWeight(QFont::Bold);
-    m_textEdit->setText(header);
+                     "da festa no cruzeiro associada.\n";
+
+    this->addHeading(header);
 
     // Add table values
     QString str = m_database.getReport1();
-    m_textEdit->setFontWeight(QFont::Normal);
-    m_textEdit->setAlignment(Qt::AlignLeft);
     m_textEdit->append(str);
     m_textEdit->setReadOnly(true);
 

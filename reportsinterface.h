@@ -16,9 +16,14 @@ class ReportsInterface : public QWidget
     QVector<QPushButton *> m_buttons;
     QTextEdit *m_textEdit;
     EISEDatabase m_database;
+    double m_normalFontSize;
+    double m_headingFontSize;
 
     /* Scrolls the TextEdit to the top portion. */
     void scrollToTop();
+
+    /* Adds text to the TextEdit, with heading stylization */
+    void addHeading(QString &heading);
 
 public:
     explicit ReportsInterface(QWidget *parent = 0);
