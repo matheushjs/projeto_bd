@@ -18,9 +18,7 @@ ReportsInterface::ReportsInterface(QWidget *parent)
         new QPushButton("Relatório 6"),
       }),
     m_textEdit(new QTextEdit),
-    m_database(),
-    m_normalFontSize(12.0),
-    m_headingFontSize(28.0)
+    m_database()
 {
     // Set layout
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
@@ -61,7 +59,6 @@ ReportsInterface::ReportsInterface(QWidget *parent)
         this->displayReport(m_database.getReport6());
     });
 
-    m_textEdit->setFontPointSize(m_normalFontSize);
     m_textEdit->setReadOnly(true);
 
     // Add widgets to main layout
@@ -74,26 +71,51 @@ void ReportsInterface::scrollToTop(){
     vScrollBar->triggerAction(QScrollBar::SliderToMinimum);
 }
 
-void ReportsInterface::addHeading(QString heading){
-    auto oldWeight = m_textEdit->fontWeight();
-    auto oldAlign = m_textEdit->alignment();
-
-    m_textEdit->setFontWeight(QFont::Bold);
-    m_textEdit->setFontPointSize(m_headingFontSize);
-    m_textEdit->setAlignment(Qt::AlignJustify);
-
-    m_textEdit->setText(heading);
-
-    /* Restore old values */
-    m_textEdit->setFontWeight(oldWeight);
-    m_textEdit->setFontPointSize(m_normalFontSize);
-    m_textEdit->setAlignment(oldAlign);
-}
-
 void ReportsInterface::displayReport(ReportTextData report){
-    this->addHeading(report.header());
+    static const struct {
+        double fontSize;
+        int fontWeight;
+        Qt::Alignment alignment;
+    } HEADER_FONT = {
+        28,
+        QFont::Bold,
+        Qt::AlignCenter
+    }, NORMAL_FONT = {
+        12,
+        QFont::Normal,
+        Qt::AlignLeft
+    }, QUERY_FONT = {
+        12,
+        QFont::Bold,
+        Qt::AlignLeft
+    }, DESC_FONT = {
+        12,
+        QFont::Bold,
+        Qt::AlignJustify
+    };
 
-    // Add table values
+
+    m_textEdit->setFontWeight(HEADER_FONT.fontWeight);
+    m_textEdit->setFontPointSize(HEADER_FONT.fontSize);
+    m_textEdit->setAlignment(HEADER_FONT.alignment);
+    m_textEdit->setText(report.header());
+
+    m_textEdit->setFontWeight(DESC_FONT.fontWeight);
+    m_textEdit->setFontPointSize(DESC_FONT.fontSize);
+    m_textEdit->setAlignment(DESC_FONT.alignment);
+    m_textEdit->append("\n");
+    m_textEdit->append(report.description());
+
+    m_textEdit->setFontWeight(QUERY_FONT.fontWeight);
+    m_textEdit->setFontPointSize(QUERY_FONT.fontSize);
+    m_textEdit->setAlignment(QUERY_FONT.alignment);
+    m_textEdit->append("\n");
+    m_textEdit->append(report.query());
+
+    m_textEdit->setFontWeight(NORMAL_FONT.fontWeight);
+    m_textEdit->setFontPointSize(NORMAL_FONT.fontSize);
+    m_textEdit->setAlignment(NORMAL_FONT.alignment);
+    m_textEdit->append("\n");
     m_textEdit->append(report.text());
 
     this->scrollToTop();
