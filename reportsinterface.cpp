@@ -42,12 +42,24 @@ ReportsInterface::ReportsInterface(QWidget *parent)
     butLayout2->addWidget(m_buttons[4]);
     butLayout2->addWidget(m_buttons[5]);
 
-    connect(m_buttons[0], SIGNAL(clicked(bool)), this, SLOT(displayReport1()));
-    connect(m_buttons[1], SIGNAL(clicked(bool)), this, SLOT(displayReport2()));
-    connect(m_buttons[2], SIGNAL(clicked(bool)), this, SLOT(displayReport3()));
-    connect(m_buttons[3], SIGNAL(clicked(bool)), this, SLOT(displayReport4()));
-    connect(m_buttons[4], SIGNAL(clicked(bool)), this, SLOT(displayReport5()));
-    connect(m_buttons[5], SIGNAL(clicked(bool)), this, SLOT(displayReport6()));
+    connect(m_buttons[0], &QPushButton::clicked, this, [this](){
+        this->displayReport(m_database.getReport1());
+    });
+    connect(m_buttons[1], &QPushButton::clicked, this, [this](){
+        this->displayReport(m_database.getReport2());
+    });
+    connect(m_buttons[2], &QPushButton::clicked, this, [this](){
+        this->displayReport(m_database.getReport3());
+    });
+    connect(m_buttons[3], &QPushButton::clicked, this, [this](){
+        this->displayReport(m_database.getReport4());
+    });
+    connect(m_buttons[4], &QPushButton::clicked, this, [this](){
+        this->displayReport(m_database.getReport5());
+    });
+    connect(m_buttons[5], &QPushButton::clicked, this, [this](){
+        this->displayReport(m_database.getReport6());
+    });
 
     m_textEdit->setFontPointSize(m_normalFontSize);
     m_textEdit->setReadOnly(true);
@@ -78,48 +90,11 @@ void ReportsInterface::addHeading(QString heading){
     m_textEdit->setAlignment(oldAlign);
 }
 
-void ReportsInterface::displayReport1(){
-    ReportTextData rep = m_database.getReport1();
-
-    this->addHeading(rep.header());
+void ReportsInterface::displayReport(ReportTextData report){
+    this->addHeading(report.header());
 
     // Add table values
-    m_textEdit->append(rep.text());
-
-    this->scrollToTop();
-}
-
-void ReportsInterface::displayReport2(){
-    ReportTextData rep = m_database.getReport2();
-    m_textEdit->setText(rep.text());
-
-    this->scrollToTop();
-}
-
-void ReportsInterface::displayReport3(){
-    ReportTextData rep = m_database.getReport3();
-    m_textEdit->setText(rep.text());
-
-    this->scrollToTop();
-}
-
-void ReportsInterface::displayReport4(){
-    ReportTextData rep = m_database.getReport4();
-    m_textEdit->setText(rep.text());
-
-    this->scrollToTop();
-}
-
-void ReportsInterface::displayReport5(){
-    ReportTextData rep = m_database.getReport5();
-    m_textEdit->setText(rep.text());
-
-    this->scrollToTop();
-}
-
-void ReportsInterface::displayReport6(){
-    ReportTextData rep = m_database.getReport6();
-    m_textEdit->setText(rep.text());
+    m_textEdit->append(report.text());
 
     this->scrollToTop();
 }

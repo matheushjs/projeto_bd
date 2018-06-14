@@ -29,12 +29,7 @@ public:
     explicit ReportsInterface(QWidget *parent = 0);
 
 private slots:
-    void displayReport1();
-    void displayReport2();
-    void displayReport3();
-    void displayReport4();
-    void displayReport5();
-    void displayReport6();
+    void displayReport(ReportTextData report);
 };
 
 #endif // REPORTSINTERFACE_H
