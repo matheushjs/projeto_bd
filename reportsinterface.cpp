@@ -18,7 +18,7 @@ ReportsInterface::ReportsInterface(QWidget *parent)
         new QPushButton("Relatório 6"),
       }),
     m_textEdit(new QTextEdit),
-    m_database()
+    m_database("ReportsConn")
 {
     // Set layout
     QVBoxLayout *mainLayout = new QVBoxLayout(this);

@@ -3,8 +3,8 @@
 
 #include "eisedatabase.h"
 
-EISEDatabase::EISEDatabase()
-  : m_database(QSqlDatabase::addDatabase("QPSQL"))
+EISEDatabase::EISEDatabase(QString connName)
+  : m_database(QSqlDatabase::addDatabase("QPSQL", connName))
 {
     // TODO: How to make this work in the professor's computer !?
     //m_database.setDatabaseName("eise");
@@ -39,7 +39,7 @@ LEFT JOIN festaNoCruzeiro FC\n\
 ON (S.imo, S.datafesta) = (FC.imo, FC.datainicio)\n\
 ORDER BY M.nome;";
 
-    QSqlQuery rows = this->m_database.exec(query);
+    QSqlQuery rows = m_database.exec(query);
     StringPairVectorList items;
     while(rows.next()){
         QVector<QPair<QString,QString> > vec;
@@ -95,4 +95,27 @@ ReportTextData EISEDatabase::getReport6(){
     ReportTextData ret;
     ret.setDescription("Nothing yet!");
     return ret;
+}
+
+ReportTextData EISEDatabase::getSelect1(){
+    const static QString query = "SELECT * FROM parque;";
+
+    QSqlQuery rows = m_database.exec(query);
+    StringPairVectorList items;
+    while(rows.next()){
+        QVector<QPair<QString,QString> > vec;
+
+        vec.append( {"CNPJ", rows.value(0).toString()} );
+        vec.append( {"Nome", rows.value(1).toString()} );
+        vec.append( {"Arquivo do Mapa", rows.value(2).toString()} );
+        vec.append( {"Endereço", rows.value(3).toString()} );
+
+        items.append(vec);
+    }
+
+    ReportTextData report;
+    report.setHeader("Parques");
+    report.setItems(items);
+
+    return report;
 }
