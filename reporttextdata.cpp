@@ -17,8 +17,8 @@ void ReportTextData::setQuery(QString str){
     m_query = str;
 }
 
-void ReportTextData::setText(QString str){
-    m_text = str;
+void ReportTextData::setItems(StringPairVectorList items){
+    m_items = items;
 }
 
 
@@ -34,6 +34,6 @@ QString ReportTextData::query() const {
     return m_query;
 }
 
-QString ReportTextData::text() const {
-    return m_text;
+StringPairVectorList ReportTextData::items() const {
+    return m_items;
 }

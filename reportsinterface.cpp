@@ -81,7 +81,7 @@ void ReportsInterface::displayReport(ReportTextData report){
         QFont::Bold,
         Qt::AlignCenter
     }, NORMAL_FONT = {
-        12,
+        10,
         QFont::Normal,
         Qt::AlignLeft
     }, QUERY_FONT = {
@@ -116,7 +116,16 @@ void ReportsInterface::displayReport(ReportTextData report){
     m_textEdit->setFontPointSize(NORMAL_FONT.fontSize);
     m_textEdit->setAlignment(NORMAL_FONT.alignment);
     m_textEdit->append("\n");
-    m_textEdit->append(report.text());
+
+    StringPairVectorList list = report.items();
+    for(auto &vector: list){
+        QString str("{\n");
+        for(auto pair: vector){
+            str += "  " + pair.first + ": " + pair.second + "\n";
+        }
+        str += "}\n";
+        m_textEdit->append(str);
+    }
 
     this->scrollToTop();
 }

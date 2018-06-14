@@ -36,18 +36,21 @@ LEFT JOIN compoe C\n\
 LEFT JOIN show S\n\
     ON (S.nomebanda, S.dataCriacaoBanda) = (C.nomeBanda, C.dataCriacaoBanda)\n\
 LEFT JOIN festaNoCruzeiro FC\n\
-ON (S.imo, S.datafesta) = (FC.imo, FC.datainicio);";
+ON (S.imo, S.datafesta) = (FC.imo, FC.datainicio)\n\
+ORDER BY M.nome;";
 
     QSqlQuery rows = this->m_database.exec(query);
-    QString text;
+    StringPairVectorList items;
     while(rows.next()){
-        text += "{\n";
-        text += "  Nome do Músico: " + rows.value(0).toString() + "\n";
-        text += "  CPF do Músico: " + rows.value(1).toString() + "\n";
-        text += "  Nome da Banda: " + rows.value(2).toString() + "\n";
-        text += "  Contrato do Show: " + rows.value(3).toString() + "\n";
-        text += "  Nome da Festa: " + rows.value(4).toString() + "\n";
-        text +="}\n";
+        QVector<QPair<QString,QString> > vec;
+
+        vec.append( {"Nome do Músico", rows.value(0).toString()} );
+        vec.append( {"CPF do Músico", rows.value(1).toString()} );
+        vec.append( {"Nome da Banda", rows.value(2).toString()} );
+        vec.append( {"Contrato do Show", rows.value(3).toString()} );
+        vec.append( {"Nome da Festa", rows.value(4).toString()} );
+
+        items.append(vec);
     }
 
     const static QString header = "Informações sobre Músicos\n";
@@ -57,7 +60,7 @@ ON (S.imo, S.datafesta) = (FC.imo, FC.datainicio);";
                      "da festa no cruzeiro associada.\n";
 
     ReportTextData ret;
-    ret.setText(text);
+    ret.setItems(items);
     ret.setHeader(header);
     ret.setQuery(query);
     ret.setDescription(description);
@@ -66,30 +69,30 @@ ON (S.imo, S.datafesta) = (FC.imo, FC.datainicio);";
 
 ReportTextData EISEDatabase::getReport2(){
     ReportTextData ret;
-    ret.setText("Nothing yet!");
+    ret.setDescription("Nothing yet!");
     return ret;
 }
 
 ReportTextData EISEDatabase::getReport3(){
     ReportTextData ret;
-    ret.setText("Nothing yet!");
+    ret.setDescription("Nothing yet!");
     return ret;
 }
 
 ReportTextData EISEDatabase::getReport4(){
     ReportTextData ret;
-    ret.setText("Nothing yet!");
+    ret.setDescription("Nothing yet!");
     return ret;
 }
 
 ReportTextData EISEDatabase::getReport5(){
     ReportTextData ret;
-    ret.setText("Nothing yet!");
+    ret.setDescription("Nothing yet!");
     return ret;
 }
 
 ReportTextData EISEDatabase::getReport6(){
     ReportTextData ret;
-    ret.setText("Nothing yet!");
+    ret.setDescription("Nothing yet!");
     return ret;
 }
