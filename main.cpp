@@ -3,12 +3,7 @@
 #include <QLibraryInfo>
 #include <QTranslator>
 #include <QLocale>
-#include <QPlastiqueStyle>
-#include <QCleanlooksStyle>
-#include <QWindowsXPStyle>
-#include <QWindowsVistaStyle>
-#include <QMotifStyle>
-#include <QCDEStyle>
+#include <QStyleFactory>
 
 int main(int argc, char *argv[])
 {
@@ -20,16 +15,16 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
 
-   // QApplication::setStyle(new QPlastiqueStyle());
+    //QApplication::setStyle(new QPlastiqueStyle());
     //QApplication::setPalette()
-    QApplication::setStyle(new QCleanlooksStyle());
-   //QApplication::setStyle(new QCleanlooksStyle());
+    //QApplication::setStyle(new QCleanlooksStyle());
+    //QApplication::setStyle(new QCleanlooksStyle());
     //QApplication::setStyle(new QWindowsXPStyle());
-   //QApplication::setStyle(new QWindowsVistaStyle());
-  //QApplication::setStyle(new QMotifStyle());
-   //QApplication::setStyle(new QCDEStyle());
+    //QApplication::setStyle(new QWindowsVistaStyle());
+    //QApplication::setStyle(new QMotifStyle());
+    //QApplication::setStyle(new QCDEStyle());
 
-
+    QApplication::setStyle(QStyleFactory::create("Fusion"));
 
     return a.exec();
 }

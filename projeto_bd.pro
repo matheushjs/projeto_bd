@@ -17,13 +17,15 @@ SOURCES += main.cpp\
     insertioninterface.cpp \
     reportsinterface.cpp \
     eisedatabase.cpp \
-    reporttextdata.cpp
+    reporttextdata.cpp \
+    searchinterface.cpp
 
 HEADERS  += mainwindow.h \
     insertioninterface.h \
     reportsinterface.h \
     eisedatabase.h \
-    reporttextdata.h
+    reporttextdata.h \
+    searchinterface.h
 CONFIG += qt
 
 QMAKE_CXXFLAGS += -std=c++11
