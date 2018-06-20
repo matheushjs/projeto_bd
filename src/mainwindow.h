@@ -7,6 +7,7 @@
 class InsertionInterface;
 class ReportsInterface;
 class SearchInterface;
+class UpdateInterface;
 
 class MainWindow : public QWidget
 {
@@ -14,6 +15,7 @@ class MainWindow : public QWidget
 
     QTabWidget *m_tabs;
     InsertionInterface *m_insertionInterface;
+    UpdateInterface *m_deletionInterface;
     ReportsInterface *m_reportsInterface;
     SearchInterface *m_searchInterface;
 

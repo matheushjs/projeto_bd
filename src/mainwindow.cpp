@@ -5,11 +5,13 @@
 #include "tabs/insertioninterface.h"
 #include "tabs/reportsinterface.h"
 #include "tabs/searchinterface.h"
+#include "tabs/updateinterface.h"
 
 MainWindow::MainWindow()
   :
     m_tabs(new QTabWidget),
     m_insertionInterface(new InsertionInterface),
+    m_deletionInterface(new UpdateInterface),
     m_reportsInterface(new ReportsInterface),
     m_searchInterface(new SearchInterface)
 {
@@ -30,6 +32,7 @@ MainWindow::MainWindow()
     // Add the tabs
     m_tabs->addTab(m_insertionInterface, "Insert Informations");
     m_tabs->addTab(m_searchInterface, "Consultas");
+    m_tabs->addTab(m_deletionInterface, "Remoção");
     m_tabs->addTab(m_reportsInterface, "Relatórios");
     m_tabs->addTab(new QWidget, "About");
 }
