@@ -19,7 +19,8 @@ SOURCES += src/main.cpp\
     src/database/eisedatabase.cpp \
     src/data_structures/reporttextdata.cpp \
     src/tabs/searchinterface.cpp \
-    src/widgets/dataselectiondisplay.cpp
+    src/widgets/dataselectiondisplay.cpp \
+    src/widgets/clickablelabel.cpp
 
 HEADERS  += src/mainwindow.h \
     src/tabs/insertioninterface.h \
@@ -27,7 +28,8 @@ HEADERS  += src/mainwindow.h \
     src/database/eisedatabase.h \
     src/data_structures/reporttextdata.h \
     src/tabs/searchinterface.h \
-    src/widgets/dataselectiondisplay.h
+    src/widgets/dataselectiondisplay.h \
+    src/widgets/clickablelabel.h
 
 INCLUDEPATH += $$PWD/src
 

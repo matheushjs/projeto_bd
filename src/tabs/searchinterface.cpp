@@ -7,6 +7,9 @@
 #include "tabs/searchinterface.h"
 #include "widgets/dataselectiondisplay.h"
 #include "database/eisedatabase.h"
+#include "data_structures/reporttextdata.h"
+
+#include <iostream>
 
 SearchInterface::SearchInterface(QWidget *parent)
   : QWidget(parent),
@@ -34,6 +37,8 @@ SearchInterface::SearchInterface(QWidget *parent)
         this->m_dataDisplay->setReport(this->m_database.getSelect1());
     });
 
+    connect(m_dataDisplay, SIGNAL(itemClicked(int)), this, SLOT(editItem(int)));
+
     mainLayout->addWidget(buttonBox);
 
     QScrollArea *scroll = new QScrollArea(this);
@@ -44,3 +49,10 @@ SearchInterface::SearchInterface(QWidget *parent)
     mainLayout->addWidget(scroll);
 }
 
+void SearchInterface::editItem(int itemNum){
+    StringPairVector vec = m_dataDisplay->getItem(itemNum);
+    for(QPair<QString, QString> &pair: vec){
+        std::cout << pair.first.toStdString() << ": " << pair.second.toStdString() << "\n";
+    }
+    std::flush(std::cout);
+}

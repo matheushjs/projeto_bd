@@ -21,7 +21,8 @@ public:
 
 signals:
 
-public slots:
+private slots:
+    void editItem(int itemNum);
 };
 
 #endif // SEARCHINTERFACE_H

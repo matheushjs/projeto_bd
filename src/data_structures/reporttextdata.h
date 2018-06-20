@@ -6,6 +6,7 @@
 #include <QPair>
 
 // A list of vectors of string pairs.
+typedef QVector<QPair<QString, QString> > StringPairVector;
 typedef QList<QVector<QPair<QString, QString> > > StringPairVectorList;
 
 class ReportTextData {

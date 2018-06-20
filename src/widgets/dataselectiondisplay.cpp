@@ -1,12 +1,11 @@
 #include "widgets/dataselectiondisplay.h"
 #include "data_structures/reporttextdata.h"
+#include "widgets/clickablelabel.h"
 
 #include <QLabel>
 #include <QVBoxLayout>
 #include <QScrollArea>
 #include <QSizePolicy>
-
-#include <iostream>
 
 DataSelectionDisplay::DataSelectionDisplay(QWidget *parent)
   : QWidget(parent),
@@ -18,38 +17,52 @@ DataSelectionDisplay::DataSelectionDisplay(QWidget *parent)
 }
 
 void DataSelectionDisplay::setReport(ReportTextData report){
+    m_report = report;
     m_labels.clear();
 
     /* Add header label */
     QString header = report.header();
-    QLabel *headerLabel = new QLabel(header);
+    ClickableLabel *headerLabel = new ClickableLabel(header);
     headerLabel->setFont(QFont("", 18, 50));
     m_labels.append(headerLabel);
 
+    /* Add item labels */
     StringPairVectorList list = report.items();
     for(auto &vec: list){
         QString str;
         for(auto &pair: vec){
             str += pair.first + ": " + pair.second + "\n";
         }
-        QLabel *lab = new QLabel(str);
-        // lab->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
-        // lab->setMinimumSize(lab->sizeHint().width(), lab->sizeHint().height());
+        ClickableLabel *lab = new ClickableLabel(str);
 
         m_labels.append(lab);
     }
 
+    /* Create widget that will be placed in the scroll area */
     QWidget *holdWidget = new QWidget;
     QVBoxLayout *holdLayout = new QVBoxLayout;
     holdWidget->setLayout(holdLayout);
 
-    for(QLabel *w: m_labels){
+    /* Add labels to the widget */
+    for(ClickableLabel *w: m_labels){
         holdLayout->addWidget(w);
     }
 
+    /* Connect signals on the widget. Item 0 is the header that we don't care about. */
+    for(int item = 1; item < m_labels.size(); item++){
+        ClickableLabel *lab = m_labels.at(item);
+        connect(lab, &ClickableLabel::clicked, this, [this, item](){
+            emit itemClicked(item - 1);
+        });
+    }
+
     QWidget *old = m_scrollArea->takeWidget();
-    delete old;
+    if(old) delete old;
 
     /* In my honest opinion, the line below is the famous gambiarra */
     m_scrollArea->setWidget(holdWidget);
+}
+
+StringPairVector DataSelectionDisplay::getItem(int itemNumber){
+    return m_report.items().at(itemNumber);
 }
