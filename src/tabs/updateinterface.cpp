@@ -94,7 +94,28 @@ void UpdateInterface::beginUpdate1(QString searchKey){
     // Clean update box
     cleanUpdateBox();
 
-    m_updateBox->layout()->addWidget(new QLabel("Chave encontrada."));
+    // Get information of the searched parque
+    StringPairVector vec = m_database.selectParque(searchKey);
+
+    if(vec.empty()){
+        handleWrongKey();
+    } else {
+        QFormLayout *layout = (QFormLayout *) m_updateBox->layout();
+
+        // Add editable information on the box
+        QVector<QLineEdit*> leVec;
+        for(QPair<QString, QString> &pair: vec){
+            QLineEdit *le = new QLineEdit(pair.second);
+            layout->addRow(pair.first, le);
+
+            if(pair.first == "CNPJ"){
+                le->setEnabled(false);
+                le->setReadOnly(true);
+            }
+
+            leVec.append(le);
+        }
+    }
 }
 
 void UpdateInterface::handleWrongKey(){

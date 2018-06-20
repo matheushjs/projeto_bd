@@ -24,6 +24,10 @@ public:
     ReportTextData getReport6();
 
     ReportTextData getSelect1();
+
+    // Returns information of a single parque
+    // If parque is not found, returns an empty vector
+    StringPairVector selectParque(QString cnpj);
 };
 
 #endif // EISEDATABASE_H

@@ -32,7 +32,7 @@ MainWindow::MainWindow()
     // Add the tabs
     m_tabs->addTab(m_insertionInterface, "Insert Informations");
     m_tabs->addTab(m_searchInterface, "Consultas");
-    m_tabs->addTab(m_deletionInterface, "Remoção");
+    m_tabs->addTab(m_deletionInterface, "Modificação");
     m_tabs->addTab(m_reportsInterface, "Relatórios");
     m_tabs->addTab(new QWidget, "About");
 }
