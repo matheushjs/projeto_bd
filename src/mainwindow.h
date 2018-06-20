@@ -15,7 +15,7 @@ class MainWindow : public QWidget
 
     QTabWidget *m_tabs;
     InsertionInterface *m_insertionInterface;
-    UpdateInterface *m_deletionInterface;
+    UpdateInterface *m_updateInterface;
     ReportsInterface *m_reportsInterface;
     SearchInterface *m_searchInterface;
 

@@ -51,8 +51,5 @@ SearchInterface::SearchInterface(QWidget *parent)
 
 void SearchInterface::editItem(int itemNum){
     StringPairVector vec = m_dataDisplay->getItem(itemNum);
-    for(QPair<QString, QString> &pair: vec){
-        std::cout << pair.first.toStdString() << ": " << pair.second.toStdString() << "\n";
-    }
-    std::flush(std::cout);
+    emit editParque(vec[0].second);
 }

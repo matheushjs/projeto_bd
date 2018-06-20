@@ -20,6 +20,7 @@ public:
     explicit SearchInterface(QWidget *parent = 0);
 
 signals:
+    void editParque(QString cpnj);
 
 private slots:
     void editItem(int itemNum);
