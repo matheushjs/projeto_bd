@@ -4,7 +4,7 @@
 #include <QWidget>
 #include <QVector>
 
-#include "eisedatabase.h"
+#include "database/eisedatabase.h"
 
 class QPushButton;
 class QTextEdit;

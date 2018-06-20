@@ -4,7 +4,7 @@
 #include <QWidget>
 #include <QList>
 
-#include "reporttextdata.h"
+#include "data_structures/reporttextdata.h"
 
 class QScrollArea;
 class QLabel;

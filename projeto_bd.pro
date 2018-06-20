@@ -12,22 +12,25 @@ TARGET = projeto_bd
 TEMPLATE = app
 
 
-SOURCES += main.cpp\
-        mainwindow.cpp \
-    insertioninterface.cpp \
-    reportsinterface.cpp \
-    eisedatabase.cpp \
-    reporttextdata.cpp \
-    searchinterface.cpp \
-    dataselectiondisplay.cpp
+SOURCES += src/main.cpp\
+        src/mainwindow.cpp \
+    src/tabs/insertioninterface.cpp \
+    src/tabs/reportsinterface.cpp \
+    src/database/eisedatabase.cpp \
+    src/data_structures/reporttextdata.cpp \
+    src/tabs/searchinterface.cpp \
+    src/widgets/dataselectiondisplay.cpp
 
-HEADERS  += mainwindow.h \
-    insertioninterface.h \
-    reportsinterface.h \
-    eisedatabase.h \
-    reporttextdata.h \
-    searchinterface.h \
-    dataselectiondisplay.h
+HEADERS  += src/mainwindow.h \
+    src/tabs/insertioninterface.h \
+    src/tabs/reportsinterface.h \
+    src/database/eisedatabase.h \
+    src/data_structures/reporttextdata.h \
+    src/tabs/searchinterface.h \
+    src/widgets/dataselectiondisplay.h
+
+INCLUDEPATH += $$PWD/src
+
 CONFIG += qt
 
 QMAKE_CXXFLAGS += -std=c++11

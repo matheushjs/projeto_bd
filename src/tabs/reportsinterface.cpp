@@ -4,8 +4,9 @@
 #include <QPushButton>
 #include <QTextEdit>
 #include <QScrollBar>
-#include "reportsinterface.h"
-#include "eisedatabase.h"
+
+#include "tabs/reportsinterface.h"
+#include "database/eisedatabase.h"
 
 ReportsInterface::ReportsInterface(QWidget *parent)
   : QWidget(parent),

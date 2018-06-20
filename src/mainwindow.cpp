@@ -2,9 +2,9 @@
 #include <QDesktopWidget>
 #include <QApplication>
 
-#include "insertioninterface.h"
-#include "reportsinterface.h"
-#include "searchinterface.h"
+#include "tabs/insertioninterface.h"
+#include "tabs/reportsinterface.h"
+#include "tabs/searchinterface.h"
 
 MainWindow::MainWindow()
   :

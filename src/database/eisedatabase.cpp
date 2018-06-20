@@ -1,7 +1,7 @@
 
 #include <iostream>
 
-#include "eisedatabase.h"
+#include "database/eisedatabase.h"
 
 EISEDatabase::EISEDatabase(QString connName)
   : m_database(QSqlDatabase::addDatabase("QPSQL", connName))

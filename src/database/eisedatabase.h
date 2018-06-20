@@ -4,7 +4,7 @@
 #include <QtSql/QtSql>
 #include <QStringList>
 
-#include "reporttextdata.h"
+#include "data_structures/reporttextdata.h"
 
 class EISEDatabase
 {

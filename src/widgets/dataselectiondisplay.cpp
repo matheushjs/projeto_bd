@@ -1,4 +1,4 @@
-#include "dataselectiondisplay.h"
+#include "widgets/dataselectiondisplay.h"
 
 #include <QLabel>
 #include <QVBoxLayout>

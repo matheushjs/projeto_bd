@@ -2,10 +2,11 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QGroupBox>
+#include <QScrollArea>
 
-#include "searchinterface.h"
-#include "dataselectiondisplay.h"
-#include "eisedatabase.h"
+#include "tabs/searchinterface.h"
+#include "widgets/dataselectiondisplay.h"
+#include "database/eisedatabase.h"
 
 SearchInterface::SearchInterface(QWidget *parent)
   : QWidget(parent),
@@ -34,6 +35,12 @@ SearchInterface::SearchInterface(QWidget *parent)
     });
 
     mainLayout->addWidget(buttonBox);
-    mainLayout->addWidget(m_dataDisplay);
+
+    QScrollArea *scroll = new QScrollArea(this);
+    QVBoxLayout *vbox = new QVBoxLayout(scroll);
+    scroll->setWidget(vbox->widget());
+    vbox->addWidget(m_dataDisplay);
+
+    mainLayout->addWidget(scroll);
 }
 

@@ -1,4 +1,4 @@
-#include "insertioninterface.h"
+#include "tabs/insertioninterface.h"
 
 InsertionInterface::InsertionInterface(QWidget *parent)
   : QWidget(parent)

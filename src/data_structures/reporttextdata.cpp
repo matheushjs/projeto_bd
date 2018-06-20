@@ -1,4 +1,4 @@
-#include "reporttextdata.h"
+#include "data_structures/reporttextdata.h"
 
 ReportTextData::ReportTextData()
 {
