@@ -4,6 +4,7 @@
 #include <QFormLayout>
 #include <QLineEdit>
 #include <QLabel>
+#include <QDialog>
 
 #include "updateinterface.h"
 
@@ -103,7 +104,7 @@ void UpdateInterface::beginUpdate1(QString searchKey){
         QFormLayout *layout = (QFormLayout *) m_updateBox->layout();
 
         // Add editable information on the box
-        QVector<QLineEdit*> leVec;
+        QVector<QLineEdit *> leVec;
         for(QPair<QString, QString> &pair: vec){
             QLineEdit *le = new QLineEdit(pair.second);
             layout->addRow(pair.first, le);
@@ -115,6 +116,29 @@ void UpdateInterface::beginUpdate1(QString searchKey){
 
             leVec.append(le);
         }
+
+        // Add a button and connect signals for performing the UPDATE
+        QPushButton *button = new QPushButton("Modificar");
+        connect(button, &QPushButton::clicked, this, [this, leVec](){
+            // Insert on database
+            QString error = m_database.updateParque(leVec[0]->text(), leVec[1]->text(),
+                                                    leVec[2]->text(), leVec[3]->text());
+            QDialog *diag = new QDialog(this);
+            QVBoxLayout *diagLayout = new QVBoxLayout;
+            QLabel *lab = new QLabel;
+            diag->setLayout(diagLayout);
+            diagLayout->addWidget(lab);
+            diag->setWindowModality(Qt::ApplicationModal);
+
+            if(error != ""){
+                lab->setText(error);
+            } else {
+                lab->setText("Modificado com sucesso.");
+            }
+
+            diag->exec();
+        });
+        layout->addWidget(button);
     }
 }
 

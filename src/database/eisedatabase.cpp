@@ -120,8 +120,6 @@ ReportTextData EISEDatabase::getSelect1(){
     return report;
 }
 
-#include <iostream>
-
 StringPairVector EISEDatabase::selectParque(QString cnpj){
     const static QString query = "SELECT * FROM parque WHERE cnpj = '" + cnpj + "';";
 
@@ -135,4 +133,25 @@ StringPairVector EISEDatabase::selectParque(QString cnpj){
     }
 
     return vec;
+}
+
+#include <iostream>
+
+QString EISEDatabase::updateParque(QString cnpj, QString nome,
+                                QString mapa, QString endereco)
+{
+    const static QString query = QString(
+                "UPDATE parque "
+                "SET nome = '%1', "
+                "    mapafilepath = '%2', "
+                "    endereco = '%3' "
+                "WHERE cnpj = '%4' "
+                ).arg(nome, mapa, endereco, cnpj);
+
+    QSqlQuery rows = m_database.exec(query);
+    QSqlError err = rows.lastError();
+
+    return err.isValid() ?
+        err.databaseText() + "\n" + err.driverText() :
+        "";
 }

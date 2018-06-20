@@ -28,6 +28,10 @@ public:
     // Returns information of a single parque
     // If parque is not found, returns an empty vector
     StringPairVector selectParque(QString cnpj);
+
+    // Updates parque that has the given cnpj with the given information.
+    // Returns an error string, or empty string if successful.
+    QString updateParque(QString cnpj, QString nome, QString mapa, QString endereco);
 };
 
 #endif // EISEDATABASE_H
