@@ -1,20 +1,23 @@
 #include "widgets/dataselectiondisplay.h"
+#include "data_structures/reporttextdata.h"
 
 #include <QLabel>
 #include <QVBoxLayout>
+#include <QScrollArea>
+#include <QSizePolicy>
+
+#include <iostream>
 
 DataSelectionDisplay::DataSelectionDisplay(QWidget *parent)
   : QWidget(parent),
-    m_mainLayout(new QVBoxLayout)
+    m_scrollArea(new QScrollArea)
 {
-    this->setLayout(m_mainLayout);
+    QVBoxLayout *outerLayout = new QVBoxLayout;
+    this->setLayout(outerLayout);
+    outerLayout->addWidget(m_scrollArea);
 }
 
 void DataSelectionDisplay::setReport(ReportTextData report){
-    for(QLabel *l: m_labels){
-        m_mainLayout->removeWidget(l);
-        delete l;
-    }
     m_labels.clear();
 
     /* Add header label */
@@ -29,10 +32,24 @@ void DataSelectionDisplay::setReport(ReportTextData report){
         for(auto &pair: vec){
             str += pair.first + ": " + pair.second + "\n";
         }
-        m_labels.append(new QLabel(str));
+        QLabel *lab = new QLabel(str);
+        // lab->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+        // lab->setMinimumSize(lab->sizeHint().width(), lab->sizeHint().height());
+
+        m_labels.append(lab);
     }
 
+    QWidget *holdWidget = new QWidget;
+    QVBoxLayout *holdLayout = new QVBoxLayout;
+    holdWidget->setLayout(holdLayout);
+
     for(QLabel *w: m_labels){
-        m_mainLayout->addWidget(w);
+        holdLayout->addWidget(w);
     }
+
+    QWidget *old = m_scrollArea->takeWidget();
+    delete old;
+
+    /* In my honest opinion, the line below is the famous gambiarra */
+    m_scrollArea->setWidget(holdWidget);
 }
