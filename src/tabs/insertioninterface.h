@@ -14,6 +14,8 @@
 #include <QDateEdit>
 #include <QSpinBox>
 #include <QRadioButton>
+#include <QMessageBox>
+
 #include "database/eisedatabase.h"
 
 class InsertionInterface : public QWidget
@@ -43,7 +45,7 @@ private :
     QLineEdit *m_location;
     QRadioButton *m_pCruise;
     QRadioButton *m_pPark;
-    QPushButton *m_insertParty
+    QPushButton *m_insertParty;
     QGroupBox *m_partyInfos;
     QGroupBox *m_cruiserInfos;
 

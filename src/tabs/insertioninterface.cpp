@@ -18,7 +18,7 @@ InsertionInterface::InsertionInterface(QWidget *parent)
     // Set up the first insert button box
     m_insertParty = new QPushButton("Insert");
     QVBoxLayout *buttonLayout1 = new QVBoxLayout;
-    buttonLayout1->addWidget(insertParty, 0, Qt::AlignLeft);
+    buttonLayout1->addWidget(m_insertParty, 0, Qt::AlignLeft);
 
     QFormLayout *flayout;
 
@@ -33,12 +33,12 @@ InsertionInterface::InsertionInterface(QWidget *parent)
     m_cruiserInfos = new QGroupBox("Festa no Cruzeiro");
     flayout = new QFormLayout;
     m_startDate = new QDateEdit(QDate::currentDate());
-   	m_startDate->setDisplayFormat("YYYY-MM-DD");
     m_endDate = new QDateEdit(QDate::currentDate());
-   	m_startDate->setDisplayFormat("YYYY-MM-DD");
     m_nOfGuest = new QSpinBox;
+    m_nOfGuest->setRange(0,5000);
     m_partyName = new QLineEdit;
     m_imoNumber = new QSpinBox;
+    m_imoNumber->setRange(0,9000000);
     m_location = new QLineEdit;
     flayout->addRow("&Nome", m_partyName);
     flayout->addRow("&IMO:", m_imoNumber);
@@ -100,10 +100,10 @@ InsertionInterface::InsertionInterface(QWidget *parent)
     QObject::connect(m_pCruise,SIGNAL(pressed()),this,SLOT(CruiseChecked()));
     QObject::connect(m_pPark,SIGNAL(pressed()),this,SLOT(ParkChecked()));
     
-    if(m_pCruise->isChecked())
+    //if(m_pCruise->isChecked())
  	   QObject::connect(m_insertParty, SIGNAL(pressed()),this,SLOT(insertCruiseParty()));
-    else if(m_pPark->isChecked())
- 	   QObject::connect(m_insertParty, SIGNAL(pressed()),this,SLOT(insertParkParty()));
+    //else if(m_pPark->isChecked())
+ 	  // QObject::connect(m_insertParty, SIGNAL(pressed()),this,SLOT(insertParkParty()));
 }
 
 void InsertionInterface::CruiseChecked()
@@ -128,12 +128,16 @@ void InsertionInterface::insertCruiseParty()
 		* Verify the IMO number
 	*/
 	
+
 	QVector<QString> partyData;
-	
-	partyData.append(m_imoNumber->value().toString());
-	partyData.append(m_startDate->date().toString());
-	partyData.append(m_endDate->date().toString());
-	partyData.append(m_nOfGuest->value().toString());
+	QDate aux;
+
+	partyData.append(QString("%1").arg(m_imoNumber->value()));
+    aux = m_startDate->date();
+	partyData.append(QString("%1-%2-%3").arg(QString::number(aux.year()),QString::number(aux.month()),QString::number(aux.day())));
+    aux = m_endDate->date();
+	partyData.append(QString("%1-%2-%3").arg(QString::number(aux.year()),QString::number(aux.month()),QString::number(aux.day())));
+	partyData.append(QString("%1").arg(m_nOfGuest->value()));
 	partyData.append(m_partyName->text());
 
 	QString feedback = m_database.insertCruiseParty(partyData);
@@ -141,7 +145,7 @@ void InsertionInterface::insertCruiseParty()
 	if(feedback == "")
 		QMessageBox::information(this,"Resultado da inserção", "Festa inserida com sucesso!");
 	else
-	QMessageBox::critical(this,"Erro na hora de inserir.", feedback);
+		QMessageBox::critical(this,"Erro na hora de inserir.", feedback);
 
 }
 

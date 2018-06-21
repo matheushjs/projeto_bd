@@ -3,6 +3,8 @@
 
 #include <QtSql/QtSql>
 #include <QStringList>
+#include <iostream>
+
 
 #include "data_structures/reporttextdata.h"
 
