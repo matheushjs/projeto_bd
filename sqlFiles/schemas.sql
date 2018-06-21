@@ -231,7 +231,7 @@ CREATE TABLE compoe (
 CREATE TABLE festaNoCruzeiro (
 	IMO INTEGER, /* Exemplo IMO: 9710880, 1009613, 8852356 */
 	dataInicio DATE,
-	dataFim DATE,
+	dataFim DATE NOT NULL,
 	numeroConvidados INTEGER,
 	nome VARCHAR(128) NOT NULL,
 	CONSTRAINT pk_festaNoCruzeiro
@@ -393,7 +393,7 @@ CREATE TABLE parque (
 CREATE TABLE festaNoParque (
 	cnpjParque CHAR(18),
 	dataInicio DATE,
-	dataFim DATE,
+	dataFim DATE NOT NULL,
 	numeroConvidados INTEGER NOT NULL,
 	nome VARCHAR(64) NOT NULL,
 	CONSTRAINT pk_festaNoParque
