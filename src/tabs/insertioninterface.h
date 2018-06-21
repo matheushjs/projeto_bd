@@ -14,10 +14,13 @@
 #include <QDateEdit>
 #include <QSpinBox>
 #include <QRadioButton>
+#include "database/eisedatabase.h"
 
 class InsertionInterface : public QWidget
 {
     Q_OBJECT
+
+private :
 
     //Employees atributes
     QPushButton *m_insertButton;
@@ -40,9 +43,12 @@ class InsertionInterface : public QWidget
     QLineEdit *m_location;
     QRadioButton *m_pCruise;
     QRadioButton *m_pPark;
+    QPushButton *m_insertParty
     QGroupBox *m_partyInfos;
     QGroupBox *m_cruiserInfos;
 
+    //Database atributes
+    EISEDatabase m_database;
 
 public:
     explicit InsertionInterface(QWidget *parent = 0);
@@ -50,6 +56,8 @@ public:
 private slots:
     void CruiseChecked();
     void ParkChecked();
+    void insertCruiseParty();
+    void insertParkParty();
 
 signals:
 

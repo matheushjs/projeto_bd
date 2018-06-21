@@ -120,6 +120,19 @@ ReportTextData EISEDatabase::getSelect1(){
     return report;
 }
 
+QString EISEDatabase::insertCruiseParty(QVector<QString> insertData)
+{
+    const static QString query = QString("INSERT INTO festaNoCruzeiro ( IMO, dataInicio, dataFim, numeroConvidados, nome )
+     VALUES (1% , to_date ('2%', 'YYYY-MM-DD'), to_date ('3%', 'YYYY-MM-DD'), 4%, 5%)").arg(insertData(0),insertData(1),insertData(2), insertData(3),insertData(4));
+
+    QSqlQuery rows = m_database.exec(query);
+    QSqlError err = rows.lastError();
+
+    return err.isValid() ? 
+        err.databaseText() + "\n" + err.driverText() : "";
+
+}
+
 StringPairVector EISEDatabase::selectParque(QString cnpj){
     const static QString query = "SELECT * FROM parque WHERE cnpj = '" + cnpj + "';";
 

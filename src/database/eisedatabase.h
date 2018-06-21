@@ -22,8 +22,8 @@ public:
     ReportTextData getReport4();
     ReportTextData getReport5();
     ReportTextData getReport6();
-
     ReportTextData getSelect1();
+    QString insertCruiseParty(QVector<QString> insertData);
 
     // Returns information of a single parque
     // If parque is not found, returns an empty vector
