@@ -7,7 +7,7 @@ USER=`whoami`
 ARGS=$1
 DEFAULT_NUM_INSERTS=20
 NUM_INSERTS=${ARGS:-$DEFAULT_NUM_INSERTS}
-DATABASE=projeto_bd
+DATABASE=dev
 TABLE_NAMES=`cat tableNames.txt`
 INSERT_OUT=inserts.sql
 SCHEMA_PATH=sqlFiles/schemas.sql
@@ -50,14 +50,14 @@ psql $DATABASE < $INSERT_OUT && \
 
 # Garante característica de disjoint
 echo "Aplicando disjoint nas tabelas do database $DATABASE..."
-psql $DATABASE < $DISJOINT_PATH && \
+psql $DATABASE < $DISJOINT_PATH #&& \
 
 # Limpando o arquivo de saída
-echo -n > $OUTPUT
+#echo -n > $OUTPUT
 
-echo "Realizando o dump dos inserts atualizados..."
+#echo "Realizando o dump dos inserts atualizados..."
 # Gerando os inserts corrigidos
-for i in $TABLE_NAMES; do	
-	pg_dump --table="$i" --data-only --column-inserts $DATABASE >> $OUTPUT
-done
-echo "Dump dos inserts realizado com sucesso!"
+#for i in $TABLE_NAMES; do	
+#	pg_dump --table="$i" --data-only --column-inserts $DATABASE >> $OUTPUT
+#done
+#echo "Dump dos inserts realizado com sucesso!"
