@@ -16,7 +16,7 @@ InsertionInterface::InsertionInterface(QWidget *parent)
     radioButtonsLayout->addWidget(m_pPark);
 
     // Set up the first insert button box
-    m_insertParty = new QPushButton("Insert");
+    m_insertParty = new QPushButton("Inserir festa");
     QVBoxLayout *buttonLayout1 = new QVBoxLayout;
     buttonLayout1->addWidget(m_insertParty, 0, Qt::AlignLeft);
 
@@ -56,10 +56,10 @@ InsertionInterface::InsertionInterface(QWidget *parent)
     m_partyInfos->setVisible(false);
     m_cruiserInfos->setVisible(false);
 
-    //2.2 Groupbox about the Employees informations
-    QGroupBox *employees = new QGroupBox("Employees Informations");
-    employees->setEnabled(false);
-    QFormLayout *employeeFormLayout = new QFormLayout(employees);
+    //2.2 Groupbox about the m_employees informations
+    m_employees = new QGroupBox("Dados dos funcionários");
+    m_employees->setEnabled(false);
+    QFormLayout *employeeFormLayout = new QFormLayout(m_employees);
 
     m_employeeName = new QLineEdit;
     m_employeeCpf = new QLineEdit;
@@ -82,8 +82,8 @@ InsertionInterface::InsertionInterface(QWidget *parent)
     //2.3 GroupBox about the equipments informations
     QGroupBox *equipments = new QGroupBox("Equipments Informations");
     equipments->setEnabled(false);
-    m_insertButton = new QPushButton("Insert");
-    m_cancelButton = new QPushButton("Cancel");
+    m_insertButton = new QPushButton("Confirmar");
+    m_cancelButton = new QPushButton("Cancelar");
     QHBoxLayout *hbox = new QHBoxLayout;
 
     hbox->addWidget(m_insertButton,0,Qt::AlignRight);
@@ -92,18 +92,17 @@ InsertionInterface::InsertionInterface(QWidget *parent)
     vbox->addLayout(radioButtonsLayout);
     vbox->addLayout(buttonLayout1);
     vbox->addLayout(partyEltsLayout);
-    vbox->addWidget(employees);
+    vbox->addWidget(m_employees);
     vbox->addWidget(equipments);
     vbox->addLayout(hbox);
 
     this->setLayout(vbox);
+
     QObject::connect(m_pCruise,SIGNAL(pressed()),this,SLOT(CruiseChecked()));
     QObject::connect(m_pPark,SIGNAL(pressed()),this,SLOT(ParkChecked()));
-    
-    //if(m_pCruise->isChecked())
- 	   QObject::connect(m_insertParty, SIGNAL(pressed()),this,SLOT(insertCruiseParty()));
-    //else if(m_pPark->isChecked())
- 	  // QObject::connect(m_insertParty, SIGNAL(pressed()),this,SLOT(insertParkParty()));
+ 	QObject::connect(m_insertParty, SIGNAL(pressed()),this,SLOT(insertCruiseParty()));
+    QObject::connect(m_insertButton,SIGNAL(pressed()),this,SLOT(commitInsertion()));
+    QObject::connect(m_cancelButton,SIGNAL(pressed()),this,SLOT(rollbackInsertion()));
 }
 
 void InsertionInterface::CruiseChecked()
@@ -123,7 +122,6 @@ void InsertionInterface::insertCruiseParty()
 
 	/*TODO
 	
-		* Verify if the startDate is less than the End Data
 		* The location format
 		* Verify the IMO number
 	*/
@@ -132,21 +130,49 @@ void InsertionInterface::insertCruiseParty()
 	QVector<QString> partyData;
 	QDate aux;
 
+    //Doing verifications
+    if(m_partyName->text().isEmpty())
+    {
+        QMessageBox::critical(this,"Erro","O nome da festa não pode ser nullo");
+        return;
+    }
+    else if(m_endDate->date() <(m_startDate->date()))
+    {
+        QMessageBox::critical(this,"Erro","A data de fim não pode ser inferior a data de início.");
+        return;
+    }
+
+
 	partyData.append(QString("%1").arg(m_imoNumber->value()));
     aux = m_startDate->date();
 	partyData.append(QString("%1-%2-%3").arg(QString::number(aux.year()),QString::number(aux.month()),QString::number(aux.day())));
     aux = m_endDate->date();
-	partyData.append(QString("%1-%2-%3").arg(QString::number(aux.year()),QString::number(aux.month()),QString::number(aux.day())));
+	
+    partyData.append(QString("%1-%2-%3").arg(QString::number(aux.year()),QString::number(aux.month()),QString::number(aux.day())));
 	partyData.append(QString("%1").arg(m_nOfGuest->value()));
 	partyData.append(m_partyName->text());
+    partyData.append(m_location->text());
 
-	QString feedback = m_database.insertCruiseParty(partyData);
+
+    QString feedback = m_database.insertCruiseParty(partyData);
 
 	if(feedback == "")
 		QMessageBox::information(this,"Resultado da inserção", "Festa inserida com sucesso!");
 	else
 		QMessageBox::critical(this,"Erro na hora de inserir.", feedback);
 
+    m_cruiserInfos->setVisible(false);
+    m_employees->setEnabled(true);
+
+}
+void InsertionInterface::commitInsertion()
+{
+    m_database.commitTransaction();
+}
+
+void InsertionInterface::rollbackInsertion()
+{
+    m_database.rollbackTransaction();
 }
 
 void InsertionInterface::insertParkParty()

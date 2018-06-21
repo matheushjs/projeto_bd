@@ -26,6 +26,8 @@ public:
     ReportTextData getReport6();
     ReportTextData getSelect1();
     QString insertCruiseParty(QVector<QString> insertData);
+    void commitTransaction();
+    void rollbackTransaction();
 
     // Returns information of a single parque
     // If parque is not found, returns an empty vector

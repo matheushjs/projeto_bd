@@ -34,6 +34,7 @@ private :
     QLineEdit *m_employeeTelefone;
     QLineEdit *m_employeeAddress;
     QLineEdit *m_employeeTeam;
+    QGroupBox *m_employees;
 
     //Party atributes
     QComboBox *m_partyType;
@@ -60,7 +61,9 @@ private slots:
     void ParkChecked();
     void insertCruiseParty();
     void insertParkParty();
-
+    void commitInsertion();
+    void rollbackInsertion();
+    
 signals:
 
 public slots:

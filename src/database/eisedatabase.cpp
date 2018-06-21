@@ -122,15 +122,21 @@ ReportTextData EISEDatabase::getSelect1(){
 
 QString EISEDatabase::insertCruiseParty(QVector<QString> insertData)
 {
-    QString query = QString("INSERT INTO festaNoCruzeiro ( IMO, dataInicio, dataFim, numeroConvidados, nome ) "
+    const QString partyQuery = QString("INSERT INTO festaNoCruzeiro ( IMO, dataInicio, dataFim, numeroConvidados, nome ) "
      "VALUES (%1, to_date ('%2', 'YYYY-MM-DD'), to_date ('%3', 'YYYY-MM-DD'), %4, '%5');").arg(insertData[0],insertData[1],insertData[2], insertData[3],insertData[4]);
 
 
-    QSqlQuery rows = m_database.exec(query);
-    QSqlError err = rows.lastError();
+    QSqlQuery partyRows = m_database.exec(partyQuery);
+    QSqlError err1 = partyRows.lastError();
 
-    return err.isValid() ? 
-        err.databaseText() + "\n" + err.driverText() : "";
+    const QString localQuery = QString("INSERT INTO locaisCruzeiro ( IMO, dataFesta, local ) "
+    "VALUES (%1, to_date ('%2', 'YYYY-MM-DD'), '%3')").arg(insertData[0],insertData[1],insertData[5]);
+
+    QSqlQuery localRows = m_database.exec(localQuery);
+    QSqlError err2 = localRows.lastError();    
+
+    return err1.isValid() ? 
+        err1.databaseText() + "\n" + err1.driverText() + "\n\n" + err2.databaseText() + "\n" + err2.driverText(): "";
 
 }
 
@@ -166,4 +172,14 @@ QString EISEDatabase::updateParque(QString cnpj, QString nome,
     return err.isValid() ?
         err.databaseText() + "\n" + err.driverText() :
         "";
+}
+
+void EISEDatabase::commitTransaction()
+{
+    const QString query("COMMIT;");
+}
+
+void EISEDatabase::rollbackTransaction()
+{
+    const QString query("ROLLBACK;");
 }
