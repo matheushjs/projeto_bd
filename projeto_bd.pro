@@ -21,7 +21,8 @@ SOURCES += src/main.cpp\
     src/tabs/searchinterface.cpp \
     src/widgets/dataselectiondisplay.cpp \
     src/widgets/clickablelabel.cpp \
-    src/tabs/updateinterface.cpp
+    src/tabs/updateinterface.cpp \
+    src/models/tablemodel.cpp
 
 HEADERS  += src/mainwindow.h \
     src/tabs/insertioninterface.h \
@@ -31,7 +32,8 @@ HEADERS  += src/mainwindow.h \
     src/tabs/searchinterface.h \
     src/widgets/dataselectiondisplay.h \
     src/widgets/clickablelabel.h \
-    src/tabs/updateinterface.h
+    src/tabs/updateinterface.h \
+    src/models/tablemodel.h 
 
 INCLUDEPATH += $$PWD/src
 

@@ -18,7 +18,7 @@
 #include <QTableView>
 
 
-#include "tablemodel.h"
+#include "models/tablemodel.h"
 #include "database/eisedatabase.h"
 
 class InsertionInterface : public QWidget
@@ -42,7 +42,6 @@ private :
     QRadioButton *m_newEmployee;
     QRadioButton *m_existEmployee;
     QTableView *m_eTableView;
-    TableModel *m_viewModel;
 
     //Party atributes
     QComboBox *m_partyType;
@@ -75,9 +74,6 @@ private slots:
     void newEChecked();
     void existEChecked();
     
-signals:
-
-public slots:
 };
 
 #endif // INSERTIONINTERFACE_H

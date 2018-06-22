@@ -6,7 +6,6 @@ InsertionInterface::InsertionInterface(QWidget *parent)
 {
     // Set the principal layout
     QVBoxLayout *vbox = new QVBoxLayout(this);
-
     //Drawing the insertion interface
     // 1. Create party information group boxes
     
@@ -99,7 +98,6 @@ InsertionInterface::InsertionInterface(QWidget *parent)
 
     //2.4 Set up the form layout of exist employee
      m_eTableView = new QTableView;
-     m_viewModel = new TableModel();
      QHBoxLayout *tbvLayout = new QHBoxLayout;
      tbvLayout->addWidget(m_eTableView);
 
@@ -157,6 +155,8 @@ void InsertionInterface::existEChecked()
 {
     m_newEmployees->setVisible(false);
     m_existEmployees->setVisible(true);
+    TableModel model;
+    m_eTableView->setModel(model.employeesModel());
 }
 
 void InsertionInterface::insertCruiseParty()
@@ -220,5 +220,5 @@ void InsertionInterface::rollbackInsertion()
 
 void InsertionInterface::insertParkParty()
 {
-
+    //
 }

@@ -1,6 +1,7 @@
 #ifndef TABLEMODEL_H
 #define TABLEMODEL_H
 
+#include <QWidget>
 #include <QStringList>
 #include <QStandardItemModel>
 #include "database/eisedatabase.h"
@@ -8,16 +9,14 @@
 
 class TableModel
 {
+	
+	EISEDatabase m_database;
 
-	private:
-		EISEDatabase m_database;
-
-	public:
-		 TableModel();
-		
-		QStandardItemModel EmployeesModel();
-		QStandardItemModel EquipmentsModel();
-		QStandardItemModel BandsModel();
+public:
+	TableModel();	
+	QStandardItemModel *employeesModel();
+	QStandardItemModel *equipmentsModel();
+	QStandardItemModel *bandsModel();
 };
 
 #endif
