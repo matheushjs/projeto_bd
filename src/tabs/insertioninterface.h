@@ -15,7 +15,10 @@
 #include <QSpinBox>
 #include <QRadioButton>
 #include <QMessageBox>
+#include <QTableView>
 
+
+#include "tablemodel.h"
 #include "database/eisedatabase.h"
 
 class InsertionInterface : public QWidget
@@ -34,20 +37,26 @@ private :
     QLineEdit *m_employeeTelefone;
     QLineEdit *m_employeeAddress;
     QLineEdit *m_employeeTeam;
-    QGroupBox *m_employees;
+    QGroupBox *m_newEmployees;
+    QGroupBox *m_existEmployees;
+    QRadioButton *m_newEmployee;
+    QRadioButton *m_existEmployee;
+    QTableView *m_eTableView;
+    TableModel *m_viewModel;
 
     //Party atributes
     QComboBox *m_partyType;
     QDateEdit *m_startDate;
     QDateEdit *m_endDate;
     QSpinBox *m_nOfGuest;
-    QLineEdit *m_partyName;
+    QLineEdit *m_parkPartyName;
+    QLineEdit *m_cruisePartyName;
     QSpinBox *m_imoNumber;
     QLineEdit *m_location;
     QRadioButton *m_pCruise;
     QRadioButton *m_pPark;
     QPushButton *m_insertParty;
-    QGroupBox *m_partyInfos;
+    QGroupBox *m_parkPartyInfos;
     QGroupBox *m_cruiserInfos;
 
     //Database atributes
@@ -63,6 +72,8 @@ private slots:
     void insertParkParty();
     void commitInsertion();
     void rollbackInsertion();
+    void newEChecked();
+    void existEChecked();
     
 signals:
 

@@ -183,3 +183,69 @@ void EISEDatabase::rollbackTransaction()
 {
     const QString query("ROLLBACK;");
 }
+
+StringPairVectorList EISEDatabase::getEmployeesData()
+{
+    const static QString query = "SELECT * FROM funcionario;";
+
+    QSqlQuery rows = m_database.exec(query);
+    StringPairVectorList items;
+
+    while(rows.next()){
+        QVector<QPair<QString,QString> > vec;
+
+        vec.append( {"CPF", rows.value(0).toString()} );
+        vec.append( {"Nome", rows.value(1).toString()} );
+        vec.append( {"RG", rows.value(2).toString()} );
+        vec.append( {"Endereço", rows.value(3).toString()} );
+        vec.append( {"Cargo", rows.value(4).toString()} );
+        vec.append( {"Equipe", rows.value(5).toString()} );
+        vec.append( {"Telefone", rows.value(6).toString()} );
+
+        items.append(vec);
+    }
+
+    return items;
+}
+
+StringPairVectorList EISEDatabase::getBandsData()
+{
+    const static QString query = "SELECT b.nome, b.estiloMusical, b.tipo FROM banda b;";
+
+    QSqlQuery rows = m_database.exec(query);
+    StringPairVectorList items;
+
+    while(rows.next()){
+        QVector<QPair<QString,QString> > vec;
+
+        vec.append( {"Nome", rows.value(0).toString()} );
+        vec.append( {"Estilo Musical", rows.value(1).toString()} );
+        vec.append( {"Tipo", rows.value(2).toString()} );
+
+        items.append(vec);
+    }
+
+    return items;
+}
+
+StringPairVectorList EISEDatabase::getEquipmentsData()
+{
+    const static QString query = "SELECT  e.tipo, e.nome, e.marca, e.modelo, e.quantidade FROM equipamento e WHERE e.tipo = 'CAMERA';";
+
+    QSqlQuery rows = m_database.exec(query);
+    StringPairVectorList items;
+
+    while(rows.next()){
+        QVector<QPair<QString,QString> > vec;
+
+        vec.append( {"Tipo", rows.value(0).toString()} );
+        vec.append( {"Nome", rows.value(1).toString()} );
+        vec.append( {"Marca", rows.value(2).toString()} );
+        vec.append( {"Modelo", rows.value(3).toString()} );
+        vec.append( {"Quantidade", rows.value(4).toString()} );
+
+        items.append(vec);
+    }
+
+    return items;
+}

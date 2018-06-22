@@ -28,6 +28,9 @@ public:
     QString insertCruiseParty(QVector<QString> insertData);
     void commitTransaction();
     void rollbackTransaction();
+    StringPairVectorList getEmployeesData();
+    StringPairVectorList getEquipmentsData();
+    StringPairVectorList getBandsData();
 
     // Returns information of a single parque
     // If parque is not found, returns an empty vector

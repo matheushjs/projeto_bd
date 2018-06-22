@@ -3,1560 +3,1556 @@ BEGIN TRANSACTION;
 /* TABLE funcionario */
 /* NULL INSERTION FOR ATTRIBUTEequipeAT TABLEfuncionario */
 INSERT INTO funcionario ( cpf, nome, RG, endereco, cargo, equipe, telefoneCsv )
-	VALUES ( '802.587.293-30', 'Isabella Cavalcanti', '94127560894', 'Pátio de Duarte, 555 Castelo 07463-656 Cunha / ES', 'TECNICO', NULL, '(061) 0633 1643' );
+	VALUES ( '230.740.852-32', 'Rebeca Pereira', '12583746090', 'Esplanada de Pinto, 94 Granja De Freitas 68637-232 Oliveira da Serra / BA', 'COPILOTO', NULL, '21 7416-7300' );
 INSERT INTO funcionario ( cpf, nome, RG, endereco, cargo, equipe, telefoneCsv )
-	VALUES ( '845.832.187-67', 'Enzo Gabriel Pinto', '07958124341', 'Rua Olivia Pinto, 36 Nova Suíça 43172384 Alves / PI', 'ASSISTENTE', NULL, '41 4609 8999' );
+	VALUES ( '523.255.716-37', 'Natália Novaes', '04785162902', 'Setor Monteiro, 63 Maravilha 60528381 Melo / RJ', 'PILOTO', NULL, '(041) 1402 5461' );
 INSERT INTO funcionario ( cpf, nome, RG, endereco, cargo, equipe, telefoneCsv )
-	VALUES ( '969.304.789-35', 'Ana Laura da Cruz', '62948570311', 'Aeroporto Barros, 38 Novo São Lucas 29069-408 Costela / PI', 'ASSISTENTE', NULL, '(081) 6877-3018' );
+	VALUES ( '782.988.670-79', 'Sra. Ana Luiza Gonçalves', '09674528300', 'Esplanada Manuela Campos, 7 Jonas Veiga 94664958 Rocha / AM', 'COPILOTO', NULL, '31 7453 6752' );
 INSERT INTO funcionario ( cpf, nome, RG, endereco, cargo, equipe, telefoneCsv )
-	VALUES ( '531.462.487-11', 'Sra. Lara Costa', '68745210985', 'Parque Paulo Cavalcanti, 1 Pindorama 81892782 Lima do Norte / PI', 'ASSISTENTE', NULL, '+55 71 0559-4253' );
+	VALUES ( '197.520.896-76', 'Vitor da Paz', '20379861496', 'Núcleo de Moreira, 34 Brasil Industrial 83919-561 Lima / AP', 'PILOTO', NULL, '+55 (041) 3288 5527' );
 INSERT INTO funcionario ( cpf, nome, RG, endereco, cargo, equipe, telefoneCsv )
-	VALUES ( '607.443.809-78', 'Lívia Moraes', '47165809211', 'Distrito de Novaes, 43 Conjunto Serra Verde 94277373 Barbosa / ES', 'ASSISTENTE', NULL, '+55 (071) 0153-1896' );
+	VALUES ( '851.398.230-44', 'Diogo Nunes', '19542607849', 'Condomínio Peixoto, 494 Nossa Senhora Da Aparecida 08697662 Dias / MT', 'COPILOTO', NULL, '+55 (081) 3524 7390' );
 INSERT INTO funcionario ( cpf, nome, RG, endereco, cargo, equipe, telefoneCsv )
-	VALUES ( '996.257.521-19', 'Dr. Breno Carvalho', '30924857188', 'Estrada Luiz Miguel Cardoso, 40 Serra Verde 43981137 Nogueira / SC', 'TECNICO', NULL, '9161-5338' );
+	VALUES ( '583.792.569-11', 'Leandro Moura', '72138056490', 'Loteamento de Silveira, 77 Jaqueline 81074055 Carvalho da Praia / PE', 'COPILOTO', NULL, '81 0183-6221' );
 INSERT INTO funcionario ( cpf, nome, RG, endereco, cargo, equipe, telefoneCsv )
-	VALUES ( '424.447.919-31', 'Marcela Fogaça', '38705621453', 'Distrito Costa, 25 Minas Caixa 08773-477 da Mota / ES', 'TECNICO', NULL, '(081) 9302 0009' );
+	VALUES ( '924.966.747-52', 'Vinicius Fogaça', '89432706150', 'Chácara Murilo da Mata, 54 Bernadete 78363340 Cardoso de Novaes / MS', 'TECNICO', NULL, '71 2659 8035' );
 INSERT INTO funcionario ( cpf, nome, RG, endereco, cargo, equipe, telefoneCsv )
-	VALUES ( '575.250.850-93', 'Melissa da Costa', '41962807576', 'Praça de da Rosa, 59 Cabana Do Pai Tomás 13139303 Castro / RJ', 'ASSISTENTE', NULL, '4058 6023' );
+	VALUES ( '432.789.595-66', 'Maria Eduarda Cavalcanti', '70681245930', 'Fazenda de Silveira, 769 Beira Linha 10823-306 Gonçalves / MG', 'COPILOTO', NULL, '+55 31 5813 1374' );
 INSERT INTO funcionario ( cpf, nome, RG, endereco, cargo, equipe, telefoneCsv )
-	VALUES ( '602.809.454-84', 'Mariane da Luz', '65239470171', 'Distrito Correia, 329 Vera Cruz 28935-732 Cardoso / SC', 'ASSISTENTE', NULL, '(011) 4777-5626' );
+	VALUES ( '833.488.525-02', 'Brenda Jesus', '30964572125', 'Parque Beatriz Nogueira, 4 Santa Cecilia 13253-447 Mendes / SC', 'ASSISTENTE', NULL, '+55 41 1626 2449' );
 INSERT INTO funcionario ( cpf, nome, RG, endereco, cargo, equipe, telefoneCsv )
-	VALUES ( '396.343.547-09', 'Larissa Ramos', '46980235729', 'Viela de Sales, 38 Pindura Saia 72430615 Gomes do Oeste / RS', 'OPCAMERA', NULL, '+55 (081) 9609 7334' );
+	VALUES ( '478.696.780-28', 'João Miguel Pires', '90614257352', 'Rodovia Melo, 73 Casa Branca 05631458 Melo / PI', 'OPCAMERA', NULL, '+55 41 2493 7762' );
 INSERT INTO funcionario ( cpf, nome, RG, endereco, cargo, equipe, telefoneCsv )
-	VALUES ( '459.131.430-66', 'Isaac Silveira', '53920167414', 'Condomínio Ribeiro, 7 Taquaril 59017-719 da Rocha / PI', 'COPILOTO', NULL, '+55 (031) 5761-0054' );
+	VALUES ( '616.020.558-98', 'Luiz Gustavo Carvalho', '28457609149', 'Avenida Pinto, 53 Piratininga 05000008 Monteiro / PE', 'PILOTO', NULL, '+55 71 4722 3398' );
 INSERT INTO funcionario ( cpf, nome, RG, endereco, cargo, equipe, telefoneCsv )
-	VALUES ( '529.827.160-27', 'Luiza Ribeiro', '27193486519', 'Vereda Aragão Vila Santo Antônio Barroquinha 14634-098 Freitas / CE', 'ASSISTENTE', NULL, '+55 (041) 6759-8950' );
+	VALUES ( '490.990.422-75', 'Luigi Caldeira', '65087392474', 'Vale de Cunha, 917 Oeste 05510382 da Paz do Norte / PI', 'COPILOTO', NULL, '+55 (051) 7016 9419' );
 INSERT INTO funcionario ( cpf, nome, RG, endereco, cargo, equipe, telefoneCsv )
-	VALUES ( '258.729.033-89', 'Francisco Lopes', '13780426544', 'Condomínio de Caldeira, 5 Floresta 06472813 Porto / SE', 'COPILOTO', NULL, '31 6868 7466' );
+	VALUES ( '946.521.617-86', 'Marcos Vinicius Ferreira', '94376201561', 'Quadra Arthur Lopes, 57 Vila Fumec 60191-373 Viana / RN', 'TECNICO', NULL, '41 1181 4626' );
 INSERT INTO funcionario ( cpf, nome, RG, endereco, cargo, equipe, telefoneCsv )
-	VALUES ( '238.700.997-66', 'Kamilly Mendes', '35426019851', 'Ladeira Beatriz Fogaça, 5 Vila Copacabana 74804-699 Almeida de Fogaça / DF', 'COPILOTO', NULL, '+55 81 2911 4026' );
+	VALUES ( '736.917.544-50', 'Luna Rezende', '59406813793', 'Chácara de da Cunha, 439 Ventosa 75777960 Barros de da Cruz / MT', 'OPCAMERA', NULL, '(011) 8054-0401' );
 INSERT INTO funcionario ( cpf, nome, RG, endereco, cargo, equipe, telefoneCsv )
-	VALUES ( '030.610.128-33', 'Marcela Ferreira', '07853246919', 'Trevo Marina Dias, 35 Oeste 17005072 Melo dos Dourados / PI', 'ASSISTENTE', NULL, '+55 (011) 2666 0957' );
+	VALUES ( '121.199.607-14', 'Renan Silva', '82436519005', 'Esplanada Ribeiro, 1 Vila Vista Alegre 45967263 Nascimento da Praia / PE', 'TECNICO', NULL, '(011) 1302 7391' );
 INSERT INTO funcionario ( cpf, nome, RG, endereco, cargo, equipe, telefoneCsv )
-	VALUES ( '998.627.534-11', 'Sarah Rocha', '39124687022', 'Lago de FariasFernandes, 62 Santa Cruz 10328352 Teixeira de Minas / MT', 'COPILOTO', NULL, '(071) 9999 8917' );
+	VALUES ( '679.002.127-48', 'Mariana Costela', '32684517991', 'Trevo Castro Nossa Senhora Da Conceição 98100407 Novaes / SC', 'OPCAMERA', NULL, '71 9531 5094' );
 INSERT INTO funcionario ( cpf, nome, RG, endereco, cargo, equipe, telefoneCsv )
-	VALUES ( '918.931.785-13', 'Nina Santos', '73926415819', 'Rua de Pires, 976 Carlos Prates 41744650 da Cruz da Mata / MS', 'COPILOTO', NULL, '+55 31 0450 3303' );
+	VALUES ( '133.722.910-23', 'Sophia Jesus', '48751630290', 'Morro Rodrigues, 6 Beira Linha 30427-125 Santos / AL', 'PILOTO', NULL, '+55 31 3821-1424' );
 INSERT INTO funcionario ( cpf, nome, RG, endereco, cargo, equipe, telefoneCsv )
-	VALUES ( '621.135.750-86', 'Rafael da Mata', '13604597821', 'Largo Anthony Aragão, 638 Boa Esperança 67251-622 Ferreira / AL', 'PILOTO', NULL, '+55 (041) 6660-0049' );
+	VALUES ( '516.335.573-78', 'Murilo Pereira', '98241635737', 'Pátio Felipe da Rocha, 6 Ribeiro De Abreu 04502-137 Carvalho Alegre / AM', 'ASSISTENTE', NULL, '71 8093 5062' );
 INSERT INTO funcionario ( cpf, nome, RG, endereco, cargo, equipe, telefoneCsv )
-	VALUES ( '522.502.996-95', 'Heloísa Cardoso,', '32017895423', 'Fazenda da Costa, 1 Vila Primeiro De Maio 91636724 Aragão de Mendes / RJ', 'PILOTO', NULL, '61 0630-1550' );
+	VALUES ( '624.975.827-59', 'Augusto Azevedo', '31479680222', 'Rua de Jesus, 81 Vila Califórnia 67511931 Alves / AC', 'OPCAMERA', NULL, '71 4496 5538' );
 INSERT INTO funcionario ( cpf, nome, RG, endereco, cargo, equipe, telefoneCsv )
-	VALUES ( '583.596.699-39', 'Gustavo Barros', '87542190351', 'Vereda de Moura, 41 Vila Madre Gertrudes 3ª Seção 24217-979 Silveira / TO', 'TECNICO', NULL, '11 1732-8577' );
+	VALUES ( '632.034.959-23', 'Miguel Vieira', '03261598433', 'Núcleo Moura, 303 Havaí 06480-316 Carvalho / RO', 'PILOTO', NULL, '(071) 0632-4490' );
 INSERT INTO funcionario ( cpf, nome, RG, endereco, cargo, equipe, telefoneCsv )
-	VALUES ( '299.967.704-87', 'Gustavo Henrique Gomes', '06937541252', 'Trecho de da Rocha, 6 Palmeiras 77714401 da Rocha / PI', 'OPCAMERA', NULL, '31 3553-7711' );
+	VALUES ( '192.393.547-19', 'Sr. Breno Rodrigues', '10976328496', 'Colônia de das Neves, 70 Aeroporto 93130-111 da Rocha Paulista / PR', 'PILOTO', NULL, '(021) 6727 9001' );
 
 /* TABLE tecnico */
 INSERT INTO tecnico ( cpf, especialidade )
-	VALUES ( '238.700.997-66', 'Quibusdam nobis ullam commodi omnis excepturi ipsam. Aspernatur quasi maxime conseq' );
+	VALUES ( '133.722.910-23', 'Dolorum aperiam soluta aspernatur earum ullam sit omnis. Ad quibusdam praesentium totam elig' );
 INSERT INTO tecnico ( cpf, especialidade )
-	VALUES ( '531.462.487-11', 'Impedit aspernatur aliquam necessitatibus suscipit nemo. Ea sed quibusdam odit mo' );
+	VALUES ( '851.398.230-44', 'Ipsum adipisci dolore sunt et rerum aperiam exercitationem. Beatae perspiciatis q' );
 INSERT INTO tecnico ( cpf, especialidade )
-	VALUES ( '996.257.521-19', 'Voluptates accusamus ex consequatur nulla. Fugit ullam iusto ducimus.Quisquam debitis dolor. Esse omnis cum earum porro cumqu' );
+	VALUES ( '946.521.617-86', 'Modi rerum ea. Unde necessitatibus modi itaque vitae rem consequuntur pariat' );
 INSERT INTO tecnico ( cpf, especialidade )
-	VALUES ( '299.967.704-87', 'Qui cum facilis asperiores reprehenderit consectetur consectetur. Ullam e' );
+	VALUES ( '478.696.780-28', 'Soluta tempore vero corporis dolorum rem. Dolor distinctio laborum et. Ea libero maxim' );
 INSERT INTO tecnico ( cpf, especialidade )
-	VALUES ( '583.596.699-39', 'Tempora deserunt ducimus unde. Ipsam laudantium aut praesentium reprehenderit consecte' );
+	VALUES ( '523.255.716-37', 'Sed debitis fugiat tenetur. Debitis odio blanditiis ipsum.' );
 INSERT INTO tecnico ( cpf, especialidade )
-	VALUES ( '522.502.996-95', 'Sed numquam voluptates asperiores maiores repellat. Atque ipsa omnis suscipit aspernatur. Harum atque a' );
+	VALUES ( '490.990.422-75', 'Ipsam sunt saepe accusamus consequuntur. Similique vero ab dolorem.Quo consequuntur omnis recusandae pariatur.Odio d' );
 INSERT INTO tecnico ( cpf, especialidade )
-	VALUES ( '918.931.785-13', 'Hic laudantium fugit rem excepturi quia quasi. Natus nisi sit.Amet est repellat voluptatibus. Neque accusamus unde tempo' );
+	VALUES ( '624.975.827-59', 'Odio id at libero hic ipsam.Natus iste laboriosam. Amet iste aspernatu' );
 INSERT INTO tecnico ( cpf, especialidade )
-	VALUES ( '969.304.789-35', 'Doloremque possimus perspiciatis iusto omnis. Officiis occaecati quis.T' );
+	VALUES ( '197.520.896-76', 'Adipisci eum maiores cum voluptas. Saepe quaerat sint explicabo numquam voluptate. Aliq' );
 INSERT INTO tecnico ( cpf, especialidade )
-	VALUES ( '529.827.160-27', 'Molestiae molestias sit assumenda eum. Qui eligendi magnam omnis numquam recusandae.Ratione nisi qui tenetur ut.' );
+	VALUES ( '583.792.569-11', 'Velit est beatae iste distinctio. Officiis est illum ipsam voluptates. Quae id temporibus incidunt. ' );
 INSERT INTO tecnico ( cpf, especialidade )
-	VALUES ( '607.443.809-78', 'Itaque odit dolor reprehenderit quia natus. Veritatis illo minima dolorum' );
+	VALUES ( '632.034.959-23', 'Quas vitae eum vitae iure labore excepturi. Iusto quia delectus labore commodi. Provident quod in' );
 INSERT INTO tecnico ( cpf, especialidade )
-	VALUES ( '621.135.750-86', 'Veritatis sapiente non et id dicta. Esse quasi excepturi distinctio' );
+	VALUES ( '516.335.573-78', 'Quae fugiat dignissimos occaecati. Quos quod dignissimos aliquid voluptatum veritatis doloribus' );
 INSERT INTO tecnico ( cpf, especialidade )
-	VALUES ( '030.610.128-33', 'Amet porro quibusdam quibusdam quos aspernatur voluptate.Aliquid recusandae quo sequi quis. Optio cupiditate error dolores c' );
+	VALUES ( '679.002.127-48', 'Eos est veniam perspiciatis soluta blanditiis. Similique velit debitis sed. Voluptatem esse architecto doloremque il' );
 INSERT INTO tecnico ( cpf, especialidade )
-	VALUES ( '998.627.534-11', 'Excepturi quas aspernatur porro consectetur. Vero nisi laudantium. Aut corrupti ' );
+	VALUES ( '833.488.525-02', 'Nihil quam voluptatum mollitia alias. Dolorum sunt magnam labore.' );
 INSERT INTO tecnico ( cpf, especialidade )
-	VALUES ( '396.343.547-09', 'Nam quod ullam reiciendis corrupti similique eum. Quo molestias sed debitis reprehenderit. Officia voluptate omnis ' );
+	VALUES ( '192.393.547-19', 'Amet distinctio beatae sit facere quas expedita. Recusandae similique repellend' );
 INSERT INTO tecnico ( cpf, especialidade )
-	VALUES ( '258.729.033-89', 'Nihil quas voluptate occaecati. Deserunt ipsum occaecati beatae provi' );
+	VALUES ( '782.988.670-79', 'Minus odio culpa. Maxime at dolor illo temporibus.Quam iure ab officia' );
 INSERT INTO tecnico ( cpf, especialidade )
-	VALUES ( '602.809.454-84', 'Eligendi soluta neque velit magni sed pariatur tempora. Perferendis vero at cum hic odit nos' );
+	VALUES ( '736.917.544-50', 'Nihil pariatur id ratione harum odit totam. Nesciunt assumenda commodi saepe ex perferendis.Natus necessitat' );
 INSERT INTO tecnico ( cpf, especialidade )
-	VALUES ( '459.131.430-66', 'Impedit tempora nobis perferendis cum illo neque ducimus.' );
+	VALUES ( '432.789.595-66', 'Corrupti officia adipisci voluptates consectetur sunt. Voluptates tempora enim saepe quibusdam incidunt.Ad' );
 INSERT INTO tecnico ( cpf, especialidade )
-	VALUES ( '845.832.187-67', 'Nam saepe laudantium quidem dolores aperiam aliquid. Molestiae deserunt dolorem molestias. Est nobis repudiandae.' );
+	VALUES ( '924.966.747-52', 'Nemo quo ad laboriosam consequatur modi. Fugit earum repellat corrupti. ' );
 INSERT INTO tecnico ( cpf, especialidade )
-	VALUES ( '424.447.919-31', 'Id culpa soluta. Magni iste porro repellat sed perferendis. Odit illo saepe architecto doloribus repudian' );
+	VALUES ( '616.020.558-98', 'Voluptatem cumque doloribus corrupti accusamus architecto deleniti. Laboriosam iusto possimus perspiciatis quod. Animi ' );
 INSERT INTO tecnico ( cpf, especialidade )
-	VALUES ( '575.250.850-93', 'Omnis non totam recusandae illo pariatur reprehenderit inventore. Odio suscipit facilis' );
+	VALUES ( '121.199.607-14', 'Quas similique in recusandae repudiandae. Corrupti repellendus autem. Corrupti quos veritatis temporibus ' );
 
 /* TABLE copiloto */
 INSERT INTO copiloto ( cpf, habilitacao )
-	VALUES ( '602.809.454-84', 'Aliquam volu' );
+	VALUES ( '432.789.595-66', 'Sit tenetur ' );
 INSERT INTO copiloto ( cpf, habilitacao )
-	VALUES ( '845.832.187-67', 'Quod exceptu' );
+	VALUES ( '632.034.959-23', 'Placeat nesc' );
 INSERT INTO copiloto ( cpf, habilitacao )
-	VALUES ( '529.827.160-27', 'At eum deser' );
+	VALUES ( '197.520.896-76', 'Eligendi tem' );
 INSERT INTO copiloto ( cpf, habilitacao )
-	VALUES ( '607.443.809-78', 'Temporibus n' );
+	VALUES ( '833.488.525-02', 'Ea totam et ' );
 INSERT INTO copiloto ( cpf, habilitacao )
-	VALUES ( '459.131.430-66', 'Unde maiores' );
+	VALUES ( '624.975.827-59', 'Sapiente acc' );
 INSERT INTO copiloto ( cpf, habilitacao )
-	VALUES ( '299.967.704-87', 'Earum atque ' );
+	VALUES ( '133.722.910-23', 'Aperiam nisi' );
 INSERT INTO copiloto ( cpf, habilitacao )
-	VALUES ( '030.610.128-33', 'Porro placea' );
+	VALUES ( '523.255.716-37', 'Repellat ali' );
 INSERT INTO copiloto ( cpf, habilitacao )
-	VALUES ( '522.502.996-95', 'Asperiores m' );
+	VALUES ( '516.335.573-78', 'Eos molestia' );
 INSERT INTO copiloto ( cpf, habilitacao )
-	VALUES ( '258.729.033-89', 'Deserunt rep' );
+	VALUES ( '679.002.127-48', 'Nam soluta p' );
 INSERT INTO copiloto ( cpf, habilitacao )
-	VALUES ( '238.700.997-66', 'Rerum recusa' );
+	VALUES ( '490.990.422-75', 'Ab rem fugit' );
 INSERT INTO copiloto ( cpf, habilitacao )
-	VALUES ( '575.250.850-93', 'Sint reicien' );
+	VALUES ( '851.398.230-44', 'Nam quae exc' );
 INSERT INTO copiloto ( cpf, habilitacao )
-	VALUES ( '583.596.699-39', 'Debitis veli' );
+	VALUES ( '192.393.547-19', 'Doloremque s' );
 INSERT INTO copiloto ( cpf, habilitacao )
-	VALUES ( '396.343.547-09', 'Laborum expl' );
+	VALUES ( '121.199.607-14', 'Doloribus cu' );
 INSERT INTO copiloto ( cpf, habilitacao )
-	VALUES ( '424.447.919-31', 'Nemo aliquid' );
+	VALUES ( '478.696.780-28', 'Omnis ex ill' );
 INSERT INTO copiloto ( cpf, habilitacao )
-	VALUES ( '531.462.487-11', 'Provident te' );
+	VALUES ( '924.966.747-52', 'Dolorum aliq' );
 INSERT INTO copiloto ( cpf, habilitacao )
-	VALUES ( '918.931.785-13', 'Molestias mi' );
+	VALUES ( '616.020.558-98', 'Illo quos re' );
 INSERT INTO copiloto ( cpf, habilitacao )
-	VALUES ( '969.304.789-35', 'Fugiat est h' );
+	VALUES ( '583.792.569-11', 'Ipsa vero do' );
 INSERT INTO copiloto ( cpf, habilitacao )
-	VALUES ( '621.135.750-86', 'Magnam saepe' );
+	VALUES ( '946.521.617-86', 'Eos asperior' );
 INSERT INTO copiloto ( cpf, habilitacao )
-	VALUES ( '998.627.534-11', 'Eveniet mole' );
+	VALUES ( '782.988.670-79', 'Ratione vita' );
 INSERT INTO copiloto ( cpf, habilitacao )
-	VALUES ( '996.257.521-19', 'Excepturi du' );
+	VALUES ( '736.917.544-50', 'Doloremque r' );
 
 /* TABLE piloto */
 INSERT INTO piloto ( cpf, habilitacao )
-	VALUES ( '996.257.521-19', 'Nostrum face' );
+	VALUES ( '624.975.827-59', 'Maiores iste' );
 INSERT INTO piloto ( cpf, habilitacao )
-	VALUES ( '531.462.487-11', 'Voluptatibus' );
+	VALUES ( '523.255.716-37', 'Rem neque re' );
 INSERT INTO piloto ( cpf, habilitacao )
-	VALUES ( '575.250.850-93', 'Officiis del' );
+	VALUES ( '736.917.544-50', 'Eligendi ut ' );
 INSERT INTO piloto ( cpf, habilitacao )
-	VALUES ( '424.447.919-31', 'Autem dolore' );
+	VALUES ( '478.696.780-28', 'Ea excepturi' );
 INSERT INTO piloto ( cpf, habilitacao )
-	VALUES ( '969.304.789-35', 'Hic expedita' );
+	VALUES ( '133.722.910-23', 'Ab doloremqu' );
 INSERT INTO piloto ( cpf, habilitacao )
-	VALUES ( '238.700.997-66', 'Laudantium h' );
+	VALUES ( '516.335.573-78', 'Accusamus at' );
 INSERT INTO piloto ( cpf, habilitacao )
-	VALUES ( '583.596.699-39', 'Dicta quia e' );
+	VALUES ( '851.398.230-44', 'Quidem reici' );
 INSERT INTO piloto ( cpf, habilitacao )
-	VALUES ( '030.610.128-33', 'Veniam at as' );
+	VALUES ( '616.020.558-98', 'Tempore dict' );
 INSERT INTO piloto ( cpf, habilitacao )
-	VALUES ( '299.967.704-87', 'Voluptas mol' );
+	VALUES ( '782.988.670-79', 'Eius volupta' );
 INSERT INTO piloto ( cpf, habilitacao )
-	VALUES ( '529.827.160-27', 'Laborum quis' );
+	VALUES ( '924.966.747-52', 'Inventore eu' );
 INSERT INTO piloto ( cpf, habilitacao )
-	VALUES ( '396.343.547-09', 'Doloribus in' );
+	VALUES ( '490.990.422-75', 'Eius soluta ' );
 INSERT INTO piloto ( cpf, habilitacao )
-	VALUES ( '602.809.454-84', 'Ex laudantiu' );
+	VALUES ( '632.034.959-23', 'Eius delectu' );
 INSERT INTO piloto ( cpf, habilitacao )
-	VALUES ( '607.443.809-78', 'Iure ab quid' );
+	VALUES ( '946.521.617-86', 'Veniam dolor' );
 INSERT INTO piloto ( cpf, habilitacao )
-	VALUES ( '258.729.033-89', 'Odit nemo oc' );
+	VALUES ( '833.488.525-02', 'Nesciunt quo' );
 INSERT INTO piloto ( cpf, habilitacao )
-	VALUES ( '459.131.430-66', 'Sunt molesti' );
+	VALUES ( '197.520.896-76', 'Officia quas' );
 INSERT INTO piloto ( cpf, habilitacao )
-	VALUES ( '621.135.750-86', 'Debitis ulla' );
+	VALUES ( '121.199.607-14', 'Ad explicabo' );
 INSERT INTO piloto ( cpf, habilitacao )
-	VALUES ( '998.627.534-11', 'Eveniet repu' );
+	VALUES ( '583.792.569-11', 'Adipisci qui' );
 INSERT INTO piloto ( cpf, habilitacao )
-	VALUES ( '845.832.187-67', 'Officia amet' );
+	VALUES ( '432.789.595-66', 'Facere delen' );
 INSERT INTO piloto ( cpf, habilitacao )
-	VALUES ( '522.502.996-95', 'Animi atque ' );
+	VALUES ( '679.002.127-48', 'Repellendus ' );
 INSERT INTO piloto ( cpf, habilitacao )
-	VALUES ( '918.931.785-13', 'Quaerat pari' );
+	VALUES ( '192.393.547-19', 'Impedit sapi' );
 
 /* TABLE assistente */
 INSERT INTO assistente ( cpf )
-	VALUES ( '030.610.128-33' );
+	VALUES ( '624.975.827-59' );
 INSERT INTO assistente ( cpf )
-	VALUES ( '424.447.919-31' );
+	VALUES ( '133.722.910-23' );
 INSERT INTO assistente ( cpf )
-	VALUES ( '996.257.521-19' );
+	VALUES ( '632.034.959-23' );
 INSERT INTO assistente ( cpf )
-	VALUES ( '238.700.997-66' );
+	VALUES ( '432.789.595-66' );
 INSERT INTO assistente ( cpf )
-	VALUES ( '607.443.809-78' );
+	VALUES ( '490.990.422-75' );
 INSERT INTO assistente ( cpf )
-	VALUES ( '998.627.534-11' );
+	VALUES ( '946.521.617-86' );
 INSERT INTO assistente ( cpf )
-	VALUES ( '918.931.785-13' );
+	VALUES ( '616.020.558-98' );
 INSERT INTO assistente ( cpf )
-	VALUES ( '258.729.033-89' );
+	VALUES ( '516.335.573-78' );
 INSERT INTO assistente ( cpf )
-	VALUES ( '459.131.430-66' );
+	VALUES ( '736.917.544-50' );
 INSERT INTO assistente ( cpf )
-	VALUES ( '583.596.699-39' );
+	VALUES ( '851.398.230-44' );
 INSERT INTO assistente ( cpf )
-	VALUES ( '621.135.750-86' );
+	VALUES ( '583.792.569-11' );
 INSERT INTO assistente ( cpf )
-	VALUES ( '529.827.160-27' );
+	VALUES ( '523.255.716-37' );
 INSERT INTO assistente ( cpf )
-	VALUES ( '299.967.704-87' );
+	VALUES ( '833.488.525-02' );
 INSERT INTO assistente ( cpf )
-	VALUES ( '845.832.187-67' );
+	VALUES ( '197.520.896-76' );
 INSERT INTO assistente ( cpf )
-	VALUES ( '531.462.487-11' );
+	VALUES ( '192.393.547-19' );
 INSERT INTO assistente ( cpf )
-	VALUES ( '522.502.996-95' );
+	VALUES ( '679.002.127-48' );
 INSERT INTO assistente ( cpf )
-	VALUES ( '969.304.789-35' );
+	VALUES ( '782.988.670-79' );
 INSERT INTO assistente ( cpf )
-	VALUES ( '575.250.850-93' );
+	VALUES ( '121.199.607-14' );
 INSERT INTO assistente ( cpf )
-	VALUES ( '396.343.547-09' );
+	VALUES ( '478.696.780-28' );
 INSERT INTO assistente ( cpf )
-	VALUES ( '602.809.454-84' );
+	VALUES ( '924.966.747-52' );
 
 /* TABLE opCamera */
 INSERT INTO opCamera ( cpf, inicioCarreira )
-	VALUES ( '998.627.534-11', to_date ('2009-05-06', 'YYYY-MM-DD') );
+	VALUES ( '478.696.780-28', to_date ('2006-12-18', 'YYYY-MM-DD') );
 INSERT INTO opCamera ( cpf, inicioCarreira )
-	VALUES ( '299.967.704-87', to_date ('2007-06-07', 'YYYY-MM-DD') );
+	VALUES ( '624.975.827-59', to_date ('2002-03-25', 'YYYY-MM-DD') );
 INSERT INTO opCamera ( cpf, inicioCarreira )
-	VALUES ( '621.135.750-86', to_date ('2000-09-01', 'YYYY-MM-DD') );
+	VALUES ( '851.398.230-44', to_date ('2000-06-24', 'YYYY-MM-DD') );
 INSERT INTO opCamera ( cpf, inicioCarreira )
-	VALUES ( '583.596.699-39', to_date ('2003-08-12', 'YYYY-MM-DD') );
+	VALUES ( '736.917.544-50', to_date ('2017-10-29', 'YYYY-MM-DD') );
 INSERT INTO opCamera ( cpf, inicioCarreira )
-	VALUES ( '522.502.996-95', to_date ('2005-01-23', 'YYYY-MM-DD') );
+	VALUES ( '121.199.607-14', to_date ('2013-12-27', 'YYYY-MM-DD') );
 INSERT INTO opCamera ( cpf, inicioCarreira )
-	VALUES ( '531.462.487-11', to_date ('2011-11-19', 'YYYY-MM-DD') );
+	VALUES ( '516.335.573-78', to_date ('2009-09-06', 'YYYY-MM-DD') );
 INSERT INTO opCamera ( cpf, inicioCarreira )
-	VALUES ( '845.832.187-67', to_date ('2018-01-18', 'YYYY-MM-DD') );
+	VALUES ( '679.002.127-48', to_date ('2009-01-14', 'YYYY-MM-DD') );
 INSERT INTO opCamera ( cpf, inicioCarreira )
-	VALUES ( '424.447.919-31', to_date ('2015-07-15', 'YYYY-MM-DD') );
+	VALUES ( '632.034.959-23', to_date ('2004-06-04', 'YYYY-MM-DD') );
 INSERT INTO opCamera ( cpf, inicioCarreira )
-	VALUES ( '969.304.789-35', to_date ('2012-05-23', 'YYYY-MM-DD') );
+	VALUES ( '616.020.558-98', to_date ('2000-08-19', 'YYYY-MM-DD') );
 INSERT INTO opCamera ( cpf, inicioCarreira )
-	VALUES ( '459.131.430-66', to_date ('2004-06-20', 'YYYY-MM-DD') );
+	VALUES ( '946.521.617-86', to_date ('2017-02-05', 'YYYY-MM-DD') );
 INSERT INTO opCamera ( cpf, inicioCarreira )
-	VALUES ( '238.700.997-66', to_date ('2005-10-28', 'YYYY-MM-DD') );
+	VALUES ( '133.722.910-23', to_date ('2008-03-21', 'YYYY-MM-DD') );
 INSERT INTO opCamera ( cpf, inicioCarreira )
-	VALUES ( '030.610.128-33', to_date ('2007-02-09', 'YYYY-MM-DD') );
+	VALUES ( '782.988.670-79', to_date ('2011-10-25', 'YYYY-MM-DD') );
 INSERT INTO opCamera ( cpf, inicioCarreira )
-	VALUES ( '996.257.521-19', to_date ('2015-06-19', 'YYYY-MM-DD') );
+	VALUES ( '583.792.569-11', to_date ('2010-12-17', 'YYYY-MM-DD') );
 INSERT INTO opCamera ( cpf, inicioCarreira )
-	VALUES ( '918.931.785-13', to_date ('2005-01-22', 'YYYY-MM-DD') );
+	VALUES ( '197.520.896-76', to_date ('2010-08-28', 'YYYY-MM-DD') );
 INSERT INTO opCamera ( cpf, inicioCarreira )
-	VALUES ( '396.343.547-09', to_date ('2010-06-02', 'YYYY-MM-DD') );
+	VALUES ( '490.990.422-75', to_date ('2010-01-14', 'YYYY-MM-DD') );
 INSERT INTO opCamera ( cpf, inicioCarreira )
-	VALUES ( '575.250.850-93', to_date ('2006-09-16', 'YYYY-MM-DD') );
+	VALUES ( '192.393.547-19', to_date ('2005-04-24', 'YYYY-MM-DD') );
 INSERT INTO opCamera ( cpf, inicioCarreira )
-	VALUES ( '258.729.033-89', to_date ('2018-03-21', 'YYYY-MM-DD') );
+	VALUES ( '432.789.595-66', to_date ('2018-12-07', 'YYYY-MM-DD') );
 INSERT INTO opCamera ( cpf, inicioCarreira )
-	VALUES ( '529.827.160-27', to_date ('2001-05-19', 'YYYY-MM-DD') );
+	VALUES ( '924.966.747-52', to_date ('2018-05-17', 'YYYY-MM-DD') );
 INSERT INTO opCamera ( cpf, inicioCarreira )
-	VALUES ( '607.443.809-78', to_date ('2014-03-10', 'YYYY-MM-DD') );
+	VALUES ( '833.488.525-02', to_date ('2016-04-28', 'YYYY-MM-DD') );
 INSERT INTO opCamera ( cpf, inicioCarreira )
-	VALUES ( '602.809.454-84', to_date ('2015-09-21', 'YYYY-MM-DD') );
+	VALUES ( '523.255.716-37', to_date ('2018-03-15', 'YYYY-MM-DD') );
 
 /* TABLE equipamento */
 /* NULL INSERTION FOR ATTRIBUTEdescricaoAT TABLEequipamento */
 INSERT INTO equipamento ( modelo, nome, quantidade, marca, descricao, tipo )
-	VALUES ( 'Commodi sequi dolore repellendus exer', 'Luiz Gustavo da Rosa', 155486, 'Placeat possimus cupidita', NULL, 'CAMERA' );
+	VALUES ( 'Ullam pariatur esse delectus officia p', 'Rebeca Sales', 275146, 'Corrupti quaerat ', NULL, 'SONORIZACAO' );
 /* NULL INSERTION FOR ATTRIBUTEmarcaAT TABLEequipamento */
 INSERT INTO equipamento ( modelo, nome, quantidade, marca, descricao, tipo )
-	VALUES ( 'Error mollitia eligendi optio aut. Nam f', 'Enzo da Costa', 704228, NULL, 'Id quam facilis asperiores rem nesciunt praesentium. Quos suscipit autem voluptatum natus similique. Iure explicabo placeat explicabo occaecati. Natus animi tempora placeat asperiores illo', 'ESTRUTURACAO' );
+	VALUES ( 'Rem labore ratione inventore quas praesen', 'Lara da Rosa', 405415, NULL, 'Molestias repellendus at corrupti debitis. Ipsum natus at. Provident dolorem laboriosam facere repellat. Eos commodi ex odio. Labore laborum possimus qui quibusdam distinctio vero soluta', 'ESTRUTURACAO' );
 INSERT INTO equipamento ( modelo, nome, quantidade, marca, descricao, tipo )
-	VALUES ( 'Velit quo quas. Exercitationem odit enim pariatur autem q', 'Thiago Cunha', 590140, 'Est reprehenderit', 'Praesentium deserunt temporibus corporis enim. Deleniti distinctio dolore dolore. Ducimus perferendis sunt praesentium magni facere doloremque accusantium', 'DRONE' );
+	VALUES ( 'Rerum iure eligendi soluta voluptates mo', 'Julia Alves', 562636, 'Facilis saepe sed culpa und', 'Repellendus similique excepturi pariatur pariatur error. Neque animi odio. Exercitationem laudantium soluta laudantium. Numquam illum ab odio minima eaque. Id architecto molestiae similique cum', 'ESTRUTURACAO' );
 INSERT INTO equipamento ( modelo, nome, quantidade, marca, descricao, tipo )
-	VALUES ( 'Ad necessitatibus dolore laudant', 'Srta. Gabriela Barbosa', 397394, 'Accusamus ducimus explicabo ', 'Vel nobis nesciunt sint. Tempore vitae saepe at voluptate porro eveniet. Temporibus corrupti hic labore culpa labore debitis enim. Officia enim quisquam animi. Velit cupiditate necessitatibus', 'CAMERA' );
+	VALUES ( 'Earum eligendi labore. Consequuntur neq', 'Antônio Nunes', 474584, 'Officiis quae harum dolores', 'Eius iste vero corrupti laudantium et officiis. Rem quisquam saepe debitis. Rerum amet commodi. Omnis expedita eius sunt dolorum dolores eligendi', 'DRONE' );
 INSERT INTO equipamento ( modelo, nome, quantidade, marca, descricao, tipo )
-	VALUES ( 'Eveniet laborum exercitationem. Alias temporibus reiciendis', 'Pietra Costa', 602593, 'Odit perferendis perspic', 'Nihil quia alias. Eveniet nesciunt sit iusto eligendi occaecati itaque', 'CAMERA' );
+	VALUES ( 'Similique saepe architecto placeat dolores quis qu', 'Ana Julia Alves', 145921, 'Vel nulla volupt', 'Voluptatem vel nesciunt ab. Odio officiis labore. Vero atque ipsa expedita officia', 'DRONE' );
 INSERT INTO equipamento ( modelo, nome, quantidade, marca, descricao, tipo )
-	VALUES ( 'Necessitatibus temporibus consequuntur. Nihil eum quia quae faci', 'Caio da Rosa', 176067, 'Natus eius rem dolore corrupti ', 'Iure occaecati incidunt soluta voluptas molestias. Dignissimos molestias numquam adipisci eaque exercitationem. Tempora magni voluptas corporis deserunt', 'CAMERA' );
+	VALUES ( 'Adipisci architecto magni eligendi ratione. Dolorem magni e', 'Davi Luiz Nunes', 556835, 'Quas ut fuga. Culpa', 'Magnam accusamus quod perspiciatis non nulla. Ducimus iure in. Excepturi tenetur temporibus voluptates. Harum ipsa eveniet tenetur nam tempora', 'SONORIZACAO' );
 INSERT INTO equipamento ( modelo, nome, quantidade, marca, descricao, tipo )
-	VALUES ( 'A necessitatibus totam exercitationem volupt', 'Carlos Eduardo Pereira', 434579, 'Sit ab sit doloribus ', 'Laudantium nihil illo porro minus assumenda neque. Expedita porro quos. Possimus autem expedita voluptates doloremque voluptatum et', 'CAMERA' );
+	VALUES ( 'Exercitationem dicta ratione eius doloribus dolorum. S', 'Otávio da Cunha', 673732, 'Modi porro aspernatur sit ', 'Neque ut consequuntur tempore molestiae. Animi nihil eius. Veritatis autem suscipit aut natus eveniet sequi. Quis quos possimus facilis. Beatae harum ab dolorum vero', 'CAMERA' );
 INSERT INTO equipamento ( modelo, nome, quantidade, marca, descricao, tipo )
-	VALUES ( 'Ipsa reprehenderit quaerat amet odit molest', 'Samuel da Costa', 513588, 'Nesciunt a animi at pariat', 'Quibusdam nostrum quisquam suscipit culpa mollitia. Dignissimos ut quidem nihil nihil ex dolores odit. Assumenda neque pariatur. Impedit illo cumque omnis voluptates asperiores', 'ESTRUTURACAO' );
+	VALUES ( 'Id voluptatum perspiciatis laborum adipisci fu', 'Gustavo Almeida', 796519, 'Perferendis distin', 'Excepturi ad qui non placeat labore velit. Possimus voluptates facilis eligendi porro tempore', 'ESTRUTURACAO' );
 INSERT INTO equipamento ( modelo, nome, quantidade, marca, descricao, tipo )
-	VALUES ( 'Consequuntur dolor suscipit optio reiciendis ullam error', 'Sr. Augusto Cardoso,', 187355, 'Pariatur magni delect', 'Quidem quidem dolore nihil labore quos cumque. Modi distinctio ipsam corrupti fugiat dolor. Nisi soluta eveniet corrupti architecto quidem quasi', 'CAMERA' );
+	VALUES ( 'Illo nobis dolorem dignissimos totam. Ad a', 'Sr. Danilo da Costa', 878232, 'Corporis culpa consequuntu', 'Iure vitae aperiam ut repellendus eius culpa. Soluta adipisci officia. Facilis repellat necessitatibus sapiente totam. Fugiat soluta est ut eaque autem', 'CAMERA' );
 INSERT INTO equipamento ( modelo, nome, quantidade, marca, descricao, tipo )
-	VALUES ( 'Sed eaque laboriosam numquam nostrum natus. Laudan', 'Francisco Monteiro', 497208, 'Laudantium deleniti ', 'Quo minus nostrum cumque explicabo quasi deleniti. Alias sapiente rerum molestias. Quas cum quis placeat ut laboriosam voluptas fuga. Sint in ullam', 'SONORIZACAO' );
+	VALUES ( 'Quas corporis mollitia quia sunt dol', 'Srta. Joana da Rocha', 517738, 'Maxime dignissimos ex', 'Dicta eius asperiores dolor dolorum atque. Magni laudantium voluptates iusto qui sapiente delectus quidem. Reiciendis fuga alias iusto perferendis. Vero omnis corporis occaecati', 'CAMERA' );
 INSERT INTO equipamento ( modelo, nome, quantidade, marca, descricao, tipo )
-	VALUES ( 'Corrupti molestiae necessitatibus aspernatur explicabo. Ad do', 'João Felipe da Costa', 636737, 'Illo culpa dolore incidu', 'Omnis beatae commodi totam in. Laborum fuga possimus veritatis alias sint. Repellendus consequatur excepturi quaerat ullam animi et delectus. Delectus eveniet deserunt deserunt totam nostrum', 'ESTRUTURACAO' );
+	VALUES ( 'Soluta doloremque fuga rem. Doloremque provid', 'Stephany Pinto', 456191, 'Eum ab doloribus ', 'Expedita quisquam commodi sit explicabo. Assumenda magnam at tempore ab corrupti ratione. Culpa quae odio exercitationem ipsum consequuntur. Ducimus quos ex. Exercitationem impedit nesciunt quaerat', 'ESTRUTURACAO' );
 INSERT INTO equipamento ( modelo, nome, quantidade, marca, descricao, tipo )
-	VALUES ( 'Consequatur modi similique dicta sed placeat nobis. Possim', 'Srta. Alana FariasFernandes', 760436, 'Magni accusamus sapiente id', 'Cum quidem natus odio quam eius tempore non. Doloremque reprehenderit dolores quo vero. Cumque aspernatur necessitatibus harum nemo', 'CAMERA' );
+	VALUES ( 'Dolores alias et facere ut ullam quis. Non asperiores modi mo', 'Maria Sophia Duarte', 738690, 'Mollitia suscipit dolor n', 'Repellat dolores eligendi soluta expedita vero. Fugiat minus natus saepe iste soluta. Eos ut eveniet iusto hic. Consequuntur perspiciatis beatae dolore reiciendis', 'CAMERA' );
 INSERT INTO equipamento ( modelo, nome, quantidade, marca, descricao, tipo )
-	VALUES ( 'Alias ex tempora molestiae. Tempora nesciunt exercitationem n', 'Paulo Martins', 237376, 'Dignissimos magnam laborum magn', 'Nihil accusantium aliquid voluptatem ab ratione sapiente. Tenetur quod perspiciatis quo amet consequuntur. Rerum molestias itaque. Aut distinctio exercitationem nobis', 'DRONE' );
+	VALUES ( 'Officia placeat doloribus iure quod odio nam. Odit at error ', 'Sra. Marcela Duarte', 482852, 'Dolore vel placeat', 'Nostrum asperiores laudantium hic aliquam quibusdam. Ipsa harum atque. Placeat rem deserunt porro dolor', 'SONORIZACAO' );
 INSERT INTO equipamento ( modelo, nome, quantidade, marca, descricao, tipo )
-	VALUES ( 'Debitis soluta aut vero voluptates. Voluptatibus vero pl', 'Raul da Paz', 617833, 'Nulla odit aut el', 'Voluptatem labore porro enim velit reprehenderit. Accusamus dolore non porro quisquam deleniti. Fugiat quidem optio voluptatibus est', 'DRONE' );
+	VALUES ( 'Ad dolorum quos molestias esse accusamus. Consectetur exped', 'Marcos Vinicius Peixoto', 513669, 'Perferendis tenetur sunt', 'Omnis doloribus expedita atque tempora. Consequuntur magni possimus excepturi cupiditate nulla. Officiis officiis in molestiae voluptas enim commodi. Asperiores repellendus facilis', 'DRONE' );
 INSERT INTO equipamento ( modelo, nome, quantidade, marca, descricao, tipo )
-	VALUES ( 'Harum necessitatibus magnam nobis. Ratione natus doloremque aliq', 'Sr. Leonardo Lopes', 246223, 'Saepe voluptates ', 'Non praesentium ratione soluta. At reprehenderit accusamus ad odit sit voluptatum doloribus. Assumenda odit dignissimos a inventore assumenda laborum ad', 'ESTRUTURACAO' );
+	VALUES ( 'Nulla eos velit aliquid dolorum aut commodi. Maxime aper', 'Davi Lucas Oliveira', 479729, 'A labore qui aliquid. Inventore ', 'Pariatur nesciunt tempora aperiam excepturi. Nostrum vitae velit nisi architecto maiores eum. Dolore culpa distinctio vel. Maxime aspernatur distinctio reiciendis tenetur quasi pariatur cumque', 'SONORIZACAO' );
 INSERT INTO equipamento ( modelo, nome, quantidade, marca, descricao, tipo )
-	VALUES ( 'Explicabo in quod nisi sapiente ex magni. Possimus', 'Maria Luiza Barros', 651040, 'Perspiciatis nihil v', 'Omnis ut enim eum fugit suscipit dolorem nesciunt. Repellendus ab in alias deserunt. Tenetur aut impedit et modi asperiores. Itaque unde animi iste a dolorem qui', 'ESTRUTURACAO' );
+	VALUES ( 'Sit deleniti consequuntur velit sit. Corrupti p', 'Emanuel Gonçalves', 844662, 'Aliquam ipsum sint quas praese', 'Iusto consequatur aliquid quas occaecati laudantium. Distinctio provident dolores at optio quisquam rerum. Quod ad quibusdam incidunt illo', 'ESTRUTURACAO' );
 INSERT INTO equipamento ( modelo, nome, quantidade, marca, descricao, tipo )
-	VALUES ( 'Nemo aliquid qui veniam voluptates. Perspiciatis libero pl', 'Eduardo Peixoto', 544375, 'Velit consequatur alia', 'Labore quo unde sunt sapiente. Quidem deserunt quas voluptate soluta occaecati voluptas. Quaerat odit ducimus quis ratione corporis minima assumenda. Voluptas fugiat rerum eveniet', 'DRONE' );
+	VALUES ( 'Assumenda possimus cupiditate.Laudantium quas minima ea volupta', 'Sr. João Felipe Ribeiro', 431285, 'Doloribus illum ducimus f', 'Dolore dolor corporis. Ab aspernatur eligendi vitae ullam maiores aspernatur. Nihil similique nihil corrupti quo. Eligendi veritatis voluptatum impedit odio incidunt amet. Accusamus amet ratione eum', 'SONORIZACAO' );
 INSERT INTO equipamento ( modelo, nome, quantidade, marca, descricao, tipo )
-	VALUES ( 'Repellendus vitae natus incidunt', 'Vinicius Teixeira', 635567, 'Dolor omnis aut dolore repel', 'Atque ullam odio reiciendis. Possimus animi odit nostrum excepturi ea enim. Eius recusandae nesciunt eius excepturi sapiente quae', 'CAMERA' );
+	VALUES ( 'Laborum sit eaque necessitatibus. Seq', 'Isaac Campos', 650209, 'Quas maiores molestia', 'Nisi in iste repudiandae nihil iure. Voluptates dolor vitae quisquam iure distinctio. Delectus earum provident consequuntur iure at repellendus. Possimus asperiores saepe', 'SONORIZACAO' );
 INSERT INTO equipamento ( modelo, nome, quantidade, marca, descricao, tipo )
-	VALUES ( 'Mollitia aliquam cum esse. Molestiae odio libero laborum mole', 'Sr. Yuri Teixeira', 155827, 'Voluptas tenetur eum ab. Ab ', 'Accusamus velit atque tempora. Animi facilis sapiente ea consequuntur consectetur reiciendis', 'DRONE' );
+	VALUES ( 'Natus occaecati voluptatem iure. Sint consequuntur dolor', 'Sofia Gomes', 760684, 'Quo optio qui. Aut offic', 'Laboriosam earum voluptatum ipsam commodi quibusdam iure culpa. Reiciendis quo ipsam ab', 'ESTRUTURACAO' );
 INSERT INTO equipamento ( modelo, nome, quantidade, marca, descricao, tipo )
-	VALUES ( 'Corporis dignissimos eius distinctio voluptatem de', 'Lívia Ribeiro', 849644, 'Sapiente veritatis nobis s', 'Beatae tenetur doloribus recusandae fugiat tempore. A ducimus incidunt praesentium laudantium. Recusandae quam deleniti quae quas pariatur. Perspiciatis labore fugiat. Reprehenderit beatae quisquam', 'DRONE' );
+	VALUES ( 'Quo occaecati non ex minima. Pariatur tenetur ab neque ', 'Catarina da Cunha', 145374, 'Expedita porro ten', 'Distinctio natus adipisci ex. Laboriosam itaque temporibus animi ratione qui', 'CAMERA' );
 INSERT INTO equipamento ( modelo, nome, quantidade, marca, descricao, tipo )
-	VALUES ( 'Odit magni voluptatibus vel similique. Vitae offic', 'Nicole Carvalho', 206600, 'Consectetur veniam', 'Facere fugiat eum ea. Deserunt magni molestiae enim sapiente eveniet officiis. Dolorem nam totam non', 'DRONE' );
+	VALUES ( 'Neque delectus incidunt quas dolorem tempora.Eaque ', 'Marcelo Novaes', 630170, 'Ipsum quasi hic impedit op', 'Debitis architecto esse consectetur. Nemo id itaque voluptate. Placeat aut corporis reiciendis nulla perspiciatis. Fugiat repellat iure cupiditate. Voluptate unde possimus consequuntur ipsam', 'CAMERA' );
 INSERT INTO equipamento ( modelo, nome, quantidade, marca, descricao, tipo )
-	VALUES ( 'Quos odit aut velit vel consequatur. Nisi ', 'Letícia Rocha', 509149, 'Provident alias quos molestiae v', 'Nemo porro quia quas atque maiores architecto consectetur. Natus possimus eos voluptatem. Veniam amet repellendus eaque. Sit eum omnis incidunt suscipit eaque vero', 'CAMERA' );
+	VALUES ( 'Sint suscipit nam provident exercitationem architecto. Dicta eu', 'Maria Julia Azevedo', 288174, 'Explicabo voluptates quam a', 'Labore rerum ipsam dicta veritatis nobis impedit. Facere cumque ratione in. Alias odio quia vero dicta quibusdam ex dolore. Nobis delectus praesentium illo dignissimos ea accusantium', 'SONORIZACAO' );
 
 /* TABLE estruturacao */
 INSERT INTO estruturacao ( id )
-	VALUES ( 19 );
-INSERT INTO estruturacao ( id )
-	VALUES ( 9 );
-INSERT INTO estruturacao ( id )
-	VALUES ( 16 );
-INSERT INTO estruturacao ( id )
-	VALUES ( 13 );
-INSERT INTO estruturacao ( id )
-	VALUES ( 15 );
-INSERT INTO estruturacao ( id )
-	VALUES ( 11 );
-INSERT INTO estruturacao ( id )
-	VALUES ( 17 );
-INSERT INTO estruturacao ( id )
-	VALUES ( 14 );
-INSERT INTO estruturacao ( id )
-	VALUES ( 6 );
+	VALUES ( 12 );
 INSERT INTO estruturacao ( id )
 	VALUES ( 7 );
 INSERT INTO estruturacao ( id )
+	VALUES ( 19 );
+INSERT INTO estruturacao ( id )
+	VALUES ( 8 );
+INSERT INTO estruturacao ( id )
+	VALUES ( 18 );
+INSERT INTO estruturacao ( id )
+	VALUES ( 6 );
+INSERT INTO estruturacao ( id )
 	VALUES ( 4 );
 INSERT INTO estruturacao ( id )
-	VALUES ( 3 );
+	VALUES ( 16 );
+INSERT INTO estruturacao ( id )
+	VALUES ( 11 );
+INSERT INTO estruturacao ( id )
+	VALUES ( 14 );
+INSERT INTO estruturacao ( id )
+	VALUES ( 1 );
+INSERT INTO estruturacao ( id )
+	VALUES ( 10 );
+INSERT INTO estruturacao ( id )
+	VALUES ( 20 );
+INSERT INTO estruturacao ( id )
+	VALUES ( 17 );
+INSERT INTO estruturacao ( id )
+	VALUES ( 15 );
+INSERT INTO estruturacao ( id )
+	VALUES ( 9 );
 INSERT INTO estruturacao ( id )
 	VALUES ( 2 );
 INSERT INTO estruturacao ( id )
 	VALUES ( 5 );
 INSERT INTO estruturacao ( id )
-	VALUES ( 18 );
+	VALUES ( 13 );
 INSERT INTO estruturacao ( id )
-	VALUES ( 8 );
-INSERT INTO estruturacao ( id )
-	VALUES ( 12 );
-INSERT INTO estruturacao ( id )
-	VALUES ( 1 );
-INSERT INTO estruturacao ( id )
-	VALUES ( 20 );
-INSERT INTO estruturacao ( id )
-	VALUES ( 10 );
+	VALUES ( 3 );
 
 /* TABLE drone */
 INSERT INTO drone ( id, fonteAlimentacao, tempoMaxVoo, alcanceRemoto )
-	VALUES ( 10, 'A consectetur voluptate modi molestiae deb', 770062, 586652 );
+	VALUES ( 1, 'Laudantium voluptate deleniti voluptatibus dolor', 244908, 400940 );
 INSERT INTO drone ( id, fonteAlimentacao, tempoMaxVoo, alcanceRemoto )
-	VALUES ( 17, 'Repellendus temporibus impedit aspern', 125721, 504464 );
+	VALUES ( 4, 'Voluptatibus architecto atque sunt cupidita', 344487, 612327 );
 INSERT INTO drone ( id, fonteAlimentacao, tempoMaxVoo, alcanceRemoto )
-	VALUES ( 1, 'Iure laboriosam ex neque facilis cum necess', 261545, 136696 );
+	VALUES ( 6, 'Molestiae impedit fuga reiciendi', 107000, 132084 );
 INSERT INTO drone ( id, fonteAlimentacao, tempoMaxVoo, alcanceRemoto )
-	VALUES ( 15, 'Quam sunt necessitatibus cupiditate. Amet accusan', 851557, 263127 );
+	VALUES ( 13, 'Molestias asperiores aut ipsam. E', 517544, 418834 );
 INSERT INTO drone ( id, fonteAlimentacao, tempoMaxVoo, alcanceRemoto )
-	VALUES ( 14, 'Exercitationem aliquam maiores as', 759217, 161231 );
+	VALUES ( 18, 'Harum similique sequi numquam nam quidem quasi im', 497633, 484050 );
 INSERT INTO drone ( id, fonteAlimentacao, tempoMaxVoo, alcanceRemoto )
-	VALUES ( 9, 'Architecto inventore mollitia au', 622553, 384873 );
+	VALUES ( 2, 'Totam magnam illum. Saepe neque ', 260784, 601354 );
 INSERT INTO drone ( id, fonteAlimentacao, tempoMaxVoo, alcanceRemoto )
-	VALUES ( 3, 'Illo ab cupiditate unde debitis.Consequatur et vo', 711868, 370572 );
+	VALUES ( 10, 'Neque est beatae autem dignissimos dignissimos. Atque commodi se', 877527, 698384 );
 INSERT INTO drone ( id, fonteAlimentacao, tempoMaxVoo, alcanceRemoto )
-	VALUES ( 16, 'Magnam nihil doloribus perferendis iste de', 878985, 170109 );
+	VALUES ( 12, 'Tempore veritatis incidunt error facere. In quibusdam facilis ', 655043, 156719 );
 INSERT INTO drone ( id, fonteAlimentacao, tempoMaxVoo, alcanceRemoto )
-	VALUES ( 8, 'Fugit sequi eaque nihil laboriosam quo tempor', 702265, 358877 );
+	VALUES ( 5, 'Sit modi ipsa molestiae eaque cumque. ', 877290, 515455 );
 INSERT INTO drone ( id, fonteAlimentacao, tempoMaxVoo, alcanceRemoto )
-	VALUES ( 11, 'Harum maxime unde ea pariatur. Labore deserunt at soluta.', 125518, 499361 );
+	VALUES ( 15, 'Ipsum consequuntur consequatur quasi. Doloremque co', 545399, 651823 );
 INSERT INTO drone ( id, fonteAlimentacao, tempoMaxVoo, alcanceRemoto )
-	VALUES ( 7, 'Voluptatum fuga libero sit minus. Occaecati ad na', 423225, 718941 );
+	VALUES ( 3, 'Vero explicabo porro autem consequuntur reic', 826939, 156319 );
 INSERT INTO drone ( id, fonteAlimentacao, tempoMaxVoo, alcanceRemoto )
-	VALUES ( 20, 'Labore qui suscipit perspiciatis quisquam ad quis. Et conse', 549393, 134598 );
+	VALUES ( 8, 'Quibusdam ad laborum explicabo. Quasi ex om', 257187, 726878 );
 INSERT INTO drone ( id, fonteAlimentacao, tempoMaxVoo, alcanceRemoto )
-	VALUES ( 12, 'Aut molestias numquam soluta aspernatur commodi quo', 205943, 515478 );
+	VALUES ( 16, 'Consequuntur voluptatibus facilis rem exce', 438463, 364284 );
 INSERT INTO drone ( id, fonteAlimentacao, tempoMaxVoo, alcanceRemoto )
-	VALUES ( 19, 'Ducimus dignissimos non itaque. Ipsam minus ', 148370, 735306 );
+	VALUES ( 9, 'Ut voluptatem id error facilis. Saep', 385663, 870684 );
 INSERT INTO drone ( id, fonteAlimentacao, tempoMaxVoo, alcanceRemoto )
-	VALUES ( 18, 'Facilis corporis enim. Fuga fuga reiciendis perspiciatis ration', 497441, 660605 );
+	VALUES ( 7, 'Ipsam hic iste dolore. Ipsam iure veritatis hic aliquam.Deserun', 843327, 669385 );
 INSERT INTO drone ( id, fonteAlimentacao, tempoMaxVoo, alcanceRemoto )
-	VALUES ( 13, 'Provident voluptatum fugit ex nam omnis. Nam fug', 413931, 130323 );
+	VALUES ( 14, 'Rem molestias dolorum illo itaque', 553496, 715639 );
 INSERT INTO drone ( id, fonteAlimentacao, tempoMaxVoo, alcanceRemoto )
-	VALUES ( 6, 'Quod nemo velit temporibus quos reprehenderit. I', 880448, 755135 );
+	VALUES ( 19, 'Ab nostrum ducimus saepe repellat aut ', 372778, 655484 );
 INSERT INTO drone ( id, fonteAlimentacao, tempoMaxVoo, alcanceRemoto )
-	VALUES ( 5, 'Similique saepe et nulla qui vitae. Officiis error om', 786367, 701577 );
+	VALUES ( 11, 'Excepturi eveniet maxime praesentium minima eaque. Nulla velit i', 462159, 657509 );
 INSERT INTO drone ( id, fonteAlimentacao, tempoMaxVoo, alcanceRemoto )
-	VALUES ( 2, 'Cupiditate ipsam animi voluptatum.', 268811, 589433 );
+	VALUES ( 20, 'Earum nulla non distinctio quisquam architecto adipisci. Numqua', 681792, 397318 );
 INSERT INTO drone ( id, fonteAlimentacao, tempoMaxVoo, alcanceRemoto )
-	VALUES ( 4, 'Minima tempora animi eum. Voluptates pariatur ', 505659, 755649 );
+	VALUES ( 17, 'Tenetur mollitia hic sapiente perfere', 756427, 808757 );
 
 /* TABLE sonorizacao */
 INSERT INTO sonorizacao ( id, potencia, posseEise )
-	VALUES ( 6, 506448, FALSE );
+	VALUES ( 12, 355975, TRUE );
 INSERT INTO sonorizacao ( id, potencia, posseEise )
-	VALUES ( 8, 225783, FALSE );
+	VALUES ( 1, 528512, FALSE );
 INSERT INTO sonorizacao ( id, potencia, posseEise )
-	VALUES ( 10, 733968, FALSE );
+	VALUES ( 11, 677485, FALSE );
 INSERT INTO sonorizacao ( id, potencia, posseEise )
-	VALUES ( 16, 180952, TRUE );
+	VALUES ( 5, 556816, TRUE );
 INSERT INTO sonorizacao ( id, potencia, posseEise )
-	VALUES ( 4, 212361, FALSE );
+	VALUES ( 4, 442430, FALSE );
 INSERT INTO sonorizacao ( id, potencia, posseEise )
-	VALUES ( 19, 438018, FALSE );
+	VALUES ( 14, 725131, TRUE );
 INSERT INTO sonorizacao ( id, potencia, posseEise )
-	VALUES ( 7, 473315, TRUE );
+	VALUES ( 10, 422031, TRUE );
 INSERT INTO sonorizacao ( id, potencia, posseEise )
-	VALUES ( 3, 816640, FALSE );
+	VALUES ( 2, 262322, FALSE );
 INSERT INTO sonorizacao ( id, potencia, posseEise )
-	VALUES ( 13, 760011, TRUE );
+	VALUES ( 6, 468619, TRUE );
 INSERT INTO sonorizacao ( id, potencia, posseEise )
-	VALUES ( 9, 762821, TRUE );
+	VALUES ( 19, 407080, FALSE );
 INSERT INTO sonorizacao ( id, potencia, posseEise )
-	VALUES ( 17, 893927, TRUE );
+	VALUES ( 13, 277365, FALSE );
 INSERT INTO sonorizacao ( id, potencia, posseEise )
-	VALUES ( 5, 878480, FALSE );
+	VALUES ( 17, 714701, FALSE );
 INSERT INTO sonorizacao ( id, potencia, posseEise )
-	VALUES ( 1, 636698, FALSE );
+	VALUES ( 3, 353332, TRUE );
 INSERT INTO sonorizacao ( id, potencia, posseEise )
-	VALUES ( 14, 302902, TRUE );
+	VALUES ( 20, 876147, FALSE );
 INSERT INTO sonorizacao ( id, potencia, posseEise )
-	VALUES ( 15, 778640, FALSE );
+	VALUES ( 16, 752529, TRUE );
 INSERT INTO sonorizacao ( id, potencia, posseEise )
-	VALUES ( 18, 855080, FALSE );
+	VALUES ( 7, 613799, TRUE );
 INSERT INTO sonorizacao ( id, potencia, posseEise )
-	VALUES ( 20, 503905, TRUE );
+	VALUES ( 18, 758502, FALSE );
 INSERT INTO sonorizacao ( id, potencia, posseEise )
-	VALUES ( 2, 823952, FALSE );
+	VALUES ( 8, 531323, FALSE );
 INSERT INTO sonorizacao ( id, potencia, posseEise )
-	VALUES ( 11, 576291, FALSE );
+	VALUES ( 15, 537108, TRUE );
 INSERT INTO sonorizacao ( id, potencia, posseEise )
-	VALUES ( 12, 502264, TRUE );
+	VALUES ( 9, 829446, TRUE );
 
 /* TABLE camera */
 INSERT INTO camera ( id, fonteAlimentacao, certificacaoIP, resistenteQueda, visaoNoturna, zoomLongoAlcance, estabilizadorImagem, conectividade )
-	VALUES ( 4, 'Dolorem ducimus quasi ratione a repellendus. Debitis nobis i', 'IP19', FALSE, FALSE, TRUE, FALSE, 'Provident quasi aliquid beatae sint.' );
+	VALUES ( 20, 'Est facilis cum at non perspiciatis culpa. Magni dolo', 'IP25u', FALSE, FALSE, TRUE, FALSE, 'Numquam eum explicabo aliquid culpa liber' );
 INSERT INTO camera ( id, fonteAlimentacao, certificacaoIP, resistenteQueda, visaoNoturna, zoomLongoAlcance, estabilizadorImagem, conectividade )
-	VALUES ( 3, 'Molestiae velit doloremque quis doloremque sint. R', 'IP669', TRUE, FALSE, FALSE, TRUE, 'Distinctio accusamus enim nesciunt dolore' );
+	VALUES ( 12, 'Animi fugit iure voluptatem non volupt', 'IP355', TRUE, TRUE, FALSE, TRUE, 'Incidunt voluptatem quia unde ipsum dol' );
 INSERT INTO camera ( id, fonteAlimentacao, certificacaoIP, resistenteQueda, visaoNoturna, zoomLongoAlcance, estabilizadorImagem, conectividade )
-	VALUES ( 14, 'Rerum quidem vitae eligendi.Nobis delectus dolor poss', 'IP036', TRUE, TRUE, FALSE, FALSE, 'Delectus exercitationem quibusdam beatae. Asper' );
+	VALUES ( 11, 'Autem quasi qui voluptates. Dolo', 'IP158l', FALSE, FALSE, TRUE, TRUE, 'Aperiam saepe ullam voluptatum numquam sint nobis. N' );
 INSERT INTO camera ( id, fonteAlimentacao, certificacaoIP, resistenteQueda, visaoNoturna, zoomLongoAlcance, estabilizadorImagem, conectividade )
-	VALUES ( 11, 'Ipsa animi mollitia ad.Recusandae ut minus aliquid', 'IP965', FALSE, FALSE, TRUE, FALSE, 'Amet illum blanditiis delectus praesentium sed officia. Qu' );
+	VALUES ( 7, 'Voluptatem debitis delectus esse ut. D', 'IP083o', TRUE, FALSE, TRUE, FALSE, 'Ducimus libero ipsam dignissimos soluta quos. Sapient' );
 INSERT INTO camera ( id, fonteAlimentacao, certificacaoIP, resistenteQueda, visaoNoturna, zoomLongoAlcance, estabilizadorImagem, conectividade )
-	VALUES ( 7, 'Odio blanditiis repudiandae delectus. Quidem maiores animi', 'IP205s', FALSE, FALSE, TRUE, TRUE, 'Nesciunt quidem cum consequatur si' );
+	VALUES ( 17, 'Fugiat in dignissimos vitae molestiae quidem', 'IP773W', FALSE, FALSE, FALSE, TRUE, 'Inventore similique aut alias explicabo. Officia atqu' );
 INSERT INTO camera ( id, fonteAlimentacao, certificacaoIP, resistenteQueda, visaoNoturna, zoomLongoAlcance, estabilizadorImagem, conectividade )
-	VALUES ( 6, 'Placeat possimus occaecati exercitationem. Voluptatibus rerum pe', 'IP57', FALSE, FALSE, FALSE, TRUE, 'Fuga porro ipsum debitis saepe. ' );
+	VALUES ( 16, 'Officiis ipsum suscipit. Neque ad laudan', 'IP70x', TRUE, FALSE, FALSE, FALSE, 'Porro reiciendis maiores soluta deleniti. ' );
 INSERT INTO camera ( id, fonteAlimentacao, certificacaoIP, resistenteQueda, visaoNoturna, zoomLongoAlcance, estabilizadorImagem, conectividade )
-	VALUES ( 17, 'Praesentium excepturi repellendus expedita voluptatem ', 'IP68B', FALSE, FALSE, FALSE, TRUE, 'Dolores voluptate enim est recusand' );
+	VALUES ( 1, 'Aut nulla repudiandae culpa optio omnis mollitia.', 'IP33', FALSE, TRUE, TRUE, FALSE, 'Reprehenderit doloremque hic nulla' );
 INSERT INTO camera ( id, fonteAlimentacao, certificacaoIP, resistenteQueda, visaoNoturna, zoomLongoAlcance, estabilizadorImagem, conectividade )
-	VALUES ( 15, 'Eveniet voluptate molestias illo saepe alias p', 'IP27p', FALSE, TRUE, TRUE, TRUE, 'Voluptatibus quibusdam neque voluptates veni' );
+	VALUES ( 9, 'Esse dignissimos eaque quos odit eos. At natus ipsum.', 'IP31', TRUE, TRUE, TRUE, FALSE, 'Exercitationem debitis pariatur id dolore eaque animi. Op' );
 INSERT INTO camera ( id, fonteAlimentacao, certificacaoIP, resistenteQueda, visaoNoturna, zoomLongoAlcance, estabilizadorImagem, conectividade )
-	VALUES ( 16, 'Aperiam molestiae commodi doloremque expedita facilis ', 'IP605x', FALSE, TRUE, TRUE, FALSE, 'Magni quasi dolores quis beatae ration' );
+	VALUES ( 6, 'Odio modi nisi debitis incidunt s', 'IP364g', FALSE, FALSE, TRUE, TRUE, 'Occaecati nesciunt sunt minima. Nulla ' );
 INSERT INTO camera ( id, fonteAlimentacao, certificacaoIP, resistenteQueda, visaoNoturna, zoomLongoAlcance, estabilizadorImagem, conectividade )
-	VALUES ( 9, 'Ad et voluptatum suscipit quos. Officia a', 'IP692o', FALSE, FALSE, FALSE, FALSE, 'Odio velit inventore enim. Ipsum et labo' );
+	VALUES ( 15, 'Harum eligendi rem omnis assumenda consequatur.Tempor', 'IP35I', FALSE, TRUE, TRUE, TRUE, 'Quibusdam ipsa dolorum aperiam id facere' );
 INSERT INTO camera ( id, fonteAlimentacao, certificacaoIP, resistenteQueda, visaoNoturna, zoomLongoAlcance, estabilizadorImagem, conectividade )
-	VALUES ( 5, 'Illo nemo possimus alias perferendis consectetur. Magni', 'IP26', TRUE, TRUE, FALSE, FALSE, 'Quaerat accusamus nostrum quam expedit' );
+	VALUES ( 10, 'Ad dolor asperiores excepturi laboriosam.Necessitat', 'IP916', TRUE, TRUE, FALSE, TRUE, 'Omnis explicabo quo iusto doloremqu' );
 INSERT INTO camera ( id, fonteAlimentacao, certificacaoIP, resistenteQueda, visaoNoturna, zoomLongoAlcance, estabilizadorImagem, conectividade )
-	VALUES ( 10, 'Tenetur facilis ipsa officia omnis.Dignissimo', 'IP905', FALSE, TRUE, FALSE, TRUE, 'Quibusdam cum sed odit. Reiciendis vel maxime saep' );
+	VALUES ( 8, 'Assumenda adipisci nisi beatae ducimus. Aut cum autem ipsam ips', 'IP339', TRUE, FALSE, FALSE, TRUE, 'Debitis saepe laboriosam quasi rem non adipisci. Sint asper' );
 INSERT INTO camera ( id, fonteAlimentacao, certificacaoIP, resistenteQueda, visaoNoturna, zoomLongoAlcance, estabilizadorImagem, conectividade )
-	VALUES ( 1, 'Reiciendis quos at magnam nesciunt. Mollitia rem rerum', 'IP09E', TRUE, TRUE, TRUE, FALSE, 'Asperiores optio autem dolorem corporis. Voluptat' );
+	VALUES ( 13, 'Iusto nulla blanditiis corrupti nam accusantium voluptatum. Nam ', 'IP405', FALSE, TRUE, TRUE, FALSE, 'Laudantium quisquam possimus eius.Exercitationem ' );
 INSERT INTO camera ( id, fonteAlimentacao, certificacaoIP, resistenteQueda, visaoNoturna, zoomLongoAlcance, estabilizadorImagem, conectividade )
-	VALUES ( 8, 'Aperiam repellendus in consequuntur. Quae sint neque porro ', 'IP74z', FALSE, FALSE, TRUE, FALSE, 'Reprehenderit quae quidem vel delect' );
+	VALUES ( 18, 'Tempore commodi nobis voluptatem. S', 'IP65', FALSE, FALSE, FALSE, FALSE, 'Reprehenderit aut animi impedit vol' );
 INSERT INTO camera ( id, fonteAlimentacao, certificacaoIP, resistenteQueda, visaoNoturna, zoomLongoAlcance, estabilizadorImagem, conectividade )
-	VALUES ( 12, 'Nihil iure occaecati odit ipsam iusto officia. Id enim vitae mag', 'IP70R', FALSE, FALSE, TRUE, FALSE, 'Magnam ratione voluptas nesciunt. Odio placeat autem corporis' );
+	VALUES ( 14, 'Exercitationem voluptates earum qui enim rep', 'IP839R', TRUE, FALSE, FALSE, TRUE, 'Repellendus fugit deleniti nemo. Tempora facer' );
 INSERT INTO camera ( id, fonteAlimentacao, certificacaoIP, resistenteQueda, visaoNoturna, zoomLongoAlcance, estabilizadorImagem, conectividade )
-	VALUES ( 18, 'Necessitatibus ipsa aliquid voluptatum fugit. Modi qu', 'IP98a', FALSE, FALSE, TRUE, TRUE, 'Iure autem nemo tenetur. Saepe iusto sit.Co' );
+	VALUES ( 4, 'Esse vero dicta veniam. Quas iusto unde veniam id distinctio om', 'IP253B', FALSE, TRUE, FALSE, FALSE, 'Soluta ea quis recusandae blanditiis. Quo ipsa ' );
 INSERT INTO camera ( id, fonteAlimentacao, certificacaoIP, resistenteQueda, visaoNoturna, zoomLongoAlcance, estabilizadorImagem, conectividade )
-	VALUES ( 2, 'Delectus doloribus quo incidunt magnam. Incidunt officia rat', 'IP358', FALSE, FALSE, FALSE, TRUE, 'Sint sint fugiat sint quidem porro occaecati.' );
+	VALUES ( 19, 'Sed tempora ducimus illo. Enim rem ', 'IP857', TRUE, TRUE, FALSE, TRUE, 'Pariatur ducimus ad quo soluta maxime tempore. Hic' );
 INSERT INTO camera ( id, fonteAlimentacao, certificacaoIP, resistenteQueda, visaoNoturna, zoomLongoAlcance, estabilizadorImagem, conectividade )
-	VALUES ( 19, 'Occaecati adipisci quasi dolorem fugia', 'IP07T', TRUE, FALSE, TRUE, FALSE, 'Assumenda praesentium perspiciatis oc' );
+	VALUES ( 2, 'Praesentium animi sequi dignissimos vol', 'IP776', TRUE, TRUE, FALSE, TRUE, 'Voluptates fugit reprehenderit libero dolorem soluta.' );
 INSERT INTO camera ( id, fonteAlimentacao, certificacaoIP, resistenteQueda, visaoNoturna, zoomLongoAlcance, estabilizadorImagem, conectividade )
-	VALUES ( 13, 'Repudiandae quo numquam numquam. Eos quae voluptas magnam.', 'IP545Q', TRUE, FALSE, FALSE, FALSE, 'Deserunt ullam ducimus non animi esse.Rem consectetur quae ' );
+	VALUES ( 5, 'Suscipit nobis ea voluptates odit. Aspernatur provident cumqu', 'IP84Q', FALSE, FALSE, TRUE, FALSE, 'Porro quibusdam architecto nesciunt error molest' );
 INSERT INTO camera ( id, fonteAlimentacao, certificacaoIP, resistenteQueda, visaoNoturna, zoomLongoAlcance, estabilizadorImagem, conectividade )
-	VALUES ( 20, 'Illo pariatur molestias doloremque aliquid amet archi', 'IP292', TRUE, TRUE, FALSE, TRUE, 'Veniam voluptates optio adipisci ' );
+	VALUES ( 3, 'Qui ab dolores.Quas quibusdam maiores rem itaque. Cor', 'IP75v', TRUE, TRUE, FALSE, TRUE, 'Repellendus nihil voluptatibus voluptate. Fugit provident numqua' );
 
 /* TABLE registros */
 INSERT INTO registros ( idDrone, registro )
-	VALUES ( 19, 'Accusamus' );
+	VALUES ( 7, 'Aut quide' );
 INSERT INTO registros ( idDrone, registro )
-	VALUES ( 10, 'Corrupti ' );
+	VALUES ( 3, 'Facere vi' );
 INSERT INTO registros ( idDrone, registro )
-	VALUES ( 10, 'Voluptati' );
+	VALUES ( 17, 'Culpa ali' );
 INSERT INTO registros ( idDrone, registro )
-	VALUES ( 7, 'Nemo quas' );
+	VALUES ( 15, 'Quam quae' );
 INSERT INTO registros ( idDrone, registro )
-	VALUES ( 5, 'Voluptate' );
+	VALUES ( 17, 'Esse illo' );
 INSERT INTO registros ( idDrone, registro )
-	VALUES ( 10, 'Asperiore' );
+	VALUES ( 7, 'Nemo nobi' );
 INSERT INTO registros ( idDrone, registro )
-	VALUES ( 14, 'Repudiand' );
+	VALUES ( 1, 'Numquam e' );
 INSERT INTO registros ( idDrone, registro )
-	VALUES ( 15, 'Officiis ' );
+	VALUES ( 1, 'Iste offi' );
 INSERT INTO registros ( idDrone, registro )
-	VALUES ( 6, 'Possimus ' );
+	VALUES ( 7, 'Quaerat q' );
 INSERT INTO registros ( idDrone, registro )
-	VALUES ( 11, 'Deleniti ' );
+	VALUES ( 2, 'Perspicia' );
 INSERT INTO registros ( idDrone, registro )
-	VALUES ( 11, 'Ad nemo e' );
+	VALUES ( 11, 'Iure sequ' );
 INSERT INTO registros ( idDrone, registro )
-	VALUES ( 7, 'Dignissim' );
+	VALUES ( 7, 'Ab laudan' );
 INSERT INTO registros ( idDrone, registro )
-	VALUES ( 19, 'Quasi odi' );
+	VALUES ( 13, 'Minima vo' );
 INSERT INTO registros ( idDrone, registro )
-	VALUES ( 19, 'Iure aper' );
+	VALUES ( 9, 'Sit excep' );
 INSERT INTO registros ( idDrone, registro )
-	VALUES ( 9, 'Ipsum ips' );
+	VALUES ( 11, 'Sunt ulla' );
 INSERT INTO registros ( idDrone, registro )
-	VALUES ( 11, 'Dicta qui' );
+	VALUES ( 18, 'Sequi dic' );
 INSERT INTO registros ( idDrone, registro )
-	VALUES ( 19, 'Laborum m' );
+	VALUES ( 8, 'Quod nam ' );
 INSERT INTO registros ( idDrone, registro )
-	VALUES ( 8, 'Amet plac' );
+	VALUES ( 15, 'Impedit i' );
 INSERT INTO registros ( idDrone, registro )
-	VALUES ( 10, 'Quia nihi' );
+	VALUES ( 14, 'Quo commo' );
 INSERT INTO registros ( idDrone, registro )
-	VALUES ( 18, 'Velit dol' );
+	VALUES ( 12, 'Reiciendi' );
 
 /* TABLE cameraAerea */
 INSERT INTO cameraAerea ( camera, drone, data, quantidade )
-	VALUES ( 2, 6, to_date ('2002-02-21', 'YYYY-MM-DD'), 162065 );
+	VALUES ( 5, 7, to_date ('2002-05-20', 'YYYY-MM-DD'), 445484 );
 INSERT INTO cameraAerea ( camera, drone, data, quantidade )
-	VALUES ( 12, 16, to_date ('2006-06-06', 'YYYY-MM-DD'), 661008 );
+	VALUES ( 13, 2, to_date ('2006-06-20', 'YYYY-MM-DD'), 308871 );
 INSERT INTO cameraAerea ( camera, drone, data, quantidade )
-	VALUES ( 17, 11, to_date ('2016-09-20', 'YYYY-MM-DD'), 551026 );
+	VALUES ( 9, 3, to_date ('2005-02-13', 'YYYY-MM-DD'), 551096 );
 INSERT INTO cameraAerea ( camera, drone, data, quantidade )
-	VALUES ( 1, 17, to_date ('2008-03-05', 'YYYY-MM-DD'), 467496 );
+	VALUES ( 11, 17, to_date ('2001-03-28', 'YYYY-MM-DD'), 816462 );
 INSERT INTO cameraAerea ( camera, drone, data, quantidade )
-	VALUES ( 7, 7, to_date ('2007-11-02', 'YYYY-MM-DD'), 763139 );
+	VALUES ( 4, 4, to_date ('2007-10-29', 'YYYY-MM-DD'), 470965 );
 INSERT INTO cameraAerea ( camera, drone, data, quantidade )
-	VALUES ( 2, 20, to_date ('2008-04-26', 'YYYY-MM-DD'), 257616 );
+	VALUES ( 4, 15, to_date ('2014-11-21', 'YYYY-MM-DD'), 785455 );
 INSERT INTO cameraAerea ( camera, drone, data, quantidade )
-	VALUES ( 1, 14, to_date ('2004-10-09', 'YYYY-MM-DD'), 671604 );
+	VALUES ( 14, 14, to_date ('2014-05-08', 'YYYY-MM-DD'), 137945 );
 INSERT INTO cameraAerea ( camera, drone, data, quantidade )
-	VALUES ( 8, 2, to_date ('2009-03-26', 'YYYY-MM-DD'), 513728 );
+	VALUES ( 20, 18, to_date ('2016-04-28', 'YYYY-MM-DD'), 681816 );
 INSERT INTO cameraAerea ( camera, drone, data, quantidade )
-	VALUES ( 3, 4, to_date ('2007-06-25', 'YYYY-MM-DD'), 790357 );
+	VALUES ( 13, 14, to_date ('2001-10-09', 'YYYY-MM-DD'), 105118 );
 INSERT INTO cameraAerea ( camera, drone, data, quantidade )
-	VALUES ( 18, 13, to_date ('2015-07-05', 'YYYY-MM-DD'), 490352 );
+	VALUES ( 6, 19, to_date ('2011-01-11', 'YYYY-MM-DD'), 250620 );
 INSERT INTO cameraAerea ( camera, drone, data, quantidade )
-	VALUES ( 4, 1, to_date ('2015-07-08', 'YYYY-MM-DD'), 632297 );
+	VALUES ( 2, 19, to_date ('2015-08-16', 'YYYY-MM-DD'), 125378 );
 INSERT INTO cameraAerea ( camera, drone, data, quantidade )
-	VALUES ( 20, 13, to_date ('2006-10-28', 'YYYY-MM-DD'), 119474 );
+	VALUES ( 18, 4, to_date ('2006-10-26', 'YYYY-MM-DD'), 882158 );
 INSERT INTO cameraAerea ( camera, drone, data, quantidade )
-	VALUES ( 1, 5, to_date ('2015-03-04', 'YYYY-MM-DD'), 126928 );
+	VALUES ( 8, 2, to_date ('2016-03-16', 'YYYY-MM-DD'), 896617 );
 INSERT INTO cameraAerea ( camera, drone, data, quantidade )
-	VALUES ( 5, 10, to_date ('2004-02-02', 'YYYY-MM-DD'), 446859 );
+	VALUES ( 7, 1, to_date ('2004-07-21', 'YYYY-MM-DD'), 154966 );
 INSERT INTO cameraAerea ( camera, drone, data, quantidade )
-	VALUES ( 10, 1, to_date ('2004-08-29', 'YYYY-MM-DD'), 674988 );
+	VALUES ( 8, 14, to_date ('2004-05-11', 'YYYY-MM-DD'), 136612 );
 INSERT INTO cameraAerea ( camera, drone, data, quantidade )
-	VALUES ( 11, 17, to_date ('2017-07-11', 'YYYY-MM-DD'), 505790 );
+	VALUES ( 10, 8, to_date ('2003-10-13', 'YYYY-MM-DD'), 611680 );
 INSERT INTO cameraAerea ( camera, drone, data, quantidade )
-	VALUES ( 20, 8, to_date ('2014-02-18', 'YYYY-MM-DD'), 818142 );
+	VALUES ( 13, 5, to_date ('2012-07-05', 'YYYY-MM-DD'), 388528 );
 INSERT INTO cameraAerea ( camera, drone, data, quantidade )
-	VALUES ( 11, 13, to_date ('2000-09-07', 'YYYY-MM-DD'), 475706 );
+	VALUES ( 10, 20, to_date ('2012-01-09', 'YYYY-MM-DD'), 282095 );
 INSERT INTO cameraAerea ( camera, drone, data, quantidade )
-	VALUES ( 18, 7, to_date ('2008-12-17', 'YYYY-MM-DD'), 441472 );
+	VALUES ( 11, 17, to_date ('2011-02-16', 'YYYY-MM-DD'), 719458 );
 INSERT INTO cameraAerea ( camera, drone, data, quantidade )
-	VALUES ( 16, 19, to_date ('2004-12-01', 'YYYY-MM-DD'), 338655 );
+	VALUES ( 19, 13, to_date ('2013-01-25', 'YYYY-MM-DD'), 538102 );
 
 /* TABLE musico */
 INSERT INTO musico ( cpf, nome )
-	VALUES ( '665.336.159-45', 'Raquel Silveira' );
+	VALUES ( '765.212.884-85', 'Larissa Costa' );
 INSERT INTO musico ( cpf, nome )
-	VALUES ( '475.597.414-71', 'Luiz Otávio Lima' );
+	VALUES ( '420.228.661-02', 'Luiz Otávio Barros' );
 INSERT INTO musico ( cpf, nome )
-	VALUES ( '275.374.896-90', 'Ana Beatriz Lopes' );
+	VALUES ( '035.225.521-15', 'Marcelo Freitas' );
 INSERT INTO musico ( cpf, nome )
-	VALUES ( '389.335.547-51', 'Thales Viana' );
+	VALUES ( '951.729.873-97', 'Luiza Lopes' );
 INSERT INTO musico ( cpf, nome )
-	VALUES ( '263.311.824-11', 'Dra. Stella Aragão' );
+	VALUES ( '697.147.156-71', 'Maria Moura' );
 INSERT INTO musico ( cpf, nome )
-	VALUES ( '097.300.414-79', 'Ana Julia Lopes' );
+	VALUES ( '027.002.358-55', 'Lorena Rodrigues' );
 INSERT INTO musico ( cpf, nome )
-	VALUES ( '450.136.938-96', 'Lorenzo Freitas' );
+	VALUES ( '998.518.085-96', 'Thomas Ferreira' );
 INSERT INTO musico ( cpf, nome )
-	VALUES ( '734.817.670-55', 'Pedro Miguel da Luz' );
+	VALUES ( '728.950.977-42', 'Pietra Porto' );
 INSERT INTO musico ( cpf, nome )
-	VALUES ( '156.116.392-67', 'João Guilherme Costa' );
+	VALUES ( '393.321.904-28', 'Pietra Lopes' );
 INSERT INTO musico ( cpf, nome )
-	VALUES ( '223.112.578-27', 'Luigi Viana' );
+	VALUES ( '428.740.926-94', 'Sarah da Rocha' );
 INSERT INTO musico ( cpf, nome )
-	VALUES ( '553.209.354-14', 'Natália Costa' );
+	VALUES ( '759.400.063-09', 'Joana Silveira' );
 INSERT INTO musico ( cpf, nome )
-	VALUES ( '196.060.535-85', 'Francisco Sales' );
+	VALUES ( '196.253.812-83', 'Dr. Erick da Paz' );
 INSERT INTO musico ( cpf, nome )
-	VALUES ( '294.075.667-08', 'Maria Gomes' );
+	VALUES ( '322.314.233-61', 'Carolina Cardoso' );
 INSERT INTO musico ( cpf, nome )
-	VALUES ( '309.774.613-86', 'Srta. Maria Fernanda Sales' );
+	VALUES ( '729.984.047-24', 'Lucas Gabriel da Mota' );
 INSERT INTO musico ( cpf, nome )
-	VALUES ( '725.530.253-99', 'Marina da Costa' );
+	VALUES ( '941.908.048-87', 'Emanuella Cunha' );
 INSERT INTO musico ( cpf, nome )
-	VALUES ( '224.086.296-98', 'Emanuelly Martins' );
+	VALUES ( '828.650.309-00', 'Lívia Silva' );
 INSERT INTO musico ( cpf, nome )
-	VALUES ( '164.843.115-03', 'Davi Lucas Alves' );
+	VALUES ( '311.641.002-82', 'Olivia Monteiro' );
 INSERT INTO musico ( cpf, nome )
-	VALUES ( '848.899.059-83', 'Lavínia Rezende' );
+	VALUES ( '126.986.914-21', 'Samuel Rocha' );
 INSERT INTO musico ( cpf, nome )
-	VALUES ( '108.399.181-93', 'Ana Carolina Barros' );
+	VALUES ( '251.493.834-29', 'Natália Novaes' );
 INSERT INTO musico ( cpf, nome )
-	VALUES ( '503.396.308-76', 'Enzo da Costa' );
+	VALUES ( '160.266.760-65', 'Yago Carvalho' );
 
 /* TABLE banda */
 /* NULL INSERTION FOR ATTRIBUTEestiloMusicalAT TABLEbanda */
 INSERT INTO banda ( nome, dataCriacao, estiloMusical, tipo )
-	VALUES ( 'Antônio Souza', to_date ('2017-12-08', 'YYYY-MM-DD'), NULL, 'CONTRATADA' );
+	VALUES ( 'Danilo Costela', to_date ('2013-05-02', 'YYYY-MM-DD'), NULL, 'PARTICULAR' );
 INSERT INTO banda ( nome, dataCriacao, estiloMusical, tipo )
-	VALUES ( 'André Carvalho', to_date ('2014-12-24', 'YYYY-MM-DD'), 'Facilis eaque inventore eum. Voluptas culpa ea totam maxime si', 'PARTICULAR' );
+	VALUES ( 'Dr. Guilherme Cardoso,', to_date ('2009-01-21', 'YYYY-MM-DD'), 'Assumenda facere iure beatae accusamus excepturi. Tenetur te', 'CONTRATADA' );
 INSERT INTO banda ( nome, dataCriacao, estiloMusical, tipo )
-	VALUES ( 'Sra. Ana Julia Porto', to_date ('2010-03-25', 'YYYY-MM-DD'), 'Quod debitis error tenetur assumenda quas. Qui nisi ', 'PARTICULAR' );
+	VALUES ( 'Enrico Cardoso,', to_date ('2016-12-28', 'YYYY-MM-DD'), 'Quod temporibus aperiam veritatis asperiores perspic', 'PARTICULAR' );
 INSERT INTO banda ( nome, dataCriacao, estiloMusical, tipo )
-	VALUES ( 'Lorena Rodrigues', to_date ('2016-02-17', 'YYYY-MM-DD'), 'Est modi consequuntur nulla earum veniam. Et iure duc', 'PARTICULAR' );
+	VALUES ( 'Lorena Vieira', to_date ('2003-10-28', 'YYYY-MM-DD'), 'Architecto odio corrupti unde. Sunt dolor atque a', 'PARTICULAR' );
 INSERT INTO banda ( nome, dataCriacao, estiloMusical, tipo )
-	VALUES ( 'Maria Sophia Almeida', to_date ('2000-04-08', 'YYYY-MM-DD'), 'Perspiciatis eligendi qui voluptatibus. Numquam ipsa minima ', 'PARTICULAR' );
+	VALUES ( 'Joaquim da Mata', to_date ('2005-03-12', 'YYYY-MM-DD'), 'Quam hic dolores nostrum nisi consequuntur. Ten', 'CONTRATADA' );
 INSERT INTO banda ( nome, dataCriacao, estiloMusical, tipo )
-	VALUES ( 'João Lucas Pires', to_date ('2005-03-05', 'YYYY-MM-DD'), 'Aut harum illo quae facilis doloremque. Voluptatibus m', 'PARTICULAR' );
+	VALUES ( 'Clarice Araújo', to_date ('2000-05-04', 'YYYY-MM-DD'), 'Quod vitae incidunt. Molestias eum ', 'PARTICULAR' );
 INSERT INTO banda ( nome, dataCriacao, estiloMusical, tipo )
-	VALUES ( 'Guilherme Porto', to_date ('2011-09-01', 'YYYY-MM-DD'), 'Nisi libero aliquam accusantium. Tempora quia ', 'PARTICULAR' );
+	VALUES ( 'Sr. Vitor Cavalcanti', to_date ('2015-12-25', 'YYYY-MM-DD'), 'Reprehenderit voluptates minima exercitationem. Officia saepe ', 'PARTICULAR' );
 INSERT INTO banda ( nome, dataCriacao, estiloMusical, tipo )
-	VALUES ( 'Sofia Rezende', to_date ('2008-05-29', 'YYYY-MM-DD'), 'Explicabo rem provident molestias doloremq', 'CONTRATADA' );
+	VALUES ( 'Esther Martins', to_date ('2011-05-05', 'YYYY-MM-DD'), 'Blanditiis tenetur sint cumque m', 'CONTRATADA' );
 INSERT INTO banda ( nome, dataCriacao, estiloMusical, tipo )
-	VALUES ( 'Srta. Ana Ferreira', to_date ('2010-03-29', 'YYYY-MM-DD'), 'In distinctio id ipsa. Quas culpa n', 'CONTRATADA' );
+	VALUES ( 'Dr. Enzo Gabriel Silva', to_date ('2016-10-17', 'YYYY-MM-DD'), 'Dolor expedita amet.Eligendi dignissimos consequuntur sed temp', 'PARTICULAR' );
 INSERT INTO banda ( nome, dataCriacao, estiloMusical, tipo )
-	VALUES ( 'Maria Clara Barbosa', to_date ('2011-05-08', 'YYYY-MM-DD'), 'Dignissimos maxime deleniti nam dolorem. Blandit', 'CONTRATADA' );
+	VALUES ( 'Dr. Pedro Barbosa', to_date ('2011-12-19', 'YYYY-MM-DD'), 'Amet fugit fuga sit maxime asperiores. Dolorem numquam ', 'PARTICULAR' );
 INSERT INTO banda ( nome, dataCriacao, estiloMusical, tipo )
-	VALUES ( 'Gustavo das Neves', to_date ('2008-06-16', 'YYYY-MM-DD'), 'Recusandae expedita nisi quod esse vel ', 'PARTICULAR' );
+	VALUES ( 'Dra. Lavínia Lopes', to_date ('2015-09-03', 'YYYY-MM-DD'), 'Iste quaerat similique officiis autem expedi', 'PARTICULAR' );
 INSERT INTO banda ( nome, dataCriacao, estiloMusical, tipo )
-	VALUES ( 'Dr. Bernardo Cardoso', to_date ('2015-10-24', 'YYYY-MM-DD'), 'Eius vero a maiores at. Vero expedita asper', 'PARTICULAR' );
+	VALUES ( 'Ana Luiza Jesus', to_date ('2006-11-13', 'YYYY-MM-DD'), 'Vitae minus tempore reprehenderit consequuntur iste impedit ni', 'CONTRATADA' );
 INSERT INTO banda ( nome, dataCriacao, estiloMusical, tipo )
-	VALUES ( 'Luiz Fernando Barbosa', to_date ('2001-02-07', 'YYYY-MM-DD'), 'Quae at voluptates et optio. Voluptates odio fugit', 'CONTRATADA' );
+	VALUES ( 'Erick Teixeira', to_date ('2012-03-27', 'YYYY-MM-DD'), 'Dicta laboriosam sequi nostrum veniam. Porro repel', 'PARTICULAR' );
 INSERT INTO banda ( nome, dataCriacao, estiloMusical, tipo )
-	VALUES ( 'Sr. Antônio Nascimento', to_date ('2009-08-12', 'YYYY-MM-DD'), 'Molestias corrupti deleniti illum minima ni', 'PARTICULAR' );
+	VALUES ( 'João Lucas Duarte', to_date ('2005-01-15', 'YYYY-MM-DD'), 'Dolorem harum rerum quas optio. ', 'CONTRATADA' );
 INSERT INTO banda ( nome, dataCriacao, estiloMusical, tipo )
-	VALUES ( 'Mariana Rocha', to_date ('2003-01-12', 'YYYY-MM-DD'), 'Perspiciatis velit accusantium commodi fugit amet.', 'PARTICULAR' );
+	VALUES ( 'Antônio da Cruz', to_date ('2006-09-09', 'YYYY-MM-DD'), 'Sit iure aspernatur illum sunt ad. Fugit ma', 'CONTRATADA' );
 INSERT INTO banda ( nome, dataCriacao, estiloMusical, tipo )
-	VALUES ( 'Dr. Vicente Costela', to_date ('2004-01-13', 'YYYY-MM-DD'), 'Ea omnis repudiandae non. Debitis ipsa po', 'PARTICULAR' );
+	VALUES ( 'Bianca Silveira', to_date ('2008-08-14', 'YYYY-MM-DD'), 'Voluptatibus quidem consectetur ', 'CONTRATADA' );
 INSERT INTO banda ( nome, dataCriacao, estiloMusical, tipo )
-	VALUES ( 'Nina Moura', to_date ('2015-05-13', 'YYYY-MM-DD'), 'Mollitia assumenda voluptate rem provident', 'CONTRATADA' );
+	VALUES ( 'Rafaela da Cunha', to_date ('2001-01-11', 'YYYY-MM-DD'), 'Hic ratione vero voluptatibus nesciunt alia', 'PARTICULAR' );
 INSERT INTO banda ( nome, dataCriacao, estiloMusical, tipo )
-	VALUES ( 'Gabriel Correia', to_date ('2013-08-04', 'YYYY-MM-DD'), 'Voluptatibus deserunt soluta min', 'PARTICULAR' );
+	VALUES ( 'Maria Eduarda Silveira', to_date ('2011-11-23', 'YYYY-MM-DD'), 'Omnis doloribus nam voluptatum aut. Quibus', 'PARTICULAR' );
 INSERT INTO banda ( nome, dataCriacao, estiloMusical, tipo )
-	VALUES ( 'Yuri Melo', to_date ('2011-08-25', 'YYYY-MM-DD'), 'Optio laudantium facere nobis quasi. Reprehenderit quas e', 'CONTRATADA' );
+	VALUES ( 'Clara Freitas', to_date ('2010-09-12', 'YYYY-MM-DD'), 'Suscipit ducimus enim voluptate ratione', 'PARTICULAR' );
 INSERT INTO banda ( nome, dataCriacao, estiloMusical, tipo )
-	VALUES ( 'Joaquim Gomes', to_date ('2016-06-30', 'YYYY-MM-DD'), 'Optio libero cupiditate vero exerci', 'CONTRATADA' );
+	VALUES ( 'Marina Carvalho', to_date ('2001-02-18', 'YYYY-MM-DD'), 'Dolor odio laboriosam doloribus reiciendis quasi delectus no', 'CONTRATADA' );
 INSERT INTO banda ( nome, dataCriacao, estiloMusical, tipo )
-	VALUES ( 'Júlia Ribeiro', to_date ('2014-09-11', 'YYYY-MM-DD'), 'Placeat maxime adipisci sit officia ', 'PARTICULAR' );
+	VALUES ( 'Heitor Costela', to_date ('2009-09-14', 'YYYY-MM-DD'), 'Necessitatibus cumque alias animi', 'CONTRATADA' );
 
 /* TABLE compoe */
 INSERT INTO compoe ( cpfMusico, nomeBanda, dataCriacaoBanda )
-	VALUES ( '196.060.535-85', 'Sr. Antônio Nascimento', to_date ('2009-08-12', 'YYYY-MM-DD') );
+	VALUES ( '729.984.047-24', 'Dr. Guilherme Cardoso,', to_date ('2009-01-21', 'YYYY-MM-DD') );
 INSERT INTO compoe ( cpfMusico, nomeBanda, dataCriacaoBanda )
-	VALUES ( '164.843.115-03', 'Nina Moura', to_date ('2015-05-13', 'YYYY-MM-DD') );
+	VALUES ( '126.986.914-21', 'Erick Teixeira', to_date ('2012-03-27', 'YYYY-MM-DD') );
 INSERT INTO compoe ( cpfMusico, nomeBanda, dataCriacaoBanda )
-	VALUES ( '294.075.667-08', 'Dr. Bernardo Cardoso', to_date ('2015-10-24', 'YYYY-MM-DD') );
+	VALUES ( '728.950.977-42', 'Sr. Vitor Cavalcanti', to_date ('2015-12-25', 'YYYY-MM-DD') );
 INSERT INTO compoe ( cpfMusico, nomeBanda, dataCriacaoBanda )
-	VALUES ( '275.374.896-90', 'Guilherme Porto', to_date ('2011-09-01', 'YYYY-MM-DD') );
+	VALUES ( '311.641.002-82', 'Joaquim da Mata', to_date ('2005-03-12', 'YYYY-MM-DD') );
 INSERT INTO compoe ( cpfMusico, nomeBanda, dataCriacaoBanda )
-	VALUES ( '097.300.414-79', 'Sr. Antônio Nascimento', to_date ('2009-08-12', 'YYYY-MM-DD') );
+	VALUES ( '160.266.760-65', 'Rafaela da Cunha', to_date ('2001-01-11', 'YYYY-MM-DD') );
 INSERT INTO compoe ( cpfMusico, nomeBanda, dataCriacaoBanda )
-	VALUES ( '224.086.296-98', 'Sra. Ana Julia Porto', to_date ('2010-03-25', 'YYYY-MM-DD') );
+	VALUES ( '941.908.048-87', 'João Lucas Duarte', to_date ('2005-01-15', 'YYYY-MM-DD') );
 INSERT INTO compoe ( cpfMusico, nomeBanda, dataCriacaoBanda )
-	VALUES ( '665.336.159-45', 'Dr. Bernardo Cardoso', to_date ('2015-10-24', 'YYYY-MM-DD') );
+	VALUES ( '428.740.926-94', 'Heitor Costela', to_date ('2009-09-14', 'YYYY-MM-DD') );
 INSERT INTO compoe ( cpfMusico, nomeBanda, dataCriacaoBanda )
-	VALUES ( '164.843.115-03', 'Joaquim Gomes', to_date ('2016-06-30', 'YYYY-MM-DD') );
+	VALUES ( '393.321.904-28', 'João Lucas Duarte', to_date ('2005-01-15', 'YYYY-MM-DD') );
 INSERT INTO compoe ( cpfMusico, nomeBanda, dataCriacaoBanda )
-	VALUES ( '309.774.613-86', 'Sofia Rezende', to_date ('2008-05-29', 'YYYY-MM-DD') );
+	VALUES ( '828.650.309-00', 'Joaquim da Mata', to_date ('2005-03-12', 'YYYY-MM-DD') );
 INSERT INTO compoe ( cpfMusico, nomeBanda, dataCriacaoBanda )
-	VALUES ( '725.530.253-99', 'Guilherme Porto', to_date ('2011-09-01', 'YYYY-MM-DD') );
+	VALUES ( '126.986.914-21', 'Clarice Araújo', to_date ('2000-05-04', 'YYYY-MM-DD') );
 INSERT INTO compoe ( cpfMusico, nomeBanda, dataCriacaoBanda )
-	VALUES ( '665.336.159-45', 'Yuri Melo', to_date ('2011-08-25', 'YYYY-MM-DD') );
+	VALUES ( '729.984.047-24', 'Marina Carvalho', to_date ('2001-02-18', 'YYYY-MM-DD') );
 INSERT INTO compoe ( cpfMusico, nomeBanda, dataCriacaoBanda )
-	VALUES ( '503.396.308-76', 'Maria Sophia Almeida', to_date ('2000-04-08', 'YYYY-MM-DD') );
+	VALUES ( '998.518.085-96', 'Erick Teixeira', to_date ('2012-03-27', 'YYYY-MM-DD') );
 INSERT INTO compoe ( cpfMusico, nomeBanda, dataCriacaoBanda )
-	VALUES ( '734.817.670-55', 'Maria Clara Barbosa', to_date ('2011-05-08', 'YYYY-MM-DD') );
+	VALUES ( '729.984.047-24', 'Dr. Pedro Barbosa', to_date ('2011-12-19', 'YYYY-MM-DD') );
 INSERT INTO compoe ( cpfMusico, nomeBanda, dataCriacaoBanda )
-	VALUES ( '725.530.253-99', 'João Lucas Pires', to_date ('2005-03-05', 'YYYY-MM-DD') );
+	VALUES ( '251.493.834-29', 'Rafaela da Cunha', to_date ('2001-01-11', 'YYYY-MM-DD') );
 INSERT INTO compoe ( cpfMusico, nomeBanda, dataCriacaoBanda )
-	VALUES ( '734.817.670-55', 'Mariana Rocha', to_date ('2003-01-12', 'YYYY-MM-DD') );
+	VALUES ( '428.740.926-94', 'Bianca Silveira', to_date ('2008-08-14', 'YYYY-MM-DD') );
 INSERT INTO compoe ( cpfMusico, nomeBanda, dataCriacaoBanda )
-	VALUES ( '848.899.059-83', 'Dr. Vicente Costela', to_date ('2004-01-13', 'YYYY-MM-DD') );
+	VALUES ( '393.321.904-28', 'Maria Eduarda Silveira', to_date ('2011-11-23', 'YYYY-MM-DD') );
 INSERT INTO compoe ( cpfMusico, nomeBanda, dataCriacaoBanda )
-	VALUES ( '223.112.578-27', 'Sr. Antônio Nascimento', to_date ('2009-08-12', 'YYYY-MM-DD') );
+	VALUES ( '251.493.834-29', 'Esther Martins', to_date ('2011-05-05', 'YYYY-MM-DD') );
 INSERT INTO compoe ( cpfMusico, nomeBanda, dataCriacaoBanda )
-	VALUES ( '263.311.824-11', 'Gustavo das Neves', to_date ('2008-06-16', 'YYYY-MM-DD') );
+	VALUES ( '765.212.884-85', 'Erick Teixeira', to_date ('2012-03-27', 'YYYY-MM-DD') );
 INSERT INTO compoe ( cpfMusico, nomeBanda, dataCriacaoBanda )
-	VALUES ( '309.774.613-86', 'Gabriel Correia', to_date ('2013-08-04', 'YYYY-MM-DD') );
+	VALUES ( '393.321.904-28', 'Clara Freitas', to_date ('2010-09-12', 'YYYY-MM-DD') );
 INSERT INTO compoe ( cpfMusico, nomeBanda, dataCriacaoBanda )
-	VALUES ( '156.116.392-67', 'Joaquim Gomes', to_date ('2016-06-30', 'YYYY-MM-DD') );
+	VALUES ( '420.228.661-02', 'Dra. Lavínia Lopes', to_date ('2015-09-03', 'YYYY-MM-DD') );
 
 /* TABLE festaNoCruzeiro */
 /* NULL INSERTION FOR ATTRIBUTEnumeroConvidadosAT TABLEfestaNoCruzeiro */
 INSERT INTO festaNoCruzeiro ( IMO, dataInicio, dataFim, numeroConvidados, nome )
-	VALUES ( 124401, to_date ('2011-05-18', 'YYYY-MM-DD'), to_date ('2011-05-09', 'YYYY-MM-DD'), NULL, 'Luiz Henrique Martins' );
-/* NULL INSERTION FOR ATTRIBUTEdataFimAT TABLEfestaNoCruzeiro */
+	VALUES ( 301240, to_date ('2007-06-19', 'YYYY-MM-DD'), to_date ('2004-11-02', 'YYYY-MM-DD'), NULL, 'Ana Clara Lima' );
 INSERT INTO festaNoCruzeiro ( IMO, dataInicio, dataFim, numeroConvidados, nome )
-	VALUES ( 156095, to_date ('2004-03-28', 'YYYY-MM-DD'), NULL, 168415, 'Sr. Vicente Peixoto' );
+	VALUES ( 834515, to_date ('2010-10-30', 'YYYY-MM-DD'), to_date ('2014-11-06', 'YYYY-MM-DD'), 553179, 'Cauê FariasFernandes' );
 INSERT INTO festaNoCruzeiro ( IMO, dataInicio, dataFim, numeroConvidados, nome )
-	VALUES ( 252710, to_date ('2017-08-05', 'YYYY-MM-DD'), to_date ('2003-10-23', 'YYYY-MM-DD'), 776667, 'Dra. Sarah Alves' );
+	VALUES ( 273028, to_date ('2009-03-07', 'YYYY-MM-DD'), to_date ('2006-09-07', 'YYYY-MM-DD'), 658702, 'Gabrielly Carvalho' );
 INSERT INTO festaNoCruzeiro ( IMO, dataInicio, dataFim, numeroConvidados, nome )
-	VALUES ( 899004, to_date ('2007-02-00', 'YYYY-MM-DD'), to_date ('2018-11-17', 'YYYY-MM-DD'), 164010, 'Dr. Guilherme Gomes' );
+	VALUES ( 482129, to_date ('2002-06-14', 'YYYY-MM-DD'), to_date ('2018-02-14', 'YYYY-MM-DD'), 551049, 'Pedro Henrique da Luz' );
 INSERT INTO festaNoCruzeiro ( IMO, dataInicio, dataFim, numeroConvidados, nome )
-	VALUES ( 745601, to_date ('2001-09-11', 'YYYY-MM-DD'), to_date ('2005-11-07', 'YYYY-MM-DD'), 420598, 'Sr. Vicente Araújo' );
+	VALUES ( 849532, to_date ('2010-02-05', 'YYYY-MM-DD'), to_date ('2003-11-01', 'YYYY-MM-DD'), 243288, 'Camila FariasFernandes' );
 INSERT INTO festaNoCruzeiro ( IMO, dataInicio, dataFim, numeroConvidados, nome )
-	VALUES ( 592219, to_date ('2015-08-20', 'YYYY-MM-DD'), to_date ('2018-03-24', 'YYYY-MM-DD'), 705152, 'Juliana da Luz' );
+	VALUES ( 887279, to_date ('2011-01-17', 'YYYY-MM-DD'), to_date ('2014-05-06', 'YYYY-MM-DD'), 780812, 'Isadora Dias' );
 INSERT INTO festaNoCruzeiro ( IMO, dataInicio, dataFim, numeroConvidados, nome )
-	VALUES ( 612031, to_date ('2004-02-15', 'YYYY-MM-DD'), to_date ('2005-08-16', 'YYYY-MM-DD'), 753785, 'Luiz Miguel Cunha' );
+	VALUES ( 119408, to_date ('2002-01-09', 'YYYY-MM-DD'), to_date ('2009-02-23', 'YYYY-MM-DD'), 658815, 'Maria Julia Peixoto' );
 INSERT INTO festaNoCruzeiro ( IMO, dataInicio, dataFim, numeroConvidados, nome )
-	VALUES ( 409168, to_date ('2017-04-13', 'YYYY-MM-DD'), to_date ('2008-05-02', 'YYYY-MM-DD'), 177822, 'Nicolas Pereira' );
+	VALUES ( 461870, to_date ('2008-03-21', 'YYYY-MM-DD'), to_date ('2018-08-11', 'YYYY-MM-DD'), 414015, 'Manuela Novaes' );
 INSERT INTO festaNoCruzeiro ( IMO, dataInicio, dataFim, numeroConvidados, nome )
-	VALUES ( 771794, to_date ('2004-06-07', 'YYYY-MM-DD'), to_date ('2011-03-04', 'YYYY-MM-DD'), 771014, 'Emanuelly Pinto' );
+	VALUES ( 114105, to_date ('2007-06-08', 'YYYY-MM-DD'), to_date ('2000-07-20', 'YYYY-MM-DD'), 329101, 'Felipe Viana' );
 INSERT INTO festaNoCruzeiro ( IMO, dataInicio, dataFim, numeroConvidados, nome )
-	VALUES ( 152370, to_date ('2003-11-07', 'YYYY-MM-DD'), to_date ('2009-05-26', 'YYYY-MM-DD'), 349886, 'Isadora Pires' );
+	VALUES ( 429552, to_date ('2016-05-05', 'YYYY-MM-DD'), to_date ('2005-02-13', 'YYYY-MM-DD'), 895524, 'Rebeca Ferreira' );
 INSERT INTO festaNoCruzeiro ( IMO, dataInicio, dataFim, numeroConvidados, nome )
-	VALUES ( 395099, to_date ('2009-11-27', 'YYYY-MM-DD'), to_date ('2005-10-24', 'YYYY-MM-DD'), 150848, 'Sra. Isis Pinto' );
+	VALUES ( 586721, to_date ('2009-11-23', 'YYYY-MM-DD'), to_date ('2006-03-09', 'YYYY-MM-DD'), 877779, 'Sofia Cardoso' );
 INSERT INTO festaNoCruzeiro ( IMO, dataInicio, dataFim, numeroConvidados, nome )
-	VALUES ( 147272, to_date ('2010-01-10', 'YYYY-MM-DD'), to_date ('2017-05-07', 'YYYY-MM-DD'), 414954, 'Rafael Cavalcanti' );
+	VALUES ( 299505, to_date ('2008-01-19', 'YYYY-MM-DD'), to_date ('2014-10-23', 'YYYY-MM-DD'), 548158, 'Enzo Moreira' );
 INSERT INTO festaNoCruzeiro ( IMO, dataInicio, dataFim, numeroConvidados, nome )
-	VALUES ( 744184, to_date ('2008-11-18', 'YYYY-MM-DD'), to_date ('2012-07-24', 'YYYY-MM-DD'), 401914, 'Alice Ramos' );
+	VALUES ( 690434, to_date ('2005-05-14', 'YYYY-MM-DD'), to_date ('2004-09-02', 'YYYY-MM-DD'), 507193, 'Maria Fernanda Dias' );
 INSERT INTO festaNoCruzeiro ( IMO, dataInicio, dataFim, numeroConvidados, nome )
-	VALUES ( 371947, to_date ('2015-12-25', 'YYYY-MM-DD'), to_date ('2006-05-27', 'YYYY-MM-DD'), 695882, 'Maria Clara da Rocha' );
+	VALUES ( 249205, to_date ('2000-06-16', 'YYYY-MM-DD'), to_date ('2010-10-04', 'YYYY-MM-DD'), 753053, 'Dra. Brenda da Mata' );
 INSERT INTO festaNoCruzeiro ( IMO, dataInicio, dataFim, numeroConvidados, nome )
-	VALUES ( 195137, to_date ('2004-11-18', 'YYYY-MM-DD'), to_date ('2003-03-10', 'YYYY-MM-DD'), 593807, 'Helena Jesus' );
+	VALUES ( 219484, to_date ('2016-10-07', 'YYYY-MM-DD'), to_date ('2008-03-06', 'YYYY-MM-DD'), 526857, 'Maria Clara Castro' );
 INSERT INTO festaNoCruzeiro ( IMO, dataInicio, dataFim, numeroConvidados, nome )
-	VALUES ( 439448, to_date ('2015-11-07', 'YYYY-MM-DD'), to_date ('2004-04-07', 'YYYY-MM-DD'), 218295, 'João Miguel da Cunha' );
+	VALUES ( 647055, to_date ('2005-04-25', 'YYYY-MM-DD'), to_date ('2014-09-08', 'YYYY-MM-DD'), 750296, 'Luiz Fernando Freitas' );
 INSERT INTO festaNoCruzeiro ( IMO, dataInicio, dataFim, numeroConvidados, nome )
-	VALUES ( 240881, to_date ('2018-11-22', 'YYYY-MM-DD'), to_date ('2000-12-07', 'YYYY-MM-DD'), 113743, 'Ana Carolina Oliveira' );
+	VALUES ( 114861, to_date ('2008-04-19', 'YYYY-MM-DD'), to_date ('2011-06-23', 'YYYY-MM-DD'), 633217, 'Sabrina Dias' );
 INSERT INTO festaNoCruzeiro ( IMO, dataInicio, dataFim, numeroConvidados, nome )
-	VALUES ( 851801, to_date ('2011-10-22', 'YYYY-MM-DD'), to_date ('2012-07-27', 'YYYY-MM-DD'), 577463, 'João Miguel Costela' );
+	VALUES ( 544029, to_date ('2016-04-12', 'YYYY-MM-DD'), to_date ('2005-09-12', 'YYYY-MM-DD'), 160785, 'Eduarda Mendes' );
 INSERT INTO festaNoCruzeiro ( IMO, dataInicio, dataFim, numeroConvidados, nome )
-	VALUES ( 214286, to_date ('2010-07-08', 'YYYY-MM-DD'), to_date ('2015-03-11', 'YYYY-MM-DD'), 885019, 'Thiago da Luz' );
+	VALUES ( 751882, to_date ('2016-11-19', 'YYYY-MM-DD'), to_date ('2000-04-25', 'YYYY-MM-DD'), 684500, 'Paulo Ramos' );
 INSERT INTO festaNoCruzeiro ( IMO, dataInicio, dataFim, numeroConvidados, nome )
-	VALUES ( 714288, to_date ('2010-02-17', 'YYYY-MM-DD'), to_date ('2000-09-02', 'YYYY-MM-DD'), 219633, 'Dr. João Vitor Silveira' );
+	VALUES ( 287285, to_date ('2008-12-05', 'YYYY-MM-DD'), to_date ('2008-11-09', 'YYYY-MM-DD'), 825662, 'Bárbara Peixoto' );
 INSERT INTO festaNoCruzeiro ( IMO, dataInicio, dataFim, numeroConvidados, nome )
-	VALUES ( 262160, to_date ('2005-12-05', 'YYYY-MM-DD'), to_date ('2010-04-25', 'YYYY-MM-DD'), 759840, 'Maitê Nunes' );
-INSERT INTO festaNoCruzeiro ( IMO, dataInicio, dataFim, numeroConvidados, nome )
-	VALUES ( 481351, to_date ('2001-09-08', 'YYYY-MM-DD'), to_date ('2018-11-24', 'YYYY-MM-DD'), 340024, 'Carlos Eduardo Cavalcanti' );
+	VALUES ( 208089, to_date ('2013-01-14', 'YYYY-MM-DD'), to_date ('2004-04-18', 'YYYY-MM-DD'), 803660, 'Ana Carolina da Mata' );
 
 /* TABLE locaisCruzeiro */
 INSERT INTO locaisCruzeiro ( IMO, dataFesta, local )
-	VALUES ( 371947, to_date ('2015-12-25', 'YYYY-MM-DD'), 'Quidem consectetur illo maiores placeat iusto. Hic commodi in magnam. Doloribus ducimus accusant' );
+	VALUES ( 429552, to_date ('2016-05-05', 'YYYY-MM-DD'), 'Sapiente quis atque sit.Delectus officiis vel. Necessitatibus aliquam quis enim nemo. Ipsa officia qui harum ducimus.' );
 INSERT INTO locaisCruzeiro ( IMO, dataFesta, local )
-	VALUES ( 592219, to_date ('2015-08-20', 'YYYY-MM-DD'), 'Illo veritatis deleniti ut quo iste. Aut laboriosam fuga voluptatum magnam nesciunt voluptas.Eum suscipit porro ' );
+	VALUES ( 249205, to_date ('2000-06-16', 'YYYY-MM-DD'), 'Voluptatem unde vel. Est tenetur ipsa quaerat officia consectetur d' );
 INSERT INTO locaisCruzeiro ( IMO, dataFesta, local )
-	VALUES ( 147272, to_date ('2010-01-10', 'YYYY-MM-DD'), 'Corporis quaerat sit iusto assumenda ipsam iure. Molestiae inventore a facere quos sapiente nesciunt. A' );
+	VALUES ( 273028, to_date ('2009-03-07', 'YYYY-MM-DD'), 'Fuga illum hic possimus vitae eveniet aliquid. Suscipit quia error repellendus.' );
 INSERT INTO locaisCruzeiro ( IMO, dataFesta, local )
-	VALUES ( 262160, to_date ('2005-12-05', 'YYYY-MM-DD'), 'Accusantium voluptatibus dignissimos aperiam repellat tempora numquam vel. Reiciendis iusto vero totam.Veniam unde fa' );
+	VALUES ( 690434, to_date ('2005-05-14', 'YYYY-MM-DD'), 'Cum expedita deleniti laboriosam enim. Repellendus dicta id. Recusandae harum dolorum beatae earum vero.' );
 INSERT INTO locaisCruzeiro ( IMO, dataFesta, local )
-	VALUES ( 612031, to_date ('2004-02-15', 'YYYY-MM-DD'), 'Deserunt est ratione tempore molestiae facere voluptatum dolorum. Commodi molestias hic autem et o' );
+	VALUES ( 114105, to_date ('2007-06-08', 'YYYY-MM-DD'), 'Fugit exercitationem quae. Non voluptatibus esse dolorum tenetur perferendis.' );
 INSERT INTO locaisCruzeiro ( IMO, dataFesta, local )
-	VALUES ( 252710, to_date ('2017-08-05', 'YYYY-MM-DD'), 'Molestias fugiat porro nostrum praesentium id eos. Nostrum laborum vitae voluptatibus natus ipsam. Quidem' );
+	VALUES ( 461870, to_date ('2008-03-21', 'YYYY-MM-DD'), 'Suscipit at assumenda laboriosam occaecati. Harum totam totam maiores sunt. Modi reici' );
 INSERT INTO locaisCruzeiro ( IMO, dataFesta, local )
-	VALUES ( 745601, to_date ('2001-09-11', 'YYYY-MM-DD'), 'Quod expedita totam consectetur. Molestias necessitatibus aspern' );
+	VALUES ( 887279, to_date ('2011-01-17', 'YYYY-MM-DD'), 'Harum doloremque voluptatibus vitae itaque. Magnam doloribus praesentium sed nisi est n' );
 INSERT INTO locaisCruzeiro ( IMO, dataFesta, local )
-	VALUES ( 744184, to_date ('2008-11-18', 'YYYY-MM-DD'), 'Eligendi hic necessitatibus amet tempora nostrum tempora incidunt. Necessitatibus explicabo provident.Repudiandae perspicia' );
+	VALUES ( 287285, to_date ('2008-12-05', 'YYYY-MM-DD'), 'Ratione fugit maiores quis. Unde at natus corporis quibusdam expedita dolore' );
 INSERT INTO locaisCruzeiro ( IMO, dataFesta, local )
-	VALUES ( 240881, to_date ('2018-11-22', 'YYYY-MM-DD'), 'Fugit a culpa reprehenderit. Non alias provident iure. Reiciendis porro accusantium commodi optio ipsum nesciunt' );
+	VALUES ( 544029, to_date ('2016-04-12', 'YYYY-MM-DD'), 'Debitis aut possimus. Eius quae illum ex alias magni amet. Magni dol' );
 INSERT INTO locaisCruzeiro ( IMO, dataFesta, local )
-	VALUES ( 214286, to_date ('2010-07-08', 'YYYY-MM-DD'), 'Quibusdam vero quisquam quia saepe reiciendis. Cupiditate quod animi debitis reiciendi' );
+	VALUES ( 834515, to_date ('2010-10-30', 'YYYY-MM-DD'), 'Nemo voluptates dignissimos corporis. Maxime iusto repudiandae volup' );
 INSERT INTO locaisCruzeiro ( IMO, dataFesta, local )
-	VALUES ( 481351, to_date ('2001-09-08', 'YYYY-MM-DD'), 'Iste vero asperiores debitis harum. Repudiandae veniam laboriosam cumque velit molestias.' );
+	VALUES ( 299505, to_date ('2008-01-19', 'YYYY-MM-DD'), 'Ipsum quod odit aliquid cupiditate nisi. Quod veniam doloribus cum. Aliquid odio dolorum alias exer' );
 INSERT INTO locaisCruzeiro ( IMO, dataFesta, local )
-	VALUES ( 714288, to_date ('2010-02-17', 'YYYY-MM-DD'), 'Quae necessitatibus enim sed minus nam. Natus possimus unde ipsum optio ullam voluptatum. Tenetur mollitia accusanti' );
+	VALUES ( 219484, to_date ('2016-10-07', 'YYYY-MM-DD'), 'Neque voluptatem molestias ab.Atque laudantium ipsum ipsam. Illum aliquam quas quod veniam expedita sequi ' );
 INSERT INTO locaisCruzeiro ( IMO, dataFesta, local )
-	VALUES ( 409168, to_date ('2017-04-13', 'YYYY-MM-DD'), 'Eveniet fugiat sit error voluptatibus ex dolores modi.Ex neque magnam atque iusto quo. Rem q' );
+	VALUES ( 849532, to_date ('2010-02-05', 'YYYY-MM-DD'), 'Aspernatur repellat nobis ea possimus ratione aliquid aut. Omnis quam nam max' );
 INSERT INTO locaisCruzeiro ( IMO, dataFesta, local )
-	VALUES ( 851801, to_date ('2011-10-22', 'YYYY-MM-DD'), 'Iure impedit id molestias consequuntur. Rerum tenetur recusandae expedita corporis.Dolores eos prov' );
+	VALUES ( 482129, to_date ('2002-06-14', 'YYYY-MM-DD'), 'Impedit id fuga dolorum quibusdam facilis sit. Voluptas omnis nost' );
 INSERT INTO locaisCruzeiro ( IMO, dataFesta, local )
-	VALUES ( 152370, to_date ('2003-11-07', 'YYYY-MM-DD'), 'Numquam molestiae perferendis odit. Rem quos totam repellendus dicta odio.Commodi ne' );
+	VALUES ( 647055, to_date ('2005-04-25', 'YYYY-MM-DD'), 'Id saepe beatae quas distinctio laborum.Consectetur vero neque nisi quis minima. Facere asperiores fuga. Assumenda dolorum q' );
 INSERT INTO locaisCruzeiro ( IMO, dataFesta, local )
-	VALUES ( 439448, to_date ('2015-11-07', 'YYYY-MM-DD'), 'Repellat ab fugiat suscipit provident amet quod laborum. Accusamu' );
+	VALUES ( 114861, to_date ('2008-04-19', 'YYYY-MM-DD'), 'Sint laborum et laboriosam consequuntur. Tenetur atque recusandae impedit. Dicta voluptate commodi odio ' );
 INSERT INTO locaisCruzeiro ( IMO, dataFesta, local )
-	VALUES ( 771794, to_date ('2004-06-07', 'YYYY-MM-DD'), 'Doloremque modi commodi expedita. Necessitatibus fugit deleniti perspiciatis amet sint adipisci.' );
+	VALUES ( 208089, to_date ('2013-01-14', 'YYYY-MM-DD'), 'Nobis omnis in reiciendis veniam consequuntur. Quia quisquam delectus sapiente odio fugit occaecati labore.' );
 INSERT INTO locaisCruzeiro ( IMO, dataFesta, local )
-	VALUES ( 899004, to_date ('2007-02-00', 'YYYY-MM-DD'), 'Fugit sit modi dolore molestiae. Ea repellat corporis quod veritatis aliquid iste.' );
+	VALUES ( 751882, to_date ('2016-11-19', 'YYYY-MM-DD'), 'Modi nesciunt dolores quis quidem sed architecto. Harum deserunt est corporis.Architecto culpa eaque vero. Placeat veritat' );
 INSERT INTO locaisCruzeiro ( IMO, dataFesta, local )
-	VALUES ( 395099, to_date ('2009-11-27', 'YYYY-MM-DD'), 'Officiis amet omnis corrupti quisquam voluptates. Dolores quae aliquam quaerat eaque aliquam et.' );
+	VALUES ( 586721, to_date ('2009-11-23', 'YYYY-MM-DD'), 'Eligendi quos quos in eligendi saepe molestiae. Vel tenetur fuga possimus provident. Aut alias' );
 INSERT INTO locaisCruzeiro ( IMO, dataFesta, local )
-	VALUES ( 195137, to_date ('2004-11-18', 'YYYY-MM-DD'), 'Sint odit voluptate laudantium natus consectetur aliquid. Perferend' );
+	VALUES ( 119408, to_date ('2002-01-09', 'YYYY-MM-DD'), 'Inventore accusantium veniam. Esse modi temporibus sequi quod beatae minus ' );
 
 /* TABLE show */
 /* NULL INSERTION FOR ATTRIBUTEcontratoAT TABLEshow */
 INSERT INTO show ( IMO, dataFesta, nomeBanda, dataCriacaoBanda, data, horaInicio, terminoPrevisto, contrato )
-	VALUES ( 714288, to_date ('2010-02-17', 'YYYY-MM-DD'), 'Joaquim Gomes', to_date ('2016-06-30', 'YYYY-MM-DD'), to_date ('2006-10-05', 'YYYY-MM-DD'), '14:33:27', to_timestamp ('2012-07-17 07:05:07', 'YYYY-MM-DD HH24:MI:SS'), NULL );
+	VALUES ( 461870, to_date ('2008-03-21', 'YYYY-MM-DD'), 'Rafaela da Cunha', to_date ('2001-01-11', 'YYYY-MM-DD'), to_date ('2002-02-16', 'YYYY-MM-DD'), '15:04:41', to_timestamp ('2008-08-20 03:43:21', 'YYYY-MM-DD HH24:MI:SS'), NULL );
 /* NULL INSERTION FOR ATTRIBUTEterminoPrevistoAT TABLEshow */
 INSERT INTO show ( IMO, dataFesta, nomeBanda, dataCriacaoBanda, data, horaInicio, terminoPrevisto, contrato )
-	VALUES ( 240881, to_date ('2018-11-22', 'YYYY-MM-DD'), 'Sra. Ana Julia Porto', to_date ('2010-03-25', 'YYYY-MM-DD'), to_date ('2015-12-06', 'YYYY-MM-DD'), '10:38:16', NULL, 'Dolorum hic laboriosam ab sapiente necessitatibus fuga' );
+	VALUES ( 482129, to_date ('2002-06-14', 'YYYY-MM-DD'), 'Sr. Vitor Cavalcanti', to_date ('2015-12-25', 'YYYY-MM-DD'), to_date ('2007-07-27', 'YYYY-MM-DD'), '19:58:54', NULL, 'Ipsum vero delectus. Ratione eos lab' );
 INSERT INTO show ( IMO, dataFesta, nomeBanda, dataCriacaoBanda, data, horaInicio, terminoPrevisto, contrato )
-	VALUES ( 240881, to_date ('2018-11-22', 'YYYY-MM-DD'), 'André Carvalho', to_date ('2014-12-24', 'YYYY-MM-DD'), to_date ('2004-12-04', 'YYYY-MM-DD'), '04:24:51', to_timestamp ('2016-07-19 03:10:04', 'YYYY-MM-DD HH24:MI:SS'), 'Quia provident ducimus tenetur itaque optio ' );
+	VALUES ( 647055, to_date ('2005-04-25', 'YYYY-MM-DD'), 'Clara Freitas', to_date ('2010-09-12', 'YYYY-MM-DD'), to_date ('2007-10-07', 'YYYY-MM-DD'), '12:18:30', to_timestamp ('2004-09-03 04:25:41', 'YYYY-MM-DD HH24:MI:SS'), 'Excepturi vitae doloremque aut exercitationem blanditiis. ' );
 INSERT INTO show ( IMO, dataFesta, nomeBanda, dataCriacaoBanda, data, horaInicio, terminoPrevisto, contrato )
-	VALUES ( 771794, to_date ('2004-06-07', 'YYYY-MM-DD'), 'Gustavo das Neves', to_date ('2008-06-16', 'YYYY-MM-DD'), to_date ('2013-11-20', 'YYYY-MM-DD'), '16:15:29', to_timestamp ('2011-01-15 20:35:09', 'YYYY-MM-DD HH24:MI:SS'), 'Modi consequatur alias sint voluptatum deserunt' );
+	VALUES ( 429552, to_date ('2016-05-05', 'YYYY-MM-DD'), 'Ana Luiza Jesus', to_date ('2006-11-13', 'YYYY-MM-DD'), to_date ('2002-06-28', 'YYYY-MM-DD'), '11:31:43', to_timestamp ('2015-08-24 07:50:23', 'YYYY-MM-DD HH24:MI:SS'), 'Temporibus dolorem ipsam repudiandae occaec' );
 INSERT INTO show ( IMO, dataFesta, nomeBanda, dataCriacaoBanda, data, horaInicio, terminoPrevisto, contrato )
-	VALUES ( 771794, to_date ('2004-06-07', 'YYYY-MM-DD'), 'Guilherme Porto', to_date ('2011-09-01', 'YYYY-MM-DD'), to_date ('2015-10-18', 'YYYY-MM-DD'), '15:56:58', to_timestamp ('2008-05-04 06:06:32', 'YYYY-MM-DD HH24:MI:SS'), 'Neque fugit ducimus nisi mollitia illo dolor. Est dolores' );
+	VALUES ( 586721, to_date ('2009-11-23', 'YYYY-MM-DD'), 'Dra. Lavínia Lopes', to_date ('2015-09-03', 'YYYY-MM-DD'), to_date ('2005-06-20', 'YYYY-MM-DD'), '11:58:17', to_timestamp ('2013-05-22 05:47:11', 'YYYY-MM-DD HH24:MI:SS'), 'Magnam magni odit nulla. Maxime ipsum pariatur exercitationem q' );
 INSERT INTO show ( IMO, dataFesta, nomeBanda, dataCriacaoBanda, data, horaInicio, terminoPrevisto, contrato )
-	VALUES ( 612031, to_date ('2004-02-15', 'YYYY-MM-DD'), 'Mariana Rocha', to_date ('2003-01-12', 'YYYY-MM-DD'), to_date ('2013-02-14', 'YYYY-MM-DD'), '04:17:40', to_timestamp ('2009-02-27 13:38:46', 'YYYY-MM-DD HH24:MI:SS'), 'Ut illo eligendi suscipit asperiores amet.' );
+	VALUES ( 544029, to_date ('2016-04-12', 'YYYY-MM-DD'), 'Ana Luiza Jesus', to_date ('2006-11-13', 'YYYY-MM-DD'), to_date ('2007-12-25', 'YYYY-MM-DD'), '04:20:55', to_timestamp ('2017-02-18 16:52:45', 'YYYY-MM-DD HH24:MI:SS'), 'Magni voluptates odit ab neque dol' );
 INSERT INTO show ( IMO, dataFesta, nomeBanda, dataCriacaoBanda, data, horaInicio, terminoPrevisto, contrato )
-	VALUES ( 262160, to_date ('2005-12-05', 'YYYY-MM-DD'), 'Mariana Rocha', to_date ('2003-01-12', 'YYYY-MM-DD'), to_date ('2011-01-12', 'YYYY-MM-DD'), '17:53:20', to_timestamp ('2001-12-24 13:41:12', 'YYYY-MM-DD HH24:MI:SS'), 'Amet consequatur occaecati doloremque esse quod cum quas. ' );
+	VALUES ( 482129, to_date ('2002-06-14', 'YYYY-MM-DD'), 'Erick Teixeira', to_date ('2012-03-27', 'YYYY-MM-DD'), to_date ('2017-02-10', 'YYYY-MM-DD'), '10:21:19', to_timestamp ('2003-04-23 07:37:07', 'YYYY-MM-DD HH24:MI:SS'), 'Tempore illum dolor illo quam sed modi. ' );
 INSERT INTO show ( IMO, dataFesta, nomeBanda, dataCriacaoBanda, data, horaInicio, terminoPrevisto, contrato )
-	VALUES ( 409168, to_date ('2017-04-13', 'YYYY-MM-DD'), 'Sra. Ana Julia Porto', to_date ('2010-03-25', 'YYYY-MM-DD'), to_date ('2010-11-02', 'YYYY-MM-DD'), '20:21:23', to_timestamp ('2014-09-01 07:23:33', 'YYYY-MM-DD HH24:MI:SS'), 'Magnam sequi non. Laborum dolorem corpori' );
+	VALUES ( 114861, to_date ('2008-04-19', 'YYYY-MM-DD'), 'Heitor Costela', to_date ('2009-09-14', 'YYYY-MM-DD'), to_date ('2002-12-22', 'YYYY-MM-DD'), '17:35:40', to_timestamp ('2016-10-11 13:35:15', 'YYYY-MM-DD HH24:MI:SS'), 'Quis expedita dolore deleniti. Iure ' );
 INSERT INTO show ( IMO, dataFesta, nomeBanda, dataCriacaoBanda, data, horaInicio, terminoPrevisto, contrato )
-	VALUES ( 744184, to_date ('2008-11-18', 'YYYY-MM-DD'), 'Sra. Ana Julia Porto', to_date ('2010-03-25', 'YYYY-MM-DD'), to_date ('2003-08-16', 'YYYY-MM-DD'), '01:44:09', to_timestamp ('2012-03-20 10:21:27', 'YYYY-MM-DD HH24:MI:SS'), 'Alias iure et cupiditate. Iste amet illo v' );
+	VALUES ( 751882, to_date ('2016-11-19', 'YYYY-MM-DD'), 'Lorena Vieira', to_date ('2003-10-28', 'YYYY-MM-DD'), to_date ('2013-09-25', 'YYYY-MM-DD'), '06:19:17', to_timestamp ('2015-05-11 18:41:25', 'YYYY-MM-DD HH24:MI:SS'), 'Soluta optio quas velit consequuntur tem' );
 INSERT INTO show ( IMO, dataFesta, nomeBanda, dataCriacaoBanda, data, horaInicio, terminoPrevisto, contrato )
-	VALUES ( 851801, to_date ('2011-10-22', 'YYYY-MM-DD'), 'Sr. Antônio Nascimento', to_date ('2009-08-12', 'YYYY-MM-DD'), to_date ('2014-07-16', 'YYYY-MM-DD'), '10:17:45', to_timestamp ('2003-11-17 12:32:34', 'YYYY-MM-DD HH24:MI:SS'), 'Repellat similique iste accusantium nesciunt accusan' );
+	VALUES ( 887279, to_date ('2011-01-17', 'YYYY-MM-DD'), 'Enrico Cardoso,', to_date ('2016-12-28', 'YYYY-MM-DD'), to_date ('2016-05-02', 'YYYY-MM-DD'), '02:59:08', to_timestamp ('2001-01-19 06:28:47', 'YYYY-MM-DD HH24:MI:SS'), 'Enim eaque mollitia quo dolorem. Ad cumque sapien' );
 INSERT INTO show ( IMO, dataFesta, nomeBanda, dataCriacaoBanda, data, horaInicio, terminoPrevisto, contrato )
-	VALUES ( 612031, to_date ('2004-02-15', 'YYYY-MM-DD'), 'Gabriel Correia', to_date ('2013-08-04', 'YYYY-MM-DD'), to_date ('2007-06-03', 'YYYY-MM-DD'), '15:47:22', to_timestamp ('2015-10-21 00:07:23', 'YYYY-MM-DD HH24:MI:SS'), 'Praesentium illo quia repellat quibusdam quam tempora nihil.' );
+	VALUES ( 114105, to_date ('2007-06-08', 'YYYY-MM-DD'), 'Ana Luiza Jesus', to_date ('2006-11-13', 'YYYY-MM-DD'), to_date ('2006-11-23', 'YYYY-MM-DD'), '11:05:31', to_timestamp ('2005-03-21 01:10:08', 'YYYY-MM-DD HH24:MI:SS'), 'At inventore voluptate eos.Animi v' );
 INSERT INTO show ( IMO, dataFesta, nomeBanda, dataCriacaoBanda, data, horaInicio, terminoPrevisto, contrato )
-	VALUES ( 214286, to_date ('2010-07-08', 'YYYY-MM-DD'), 'João Lucas Pires', to_date ('2005-03-05', 'YYYY-MM-DD'), to_date ('2015-09-01', 'YYYY-MM-DD'), '18:12:21', to_timestamp ('2012-02-19 02:05:11', 'YYYY-MM-DD HH24:MI:SS'), 'Quis eius veritatis eligendi. Cup' );
+	VALUES ( 299505, to_date ('2008-01-19', 'YYYY-MM-DD'), 'Dra. Lavínia Lopes', to_date ('2015-09-03', 'YYYY-MM-DD'), to_date ('2011-12-05', 'YYYY-MM-DD'), '18:25:15', to_timestamp ('2014-02-07 23:37:03', 'YYYY-MM-DD HH24:MI:SS'), 'Necessitatibus tempore aliquid nam. Ipsam impedit pariatur volu' );
 INSERT INTO show ( IMO, dataFesta, nomeBanda, dataCriacaoBanda, data, horaInicio, terminoPrevisto, contrato )
-	VALUES ( 714288, to_date ('2010-02-17', 'YYYY-MM-DD'), 'Maria Sophia Almeida', to_date ('2000-04-08', 'YYYY-MM-DD'), to_date ('2013-02-03', 'YYYY-MM-DD'), '23:15:48', to_timestamp ('2001-01-14 13:26:49', 'YYYY-MM-DD HH24:MI:SS'), 'Quia sapiente a beatae voluptate. V' );
+	VALUES ( 482129, to_date ('2002-06-14', 'YYYY-MM-DD'), 'Marina Carvalho', to_date ('2001-02-18', 'YYYY-MM-DD'), to_date ('2007-08-30', 'YYYY-MM-DD'), '21:26:42', to_timestamp ('2001-05-18 00:33:04', 'YYYY-MM-DD HH24:MI:SS'), 'Consequuntur ab repellat nihil blanditiis u' );
 INSERT INTO show ( IMO, dataFesta, nomeBanda, dataCriacaoBanda, data, horaInicio, terminoPrevisto, contrato )
-	VALUES ( 371947, to_date ('2015-12-25', 'YYYY-MM-DD'), 'Yuri Melo', to_date ('2011-08-25', 'YYYY-MM-DD'), to_date ('2004-09-27', 'YYYY-MM-DD'), '04:42:47', to_timestamp ('2014-05-23 05:12:26', 'YYYY-MM-DD HH24:MI:SS'), 'Quasi nobis odit minima sit dolor atque nulla.' );
+	VALUES ( 690434, to_date ('2005-05-14', 'YYYY-MM-DD'), 'João Lucas Duarte', to_date ('2005-01-15', 'YYYY-MM-DD'), to_date ('2004-03-08', 'YYYY-MM-DD'), '18:33:28', to_timestamp ('2012-08-04 11:18:48', 'YYYY-MM-DD HH24:MI:SS'), 'Sunt quaerat est eius delectus harum incidunt. Quas dolori' );
 INSERT INTO show ( IMO, dataFesta, nomeBanda, dataCriacaoBanda, data, horaInicio, terminoPrevisto, contrato )
-	VALUES ( 262160, to_date ('2005-12-05', 'YYYY-MM-DD'), 'Nina Moura', to_date ('2015-05-13', 'YYYY-MM-DD'), to_date ('2010-09-10', 'YYYY-MM-DD'), '05:17:10', to_timestamp ('2010-06-21 16:34:47', 'YYYY-MM-DD HH24:MI:SS'), 'Quaerat temporibus odit aspernatur. Molestiae at nesciunt e' );
+	VALUES ( 849532, to_date ('2010-02-05', 'YYYY-MM-DD'), 'Marina Carvalho', to_date ('2001-02-18', 'YYYY-MM-DD'), to_date ('2013-04-18', 'YYYY-MM-DD'), '13:20:11', to_timestamp ('2008-10-15 19:11:40', 'YYYY-MM-DD HH24:MI:SS'), 'Alias repellat expedita ab quasi repellendus' );
 INSERT INTO show ( IMO, dataFesta, nomeBanda, dataCriacaoBanda, data, horaInicio, terminoPrevisto, contrato )
-	VALUES ( 409168, to_date ('2017-04-13', 'YYYY-MM-DD'), 'Júlia Ribeiro', to_date ('2014-09-11', 'YYYY-MM-DD'), to_date ('2005-08-27', 'YYYY-MM-DD'), '10:39:19', to_timestamp ('2007-11-17 07:52:47', 'YYYY-MM-DD HH24:MI:SS'), 'Accusamus rem pariatur eveniet facilis voluptatibus. Hic beatae ' );
+	VALUES ( 461870, to_date ('2008-03-21', 'YYYY-MM-DD'), 'Esther Martins', to_date ('2011-05-05', 'YYYY-MM-DD'), to_date ('2000-11-04', 'YYYY-MM-DD'), '18:46:44', to_timestamp ('2007-11-21 06:16:54', 'YYYY-MM-DD HH24:MI:SS'), 'Veritatis alias soluta quia. Qui fuga sint perspiciat' );
 INSERT INTO show ( IMO, dataFesta, nomeBanda, dataCriacaoBanda, data, horaInicio, terminoPrevisto, contrato )
-	VALUES ( 851801, to_date ('2011-10-22', 'YYYY-MM-DD'), 'Dr. Vicente Costela', to_date ('2004-01-13', 'YYYY-MM-DD'), to_date ('2017-11-05', 'YYYY-MM-DD'), '00:29:07', to_timestamp ('2000-04-22 13:00:49', 'YYYY-MM-DD HH24:MI:SS'), 'Cum architecto vel dolorem tenetur.Voluptas tempore ' );
+	VALUES ( 208089, to_date ('2013-01-14', 'YYYY-MM-DD'), 'Dr. Enzo Gabriel Silva', to_date ('2016-10-17', 'YYYY-MM-DD'), to_date ('2007-10-27', 'YYYY-MM-DD'), '20:21:14', to_timestamp ('2015-08-27 03:33:38', 'YYYY-MM-DD HH24:MI:SS'), 'Numquam in optio ex. Commodi expedita v' );
 INSERT INTO show ( IMO, dataFesta, nomeBanda, dataCriacaoBanda, data, horaInicio, terminoPrevisto, contrato )
-	VALUES ( 214286, to_date ('2010-07-08', 'YYYY-MM-DD'), 'Luiz Fernando Barbosa', to_date ('2001-02-07', 'YYYY-MM-DD'), to_date ('2015-05-25', 'YYYY-MM-DD'), '06:30:36', to_timestamp ('2017-09-13 17:10:39', 'YYYY-MM-DD HH24:MI:SS'), 'Dolor nobis dolor ab aliquam doloremque. Minus fugiat delec' );
+	VALUES ( 249205, to_date ('2000-06-16', 'YYYY-MM-DD'), 'Dr. Guilherme Cardoso,', to_date ('2009-01-21', 'YYYY-MM-DD'), to_date ('2014-08-14', 'YYYY-MM-DD'), '00:43:24', to_timestamp ('2013-02-21 22:31:04', 'YYYY-MM-DD HH24:MI:SS'), 'Ipsam eveniet perspiciatis quide' );
 INSERT INTO show ( IMO, dataFesta, nomeBanda, dataCriacaoBanda, data, horaInicio, terminoPrevisto, contrato )
-	VALUES ( 240881, to_date ('2018-11-22', 'YYYY-MM-DD'), 'Sofia Rezende', to_date ('2008-05-29', 'YYYY-MM-DD'), to_date ('2009-11-18', 'YYYY-MM-DD'), '17:22:16', to_timestamp ('2009-01-07 18:10:43', 'YYYY-MM-DD HH24:MI:SS'), 'In numquam libero consectetur voluptatibus quos architect' );
+	VALUES ( 751882, to_date ('2016-11-19', 'YYYY-MM-DD'), 'Joaquim da Mata', to_date ('2005-03-12', 'YYYY-MM-DD'), to_date ('2012-08-02', 'YYYY-MM-DD'), '03:58:41', to_timestamp ('2006-04-18 01:16:15', 'YYYY-MM-DD HH24:MI:SS'), 'Tempora quos mollitia quidem laboriosam cum autem. Eum' );
 INSERT INTO show ( IMO, dataFesta, nomeBanda, dataCriacaoBanda, data, horaInicio, terminoPrevisto, contrato )
-	VALUES ( 745601, to_date ('2001-09-11', 'YYYY-MM-DD'), 'Luiz Fernando Barbosa', to_date ('2001-02-07', 'YYYY-MM-DD'), to_date ('2003-07-17', 'YYYY-MM-DD'), '01:20:50', to_timestamp ('2018-12-22 01:26:48', 'YYYY-MM-DD HH24:MI:SS'), 'Recusandae facilis laboriosam consequatur molestiae pariatur co' );
+	VALUES ( 834515, to_date ('2010-10-30', 'YYYY-MM-DD'), 'Joaquim da Mata', to_date ('2005-03-12', 'YYYY-MM-DD'), to_date ('2015-12-27', 'YYYY-MM-DD'), '15:40:55', to_timestamp ('2004-05-22 16:27:41', 'YYYY-MM-DD HH24:MI:SS'), 'Natus unde pariatur adipisci inventore moles' );
 INSERT INTO show ( IMO, dataFesta, nomeBanda, dataCriacaoBanda, data, horaInicio, terminoPrevisto, contrato )
-	VALUES ( 371947, to_date ('2015-12-25', 'YYYY-MM-DD'), 'Maria Clara Barbosa', to_date ('2011-05-08', 'YYYY-MM-DD'), to_date ('2003-11-11', 'YYYY-MM-DD'), '09:55:54', to_timestamp ('2003-01-14 22:34:08', 'YYYY-MM-DD HH24:MI:SS'), 'Praesentium occaecati delectus. Eos iusto voluptatibus laborum.' );
+	VALUES ( 849532, to_date ('2010-02-05', 'YYYY-MM-DD'), 'Antônio da Cruz', to_date ('2006-09-09', 'YYYY-MM-DD'), to_date ('2006-10-29', 'YYYY-MM-DD'), '04:05:01', to_timestamp ('2009-05-13 02:51:55', 'YYYY-MM-DD HH24:MI:SS'), 'Perspiciatis sapiente quia repellat dignissimos. Quisq' );
 INSERT INTO show ( IMO, dataFesta, nomeBanda, dataCriacaoBanda, data, horaInicio, terminoPrevisto, contrato )
-	VALUES ( 745601, to_date ('2001-09-11', 'YYYY-MM-DD'), 'Srta. Ana Ferreira', to_date ('2010-03-29', 'YYYY-MM-DD'), to_date ('2013-11-10', 'YYYY-MM-DD'), '23:21:32', to_timestamp ('2002-05-09 14:04:17', 'YYYY-MM-DD HH24:MI:SS'), 'Cupiditate itaque provident eum molestias labore ipsam. Accus' );
+	VALUES ( 208089, to_date ('2013-01-14', 'YYYY-MM-DD'), 'Bianca Silveira', to_date ('2008-08-14', 'YYYY-MM-DD'), to_date ('2011-06-24', 'YYYY-MM-DD'), '23:22:46', to_timestamp ('2014-11-11 09:35:02', 'YYYY-MM-DD HH24:MI:SS'), 'Numquam soluta numquam quia suscipit aspernatur. Consectetur te' );
 
 /* TABLE showSonorizacao */
 INSERT INTO showSonorizacao ( showId, sonorizacaoId )
-	VALUES ( 5, 1 );
+	VALUES ( 9, 13 );
 INSERT INTO showSonorizacao ( showId, sonorizacaoId )
-	VALUES ( 10, 13 );
+	VALUES ( 15, 12 );
 INSERT INTO showSonorizacao ( showId, sonorizacaoId )
-	VALUES ( 17, 15 );
+	VALUES ( 11, 20 );
 INSERT INTO showSonorizacao ( showId, sonorizacaoId )
-	VALUES ( 7, 12 );
+	VALUES ( 5, 20 );
 INSERT INTO showSonorizacao ( showId, sonorizacaoId )
-	VALUES ( 7, 18 );
+	VALUES ( 19, 18 );
 INSERT INTO showSonorizacao ( showId, sonorizacaoId )
-	VALUES ( 14, 11 );
+	VALUES ( 9, 6 );
 INSERT INTO showSonorizacao ( showId, sonorizacaoId )
-	VALUES ( 14, 10 );
+	VALUES ( 15, 9 );
 INSERT INTO showSonorizacao ( showId, sonorizacaoId )
-	VALUES ( 15, 6 );
+	VALUES ( 14, 12 );
 INSERT INTO showSonorizacao ( showId, sonorizacaoId )
-	VALUES ( 12, 19 );
+	VALUES ( 12, 16 );
 INSERT INTO showSonorizacao ( showId, sonorizacaoId )
-	VALUES ( 5, 3 );
+	VALUES ( 20, 12 );
 INSERT INTO showSonorizacao ( showId, sonorizacaoId )
-	VALUES ( 5, 9 );
+	VALUES ( 11, 11 );
 INSERT INTO showSonorizacao ( showId, sonorizacaoId )
-	VALUES ( 11, 12 );
+	VALUES ( 18, 8 );
 INSERT INTO showSonorizacao ( showId, sonorizacaoId )
-	VALUES ( 9, 4 );
+	VALUES ( 20, 4 );
 INSERT INTO showSonorizacao ( showId, sonorizacaoId )
-	VALUES ( 9, 8 );
+	VALUES ( 3, 8 );
 INSERT INTO showSonorizacao ( showId, sonorizacaoId )
-	VALUES ( 12, 5 );
+	VALUES ( 12, 2 );
 INSERT INTO showSonorizacao ( showId, sonorizacaoId )
-	VALUES ( 18, 7 );
+	VALUES ( 4, 5 );
 INSERT INTO showSonorizacao ( showId, sonorizacaoId )
-	VALUES ( 4, 20 );
+	VALUES ( 2, 10 );
 INSERT INTO showSonorizacao ( showId, sonorizacaoId )
-	VALUES ( 13, 8 );
+	VALUES ( 13, 17 );
 INSERT INTO showSonorizacao ( showId, sonorizacaoId )
-	VALUES ( 2, 17 );
+	VALUES ( 1, 11 );
 INSERT INTO showSonorizacao ( showId, sonorizacaoId )
-	VALUES ( 20, 11 );
+	VALUES ( 8, 7 );
 
 /* TABLE album */
 INSERT INTO album ( IMOFesta, dataFesta )
-	VALUES ( 771794, to_date ('2004-06-07', 'YYYY-MM-DD') );
+	VALUES ( 586721, to_date ('2009-11-23', 'YYYY-MM-DD') );
 INSERT INTO album ( IMOFesta, dataFesta )
-	VALUES ( 744184, to_date ('2008-11-18', 'YYYY-MM-DD') );
+	VALUES ( 273028, to_date ('2009-03-07', 'YYYY-MM-DD') );
 INSERT INTO album ( IMOFesta, dataFesta )
-	VALUES ( 262160, to_date ('2005-12-05', 'YYYY-MM-DD') );
+	VALUES ( 482129, to_date ('2002-06-14', 'YYYY-MM-DD') );
 INSERT INTO album ( IMOFesta, dataFesta )
-	VALUES ( 252710, to_date ('2017-08-05', 'YYYY-MM-DD') );
+	VALUES ( 208089, to_date ('2013-01-14', 'YYYY-MM-DD') );
 INSERT INTO album ( IMOFesta, dataFesta )
-	VALUES ( 214286, to_date ('2010-07-08', 'YYYY-MM-DD') );
+	VALUES ( 544029, to_date ('2016-04-12', 'YYYY-MM-DD') );
 INSERT INTO album ( IMOFesta, dataFesta )
-	VALUES ( 439448, to_date ('2015-11-07', 'YYYY-MM-DD') );
+	VALUES ( 834515, to_date ('2010-10-30', 'YYYY-MM-DD') );
 INSERT INTO album ( IMOFesta, dataFesta )
-	VALUES ( 395099, to_date ('2009-11-27', 'YYYY-MM-DD') );
+	VALUES ( 429552, to_date ('2016-05-05', 'YYYY-MM-DD') );
 INSERT INTO album ( IMOFesta, dataFesta )
-	VALUES ( 240881, to_date ('2018-11-22', 'YYYY-MM-DD') );
+	VALUES ( 849532, to_date ('2010-02-05', 'YYYY-MM-DD') );
 INSERT INTO album ( IMOFesta, dataFesta )
-	VALUES ( 612031, to_date ('2004-02-15', 'YYYY-MM-DD') );
+	VALUES ( 887279, to_date ('2011-01-17', 'YYYY-MM-DD') );
 INSERT INTO album ( IMOFesta, dataFesta )
-	VALUES ( 152370, to_date ('2003-11-07', 'YYYY-MM-DD') );
+	VALUES ( 219484, to_date ('2016-10-07', 'YYYY-MM-DD') );
 INSERT INTO album ( IMOFesta, dataFesta )
-	VALUES ( 592219, to_date ('2015-08-20', 'YYYY-MM-DD') );
+	VALUES ( 461870, to_date ('2008-03-21', 'YYYY-MM-DD') );
 INSERT INTO album ( IMOFesta, dataFesta )
-	VALUES ( 851801, to_date ('2011-10-22', 'YYYY-MM-DD') );
+	VALUES ( 647055, to_date ('2005-04-25', 'YYYY-MM-DD') );
 INSERT INTO album ( IMOFesta, dataFesta )
-	VALUES ( 147272, to_date ('2010-01-10', 'YYYY-MM-DD') );
+	VALUES ( 287285, to_date ('2008-12-05', 'YYYY-MM-DD') );
 INSERT INTO album ( IMOFesta, dataFesta )
-	VALUES ( 745601, to_date ('2001-09-11', 'YYYY-MM-DD') );
+	VALUES ( 119408, to_date ('2002-01-09', 'YYYY-MM-DD') );
 INSERT INTO album ( IMOFesta, dataFesta )
-	VALUES ( 371947, to_date ('2015-12-25', 'YYYY-MM-DD') );
+	VALUES ( 299505, to_date ('2008-01-19', 'YYYY-MM-DD') );
 INSERT INTO album ( IMOFesta, dataFesta )
-	VALUES ( 195137, to_date ('2004-11-18', 'YYYY-MM-DD') );
+	VALUES ( 114861, to_date ('2008-04-19', 'YYYY-MM-DD') );
 INSERT INTO album ( IMOFesta, dataFesta )
-	VALUES ( 714288, to_date ('2010-02-17', 'YYYY-MM-DD') );
+	VALUES ( 114105, to_date ('2007-06-08', 'YYYY-MM-DD') );
 INSERT INTO album ( IMOFesta, dataFesta )
-	VALUES ( 409168, to_date ('2017-04-13', 'YYYY-MM-DD') );
+	VALUES ( 249205, to_date ('2000-06-16', 'YYYY-MM-DD') );
 INSERT INTO album ( IMOFesta, dataFesta )
-	VALUES ( 899004, to_date ('2007-02-00', 'YYYY-MM-DD') );
+	VALUES ( 751882, to_date ('2016-11-19', 'YYYY-MM-DD') );
 INSERT INTO album ( IMOFesta, dataFesta )
-	VALUES ( 481351, to_date ('2001-09-08', 'YYYY-MM-DD') );
+	VALUES ( 690434, to_date ('2005-05-14', 'YYYY-MM-DD') );
 
 /* TABLE makingof */
 INSERT INTO makingof ( IMOFesta, dataFesta )
-	VALUES ( 592219, to_date ('2015-08-20', 'YYYY-MM-DD') );
+	VALUES ( 429552, to_date ('2016-05-05', 'YYYY-MM-DD') );
 INSERT INTO makingof ( IMOFesta, dataFesta )
-	VALUES ( 481351, to_date ('2001-09-08', 'YYYY-MM-DD') );
+	VALUES ( 287285, to_date ('2008-12-05', 'YYYY-MM-DD') );
 INSERT INTO makingof ( IMOFesta, dataFesta )
-	VALUES ( 744184, to_date ('2008-11-18', 'YYYY-MM-DD') );
+	VALUES ( 461870, to_date ('2008-03-21', 'YYYY-MM-DD') );
 INSERT INTO makingof ( IMOFesta, dataFesta )
-	VALUES ( 745601, to_date ('2001-09-11', 'YYYY-MM-DD') );
+	VALUES ( 114105, to_date ('2007-06-08', 'YYYY-MM-DD') );
 INSERT INTO makingof ( IMOFesta, dataFesta )
-	VALUES ( 240881, to_date ('2018-11-22', 'YYYY-MM-DD') );
+	VALUES ( 482129, to_date ('2002-06-14', 'YYYY-MM-DD') );
 INSERT INTO makingof ( IMOFesta, dataFesta )
-	VALUES ( 409168, to_date ('2017-04-13', 'YYYY-MM-DD') );
+	VALUES ( 690434, to_date ('2005-05-14', 'YYYY-MM-DD') );
 INSERT INTO makingof ( IMOFesta, dataFesta )
-	VALUES ( 851801, to_date ('2011-10-22', 'YYYY-MM-DD') );
+	VALUES ( 299505, to_date ('2008-01-19', 'YYYY-MM-DD') );
 INSERT INTO makingof ( IMOFesta, dataFesta )
-	VALUES ( 262160, to_date ('2005-12-05', 'YYYY-MM-DD') );
+	VALUES ( 647055, to_date ('2005-04-25', 'YYYY-MM-DD') );
 INSERT INTO makingof ( IMOFesta, dataFesta )
-	VALUES ( 252710, to_date ('2017-08-05', 'YYYY-MM-DD') );
+	VALUES ( 249205, to_date ('2000-06-16', 'YYYY-MM-DD') );
 INSERT INTO makingof ( IMOFesta, dataFesta )
-	VALUES ( 152370, to_date ('2003-11-07', 'YYYY-MM-DD') );
+	VALUES ( 834515, to_date ('2010-10-30', 'YYYY-MM-DD') );
 INSERT INTO makingof ( IMOFesta, dataFesta )
-	VALUES ( 395099, to_date ('2009-11-27', 'YYYY-MM-DD') );
+	VALUES ( 114861, to_date ('2008-04-19', 'YYYY-MM-DD') );
 INSERT INTO makingof ( IMOFesta, dataFesta )
-	VALUES ( 771794, to_date ('2004-06-07', 'YYYY-MM-DD') );
+	VALUES ( 219484, to_date ('2016-10-07', 'YYYY-MM-DD') );
 INSERT INTO makingof ( IMOFesta, dataFesta )
-	VALUES ( 439448, to_date ('2015-11-07', 'YYYY-MM-DD') );
+	VALUES ( 887279, to_date ('2011-01-17', 'YYYY-MM-DD') );
 INSERT INTO makingof ( IMOFesta, dataFesta )
-	VALUES ( 195137, to_date ('2004-11-18', 'YYYY-MM-DD') );
+	VALUES ( 544029, to_date ('2016-04-12', 'YYYY-MM-DD') );
 INSERT INTO makingof ( IMOFesta, dataFesta )
-	VALUES ( 147272, to_date ('2010-01-10', 'YYYY-MM-DD') );
+	VALUES ( 119408, to_date ('2002-01-09', 'YYYY-MM-DD') );
 INSERT INTO makingof ( IMOFesta, dataFesta )
-	VALUES ( 899004, to_date ('2007-02-00', 'YYYY-MM-DD') );
+	VALUES ( 586721, to_date ('2009-11-23', 'YYYY-MM-DD') );
 INSERT INTO makingof ( IMOFesta, dataFesta )
-	VALUES ( 214286, to_date ('2010-07-08', 'YYYY-MM-DD') );
+	VALUES ( 849532, to_date ('2010-02-05', 'YYYY-MM-DD') );
 INSERT INTO makingof ( IMOFesta, dataFesta )
-	VALUES ( 371947, to_date ('2015-12-25', 'YYYY-MM-DD') );
+	VALUES ( 273028, to_date ('2009-03-07', 'YYYY-MM-DD') );
 INSERT INTO makingof ( IMOFesta, dataFesta )
-	VALUES ( 612031, to_date ('2004-02-15', 'YYYY-MM-DD') );
+	VALUES ( 208089, to_date ('2013-01-14', 'YYYY-MM-DD') );
 INSERT INTO makingof ( IMOFesta, dataFesta )
-	VALUES ( 714288, to_date ('2010-02-17', 'YYYY-MM-DD') );
+	VALUES ( 751882, to_date ('2016-11-19', 'YYYY-MM-DD') );
 
 /* TABLE opComCamera */
 INSERT INTO opComCamera ( cpfOpCamera, data, camera, tipo )
-	VALUES ( '583.596.699-39', to_date ('2013-06-14', 'YYYY-MM-DD'), 66028147, 'PARQUE' );
+	VALUES ( '523.255.716-37', to_date ('2001-11-10', 'YYYY-MM-DD'), 10727649, 'CINEGRAFISTA' );
 INSERT INTO opComCamera ( cpfOpCamera, data, camera, tipo )
-	VALUES ( '529.827.160-27', to_date ('2006-04-08', 'YYYY-MM-DD'), 88922654, 'FOTOGRAFO' );
+	VALUES ( '490.990.422-75', to_date ('2015-12-06', 'YYYY-MM-DD'), 11308931, 'PARQUE' );
 INSERT INTO opComCamera ( cpfOpCamera, data, camera, tipo )
-	VALUES ( '969.304.789-35', to_date ('2011-11-21', 'YYYY-MM-DD'), 80029783, 'PARQUE' );
+	VALUES ( '583.792.569-11', to_date ('2008-06-19', 'YYYY-MM-DD'), 13114930, 'CINEGRAFISTA' );
 INSERT INTO opComCamera ( cpfOpCamera, data, camera, tipo )
-	VALUES ( '424.447.919-31', to_date ('2000-08-20', 'YYYY-MM-DD'), 21186814, 'CINEGRAFISTA' );
+	VALUES ( '121.199.607-14', to_date ('2009-08-26', 'YYYY-MM-DD'), 49209844, 'PARQUE' );
 INSERT INTO opComCamera ( cpfOpCamera, data, camera, tipo )
-	VALUES ( '529.827.160-27', to_date ('2018-05-16', 'YYYY-MM-DD'), 81056488, 'CINEGRAFISTA' );
+	VALUES ( '121.199.607-14', to_date ('2016-01-20', 'YYYY-MM-DD'), 67338518, 'CINEGRAFISTA' );
 INSERT INTO opComCamera ( cpfOpCamera, data, camera, tipo )
-	VALUES ( '575.250.850-93', to_date ('2000-02-23', 'YYYY-MM-DD'), 81605964, 'PARQUE' );
+	VALUES ( '851.398.230-44', to_date ('2018-12-10', 'YYYY-MM-DD'), 83150887, 'CINEGRAFISTA' );
 INSERT INTO opComCamera ( cpfOpCamera, data, camera, tipo )
-	VALUES ( '969.304.789-35', to_date ('2011-08-11', 'YYYY-MM-DD'), 46870699, 'PARQUE' );
+	VALUES ( '478.696.780-28', to_date ('2014-05-15', 'YYYY-MM-DD'), 31231013, 'PARQUE' );
 INSERT INTO opComCamera ( cpfOpCamera, data, camera, tipo )
-	VALUES ( '030.610.128-33', to_date ('2006-02-08', 'YYYY-MM-DD'), 40864844, 'PARQUE' );
+	VALUES ( '924.966.747-52', to_date ('2007-11-21', 'YYYY-MM-DD'), 80342643, 'PARQUE' );
 INSERT INTO opComCamera ( cpfOpCamera, data, camera, tipo )
-	VALUES ( '459.131.430-66', to_date ('2013-11-14', 'YYYY-MM-DD'), 44607579, 'FOTOGRAFO' );
+	VALUES ( '833.488.525-02', to_date ('2013-09-14', 'YYYY-MM-DD'), 49558495, 'FOTOGRAFO' );
 INSERT INTO opComCamera ( cpfOpCamera, data, camera, tipo )
-	VALUES ( '969.304.789-35', to_date ('2007-10-03', 'YYYY-MM-DD'), 17959175, 'PARQUE' );
+	VALUES ( '679.002.127-48', to_date ('2016-05-08', 'YYYY-MM-DD'), 73220749, 'FOTOGRAFO' );
 INSERT INTO opComCamera ( cpfOpCamera, data, camera, tipo )
-	VALUES ( '531.462.487-11', to_date ('2011-11-21', 'YYYY-MM-DD'), 40825365, 'FOTOGRAFO' );
+	VALUES ( '523.255.716-37', to_date ('2015-02-23', 'YYYY-MM-DD'), 89100398, 'CINEGRAFISTA' );
 INSERT INTO opComCamera ( cpfOpCamera, data, camera, tipo )
-	VALUES ( '998.627.534-11', to_date ('2015-03-06', 'YYYY-MM-DD'), 17308451, 'FOTOGRAFO' );
+	VALUES ( '946.521.617-86', to_date ('2015-03-11', 'YYYY-MM-DD'), 42761525, 'FOTOGRAFO' );
 INSERT INTO opComCamera ( cpfOpCamera, data, camera, tipo )
-	VALUES ( '996.257.521-19', to_date ('2008-01-13', 'YYYY-MM-DD'), 59187419, 'PARQUE' );
+	VALUES ( '632.034.959-23', to_date ('2011-06-07', 'YYYY-MM-DD'), 63019302, 'PARQUE' );
 INSERT INTO opComCamera ( cpfOpCamera, data, camera, tipo )
-	VALUES ( '969.304.789-35', to_date ('2014-05-10', 'YYYY-MM-DD'), 61145847, 'PARQUE' );
+	VALUES ( '523.255.716-37', to_date ('2004-05-06', 'YYYY-MM-DD'), 63417233, 'CINEGRAFISTA' );
 INSERT INTO opComCamera ( cpfOpCamera, data, camera, tipo )
-	VALUES ( '531.462.487-11', to_date ('2007-03-08', 'YYYY-MM-DD'), 77193983, 'CINEGRAFISTA' );
+	VALUES ( '851.398.230-44', to_date ('2014-11-06', 'YYYY-MM-DD'), 61924808, 'FOTOGRAFO' );
 INSERT INTO opComCamera ( cpfOpCamera, data, camera, tipo )
-	VALUES ( '998.627.534-11', to_date ('2010-11-15', 'YYYY-MM-DD'), 81803828, 'FOTOGRAFO' );
+	VALUES ( '478.696.780-28', to_date ('2006-06-09', 'YYYY-MM-DD'), 88492141, 'PARQUE' );
 INSERT INTO opComCamera ( cpfOpCamera, data, camera, tipo )
-	VALUES ( '396.343.547-09', to_date ('2016-07-04', 'YYYY-MM-DD'), 30818192, 'FOTOGRAFO' );
+	VALUES ( '516.335.573-78', to_date ('2010-11-09', 'YYYY-MM-DD'), 11828863, 'CINEGRAFISTA' );
 INSERT INTO opComCamera ( cpfOpCamera, data, camera, tipo )
-	VALUES ( '030.610.128-33', to_date ('2000-06-08', 'YYYY-MM-DD'), 45217820, 'PARQUE' );
+	VALUES ( '478.696.780-28', to_date ('2016-08-28', 'YYYY-MM-DD'), 79878442, 'CINEGRAFISTA' );
 INSERT INTO opComCamera ( cpfOpCamera, data, camera, tipo )
-	VALUES ( '621.135.750-86', to_date ('2000-11-10', 'YYYY-MM-DD'), 39126838, 'CINEGRAFISTA' );
+	VALUES ( '197.520.896-76', to_date ('2009-12-14', 'YYYY-MM-DD'), 10096588, 'CINEGRAFISTA' );
 INSERT INTO opComCamera ( cpfOpCamera, data, camera, tipo )
-	VALUES ( '529.827.160-27', to_date ('2014-10-12', 'YYYY-MM-DD'), 20955203, 'PARQUE' );
+	VALUES ( '523.255.716-37', to_date ('2006-07-14', 'YYYY-MM-DD'), 60331090, 'FOTOGRAFO' );
 
 /* TABLE fotografoCruzeiro */
-/* COMMAND BLOCKED (CAN'T SOLVE FK). */
 INSERT INTO fotografoCruzeiro ( cpfOpCamera, data, categoria, idAlbum )
-	VALUES ( '030.610.128-33', to_date ('2006-02-08', 'YYYY-MM-DD'), 'ESPECIALISTA', 17 );
+	VALUES ( '679.002.127-48', to_date ('2016-05-08', 'YYYY-MM-DD'), 'TECNICO', 19 );
 INSERT INTO fotografoCruzeiro ( cpfOpCamera, data, categoria, idAlbum )
-	VALUES ( '424.447.919-31', to_date ('2000-08-20', 'YYYY-MM-DD'), 'JUNIOR', 7 );
+	VALUES ( '833.488.525-02', to_date ('2013-09-14', 'YYYY-MM-DD'), 'ESPECIALISTA', 6 );
 INSERT INTO fotografoCruzeiro ( cpfOpCamera, data, categoria, idAlbum )
-	VALUES ( '969.304.789-35', to_date ('2014-05-10', 'YYYY-MM-DD'), 'ESPECIALISTA', 18 );
+	VALUES ( '478.696.780-28', to_date ('2006-06-09', 'YYYY-MM-DD'), 'ESPECIALISTA', 9 );
 INSERT INTO fotografoCruzeiro ( cpfOpCamera, data, categoria, idAlbum )
-	VALUES ( '998.627.534-11', to_date ('2015-03-06', 'YYYY-MM-DD'), 'JUNIOR', 1 );
+	VALUES ( '583.792.569-11', to_date ('2008-06-19', 'YYYY-MM-DD'), 'ESPECIALISTA', 4 );
 INSERT INTO fotografoCruzeiro ( cpfOpCamera, data, categoria, idAlbum )
-	VALUES ( '969.304.789-35', to_date ('2011-08-11', 'YYYY-MM-DD'), 'ESPECIALISTA', 2 );
+	VALUES ( '523.255.716-37', to_date ('2015-02-23', 'YYYY-MM-DD'), 'ESPECIALISTA', 14 );
 INSERT INTO fotografoCruzeiro ( cpfOpCamera, data, categoria, idAlbum )
-	VALUES ( '969.304.789-35', to_date ('2007-10-03', 'YYYY-MM-DD'), 'TECNICO', 2 );
+	VALUES ( '121.199.607-14', to_date ('2009-08-26', 'YYYY-MM-DD'), 'ESPECIALISTA', 9 );
 INSERT INTO fotografoCruzeiro ( cpfOpCamera, data, categoria, idAlbum )
-	VALUES ( '621.135.750-86', to_date ('2000-11-10', 'YYYY-MM-DD'), 'TECNICO', 11 );
+	VALUES ( '478.696.780-28', to_date ('2016-08-28', 'YYYY-MM-DD'), 'TECNICO', 8 );
 INSERT INTO fotografoCruzeiro ( cpfOpCamera, data, categoria, idAlbum )
-	VALUES ( '575.250.850-93', to_date ('2000-02-23', 'YYYY-MM-DD'), 'TECNICO', 4 );
+	VALUES ( '490.990.422-75', to_date ('2015-12-06', 'YYYY-MM-DD'), 'ESPECIALISTA', 6 );
 INSERT INTO fotografoCruzeiro ( cpfOpCamera, data, categoria, idAlbum )
-	VALUES ( '529.827.160-27', to_date ('2014-10-12', 'YYYY-MM-DD'), 'JUNIOR', 12 );
+	VALUES ( '851.398.230-44', to_date ('2014-11-06', 'YYYY-MM-DD'), 'ESPECIALISTA', 6 );
 INSERT INTO fotografoCruzeiro ( cpfOpCamera, data, categoria, idAlbum )
-	VALUES ( '998.627.534-11', to_date ('2010-11-15', 'YYYY-MM-DD'), 'TECNICO', 18 );
+	VALUES ( '478.696.780-28', to_date ('2014-05-15', 'YYYY-MM-DD'), 'TECNICO', 9 );
 INSERT INTO fotografoCruzeiro ( cpfOpCamera, data, categoria, idAlbum )
-	VALUES ( '529.827.160-27', to_date ('2018-05-16', 'YYYY-MM-DD'), 'ESPECIALISTA', 13 );
+	VALUES ( '523.255.716-37', to_date ('2006-07-14', 'YYYY-MM-DD'), 'TECNICO', 8 );
 INSERT INTO fotografoCruzeiro ( cpfOpCamera, data, categoria, idAlbum )
-	VALUES ( '531.462.487-11', to_date ('2007-03-08', 'YYYY-MM-DD'), 'JUNIOR', 8 );
+	VALUES ( '121.199.607-14', to_date ('2016-01-20', 'YYYY-MM-DD'), 'TECNICO', 16 );
 INSERT INTO fotografoCruzeiro ( cpfOpCamera, data, categoria, idAlbum )
-	VALUES ( '531.462.487-11', to_date ('2011-11-21', 'YYYY-MM-DD'), 'ESPECIALISTA', 14 );
+	VALUES ( '851.398.230-44', to_date ('2018-12-10', 'YYYY-MM-DD'), 'TECNICO', 8 );
 INSERT INTO fotografoCruzeiro ( cpfOpCamera, data, categoria, idAlbum )
-	VALUES ( '459.131.430-66', to_date ('2013-11-14', 'YYYY-MM-DD'), 'JUNIOR', 19 );
+	VALUES ( '523.255.716-37', to_date ('2001-11-10', 'YYYY-MM-DD'), 'JUNIOR', 7 );
 INSERT INTO fotografoCruzeiro ( cpfOpCamera, data, categoria, idAlbum )
-	VALUES ( '583.596.699-39', to_date ('2013-06-14', 'YYYY-MM-DD'), 'ESPECIALISTA', 14 );
+	VALUES ( '516.335.573-78', to_date ('2010-11-09', 'YYYY-MM-DD'), 'TECNICO', 3 );
 INSERT INTO fotografoCruzeiro ( cpfOpCamera, data, categoria, idAlbum )
-	VALUES ( '396.343.547-09', to_date ('2016-07-04', 'YYYY-MM-DD'), 'TECNICO', 9 );
+	VALUES ( '523.255.716-37', to_date ('2004-05-06', 'YYYY-MM-DD'), 'TECNICO', 7 );
 INSERT INTO fotografoCruzeiro ( cpfOpCamera, data, categoria, idAlbum )
-	VALUES ( '996.257.521-19', to_date ('2008-01-13', 'YYYY-MM-DD'), 'TECNICO', 13 );
+	VALUES ( '924.966.747-52', to_date ('2007-11-21', 'YYYY-MM-DD'), 'JUNIOR', 20 );
 INSERT INTO fotografoCruzeiro ( cpfOpCamera, data, categoria, idAlbum )
-	VALUES ( '030.610.128-33', to_date ('2000-06-08', 'YYYY-MM-DD'), 'JUNIOR', 9 );
+	VALUES ( '946.521.617-86', to_date ('2015-03-11', 'YYYY-MM-DD'), 'ESPECIALISTA', 19 );
 INSERT INTO fotografoCruzeiro ( cpfOpCamera, data, categoria, idAlbum )
-	VALUES ( '529.827.160-27', to_date ('2006-04-08', 'YYYY-MM-DD'), 'ESPECIALISTA', 13 );
+	VALUES ( '632.034.959-23', to_date ('2011-06-07', 'YYYY-MM-DD'), 'TECNICO', 12 );
+INSERT INTO fotografoCruzeiro ( cpfOpCamera, data, categoria, idAlbum )
+	VALUES ( '197.520.896-76', to_date ('2009-12-14', 'YYYY-MM-DD'), 'ESPECIALISTA', 3 );
 
 /* TABLE cinegrafistaCruzeiro */
-/* COMMAND BLOCKED (CAN'T SOLVE FK). */
 INSERT INTO cinegrafistaCruzeiro ( cpfOpCamera, data, idMakingof )
-	VALUES ( '969.304.789-35', to_date ('2007-10-03', 'YYYY-MM-DD'), 14 );
+	VALUES ( '197.520.896-76', to_date ('2009-12-14', 'YYYY-MM-DD'), 18 );
 INSERT INTO cinegrafistaCruzeiro ( cpfOpCamera, data, idMakingof )
-	VALUES ( '459.131.430-66', to_date ('2013-11-14', 'YYYY-MM-DD'), 14 );
+	VALUES ( '516.335.573-78', to_date ('2010-11-09', 'YYYY-MM-DD'), 6 );
 INSERT INTO cinegrafistaCruzeiro ( cpfOpCamera, data, idMakingof )
-	VALUES ( '969.304.789-35', to_date ('2011-11-21', 'YYYY-MM-DD'), 16 );
+	VALUES ( '679.002.127-48', to_date ('2016-05-08', 'YYYY-MM-DD'), 8 );
 INSERT INTO cinegrafistaCruzeiro ( cpfOpCamera, data, idMakingof )
-	VALUES ( '998.627.534-11', to_date ('2010-11-15', 'YYYY-MM-DD'), 1 );
+	VALUES ( '121.199.607-14', to_date ('2009-08-26', 'YYYY-MM-DD'), 7 );
 INSERT INTO cinegrafistaCruzeiro ( cpfOpCamera, data, idMakingof )
-	VALUES ( '529.827.160-27', to_date ('2018-05-16', 'YYYY-MM-DD'), 20 );
+	VALUES ( '632.034.959-23', to_date ('2011-06-07', 'YYYY-MM-DD'), 14 );
 INSERT INTO cinegrafistaCruzeiro ( cpfOpCamera, data, idMakingof )
-	VALUES ( '424.447.919-31', to_date ('2000-08-20', 'YYYY-MM-DD'), 7 );
+	VALUES ( '490.990.422-75', to_date ('2015-12-06', 'YYYY-MM-DD'), 6 );
 INSERT INTO cinegrafistaCruzeiro ( cpfOpCamera, data, idMakingof )
-	VALUES ( '396.343.547-09', to_date ('2016-07-04', 'YYYY-MM-DD'), 13 );
+	VALUES ( '121.199.607-14', to_date ('2016-01-20', 'YYYY-MM-DD'), 12 );
 INSERT INTO cinegrafistaCruzeiro ( cpfOpCamera, data, idMakingof )
-	VALUES ( '529.827.160-27', to_date ('2014-10-12', 'YYYY-MM-DD'), 1 );
+	VALUES ( '946.521.617-86', to_date ('2015-03-11', 'YYYY-MM-DD'), 9 );
 INSERT INTO cinegrafistaCruzeiro ( cpfOpCamera, data, idMakingof )
-	VALUES ( '998.627.534-11', to_date ('2015-03-06', 'YYYY-MM-DD'), 11 );
+	VALUES ( '851.398.230-44', to_date ('2018-12-10', 'YYYY-MM-DD'), 16 );
 INSERT INTO cinegrafistaCruzeiro ( cpfOpCamera, data, idMakingof )
-	VALUES ( '969.304.789-35', to_date ('2011-08-11', 'YYYY-MM-DD'), 12 );
+	VALUES ( '523.255.716-37', to_date ('2015-02-23', 'YYYY-MM-DD'), 5 );
 INSERT INTO cinegrafistaCruzeiro ( cpfOpCamera, data, idMakingof )
-	VALUES ( '575.250.850-93', to_date ('2000-02-23', 'YYYY-MM-DD'), 16 );
+	VALUES ( '833.488.525-02', to_date ('2013-09-14', 'YYYY-MM-DD'), 11 );
 INSERT INTO cinegrafistaCruzeiro ( cpfOpCamera, data, idMakingof )
-	VALUES ( '969.304.789-35', to_date ('2014-05-10', 'YYYY-MM-DD'), 7 );
+	VALUES ( '478.696.780-28', to_date ('2014-05-15', 'YYYY-MM-DD'), 7 );
 INSERT INTO cinegrafistaCruzeiro ( cpfOpCamera, data, idMakingof )
-	VALUES ( '531.462.487-11', to_date ('2007-03-08', 'YYYY-MM-DD'), 1 );
+	VALUES ( '523.255.716-37', to_date ('2004-05-06', 'YYYY-MM-DD'), 1 );
 INSERT INTO cinegrafistaCruzeiro ( cpfOpCamera, data, idMakingof )
-	VALUES ( '030.610.128-33', to_date ('2000-06-08', 'YYYY-MM-DD'), 14 );
+	VALUES ( '478.696.780-28', to_date ('2006-06-09', 'YYYY-MM-DD'), 19 );
 INSERT INTO cinegrafistaCruzeiro ( cpfOpCamera, data, idMakingof )
-	VALUES ( '583.596.699-39', to_date ('2013-06-14', 'YYYY-MM-DD'), 2 );
+	VALUES ( '523.255.716-37', to_date ('2001-11-10', 'YYYY-MM-DD'), 12 );
 INSERT INTO cinegrafistaCruzeiro ( cpfOpCamera, data, idMakingof )
-	VALUES ( '996.257.521-19', to_date ('2008-01-13', 'YYYY-MM-DD'), 3 );
+	VALUES ( '583.792.569-11', to_date ('2008-06-19', 'YYYY-MM-DD'), 7 );
 INSERT INTO cinegrafistaCruzeiro ( cpfOpCamera, data, idMakingof )
-	VALUES ( '529.827.160-27', to_date ('2006-04-08', 'YYYY-MM-DD'), 4 );
+	VALUES ( '523.255.716-37', to_date ('2006-07-14', 'YYYY-MM-DD'), 6 );
 INSERT INTO cinegrafistaCruzeiro ( cpfOpCamera, data, idMakingof )
-	VALUES ( '030.610.128-33', to_date ('2006-02-08', 'YYYY-MM-DD'), 20 );
+	VALUES ( '924.966.747-52', to_date ('2007-11-21', 'YYYY-MM-DD'), 1 );
 INSERT INTO cinegrafistaCruzeiro ( cpfOpCamera, data, idMakingof )
-	VALUES ( '621.135.750-86', to_date ('2000-11-10', 'YYYY-MM-DD'), 12 );
+	VALUES ( '851.398.230-44', to_date ('2014-11-06', 'YYYY-MM-DD'), 17 );
+INSERT INTO cinegrafistaCruzeiro ( cpfOpCamera, data, idMakingof )
+	VALUES ( '478.696.780-28', to_date ('2016-08-28', 'YYYY-MM-DD'), 16 );
 
 /* TABLE parque */
 INSERT INTO parque ( cnpj, nome, mapaFilePath, endereco )
-	VALUES ( '00.427.481/2502-93', 'Dr. Luiz Henrique Teixeira', 'Iusto unde harum dolorem facere quae architecto amet. Est aspernat', 'Aeroporto de da Cruz, 63 São Jorge 1ª Seção 31851032 Santos / PA' );
+	VALUES ( '31.400.972/2310-96', 'Dr. Thiago da Luz', 'Quo fugit labore facere nostrum.Veniam vitae velit culpa maxime. A', 'Residencial de Moreira, 28 Paulo Vi 50421-508 Gomes / BA' );
 INSERT INTO parque ( cnpj, nome, mapaFilePath, endereco )
-	VALUES ( '08.887.577/2717-20', 'Luiz Gustavo Vieira', 'Quibusdam quos veniam rerum dolor laudantium magni. Modi assumenda autem. Suscipit ipsum mollitia corporis quisq', 'Feira Raquel Almeida, 85 Vila Olhos D água 92743541 Santos de Martins / SP' );
+	VALUES ( '64.566.386/0658-81', 'Sra. Camila da Cruz', 'Corporis quas enim consectetur in eum. Quidem non beatae praesentium. Consequatur officia itaque voluptatibus minima.', 'Trecho Renan Pinto, 77 Mineirão 81871-657 Azevedo / RO' );
 INSERT INTO parque ( cnpj, nome, mapaFilePath, endereco )
-	VALUES ( '88.645.659/8305-31', 'Ana Beatriz Nunes', 'Modi expedita consequatur aperiam. Esse aspernatur dolores distinctio. Earum ea eius iste id amet.', 'Aeroporto Melissa Duarte, 3 Conjunto Taquaril 39689592 Souza / SE' );
+	VALUES ( '94.219.626/4342-76', 'Luiza da Rosa', 'Natus quos corrupti molestias autem. Repellendus nostrum nisi sequi tempore nemo dolor. Fuga soluta ve', 'Setor Yasmin Lima, 5 São Jorge 2ª Seção 58767-596 Moura do Norte / SE' );
 INSERT INTO parque ( cnpj, nome, mapaFilePath, endereco )
-	VALUES ( '93.555.593/9937-39', 'Luiza Ribeiro', 'Assumenda quisquam pariatur deleniti commodi quae nisi. Perspiciatis soluta impedit corrupti. Nesciun', 'Largo de Martins, 62 Santo Agostinho 13560-126 Nogueira / MT' );
+	VALUES ( '56.282.116/5942-29', 'Pedro Miguel Freitas', 'Consectetur ex aut nobis eveniet ipsum. Maiores animi quisquam quo at qu', 'Esplanada Castro, 87 Ernesto Nascimento 94680-299 Lopes / SC' );
 INSERT INTO parque ( cnpj, nome, mapaFilePath, endereco )
-	VALUES ( '39.390.781/6989-35', 'Arthur Peixoto', 'Fuga quos ad optio fugiat. Sequi perferendis repellendus delectus possimus illum. Dol', 'Distrito Fogaça, 613 Minas Caixa 39607411 Santos / CE' );
+	VALUES ( '19.015.770/8218-48', 'Caroline Aragão', 'Accusantium eaque excepturi ab voluptatem totam placeat sit. Molestias perspiciatis rem dolorum iure v', 'Recanto Davi Luiz da Mota, 75 Vila Jardim Alvorada 63104-386 Caldeira de Fogaça / DF' );
 INSERT INTO parque ( cnpj, nome, mapaFilePath, endereco )
-	VALUES ( '31.438.469/9557-08', 'Otávio Nascimento', 'Illo libero illo nulla sequi. Aspernatur ipsam animi magni dolores nob', 'Núcleo Isabella Porto, 84 Dom Silverio 51457-583 Azevedo / TO' );
+	VALUES ( '09.538.863/6691-89', 'Fernando Pires', 'Sint aut ipsam veniam dolores consequuntur. Quod aut fugit officiis.Similique quidem eveniet iusto. Aperiam delen', 'Setor Leonardo Cavalcanti, 58 Vila São Paulo 84353-158 Monteiro / PI' );
 INSERT INTO parque ( cnpj, nome, mapaFilePath, endereco )
-	VALUES ( '70.903.167/4006-03', 'Dr. Yuri Cunha', 'Nihil possimus nesciunt suscipit sint. Minima perferendis delectus q', 'Praça de Cunha, 4 Cardoso 28319-615 Nascimento / AC' );
+	VALUES ( '94.231.713/9965-80', 'Elisa Ferreira', 'Alias doloribus quam vel voluptatem deserunt aut. Adipisci itaque ', 'Favela Santos, 942 Boa União 1ª Seção 08277-545 Fogaça da Prata / AL' );
 INSERT INTO parque ( cnpj, nome, mapaFilePath, endereco )
-	VALUES ( '41.458.408/8070-02', 'Enzo Campos', 'Iusto accusamus saepe accusamus assumenda vel. Neque cupiditate ab quae deserunt.N', 'Avenida Rodrigues, 80 Vila Santa Monica 1ª Seção 90568284 Caldeira / RR' );
+	VALUES ( '24.472.862/6691-06', 'Calebe Costa', 'Perspiciatis officiis error totam aut sit magnam. Occaecati laborum cum minus q', 'Quadra Lopes, 27 São Francisco Das Chagas 95361070 Costela / SC' );
 INSERT INTO parque ( cnpj, nome, mapaFilePath, endereco )
-	VALUES ( '27.877.188/3677-89', 'Vitor Jesus', 'Veritatis et enim impedit pariatur. Culpa doloribus quas delectus laborum beatae.Animi sint vero harum iusto ipsu', 'Estação Pedro Lucas FariasFernandes, 35 Mala E Cuia 37701-914 Jesus / AC' );
+	VALUES ( '30.485.345/5697-01', 'Davi Lucca Moraes', 'Nam rerum veritatis veritatis.Error eius quidem delectus aperiam aut tenetur. Pariatur molestiae ut natus accusantium ulla', 'Rodovia Maitê Cardoso,, 54 Vila Maloca 13622-129 Costa / RO' );
 INSERT INTO parque ( cnpj, nome, mapaFilePath, endereco )
-	VALUES ( '35.791.354/5879-93', 'Pedro Henrique Martins', 'In saepe voluptate sequi est. Temporibus aspernatur assumenda excepturi l', 'Favela de Nascimento, 210 Mirtes 12157011 Alves / CE' );
+	VALUES ( '32.919.066/7531-72', 'Davi Lucas Lima', 'Incidunt laborum omnis ut necessitatibus. Temporibus iusto et beatae accusamus p', 'Favela Benjamin Melo Morro Dos Macacos 14419-548 Almeida / GO' );
 INSERT INTO parque ( cnpj, nome, mapaFilePath, endereco )
-	VALUES ( '43.209.688/4316-92', 'Sr. Cauã Moura', 'Nam necessitatibus at quod tenetur. Doloribus error enim culpa veli', 'Ladeira Maria Cecília Ribeiro, 26 Caetano Furquim 74294-543 Oliveira / PE' );
+	VALUES ( '71.685.729/4726-89', 'Luiz Henrique da Mata', 'Qui deserunt deleniti. Hic blanditiis quaerat quisquam laboriosam.', 'Lagoa Joana Cunha, 52 Vila Dos Anjos 56210-717 Caldeira da Praia / GO' );
 INSERT INTO parque ( cnpj, nome, mapaFilePath, endereco )
-	VALUES ( '00.068.328/9899-17', 'João Guilherme Duarte', 'Eum quisquam non nam. Fuga perferendis dolor architecto itaque. Neque repellat', 'Pátio Pereira, 307 Vila Cemig 13029-848 Melo / ES' );
+	VALUES ( '89.545.773/6492-77', 'Isis da Rosa', 'Facilis ducimus accusamus voluptas doloremque. Saepe vero itaque porro ullam ', 'Pátio Nogueira, 36 Novo Das Industrias 90057300 Moraes Paulista / AC' );
 INSERT INTO parque ( cnpj, nome, mapaFilePath, endereco )
-	VALUES ( '09.738.620/6062-42', 'Lucas Gabriel Costa', 'Incidunt quia mollitia laborum laborum aperiam eaque.', 'Sítio Sales, 92 Estoril 89933-434 Rodrigues / RS' );
+	VALUES ( '26.643.718/3469-52', 'Alexia da Paz', 'Fugiat rem delectus voluptas eos iste recusandae. Rem cumque rem.In inventore aliquid dicta. Corrupti si', 'Condomínio Sales, 50 Gutierrez 88114841 Nascimento / AM' );
 INSERT INTO parque ( cnpj, nome, mapaFilePath, endereco )
-	VALUES ( '69.214.498/0179-48', 'Luiz Miguel Cardoso,', 'Architecto quas consectetur optio. Magnam exercitationem voluptatum saepe. Porro accusantium duci', 'Via de Cardoso,, 89 Santa Margarida 16921471 Alves de Minas / RJ' );
+	VALUES ( '91.191.254/4458-17', 'Caroline Sales', 'Omnis totam maxime placeat id tenetur sapiente. Commodi impedit cum nostrum perspiciatis. Explic', 'Feira Theo Barros, 56 Tupi B 19096046 da Mota do Campo / MG' );
 INSERT INTO parque ( cnpj, nome, mapaFilePath, endereco )
-	VALUES ( '83.973.004/5611-60', 'Cauê Barros', 'Minima ad ratione. Voluptate repudiandae accusamus.Ducimus ducimus maxime ab ad ad. Evenie', 'Via Laura Almeida, 98 Túnel De Ibirité 07898-344 Caldeira Alegre / AC' );
+	VALUES ( '42.282.106/3773-15', 'Pietra Gonçalves', 'Quaerat numquam asperiores consectetur minus. Architecto totam at illo ', 'Núcleo Oliveira, 715 Cenaculo 89475252 Fogaça Paulista / RS' );
 INSERT INTO parque ( cnpj, nome, mapaFilePath, endereco )
-	VALUES ( '01.843.484/0763-30', 'Srta. Joana Martins', 'Similique ipsam nostrum atque possimus.Maiores commodi harum rem odio recusa', 'Conjunto das Neves, 41 Anchieta 99684003 da Cunha da Serra / PE' );
+	VALUES ( '54.132.251/1018-82', 'João Gabriel Almeida', 'Itaque perferendis sunt suscipit illo debitis harum ratione. Ex tempora impedit.Recusa', 'Vila Ribeiro, 11 Piratininga 93063-291 Pires / MA' );
 INSERT INTO parque ( cnpj, nome, mapaFilePath, endereco )
-	VALUES ( '66.367.523/9507-61', 'Noah Moura', 'Repudiandae consequuntur nesciunt. Quia dolore incidunt mollitia aspernatur. Expedita ha', 'Estação de Rodrigues, 308 Mineirão 95822363 Aragão Paulista / PI' );
+	VALUES ( '61.306.096/7744-10', 'Arthur Silveira', 'Repellendus libero distinctio aut consequatur. Voluptates maxime qu', 'Estrada Rocha, 356 Madre Gertrudes 57576-445 da Rocha / RJ' );
 INSERT INTO parque ( cnpj, nome, mapaFilePath, endereco )
-	VALUES ( '70.937.568/8826-58', 'Pedro Lucas Pereira', 'Sint eius fugiat repellendus a consequatur. Quidem quisquam officia tempora. Reiciendis dicta ea ratione qui inventore.', 'Via Giovanna Rodrigues, 71 Belvedere 51031689 Almeida / DF' );
+	VALUES ( '40.506.235/0656-92', 'Letícia Pereira', 'Ullam distinctio exercitationem iure eveniet accusamus. Vitae similique consectetur fugit. Quis ', 'Estação Santos Alta Tensão 1ª Seção 22481371 Carvalho da Prata / SE' );
 INSERT INTO parque ( cnpj, nome, mapaFilePath, endereco )
-	VALUES ( '84.565.310/3060-15', 'Alexia Peixoto', 'Odio labore quas ratione minima. A eaque nulla quis rerum praesentium.', 'Via de Campos, 33 Maria Virgínia 62092963 Barbosa Paulista / PR' );
+	VALUES ( '26.874.389/1723-02', 'Ana Carolina Martins', 'A fugiat autem fugit quo culpa. Modi tempora fugiat nostrum dolore est.', 'Condomínio Moreira, 19 Castanheira 63879144 Jesus / PB' );
 INSERT INTO parque ( cnpj, nome, mapaFilePath, endereco )
-	VALUES ( '18.547.464/1813-58', 'Mariane da Luz', 'Quis dolorem veritatis sint odit quaerat. Minus nemo et cumque accusantium doloremque. Nulla quos est porro m', 'Viaduto Natália da Conceição, 17 Aparecida 7ª Seção 02985-452 das Neves / AC' );
+	VALUES ( '34.999.680/4170-36', 'Isaac Cunha', 'Voluptate eos nam natus saepe aperiam. Nobis nam impedit nemo consequuntur.', 'Trecho de Sales, 6 Jaqueline 27264-646 Martins das Flores / MA' );
 
 /* TABLE festaNoParque */
-/* NULL INSERTION FOR ATTRIBUTEdataFimAT TABLEfestaNoParque */
 INSERT INTO festaNoParque ( cnpjParque, dataInicio, dataFim, numeroConvidados, nome )
-	VALUES ( '39.390.781/6989-35', to_date ('2014-04-21', 'YYYY-MM-DD'), NULL, 102485, 'Gabriela Cardoso' );
+	VALUES ( '56.282.116/5942-29', to_date ('2013-09-25', 'YYYY-MM-DD'), to_date ('2016-11-07', 'YYYY-MM-DD'), 469805, 'Guilherme Caldeira' );
 INSERT INTO festaNoParque ( cnpjParque, dataInicio, dataFim, numeroConvidados, nome )
-	VALUES ( '84.565.310/3060-15', to_date ('2013-02-07', 'YYYY-MM-DD'), to_date ('2001-07-23', 'YYYY-MM-DD'), 412445, 'Laura Moura' );
+	VALUES ( '26.643.718/3469-52', to_date ('2003-06-21', 'YYYY-MM-DD'), to_date ('2011-02-10', 'YYYY-MM-DD'), 596135, 'Noah Teixeira' );
 INSERT INTO festaNoParque ( cnpjParque, dataInicio, dataFim, numeroConvidados, nome )
-	VALUES ( '39.390.781/6989-35', to_date ('2002-11-12', 'YYYY-MM-DD'), to_date ('2012-03-22', 'YYYY-MM-DD'), 212359, 'Vitor Sales' );
+	VALUES ( '64.566.386/0658-81', to_date ('2009-01-25', 'YYYY-MM-DD'), to_date ('2016-02-25', 'YYYY-MM-DD'), 396868, 'Cecília Azevedo' );
 INSERT INTO festaNoParque ( cnpjParque, dataInicio, dataFim, numeroConvidados, nome )
-	VALUES ( '66.367.523/9507-61', to_date ('2001-09-27', 'YYYY-MM-DD'), to_date ('2014-03-13', 'YYYY-MM-DD'), 812896, 'Murilo Vieira' );
+	VALUES ( '40.506.235/0656-92', to_date ('2002-01-06', 'YYYY-MM-DD'), to_date ('2018-04-17', 'YYYY-MM-DD'), 673852, 'Eduardo Barros' );
 INSERT INTO festaNoParque ( cnpjParque, dataInicio, dataFim, numeroConvidados, nome )
-	VALUES ( '18.547.464/1813-58', to_date ('2006-11-17', 'YYYY-MM-DD'), to_date ('2002-01-09', 'YYYY-MM-DD'), 662704, 'Isaac Barros' );
+	VALUES ( '40.506.235/0656-92', to_date ('2003-01-23', 'YYYY-MM-DD'), to_date ('2007-02-13', 'YYYY-MM-DD'), 444598, 'Ana Clara Pires' );
 INSERT INTO festaNoParque ( cnpjParque, dataInicio, dataFim, numeroConvidados, nome )
-	VALUES ( '27.877.188/3677-89', to_date ('2004-02-13', 'YYYY-MM-DD'), to_date ('2008-02-12', 'YYYY-MM-DD'), 413329, 'Milena Moraes' );
+	VALUES ( '40.506.235/0656-92', to_date ('2017-10-11', 'YYYY-MM-DD'), to_date ('2001-01-09', 'YYYY-MM-DD'), 683848, 'Renan Castro' );
 INSERT INTO festaNoParque ( cnpjParque, dataInicio, dataFim, numeroConvidados, nome )
-	VALUES ( '66.367.523/9507-61', to_date ('2010-07-16', 'YYYY-MM-DD'), to_date ('2002-05-02', 'YYYY-MM-DD'), 178938, 'Lavínia Cunha' );
+	VALUES ( '26.874.389/1723-02', to_date ('2000-01-18', 'YYYY-MM-DD'), to_date ('2005-08-23', 'YYYY-MM-DD'), 425339, 'Isaac Monteiro' );
 INSERT INTO festaNoParque ( cnpjParque, dataInicio, dataFim, numeroConvidados, nome )
-	VALUES ( '70.937.568/8826-58', to_date ('2015-07-11', 'YYYY-MM-DD'), to_date ('2010-09-16', 'YYYY-MM-DD'), 851376, 'Benício Cardoso' );
+	VALUES ( '31.400.972/2310-96', to_date ('2004-03-29', 'YYYY-MM-DD'), to_date ('2001-04-29', 'YYYY-MM-DD'), 640812, 'Dra. Ana Julia Pereira' );
 INSERT INTO festaNoParque ( cnpjParque, dataInicio, dataFim, numeroConvidados, nome )
-	VALUES ( '69.214.498/0179-48', to_date ('2000-03-02', 'YYYY-MM-DD'), to_date ('2000-12-25', 'YYYY-MM-DD'), 227906, 'Kevin Dias' );
+	VALUES ( '30.485.345/5697-01', to_date ('2000-07-05', 'YYYY-MM-DD'), to_date ('2018-12-07', 'YYYY-MM-DD'), 841363, 'Maria Vitória Martins' );
 INSERT INTO festaNoParque ( cnpjParque, dataInicio, dataFim, numeroConvidados, nome )
-	VALUES ( '84.565.310/3060-15', to_date ('2017-07-10', 'YYYY-MM-DD'), to_date ('2008-05-29', 'YYYY-MM-DD'), 545386, 'Sra. Mirella Ramos' );
+	VALUES ( '40.506.235/0656-92', to_date ('2011-07-04', 'YYYY-MM-DD'), to_date ('2013-05-02', 'YYYY-MM-DD'), 336340, 'Enzo da Conceição' );
 INSERT INTO festaNoParque ( cnpjParque, dataInicio, dataFim, numeroConvidados, nome )
-	VALUES ( '93.555.593/9937-39', to_date ('2017-05-03', 'YYYY-MM-DD'), to_date ('2011-01-09', 'YYYY-MM-DD'), 622186, 'Sra. Ana Sophia Silveira' );
+	VALUES ( '71.685.729/4726-89', to_date ('2012-01-18', 'YYYY-MM-DD'), to_date ('2003-08-30', 'YYYY-MM-DD'), 536889, 'Maria Luiza Carvalho' );
 INSERT INTO festaNoParque ( cnpjParque, dataInicio, dataFim, numeroConvidados, nome )
-	VALUES ( '18.547.464/1813-58', to_date ('2003-03-19', 'YYYY-MM-DD'), to_date ('2016-08-16', 'YYYY-MM-DD'), 311399, 'Luana Rocha' );
+	VALUES ( '24.472.862/6691-06', to_date ('2000-10-24', 'YYYY-MM-DD'), to_date ('2001-08-01', 'YYYY-MM-DD'), 362457, 'Maitê Araújo' );
 INSERT INTO festaNoParque ( cnpjParque, dataInicio, dataFim, numeroConvidados, nome )
-	VALUES ( '35.791.354/5879-93', to_date ('2004-01-09', 'YYYY-MM-DD'), to_date ('2016-07-21', 'YYYY-MM-DD'), 726409, 'Pedro Lucas Sales' );
+	VALUES ( '26.874.389/1723-02', to_date ('2005-07-09', 'YYYY-MM-DD'), to_date ('2000-03-05', 'YYYY-MM-DD'), 579406, 'Marcela Castro' );
 INSERT INTO festaNoParque ( cnpjParque, dataInicio, dataFim, numeroConvidados, nome )
-	VALUES ( '00.068.328/9899-17', to_date ('2010-05-11', 'YYYY-MM-DD'), to_date ('2004-02-13', 'YYYY-MM-DD'), 346425, 'Diogo Porto' );
+	VALUES ( '34.999.680/4170-36', to_date ('2005-06-15', 'YYYY-MM-DD'), to_date ('2006-07-10', 'YYYY-MM-DD'), 232886, 'Matheus Correia' );
 INSERT INTO festaNoParque ( cnpjParque, dataInicio, dataFim, numeroConvidados, nome )
-	VALUES ( '00.427.481/2502-93', to_date ('2009-08-01', 'YYYY-MM-DD'), to_date ('2007-03-06', 'YYYY-MM-DD'), 381075, 'Dr. Luigi da Luz' );
+	VALUES ( '94.231.713/9965-80', to_date ('2014-10-27', 'YYYY-MM-DD'), to_date ('2003-08-20', 'YYYY-MM-DD'), 885271, 'Fernando da Luz' );
 INSERT INTO festaNoParque ( cnpjParque, dataInicio, dataFim, numeroConvidados, nome )
-	VALUES ( '88.645.659/8305-31', to_date ('2006-07-04', 'YYYY-MM-DD'), to_date ('2018-11-06', 'YYYY-MM-DD'), 471913, 'Dr. João Pedro da Conceição' );
+	VALUES ( '89.545.773/6492-77', to_date ('2008-12-26', 'YYYY-MM-DD'), to_date ('2010-11-24', 'YYYY-MM-DD'), 871301, 'Natália Monteiro' );
 INSERT INTO festaNoParque ( cnpjParque, dataInicio, dataFim, numeroConvidados, nome )
-	VALUES ( '00.427.481/2502-93', to_date ('2008-03-15', 'YYYY-MM-DD'), to_date ('2001-01-27', 'YYYY-MM-DD'), 863441, 'Dr. Augusto da Rosa' );
+	VALUES ( '94.231.713/9965-80', to_date ('2010-06-04', 'YYYY-MM-DD'), to_date ('2010-11-15', 'YYYY-MM-DD'), 646359, 'Isabelly Moraes' );
 INSERT INTO festaNoParque ( cnpjParque, dataInicio, dataFim, numeroConvidados, nome )
-	VALUES ( '31.438.469/9557-08', to_date ('2009-09-23', 'YYYY-MM-DD'), to_date ('2009-09-20', 'YYYY-MM-DD'), 293189, 'Mirella Aragão' );
+	VALUES ( '64.566.386/0658-81', to_date ('2000-12-16', 'YYYY-MM-DD'), to_date ('2004-01-10', 'YYYY-MM-DD'), 870776, 'Dr. Luiz Otávio Pires' );
 INSERT INTO festaNoParque ( cnpjParque, dataInicio, dataFim, numeroConvidados, nome )
-	VALUES ( '43.209.688/4316-92', to_date ('2014-12-10', 'YYYY-MM-DD'), to_date ('2011-08-25', 'YYYY-MM-DD'), 327652, 'João Gabriel Mendes' );
+	VALUES ( '94.231.713/9965-80', to_date ('2001-04-24', 'YYYY-MM-DD'), to_date ('2010-08-28', 'YYYY-MM-DD'), 667250, 'Maitê Lima' );
 INSERT INTO festaNoParque ( cnpjParque, dataInicio, dataFim, numeroConvidados, nome )
-	VALUES ( '43.209.688/4316-92', to_date ('2015-07-08', 'YYYY-MM-DD'), to_date ('2017-08-04', 'YYYY-MM-DD'), 898389, 'Danilo Aragão' );
-INSERT INTO festaNoParque ( cnpjParque, dataInicio, dataFim, numeroConvidados, nome )
-	VALUES ( '27.877.188/3677-89', to_date ('2002-01-10', 'YYYY-MM-DD'), to_date ('2010-03-03', 'YYYY-MM-DD'), 517513, 'Luna Pinto' );
+	VALUES ( '34.999.680/4170-36', to_date ('2004-08-15', 'YYYY-MM-DD'), to_date ('2003-07-13', 'YYYY-MM-DD'), 296839, 'Dr. Carlos Eduardo Mendes' );
 
 /* TABLE atracao */
 INSERT INTO atracao ( cnpjParque, dataFesta, numero, nome, poligono )
-	VALUES ( '00.427.481/2502-93', to_date ('2008-03-15', 'YYYY-MM-DD'), 690001, 'Bryan Cardoso,', '{{811658, 273880, 470334}, {315811, 824862, 658465}, {555205, 371837, 723443}, {173253, 117385, 563900}, {323969, 315687, 179869}, {165706, 511386, 289041}, {303760, 501878, 440028}, {247134, 155753, 742089}, {516480, 794521, 765444}, {722168, 609962, 200638}}' );
+	VALUES ( '34.999.680/4170-36', to_date ('2005-06-15', 'YYYY-MM-DD'), 161032, 'Lorenzo Martins', '{{447878, 118776, 692083}, {541757, 720650, 413309}, {413531, 511953, 576388}, {379145, 548356, 137968}, {373405, 510953, 476957}, {152235, 267893, 855511}, {521328, 434382, 650702}, {496089, 437486, 256087}, {833045, 392449, 543446}, {795199, 143360, 430825}}' );
 INSERT INTO atracao ( cnpjParque, dataFesta, numero, nome, poligono )
-	VALUES ( '84.565.310/3060-15', to_date ('2013-02-07', 'YYYY-MM-DD'), 820029, 'Ana da Costa', '{{775727, 879649, 171636}, {150730, 450008, 405859}, {665358, 150971, 311234}, {446332, 142264, 773228}, {710094, 858474, 882664}, {438537, 832476, 274625}, {687227, 870223, 846197}, {417460, 376200, 147401}, {175776, 785681, 684042}, {425453, 301003, 101196}}' );
+	VALUES ( '56.282.116/5942-29', to_date ('2013-09-25', 'YYYY-MM-DD'), 207311, 'Luiz Henrique Pires', '{{889183, 697634, 454296}, {359670, 421029, 566756}, {683668, 547151, 750152}, {244762, 647155, 833176}, {830779, 264490, 547598}, {438994, 701521, 698049}, {382808, 652353, 193722}, {758424, 317832, 842561}, {473111, 251052, 809911}, {874518, 259066, 884200}}' );
 INSERT INTO atracao ( cnpjParque, dataFesta, numero, nome, poligono )
-	VALUES ( '27.877.188/3677-89', to_date ('2004-02-13', 'YYYY-MM-DD'), 217078, 'Leonardo Caldeira', '{{420011, 546232, 411298}, {615338, 369743, 270515}, {378036, 853186, 789352}, {202988, 312624, 354537}, {497243, 209234, 313763}, {303631, 504468, 148687}, {696175, 514205, 768627}, {587415, 522117, 702967}, {687298, 674216, 853620}, {112462, 179131, 223426}}' );
+	VALUES ( '26.643.718/3469-52', to_date ('2003-06-21', 'YYYY-MM-DD'), 770266, 'Helena Melo', '{{779985, 820928, 888351}, {207544, 873231, 636807}, {832214, 527268, 273785}, {616378, 505404, 144444}, {137424, 464312, 270979}, {352068, 624734, 772317}, {329767, 777543, 290867}, {793178, 680896, 227699}, {782553, 588654, 823396}, {792704, 468906, 677971}}' );
 INSERT INTO atracao ( cnpjParque, dataFesta, numero, nome, poligono )
-	VALUES ( '27.877.188/3677-89', to_date ('2004-02-13', 'YYYY-MM-DD'), 774202, 'Mariane Moreira', '{{484411, 233286, 213577}, {534618, 518581, 799631}, {154936, 760818, 619887}, {696972, 734527, 411141}, {740068, 692391, 639959}, {530981, 756820, 539757}, {324371, 464920, 186095}, {284924, 655145, 307724}, {435690, 382244, 297464}, {880492, 833344, 480873}}' );
+	VALUES ( '71.685.729/4726-89', to_date ('2012-01-18', 'YYYY-MM-DD'), 717390, 'Otávio da Mota', '{{798948, 108310, 688072}, {811468, 493132, 535307}, {436894, 658036, 851894}, {336145, 676413, 233028}, {313054, 854982, 763355}, {677449, 695981, 832550}, {164313, 447073, 392087}, {408933, 574574, 456241}, {316160, 240744, 131462}, {672926, 113917, 663382}}' );
 INSERT INTO atracao ( cnpjParque, dataFesta, numero, nome, poligono )
-	VALUES ( '43.209.688/4316-92', to_date ('2014-12-10', 'YYYY-MM-DD'), 699418, 'Alexandre Costa', '{{419377, 133102, 198653}, {169379, 874034, 700980}, {843020, 788895, 220364}, {489579, 241288, 133176}, {835483, 774638, 747070}, {199529, 591912, 615049}, {536278, 845203, 536131}, {526686, 800239, 724939}, {531713, 884678, 265060}, {358163, 823655, 716330}}' );
+	VALUES ( '26.874.389/1723-02', to_date ('2000-01-18', 'YYYY-MM-DD'), 469066, 'Dr. Bernardo Mendes', '{{264092, 175945, 326174}, {567182, 329660, 741092}, {621470, 290889, 499522}, {102786, 726881, 708296}, {129616, 422622, 466048}, {787544, 281941, 851515}, {481933, 568500, 799180}, {444206, 663200, 748511}, {247383, 712175, 726180}, {424713, 794128, 559443}}' );
 INSERT INTO atracao ( cnpjParque, dataFesta, numero, nome, poligono )
-	VALUES ( '00.427.481/2502-93', to_date ('2009-08-01', 'YYYY-MM-DD'), 847269, 'João Gabriel Caldeira', '{{539538, 473129, 484861}, {873807, 494013, 845409}, {514396, 662427, 440050}, {426436, 510175, 170253}, {799459, 481330, 226071}, {199679, 157794, 493028}, {667576, 301922, 287351}, {375764, 174338, 879783}, {163910, 341995, 636628}, {760623, 688944, 367681}}' );
+	VALUES ( '56.282.116/5942-29', to_date ('2013-09-25', 'YYYY-MM-DD'), 187461, 'Clara da Conceição', '{{516368, 446775, 786563}, {502334, 890278, 128182}, {896373, 397701, 391844}, {732348, 428717, 760875}, {361238, 130986, 355537}, {580739, 214700, 343215}, {717279, 415800, 660858}, {328381, 181527, 376734}, {840875, 627677, 490707}, {598061, 792616, 514998}}' );
 INSERT INTO atracao ( cnpjParque, dataFesta, numero, nome, poligono )
-	VALUES ( '66.367.523/9507-61', to_date ('2001-09-27', 'YYYY-MM-DD'), 798186, 'Vitor Hugo Castro', '{{251478, 804818, 298262}, {135477, 611970, 304575}, {859557, 800584, 645607}, {550515, 494494, 396739}, {159064, 492923, 350314}, {840559, 647939, 421852}, {878028, 599955, 884727}, {898058, 563759, 192537}, {697802, 873671, 422438}, {589342, 188179, 531748}}' );
+	VALUES ( '71.685.729/4726-89', to_date ('2012-01-18', 'YYYY-MM-DD'), 632034, 'Isabel Souza', '{{565517, 135372, 714412}, {767634, 187726, 491838}, {660885, 718230, 264459}, {682289, 724446, 440764}, {848894, 171195, 661990}, {222275, 813510, 574399}, {342840, 571559, 244126}, {413397, 533620, 742744}, {134332, 602248, 280598}, {464102, 172469, 776281}}' );
 INSERT INTO atracao ( cnpjParque, dataFesta, numero, nome, poligono )
-	VALUES ( '00.068.328/9899-17', to_date ('2010-05-11', 'YYYY-MM-DD'), 580031, 'Maysa Moreira', '{{743638, 698269, 466186}, {305328, 651709, 375638}, {766938, 242956, 252518}, {474078, 886508, 260141}, {643053, 432278, 773009}, {782065, 215610, 179329}, {886764, 443052, 898827}, {659383, 332339, 786458}, {317234, 876648, 525308}, {896359, 150489, 308770}}' );
+	VALUES ( '26.874.389/1723-02', to_date ('2000-01-18', 'YYYY-MM-DD'), 446633, 'Alexia Nunes', '{{395464, 586224, 859837}, {473593, 473930, 255977}, {552398, 774075, 345722}, {550532, 258181, 663434}, {525219, 268445, 158416}, {247761, 743623, 822094}, {838238, 173737, 135889}, {236498, 241579, 290910}, {585179, 235407, 525819}, {892442, 642026, 256510}}' );
 INSERT INTO atracao ( cnpjParque, dataFesta, numero, nome, poligono )
-	VALUES ( '27.877.188/3677-89', to_date ('2004-02-13', 'YYYY-MM-DD'), 523427, 'Dr. Renan Araújo', '{{362038, 246709, 373390}, {113432, 599661, 818767}, {411489, 138806, 153487}, {135238, 143081, 496604}, {604559, 541417, 791769}, {768419, 714583, 854027}, {108260, 267765, 655100}, {337441, 675881, 330611}, {669044, 704462, 816294}, {520278, 398621, 213080}}' );
+	VALUES ( '26.874.389/1723-02', to_date ('2000-01-18', 'YYYY-MM-DD'), 561557, 'João Viana', '{{631328, 864783, 612075}, {416133, 579404, 152161}, {895118, 832874, 172786}, {198156, 713607, 409450}, {352387, 115354, 297478}, {688860, 205497, 476059}, {744016, 264220, 670705}, {226342, 558216, 661677}, {173618, 133865, 667263}, {770016, 720608, 154442}}' );
 INSERT INTO atracao ( cnpjParque, dataFesta, numero, nome, poligono )
-	VALUES ( '27.877.188/3677-89', to_date ('2004-02-13', 'YYYY-MM-DD'), 831393, 'Cecília das Neves', '{{474117, 318202, 399896}, {465643, 245217, 269561}, {435100, 345028, 832966}, {609556, 104324, 558116}, {127974, 109388, 660928}, {892647, 393362, 788674}, {458310, 353595, 851181}, {765350, 651404, 123288}, {104068, 859145, 784444}, {207110, 409705, 489734}}' );
+	VALUES ( '40.506.235/0656-92', to_date ('2003-01-23', 'YYYY-MM-DD'), 472303, 'Sabrina da Costa', '{{892223, 571993, 324872}, {820850, 214024, 217549}, {496127, 606120, 387203}, {151180, 280028, 620132}, {103588, 451111, 659701}, {777848, 353821, 405552}, {483654, 153842, 140957}, {180531, 401951, 322098}, {106009, 465603, 644114}, {332152, 586796, 764826}}' );
 INSERT INTO atracao ( cnpjParque, dataFesta, numero, nome, poligono )
-	VALUES ( '39.390.781/6989-35', to_date ('2002-11-12', 'YYYY-MM-DD'), 693119, 'Maysa Caldeira', '{{473094, 405613, 469284}, {137618, 540880, 595524}, {896849, 322652, 452430}, {217790, 246022, 332182}, {874576, 458321, 536829}, {185932, 485096, 106146}, {731432, 835446, 893847}, {328737, 655079, 387406}, {196250, 148250, 705478}, {477438, 423172, 314292}}' );
+	VALUES ( '31.400.972/2310-96', to_date ('2004-03-29', 'YYYY-MM-DD'), 734371, 'Sr. João Pedro Sales', '{{464696, 108891, 888143}, {132039, 647609, 202922}, {206798, 177878, 680301}, {772033, 567073, 178566}, {336968, 287431, 133023}, {772561, 864338, 672989}, {337947, 662758, 839450}, {190357, 178385, 697173}, {634803, 562393, 674601}, {532383, 620653, 550887}}' );
 INSERT INTO atracao ( cnpjParque, dataFesta, numero, nome, poligono )
-	VALUES ( '18.547.464/1813-58', to_date ('2006-11-17', 'YYYY-MM-DD'), 262069, 'Fernando Ramos', '{{238426, 600929, 753177}, {770739, 462698, 376780}, {757972, 282733, 119905}, {355046, 531727, 273036}, {794659, 546229, 140954}, {674442, 508582, 193369}, {280887, 147376, 365848}, {893843, 262249, 317571}, {718246, 603511, 860116}, {135763, 843567, 242825}}' );
+	VALUES ( '30.485.345/5697-01', to_date ('2000-07-05', 'YYYY-MM-DD'), 389491, 'Sra. Gabriela Mendes', '{{586617, 363459, 422834}, {356940, 513888, 441012}, {249059, 800597, 859578}, {129719, 279954, 694672}, {297463, 668118, 349222}, {812679, 386383, 309730}, {818100, 573340, 595101}, {395153, 667635, 687423}, {387717, 746662, 393645}, {127043, 580285, 792540}}' );
 INSERT INTO atracao ( cnpjParque, dataFesta, numero, nome, poligono )
-	VALUES ( '27.877.188/3677-89', to_date ('2004-02-13', 'YYYY-MM-DD'), 169767, 'Letícia Freitas', '{{432857, 687224, 120772}, {271493, 641964, 658847}, {479308, 398709, 451044}, {840877, 820661, 331282}, {867792, 133963, 703817}, {222814, 452571, 686834}, {760878, 686420, 450376}, {890111, 419865, 419020}, {859039, 895088, 609131}, {168287, 744352, 367324}}' );
+	VALUES ( '34.999.680/4170-36', to_date ('2005-06-15', 'YYYY-MM-DD'), 587728, 'Leonardo Pinto', '{{624708, 490306, 415157}, {230762, 787269, 166488}, {799321, 225479, 148620}, {753597, 195755, 756404}, {658494, 227315, 181805}, {141278, 494228, 460852}, {761134, 584637, 266279}, {788020, 303528, 414810}, {611281, 801742, 824128}, {549182, 883369, 575787}}' );
 INSERT INTO atracao ( cnpjParque, dataFesta, numero, nome, poligono )
-	VALUES ( '00.427.481/2502-93', to_date ('2009-08-01', 'YYYY-MM-DD'), 111753, 'Mariana Nascimento', '{{510675, 354051, 504725}, {120516, 803291, 259383}, {851288, 382763, 549787}, {374564, 450241, 735402}, {338418, 396638, 236379}, {814923, 325915, 226436}, {598920, 535546, 231070}, {256720, 284544, 436440}, {767036, 406284, 648173}, {386295, 814179, 851772}}' );
+	VALUES ( '94.231.713/9965-80', to_date ('2010-06-04', 'YYYY-MM-DD'), 136962, 'Ana Luiza Teixeira', '{{703424, 403671, 712935}, {511719, 806273, 358984}, {644675, 553359, 656348}, {754609, 457157, 820983}, {800775, 524106, 690756}, {144903, 508588, 612521}, {344521, 741961, 312793}, {281352, 837861, 196061}, {410517, 611801, 241539}, {464132, 613332, 153202}}' );
 INSERT INTO atracao ( cnpjParque, dataFesta, numero, nome, poligono )
-	VALUES ( '43.209.688/4316-92', to_date ('2014-12-10', 'YYYY-MM-DD'), 592482, 'Sr. Isaac da Paz', '{{735926, 268415, 469101}, {104426, 193980, 866734}, {620735, 297280, 140488}, {126200, 633595, 587974}, {853503, 840883, 451347}, {741466, 792784, 688270}, {405368, 330448, 153247}, {398590, 757130, 692890}, {332651, 584357, 755629}, {729192, 386005, 815588}}' );
+	VALUES ( '40.506.235/0656-92', to_date ('2011-07-04', 'YYYY-MM-DD'), 572266, 'Eduardo Cardoso', '{{237650, 822694, 511315}, {694120, 778971, 392587}, {850943, 277074, 774742}, {448031, 582875, 839120}, {569435, 569618, 525203}, {115754, 185133, 830174}, {749581, 773815, 853457}, {267977, 413385, 869768}, {533802, 271470, 214271}, {508368, 568800, 533433}}' );
 INSERT INTO atracao ( cnpjParque, dataFesta, numero, nome, poligono )
-	VALUES ( '00.427.481/2502-93', to_date ('2008-03-15', 'YYYY-MM-DD'), 235074, 'Enzo Rocha', '{{298899, 786476, 744790}, {637514, 733284, 197394}, {330481, 635949, 431672}, {848443, 464136, 534950}, {159888, 568114, 538217}, {613332, 220651, 643515}, {707988, 584834, 564472}, {137911, 159618, 663148}, {438491, 826591, 835623}, {528463, 352426, 630322}}' );
+	VALUES ( '71.685.729/4726-89', to_date ('2012-01-18', 'YYYY-MM-DD'), 811927, 'Laís Dias', '{{722156, 842207, 786653}, {794328, 844362, 645460}, {458360, 484441, 429736}, {843730, 473325, 324053}, {753940, 219145, 145325}, {763888, 773224, 833768}, {157314, 882160, 799276}, {392367, 789575, 315822}, {878813, 461524, 835877}, {203687, 449571, 108699}}' );
 INSERT INTO atracao ( cnpjParque, dataFesta, numero, nome, poligono )
-	VALUES ( '00.427.481/2502-93', to_date ('2008-03-15', 'YYYY-MM-DD'), 602785, 'Sra. Nina Melo', '{{663285, 271003, 603544}, {313307, 554594, 471998}, {218106, 485552, 393965}, {296383, 657291, 337721}, {736926, 542008, 496024}, {436471, 457627, 830263}, {846139, 232151, 798736}, {554868, 505004, 572719}, {278201, 237700, 662955}, {468348, 566511, 443845}}' );
+	VALUES ( '40.506.235/0656-92', to_date ('2011-07-04', 'YYYY-MM-DD'), 620851, 'Emanuel Almeida', '{{302127, 606818, 372643}, {899184, 781870, 547732}, {367796, 344494, 396131}, {669846, 498211, 342745}, {133236, 535607, 437548}, {251391, 500670, 402090}, {737835, 118058, 826646}, {250807, 682013, 617523}, {453414, 137170, 423834}, {102875, 474825, 302228}}' );
 INSERT INTO atracao ( cnpjParque, dataFesta, numero, nome, poligono )
-	VALUES ( '39.390.781/6989-35', to_date ('2002-11-12', 'YYYY-MM-DD'), 329733, 'Antônio FariasFernandes', '{{475119, 626064, 482302}, {160303, 811200, 816832}, {838098, 734301, 351500}, {706405, 137443, 829965}, {768912, 668850, 204275}, {281121, 397001, 478857}, {337054, 742248, 155856}, {880972, 777046, 576895}, {477281, 325411, 294208}, {228885, 352570, 603430}}' );
+	VALUES ( '40.506.235/0656-92', to_date ('2003-01-23', 'YYYY-MM-DD'), 594449, 'Juliana Rodrigues', '{{214207, 441231, 627038}, {379614, 511508, 379593}, {212499, 871615, 403069}, {714653, 363219, 171264}, {811880, 799744, 882934}, {432649, 462386, 146917}, {626224, 376902, 503491}, {553305, 352888, 485583}, {677614, 575456, 776903}, {653838, 750679, 576859}}' );
 INSERT INTO atracao ( cnpjParque, dataFesta, numero, nome, poligono )
-	VALUES ( '93.555.593/9937-39', to_date ('2017-05-03', 'YYYY-MM-DD'), 617675, 'Thiago Cavalcanti', '{{595920, 706146, 759787}, {884680, 476708, 641949}, {130148, 474159, 608223}, {858604, 210501, 512269}, {224607, 738960, 612916}, {114541, 392263, 476005}, {554417, 589085, 753153}, {156182, 879616, 308863}, {747916, 103615, 342187}, {250065, 118735, 783002}}' );
+	VALUES ( '40.506.235/0656-92', to_date ('2011-07-04', 'YYYY-MM-DD'), 742792, 'Calebe Gomes', '{{331169, 351034, 789507}, {531039, 861566, 381824}, {843032, 544771, 327411}, {802778, 496231, 207526}, {434546, 840726, 256960}, {496090, 545962, 858101}, {572689, 764246, 345923}, {540007, 793233, 485614}, {668866, 560759, 796367}, {608536, 699231, 127110}}' );
 INSERT INTO atracao ( cnpjParque, dataFesta, numero, nome, poligono )
-	VALUES ( '18.547.464/1813-58', to_date ('2006-11-17', 'YYYY-MM-DD'), 396218, 'Pietra Martins', '{{425636, 446189, 811020}, {536335, 343440, 468704}, {737146, 694235, 741796}, {385054, 604504, 709017}, {846116, 301267, 825760}, {767325, 865226, 407123}, {304865, 653352, 548053}, {669209, 812743, 323684}, {873488, 366064, 193886}, {641067, 274683, 707609}}' );
+	VALUES ( '71.685.729/4726-89', to_date ('2012-01-18', 'YYYY-MM-DD'), 464559, 'Lavínia Castro', '{{604873, 657091, 613527}, {154652, 130695, 669541}, {441823, 341554, 785531}, {435278, 892509, 170516}, {855428, 165295, 773693}, {899352, 671436, 503041}, {759133, 454474, 220278}, {500113, 119868, 763140}, {463320, 105343, 401052}, {857936, 255998, 719151}}' );
 
 /* TABLE opParque */
 INSERT INTO opParque ( cpfOpCamera, data, idCameraSecundaria, cnpjParque, dataInicioParque, cpfAssistente )
-	VALUES ( '531.462.487-11', to_date ('2007-03-08', 'YYYY-MM-DD'), 7, '88.645.659/8305-31', to_date ('2006-07-04', 'YYYY-MM-DD'), '424.447.919-31' );
+	VALUES ( '679.002.127-48', to_date ('2016-05-08', 'YYYY-MM-DD'), 15, '56.282.116/5942-29', to_date ('2013-09-25', 'YYYY-MM-DD'), '478.696.780-28' );
 INSERT INTO opParque ( cpfOpCamera, data, idCameraSecundaria, cnpjParque, dataInicioParque, cpfAssistente )
-	VALUES ( '575.250.850-93', to_date ('2000-02-23', 'YYYY-MM-DD'), 3, '31.438.469/9557-08', to_date ('2009-09-23', 'YYYY-MM-DD'), '030.610.128-33' );
+	VALUES ( '924.966.747-52', to_date ('2007-11-21', 'YYYY-MM-DD'), 20, '94.231.713/9965-80', to_date ('2014-10-27', 'YYYY-MM-DD'), '679.002.127-48' );
 INSERT INTO opParque ( cpfOpCamera, data, idCameraSecundaria, cnpjParque, dataInicioParque, cpfAssistente )
-	VALUES ( '531.462.487-11', to_date ('2011-11-21', 'YYYY-MM-DD'), 11, '69.214.498/0179-48', to_date ('2000-03-02', 'YYYY-MM-DD'), '845.832.187-67' );
+	VALUES ( '679.002.127-48', to_date ('2016-05-08', 'YYYY-MM-DD'), 5, '89.545.773/6492-77', to_date ('2008-12-26', 'YYYY-MM-DD'), '478.696.780-28' );
 INSERT INTO opParque ( cpfOpCamera, data, idCameraSecundaria, cnpjParque, dataInicioParque, cpfAssistente )
-	VALUES ( '969.304.789-35', to_date ('2007-10-03', 'YYYY-MM-DD'), 15, '84.565.310/3060-15', to_date ('2017-07-10', 'YYYY-MM-DD'), '529.827.160-27' );
+	VALUES ( '851.398.230-44', to_date ('2014-11-06', 'YYYY-MM-DD'), 7, '34.999.680/4170-36', to_date ('2004-08-15', 'YYYY-MM-DD'), '616.020.558-98' );
 INSERT INTO opParque ( cpfOpCamera, data, idCameraSecundaria, cnpjParque, dataInicioParque, cpfAssistente )
-	VALUES ( '969.304.789-35', to_date ('2014-05-10', 'YYYY-MM-DD'), 15, '31.438.469/9557-08', to_date ('2009-09-23', 'YYYY-MM-DD'), '602.809.454-84' );
+	VALUES ( '679.002.127-48', to_date ('2016-05-08', 'YYYY-MM-DD'), 19, '34.999.680/4170-36', to_date ('2005-06-15', 'YYYY-MM-DD'), '516.335.573-78' );
 INSERT INTO opParque ( cpfOpCamera, data, idCameraSecundaria, cnpjParque, dataInicioParque, cpfAssistente )
-	VALUES ( '996.257.521-19', to_date ('2008-01-13', 'YYYY-MM-DD'), 16, '00.068.328/9899-17', to_date ('2010-05-11', 'YYYY-MM-DD'), '238.700.997-66' );
+	VALUES ( '679.002.127-48', to_date ('2016-05-08', 'YYYY-MM-DD'), 13, '94.231.713/9965-80', to_date ('2001-04-24', 'YYYY-MM-DD'), '121.199.607-14' );
 INSERT INTO opParque ( cpfOpCamera, data, idCameraSecundaria, cnpjParque, dataInicioParque, cpfAssistente )
-	VALUES ( '396.343.547-09', to_date ('2016-07-04', 'YYYY-MM-DD'), 14, '35.791.354/5879-93', to_date ('2004-01-09', 'YYYY-MM-DD'), '529.827.160-27' );
+	VALUES ( '478.696.780-28', to_date ('2006-06-09', 'YYYY-MM-DD'), 16, '26.643.718/3469-52', to_date ('2003-06-21', 'YYYY-MM-DD'), '432.789.595-66' );
 INSERT INTO opParque ( cpfOpCamera, data, idCameraSecundaria, cnpjParque, dataInicioParque, cpfAssistente )
-	VALUES ( '030.610.128-33', to_date ('2000-06-08', 'YYYY-MM-DD'), 15, '84.565.310/3060-15', to_date ('2013-02-07', 'YYYY-MM-DD'), '531.462.487-11' );
+	VALUES ( '121.199.607-14', to_date ('2009-08-26', 'YYYY-MM-DD'), 8, '31.400.972/2310-96', to_date ('2004-03-29', 'YYYY-MM-DD'), '679.002.127-48' );
 INSERT INTO opParque ( cpfOpCamera, data, idCameraSecundaria, cnpjParque, dataInicioParque, cpfAssistente )
-	VALUES ( '531.462.487-11', to_date ('2011-11-21', 'YYYY-MM-DD'), 10, '69.214.498/0179-48', to_date ('2000-03-02', 'YYYY-MM-DD'), '396.343.547-09' );
+	VALUES ( '478.696.780-28', to_date ('2006-06-09', 'YYYY-MM-DD'), 17, '26.643.718/3469-52', to_date ('2003-06-21', 'YYYY-MM-DD'), '946.521.617-86' );
 INSERT INTO opParque ( cpfOpCamera, data, idCameraSecundaria, cnpjParque, dataInicioParque, cpfAssistente )
-	VALUES ( '424.447.919-31', to_date ('2000-08-20', 'YYYY-MM-DD'), 1, '93.555.593/9937-39', to_date ('2017-05-03', 'YYYY-MM-DD'), '396.343.547-09' );
+	VALUES ( '121.199.607-14', to_date ('2009-08-26', 'YYYY-MM-DD'), 1, '64.566.386/0658-81', to_date ('2009-01-25', 'YYYY-MM-DD'), '616.020.558-98' );
 INSERT INTO opParque ( cpfOpCamera, data, idCameraSecundaria, cnpjParque, dataInicioParque, cpfAssistente )
-	VALUES ( '575.250.850-93', to_date ('2000-02-23', 'YYYY-MM-DD'), 12, '88.645.659/8305-31', to_date ('2006-07-04', 'YYYY-MM-DD'), '575.250.850-93' );
+	VALUES ( '478.696.780-28', to_date ('2014-05-15', 'YYYY-MM-DD'), 12, '64.566.386/0658-81', to_date ('2009-01-25', 'YYYY-MM-DD'), '583.792.569-11' );
 INSERT INTO opParque ( cpfOpCamera, data, idCameraSecundaria, cnpjParque, dataInicioParque, cpfAssistente )
-	VALUES ( '396.343.547-09', to_date ('2016-07-04', 'YYYY-MM-DD'), 17, '27.877.188/3677-89', to_date ('2004-02-13', 'YYYY-MM-DD'), '424.447.919-31' );
+	VALUES ( '490.990.422-75', to_date ('2015-12-06', 'YYYY-MM-DD'), 2, '94.231.713/9965-80', to_date ('2010-06-04', 'YYYY-MM-DD'), '192.393.547-19' );
 INSERT INTO opParque ( cpfOpCamera, data, idCameraSecundaria, cnpjParque, dataInicioParque, cpfAssistente )
-	VALUES ( '621.135.750-86', to_date ('2000-11-10', 'YYYY-MM-DD'), 9, '43.209.688/4316-92', to_date ('2014-12-10', 'YYYY-MM-DD'), '998.627.534-11' );
+	VALUES ( '523.255.716-37', to_date ('2006-07-14', 'YYYY-MM-DD'), 1, '26.874.389/1723-02', to_date ('2000-01-18', 'YYYY-MM-DD'), '624.975.827-59' );
 INSERT INTO opParque ( cpfOpCamera, data, idCameraSecundaria, cnpjParque, dataInicioParque, cpfAssistente )
-	VALUES ( '583.596.699-39', to_date ('2013-06-14', 'YYYY-MM-DD'), 1, '69.214.498/0179-48', to_date ('2000-03-02', 'YYYY-MM-DD'), '918.931.785-13' );
+	VALUES ( '851.398.230-44', to_date ('2014-11-06', 'YYYY-MM-DD'), 4, '56.282.116/5942-29', to_date ('2013-09-25', 'YYYY-MM-DD'), '851.398.230-44' );
 INSERT INTO opParque ( cpfOpCamera, data, idCameraSecundaria, cnpjParque, dataInicioParque, cpfAssistente )
-	VALUES ( '998.627.534-11', to_date ('2010-11-15', 'YYYY-MM-DD'), 13, '66.367.523/9507-61', to_date ('2010-07-16', 'YYYY-MM-DD'), '424.447.919-31' );
+	VALUES ( '851.398.230-44', to_date ('2018-12-10', 'YYYY-MM-DD'), 1, '89.545.773/6492-77', to_date ('2008-12-26', 'YYYY-MM-DD'), '523.255.716-37' );
 INSERT INTO opParque ( cpfOpCamera, data, idCameraSecundaria, cnpjParque, dataInicioParque, cpfAssistente )
-	VALUES ( '424.447.919-31', to_date ('2000-08-20', 'YYYY-MM-DD'), 19, '66.367.523/9507-61', to_date ('2001-09-27', 'YYYY-MM-DD'), '522.502.996-95' );
+	VALUES ( '478.696.780-28', to_date ('2016-08-28', 'YYYY-MM-DD'), 3, '56.282.116/5942-29', to_date ('2013-09-25', 'YYYY-MM-DD'), '490.990.422-75' );
 INSERT INTO opParque ( cpfOpCamera, data, idCameraSecundaria, cnpjParque, dataInicioParque, cpfAssistente )
-	VALUES ( '531.462.487-11', to_date ('2007-03-08', 'YYYY-MM-DD'), 6, '18.547.464/1813-58', to_date ('2003-03-19', 'YYYY-MM-DD'), '424.447.919-31' );
+	VALUES ( '197.520.896-76', to_date ('2009-12-14', 'YYYY-MM-DD'), 1, '71.685.729/4726-89', to_date ('2012-01-18', 'YYYY-MM-DD'), '736.917.544-50' );
 INSERT INTO opParque ( cpfOpCamera, data, idCameraSecundaria, cnpjParque, dataInicioParque, cpfAssistente )
-	VALUES ( '998.627.534-11', to_date ('2015-03-06', 'YYYY-MM-DD'), 6, '27.877.188/3677-89', to_date ('2004-02-13', 'YYYY-MM-DD'), '607.443.809-78' );
+	VALUES ( '833.488.525-02', to_date ('2013-09-14', 'YYYY-MM-DD'), 4, '40.506.235/0656-92', to_date ('2002-01-06', 'YYYY-MM-DD'), '516.335.573-78' );
 INSERT INTO opParque ( cpfOpCamera, data, idCameraSecundaria, cnpjParque, dataInicioParque, cpfAssistente )
-	VALUES ( '969.304.789-35', to_date ('2007-10-03', 'YYYY-MM-DD'), 20, '18.547.464/1813-58', to_date ('2006-11-17', 'YYYY-MM-DD'), '583.596.699-39' );
+	VALUES ( '523.255.716-37', to_date ('2001-11-10', 'YYYY-MM-DD'), 3, '30.485.345/5697-01', to_date ('2000-07-05', 'YYYY-MM-DD'), '624.975.827-59' );
 INSERT INTO opParque ( cpfOpCamera, data, idCameraSecundaria, cnpjParque, dataInicioParque, cpfAssistente )
-	VALUES ( '998.627.534-11', to_date ('2010-11-15', 'YYYY-MM-DD'), 2, '35.791.354/5879-93', to_date ('2004-01-09', 'YYYY-MM-DD'), '299.967.704-87' );
+	VALUES ( '632.034.959-23', to_date ('2011-06-07', 'YYYY-MM-DD'), 14, '40.506.235/0656-92', to_date ('2017-10-11', 'YYYY-MM-DD'), '523.255.716-37' );
 
 /* TABLE pontoInstalacao */
 /* NULL INSERTION FOR ATTRIBUTEfonteAlimentacaoAT TABLEpontoInstalacao */
 INSERT INTO pontoInstalacao ( cnpjParque, coordenadas, descricao, conectividade, iluminacao, contatoAgua, fonteAlimentacao )
-	VALUES ( '70.903.167/4006-03', '{232939, 847026, 146417}', 'Minima exercitationem recusandae autem enim quidem non. Quaerat suscipit saepe quae quia. In repudiandae at numquam rerum.', 'Sapiente eaque facere rem.O', 'BAIXA', TRUE, NULL );
+	VALUES ( '32.919.066/7531-72', '{438269, 877432, 478517}', 'Similique laborum consectetur necessitatibus. Doloremque quos culpa repellat. Repellat incidunt nulla sequi amet debitis.', 'Nostrum saepe quaerat eius a', 'BAIXA', FALSE, NULL );
 /* NULL INSERTION FOR ATTRIBUTEcontatoAguaAT TABLEpontoInstalacao */
 INSERT INTO pontoInstalacao ( cnpjParque, coordenadas, descricao, conectividade, iluminacao, contatoAgua, fonteAlimentacao )
-	VALUES ( '41.458.408/8070-02', '{708228, 143759, 820935}', 'Ab nisi accusantium consectetur recusandae nulla. Exercitationem accusantium maxime dolor beatae.', 'Voluptatem ad blanditiis offici', 'MEDIA', NULL, 'Voluptatibus tenetur deserun' );
+	VALUES ( '30.485.345/5697-01', '{525987, 330400, 592903}', 'Voluptates tenetur perspiciatis asperiores. Delectus tenetur ad dolores atque perspiciatis dicta. Sit ducimus incidunt unde.', 'Voluptate voluptatibus fuga', 'MEDIA', NULL, 'Expedita ipsam numquam' );
 /* NULL INSERTION FOR ATTRIBUTEiluminacaoAT TABLEpontoInstalacao */
 INSERT INTO pontoInstalacao ( cnpjParque, coordenadas, descricao, conectividade, iluminacao, contatoAgua, fonteAlimentacao )
-	VALUES ( '84.565.310/3060-15', '{463728, 823433, 178913}', 'Facere quas inventore quae ipsum assumenda tenetur. Voluptatem nisi magni reiciendis a quae voluptate enim. Dolores rerum enim f', 'Molestias dicta q', NULL, FALSE, 'Nostrum eum quas' );
+	VALUES ( '19.015.770/8218-48', '{883907, 378634, 150490}', 'Quidem id quam aliquam hic repellendus. Qui deserunt eaque distinctio earum. Quae explicabo eligendi.', 'Sed ipsa saepe at deleniti ', NULL, TRUE, 'Dicta sunt assum' );
 /* NULL INSERTION FOR ATTRIBUTEconectividadeAT TABLEpontoInstalacao */
 INSERT INTO pontoInstalacao ( cnpjParque, coordenadas, descricao, conectividade, iluminacao, contatoAgua, fonteAlimentacao )
-	VALUES ( '66.367.523/9507-61', '{562005, 685926, 760995}', 'Hic unde amet alias illum. Ratione facilis tempora perspiciatis. Sapiente ratione dolorem ratione. Aliquid dolores veniam incidu', NULL, 'ALTA', TRUE, 'Ducimus nam reprehenderit acc' );
+	VALUES ( '40.506.235/0656-92', '{443129, 309317, 118767}', 'Eligendi doloremque quisquam aliquid maiores. Laboriosam nihil quidem quisquam iure. Ullam sequi labore voluptatem vitae officii', NULL, 'ALTA', TRUE, 'Incidunt tempore volup' );
 /* NULL INSERTION FOR ATTRIBUTEdescricaoAT TABLEpontoInstalacao */
 INSERT INTO pontoInstalacao ( cnpjParque, coordenadas, descricao, conectividade, iluminacao, contatoAgua, fonteAlimentacao )
-	VALUES ( '69.214.498/0179-48', '{818142, 701107, 776433}', NULL, 'Unde molestiae id. Amet natus do', 'ALTA', FALSE, 'Maxime tempore consequuntur' );
+	VALUES ( '32.919.066/7531-72', '{787615, 682896, 366321}', NULL, 'Eveniet dignissimo', 'ALTA', TRUE, 'Sunt eaque voluptatem do' );
 INSERT INTO pontoInstalacao ( cnpjParque, coordenadas, descricao, conectividade, iluminacao, contatoAgua, fonteAlimentacao )
-	VALUES ( '93.555.593/9937-39', '{785072, 586721, 435107}', 'Suscipit vero nostrum eius delectus. Quia nisi expedita ut quis. Voluptas aliquam excepturi dignissimos aspernatur. Temporibus s', 'Tempore et nulla ', 'MEDIA', TRUE, 'Repellendus perspicia' );
+	VALUES ( '34.999.680/4170-36', '{824255, 304605, 728459}', 'Ipsam eaque officia blanditiis eligendi ut voluptate. Voluptates exercitationem illum nostrum omnis repellat aperiam. Officia co', 'Dolorum labore tempore', 'BAIXA', TRUE, 'Vero delectus consectetur quod' );
 INSERT INTO pontoInstalacao ( cnpjParque, coordenadas, descricao, conectividade, iluminacao, contatoAgua, fonteAlimentacao )
-	VALUES ( '35.791.354/5879-93', '{380290, 217876, 554128}', 'Illum beatae aspernatur molestiae culpa doloremque pariatur. Impedit illum veritatis vero libero dicta iure. Cum voluptas quidem', 'Necessitatibus veritat', 'MEDIA', TRUE, 'Maiores ducimus dolo' );
+	VALUES ( '64.566.386/0658-81', '{314566, 464694, 780316}', 'Unde quod sunt tempora eligendi quos quasi cumque. Alias itaque unde quasi tempore reprehenderit.', 'Voluptates beatae eius. Mole', 'BAIXA', FALSE, 'Voluptas quidem re' );
 INSERT INTO pontoInstalacao ( cnpjParque, coordenadas, descricao, conectividade, iluminacao, contatoAgua, fonteAlimentacao )
-	VALUES ( '18.547.464/1813-58', '{852596, 605721, 219432}', 'Quam libero ullam dolorum enim deserunt tenetur. Doloribus aut perspiciatis explicabo ratione facilis sapiente porro. Illo harum', 'Architecto natus ipsum eiu', 'MEDIA', TRUE, 'Quibusdam debitis mi' );
+	VALUES ( '09.538.863/6691-89', '{809911, 567110, 816699}', 'Voluptas nam nam asperiores ipsam deleniti. Dolores quam quia ab dolore optio. Odit dolorem ipsum.', 'Possimus esse ut', 'ALTA', FALSE, 'A minus voluptates ' );
 INSERT INTO pontoInstalacao ( cnpjParque, coordenadas, descricao, conectividade, iluminacao, contatoAgua, fonteAlimentacao )
-	VALUES ( '93.555.593/9937-39', '{829942, 676672, 889016}', 'Omnis recusandae beatae commodi suscipit placeat voluptatem. Ratione ipsam velit et modi voluptas porro.', 'Magnam dolorem vero. Magna', 'ALTA', FALSE, 'Possimus autem nisi e' );
+	VALUES ( '61.306.096/7744-10', '{189431, 752474, 860644}', 'Qui quibusdam nostrum dolores labore. Vel aspernatur dolorem esse pariatur. Quam culpa libero corporis.', 'Magni quos perferendis ', 'MEDIA', FALSE, 'A cumque in repellat illo quam' );
 INSERT INTO pontoInstalacao ( cnpjParque, coordenadas, descricao, conectividade, iluminacao, contatoAgua, fonteAlimentacao )
-	VALUES ( '09.738.620/6062-42', '{328046, 172933, 881661}', 'Perspiciatis nihil nobis aliquid soluta quae. Itaque doloribus ea animi quisquam accusantium blanditiis. Nihil architecto natus ', 'Doloremque laudantium cumque ea', 'MEDIA', TRUE, 'Officiis numquam fugiat li' );
+	VALUES ( '54.132.251/1018-82', '{882695, 159403, 135406}', 'Accusantium alias ipsam suscipit sed. Magni sapiente eaque natus. Repellendus repellat nostrum minima rem suscipit deserunt. Eaq', 'Quae ullam qui natus neque amet ', 'ALTA', FALSE, 'Beatae debitis odio min' );
 INSERT INTO pontoInstalacao ( cnpjParque, coordenadas, descricao, conectividade, iluminacao, contatoAgua, fonteAlimentacao )
-	VALUES ( '09.738.620/6062-42', '{328784, 220087, 381591}', 'Consequatur qui porro deserunt. Accusantium molestiae quisquam quo soluta eos esse. Eos facere et saepe. Corrupti necessitatibus', 'Voluptate maxime deserunt rer', 'ALTA', TRUE, 'Aliquam voluptatum quia et eaq' );
+	VALUES ( '40.506.235/0656-92', '{888269, 401345, 473265}', 'Excepturi unde porro occaecati aliquam. Impedit impedit nihil blanditiis architecto. In distinctio repudiandae occaecati.', 'Corrupti ratione quos earu', 'ALTA', FALSE, 'Porro voluptatem q' );
 INSERT INTO pontoInstalacao ( cnpjParque, coordenadas, descricao, conectividade, iluminacao, contatoAgua, fonteAlimentacao )
-	VALUES ( '93.555.593/9937-39', '{567821, 538581, 199295}', 'Fugit temporibus ut amet. Quod et voluptate minus. Molestias non consequatur sapiente fuga maiores enim. Ullam harum doloribus v', 'Exercitationem voluptate rem ', 'ALTA', FALSE, 'Odio dolorem nihil dicta ' );
+	VALUES ( '31.400.972/2310-96', '{166953, 427857, 329613}', 'Quam suscipit fuga. Eaque debitis quisquam officiis. Veniam expedita esse sunt nihil amet. Cupiditate vel repellat. Necessitatib', 'Accusamus earum nem', 'ALTA', TRUE, 'Cum cum non earu' );
 INSERT INTO pontoInstalacao ( cnpjParque, coordenadas, descricao, conectividade, iluminacao, contatoAgua, fonteAlimentacao )
-	VALUES ( '43.209.688/4316-92', '{263547, 279409, 540592}', 'Reiciendis iste vel non vel iure. Occaecati reprehenderit quaerat cum. Atque nesciunt autem. Cupiditate mollitia quaerat ipsam d', 'Debitis nemo numq', 'MEDIA', TRUE, 'Velit a nisi hic corporis la' );
+	VALUES ( '24.472.862/6691-06', '{276916, 286647, 274273}', 'In officiis mollitia pariatur aspernatur dolor. Nemo aliquid cumque rerum numquam qui sit porro. Libero illum voluptatum possimu', 'Deserunt corrupti ut natus', 'BAIXA', TRUE, 'Unde sint corporis. N' );
 INSERT INTO pontoInstalacao ( cnpjParque, coordenadas, descricao, conectividade, iluminacao, contatoAgua, fonteAlimentacao )
-	VALUES ( '08.887.577/2717-20', '{268787, 147427, 286462}', 'Aperiam voluptates quisquam dignissimos dignissimos modi. Dolores deleniti quasi magnam fuga ducimus. Perferendis veritatis maio', 'Quo accusamus error totam. Ven', 'BAIXA', FALSE, 'Dolorum aliquam minima o' );
+	VALUES ( '26.874.389/1723-02', '{636086, 415185, 326250}', 'Unde totam incidunt vitae minus porro. Rem esse doloribus ullam. Repudiandae dolore animi exercitationem non error. Non necessit', 'Praesentium in velit. A', 'BAIXA', FALSE, 'Harum id voluptatum e' );
 INSERT INTO pontoInstalacao ( cnpjParque, coordenadas, descricao, conectividade, iluminacao, contatoAgua, fonteAlimentacao )
-	VALUES ( '70.903.167/4006-03', '{645845, 586674, 229216}', 'Eaque fugiat delectus laborum amet quasi sapiente. Praesentium quas nulla excepturi quaerat sapiente dolores. Numquam laborum om', 'Laborum impedit error sunt vo', 'MEDIA', TRUE, 'Magnam deleniti eligendi e' );
+	VALUES ( '89.545.773/6492-77', '{204789, 345458, 229680}', 'Asperiores autem ea deserunt provident necessitatibus repellat. Enim architecto molestias distinctio libero qui provident.', 'Nobis officia disti', 'BAIXA', TRUE, 'Corporis nihil animi volup' );
 INSERT INTO pontoInstalacao ( cnpjParque, coordenadas, descricao, conectividade, iluminacao, contatoAgua, fonteAlimentacao )
-	VALUES ( '69.214.498/0179-48', '{620471, 494219, 263991}', 'Repellat libero in veritatis natus. Laboriosam officia aliquid.', 'Modi soluta alias alias', 'ALTA', TRUE, 'Corrupti unde suscipit fugiat co' );
+	VALUES ( '42.282.106/3773-15', '{648462, 363863, 431912}', 'Cum corrupti cumque aperiam eius odit saepe. Minus amet unde reiciendis harum repellendus ratione aliquam. Provident excepturi n', 'Debitis explicabo digni', 'ALTA', FALSE, 'Aut earum architecto aliquid m' );
 INSERT INTO pontoInstalacao ( cnpjParque, coordenadas, descricao, conectividade, iluminacao, contatoAgua, fonteAlimentacao )
-	VALUES ( '00.427.481/2502-93', '{759081, 790934, 833101}', 'Facere placeat quisquam id officiis. Rerum reiciendis voluptas corporis harum. Accusamus dicta voluptatem nisi cum. Tempore even', 'Rem numquam eveniet eaque. Nam', 'MEDIA', FALSE, 'Quaerat libero n' );
+	VALUES ( '24.472.862/6691-06', '{459075, 249156, 656925}', 'Nobis possimus asperiores optio impedit quis. Explicabo molestiae assumenda similique similique molestiae non quod. Architecto n', 'Dolor sapiente fugiat offic', 'ALTA', FALSE, 'Illo iure reiciendis simili' );
 INSERT INTO pontoInstalacao ( cnpjParque, coordenadas, descricao, conectividade, iluminacao, contatoAgua, fonteAlimentacao )
-	VALUES ( '88.645.659/8305-31', '{655912, 736452, 526374}', 'Est error dolore odio deleniti. Occaecati nam consequatur consequatur praesentium sint.', 'Magnam ad enim natus a', 'MEDIA', FALSE, 'Minus beatae fugit doloremque ' );
+	VALUES ( '26.874.389/1723-02', '{619643, 723813, 455696}', 'Quia maxime temporibus at id alias. Ipsa maxime repellat a incidunt dignissimos ea.', 'Enim similique fugiat molestiae', 'ALTA', FALSE, 'Quam nulla dolorem. Qu' );
 INSERT INTO pontoInstalacao ( cnpjParque, coordenadas, descricao, conectividade, iluminacao, contatoAgua, fonteAlimentacao )
-	VALUES ( '08.887.577/2717-20', '{291983, 669904, 187355}', 'Rem consectetur itaque dolor. Dolores error quod unde.', 'Aliquid cumque debitis v', 'ALTA', TRUE, 'Atque maiores tempore ut ' );
+	VALUES ( '71.685.729/4726-89', '{152652, 378641, 153784}', 'Ipsum est minus maxime maxime. Quaerat quas perferendis. Ipsam iure ipsa perspiciatis. Quos adipisci eveniet illo quod dolore ma', 'Nihil eos aliqua', 'MEDIA', TRUE, 'Ipsum recusandae laborum exerci' );
 INSERT INTO pontoInstalacao ( cnpjParque, coordenadas, descricao, conectividade, iluminacao, contatoAgua, fonteAlimentacao )
-	VALUES ( '70.903.167/4006-03', '{239147, 374993, 523128}', 'Consequatur eveniet consequatur voluptate consectetur. Illum eius neque. Ea quasi ullam saepe sequi explicabo.', 'Ut modi cumque. Aliquam archi', 'BAIXA', TRUE, 'Dolorem reiciendis sunt' );
+	VALUES ( '54.132.251/1018-82', '{743836, 276798, 492453}', 'Corporis maiores blanditiis. Blanditiis ratione voluptates velit aliquam libero suscipit quas.', 'Numquam reiciendis q', 'BAIXA', TRUE, 'Laborum nemo ad cumque moles' );
 INSERT INTO pontoInstalacao ( cnpjParque, coordenadas, descricao, conectividade, iluminacao, contatoAgua, fonteAlimentacao )
-	VALUES ( '01.843.484/0763-30', '{621306, 788225, 822271}', 'Enim perferendis voluptatem inventore ea commodi. Consequatur perspiciatis sed dolor ut quia quos. Ducimus nisi blanditiis expli', 'Saepe voluptates incidunt m', 'ALTA', TRUE, 'Quae quod quos d' );
+	VALUES ( '56.282.116/5942-29', '{737772, 434936, 247984}', 'Error nobis tempore nesciunt totam numquam. Eaque dolorum in enim.', 'Tempore inventore fuga quod temp', 'ALTA', TRUE, 'Sequi provident ' );
 INSERT INTO pontoInstalacao ( cnpjParque, coordenadas, descricao, conectividade, iluminacao, contatoAgua, fonteAlimentacao )
-	VALUES ( '35.791.354/5879-93', '{723779, 367128, 770930}', 'Voluptates veritatis earum dolore molestias. Omnis repudiandae omnis quidem. Facilis harum maiores ex consequuntur. Iste blandit', 'Vitae fugiat saepe e', 'ALTA', FALSE, 'Ipsam ducimus exercitationem ' );
+	VALUES ( '34.999.680/4170-36', '{169203, 888875, 564591}', 'Soluta pariatur harum sunt. Qui expedita error eos quasi consectetur.', 'Facere sapiente unde ', 'MEDIA', TRUE, 'Perspiciatis modi enim perfere' );
 INSERT INTO pontoInstalacao ( cnpjParque, coordenadas, descricao, conectividade, iluminacao, contatoAgua, fonteAlimentacao )
-	VALUES ( '70.903.167/4006-03', '{890024, 755708, 565172}', 'Sed accusamus soluta dicta maiores beatae. Nostrum quasi dolorum aliquid. Deserunt fugiat perferendis delectus sequi officia mol', 'Asperiores repellat cum v', 'ALTA', TRUE, 'A qui voluptatum nobis vo' );
+	VALUES ( '40.506.235/0656-92', '{637679, 696265, 561598}', 'Voluptatem reprehenderit et vero esse dignissimos vitae. Asperiores neque molestiae ad eum nesciunt.', 'Excepturi nesciunt par', 'ALTA', TRUE, 'Harum quam esse ' );
 INSERT INTO pontoInstalacao ( cnpjParque, coordenadas, descricao, conectividade, iluminacao, contatoAgua, fonteAlimentacao )
-	VALUES ( '00.068.328/9899-17', '{218151, 619988, 797656}', 'Doloribus aperiam qui at expedita quam. Veritatis repudiandae expedita soluta necessitatibus a optio. Dicta quas ducimus nihil l', 'Ipsum voluptate ad', 'MEDIA', TRUE, 'Rerum vitae voluptas labore ' );
+	VALUES ( '71.685.729/4726-89', '{323544, 845740, 556028}', 'Veniam expedita nesciunt deleniti. Id quos est vero impedit vitae. Cupiditate sit nobis nisi. Ad architecto eum inventore.', 'Dolorum iste consequatur exped', 'MEDIA', TRUE, 'Optio nostrum aut' );
 INSERT INTO pontoInstalacao ( cnpjParque, coordenadas, descricao, conectividade, iluminacao, contatoAgua, fonteAlimentacao )
-	VALUES ( '08.887.577/2717-20', '{541215, 286348, 390687}', 'Adipisci eos perferendis ipsam veritatis nam earum. Accusantium quas accusamus fugit doloribus provident optio.', 'Cupiditate maiores ad a', 'MEDIA', FALSE, 'Atque numquam par' );
+	VALUES ( '19.015.770/8218-48', '{140430, 334593, 703034}', 'Omnis molestiae corporis est nesciunt nam mollitia. Magni nihil commodi sit voluptas aut. Animi cupiditate inventore.', 'Beatae nulla labore impedit ita', 'ALTA', TRUE, 'Libero quas reiciendis odi' );
 
 /* TABLE pontoCamera */
 INSERT INTO pontoCamera ( idCamera, cnpjParque, coordenadas, data, quantidade )
-	VALUES ( 18, '70.903.167/4006-03', '{645845, 586674, 229216}', to_date ('2008-05-23', 'YYYY-MM-DD'), 671072 );
+	VALUES ( 12, '71.685.729/4726-89', '{323544, 845740, 556028}', to_date ('2012-11-09', 'YYYY-MM-DD'), 209849 );
 INSERT INTO pontoCamera ( idCamera, cnpjParque, coordenadas, data, quantidade )
-	VALUES ( 18, '08.887.577/2717-20', '{291983, 669904, 187355}', to_date ('2007-03-23', 'YYYY-MM-DD'), 779845 );
+	VALUES ( 6, '56.282.116/5942-29', '{737772, 434936, 247984}', to_date ('2011-04-06', 'YYYY-MM-DD'), 779606 );
 INSERT INTO pontoCamera ( idCamera, cnpjParque, coordenadas, data, quantidade )
-	VALUES ( 2, '08.887.577/2717-20', '{268787, 147427, 286462}', to_date ('2008-09-09', 'YYYY-MM-DD'), 258900 );
+	VALUES ( 1, '31.400.972/2310-96', '{166953, 427857, 329613}', to_date ('2002-01-23', 'YYYY-MM-DD'), 351544 );
 INSERT INTO pontoCamera ( idCamera, cnpjParque, coordenadas, data, quantidade )
-	VALUES ( 6, '08.887.577/2717-20', '{291983, 669904, 187355}', to_date ('2002-05-22', 'YYYY-MM-DD'), 700311 );
+	VALUES ( 19, '09.538.863/6691-89', '{809911, 567110, 816699}', to_date ('2000-11-25', 'YYYY-MM-DD'), 668423 );
 INSERT INTO pontoCamera ( idCamera, cnpjParque, coordenadas, data, quantidade )
-	VALUES ( 4, '70.903.167/4006-03', '{890024, 755708, 565172}', to_date ('2001-01-21', 'YYYY-MM-DD'), 803681 );
+	VALUES ( 15, '09.538.863/6691-89', '{809911, 567110, 816699}', to_date ('2000-07-14', 'YYYY-MM-DD'), 767445 );
 INSERT INTO pontoCamera ( idCamera, cnpjParque, coordenadas, data, quantidade )
-	VALUES ( 18, '70.903.167/4006-03', '{645845, 586674, 229216}', to_date ('2000-08-29', 'YYYY-MM-DD'), 773906 );
+	VALUES ( 1, '71.685.729/4726-89', '{152652, 378641, 153784}', to_date ('2002-04-03', 'YYYY-MM-DD'), 766014 );
 INSERT INTO pontoCamera ( idCamera, cnpjParque, coordenadas, data, quantidade )
-	VALUES ( 9, '35.791.354/5879-93', '{380290, 217876, 554128}', to_date ('2009-12-09', 'YYYY-MM-DD'), 699700 );
+	VALUES ( 1, '89.545.773/6492-77', '{204789, 345458, 229680}', to_date ('2004-01-24', 'YYYY-MM-DD'), 112317 );
 INSERT INTO pontoCamera ( idCamera, cnpjParque, coordenadas, data, quantidade )
-	VALUES ( 7, '08.887.577/2717-20', '{268787, 147427, 286462}', to_date ('2001-11-08', 'YYYY-MM-DD'), 882005 );
+	VALUES ( 8, '54.132.251/1018-82', '{882695, 159403, 135406}', to_date ('2009-04-10', 'YYYY-MM-DD'), 811659 );
 INSERT INTO pontoCamera ( idCamera, cnpjParque, coordenadas, data, quantidade )
-	VALUES ( 4, '93.555.593/9937-39', '{829942, 676672, 889016}', to_date ('2006-09-09', 'YYYY-MM-DD'), 115647 );
+	VALUES ( 16, '34.999.680/4170-36', '{169203, 888875, 564591}', to_date ('2011-04-01', 'YYYY-MM-DD'), 860349 );
 INSERT INTO pontoCamera ( idCamera, cnpjParque, coordenadas, data, quantidade )
-	VALUES ( 13, '09.738.620/6062-42', '{328784, 220087, 381591}', to_date ('2010-12-13', 'YYYY-MM-DD'), 562549 );
+	VALUES ( 6, '40.506.235/0656-92', '{888269, 401345, 473265}', to_date ('2000-10-25', 'YYYY-MM-DD'), 292134 );
 INSERT INTO pontoCamera ( idCamera, cnpjParque, coordenadas, data, quantidade )
-	VALUES ( 7, '18.547.464/1813-58', '{852596, 605721, 219432}', to_date ('2008-09-06', 'YYYY-MM-DD'), 856232 );
+	VALUES ( 11, '71.685.729/4726-89', '{323544, 845740, 556028}', to_date ('2000-10-26', 'YYYY-MM-DD'), 361793 );
 INSERT INTO pontoCamera ( idCamera, cnpjParque, coordenadas, data, quantidade )
-	VALUES ( 14, '88.645.659/8305-31', '{655912, 736452, 526374}', to_date ('2010-08-02', 'YYYY-MM-DD'), 270786 );
+	VALUES ( 10, '31.400.972/2310-96', '{166953, 427857, 329613}', to_date ('2003-03-13', 'YYYY-MM-DD'), 248667 );
 INSERT INTO pontoCamera ( idCamera, cnpjParque, coordenadas, data, quantidade )
-	VALUES ( 6, '88.645.659/8305-31', '{655912, 736452, 526374}', to_date ('2010-05-29', 'YYYY-MM-DD'), 250462 );
+	VALUES ( 11, '19.015.770/8218-48', '{140430, 334593, 703034}', to_date ('2003-04-30', 'YYYY-MM-DD'), 201418 );
 INSERT INTO pontoCamera ( idCamera, cnpjParque, coordenadas, data, quantidade )
-	VALUES ( 5, '93.555.593/9937-39', '{829942, 676672, 889016}', to_date ('2016-07-04', 'YYYY-MM-DD'), 764469 );
+	VALUES ( 11, '54.132.251/1018-82', '{743836, 276798, 492453}', to_date ('2017-02-18', 'YYYY-MM-DD'), 842384 );
 INSERT INTO pontoCamera ( idCamera, cnpjParque, coordenadas, data, quantidade )
-	VALUES ( 6, '43.209.688/4316-92', '{263547, 279409, 540592}', to_date ('2013-05-19', 'YYYY-MM-DD'), 107666 );
+	VALUES ( 1, '54.132.251/1018-82', '{882695, 159403, 135406}', to_date ('2010-12-25', 'YYYY-MM-DD'), 792949 );
 INSERT INTO pontoCamera ( idCamera, cnpjParque, coordenadas, data, quantidade )
-	VALUES ( 6, '18.547.464/1813-58', '{852596, 605721, 219432}', to_date ('2006-09-24', 'YYYY-MM-DD'), 327170 );
+	VALUES ( 7, '34.999.680/4170-36', '{824255, 304605, 728459}', to_date ('2012-07-01', 'YYYY-MM-DD'), 866839 );
 INSERT INTO pontoCamera ( idCamera, cnpjParque, coordenadas, data, quantidade )
-	VALUES ( 3, '93.555.593/9937-39', '{567821, 538581, 199295}', to_date ('2010-12-09', 'YYYY-MM-DD'), 760643 );
+	VALUES ( 7, '71.685.729/4726-89', '{323544, 845740, 556028}', to_date ('2008-02-14', 'YYYY-MM-DD'), 872565 );
 INSERT INTO pontoCamera ( idCamera, cnpjParque, coordenadas, data, quantidade )
-	VALUES ( 10, '09.738.620/6062-42', '{328784, 220087, 381591}', to_date ('2012-10-14', 'YYYY-MM-DD'), 622638 );
+	VALUES ( 9, '34.999.680/4170-36', '{169203, 888875, 564591}', to_date ('2009-04-16', 'YYYY-MM-DD'), 773285 );
 INSERT INTO pontoCamera ( idCamera, cnpjParque, coordenadas, data, quantidade )
-	VALUES ( 13, '09.738.620/6062-42', '{328046, 172933, 881661}', to_date ('2010-03-10', 'YYYY-MM-DD'), 124674 );
+	VALUES ( 20, '89.545.773/6492-77', '{204789, 345458, 229680}', to_date ('2008-06-06', 'YYYY-MM-DD'), 144325 );
 INSERT INTO pontoCamera ( idCamera, cnpjParque, coordenadas, data, quantidade )
-	VALUES ( 12, '93.555.593/9937-39', '{567821, 538581, 199295}', to_date ('2005-03-23', 'YYYY-MM-DD'), 651982 );
+	VALUES ( 6, '26.874.389/1723-02', '{636086, 415185, 326250}', to_date ('2000-12-27', 'YYYY-MM-DD'), 522741 );
 
 /* TABLE pontoEstrutura */
 INSERT INTO pontoEstrutura ( idEstruturacao, cnpjParque, coordenadas, data, quantidade )
-	VALUES ( 12, '69.214.498/0179-48', '{620471, 494219, 263991}', to_date ('2000-08-23', 'YYYY-MM-DD'), 183596 );
+	VALUES ( 19, '24.472.862/6691-06', '{459075, 249156, 656925}', to_date ('2009-09-25', 'YYYY-MM-DD'), 384803 );
 INSERT INTO pontoEstrutura ( idEstruturacao, cnpjParque, coordenadas, data, quantidade )
-	VALUES ( 18, '70.903.167/4006-03', '{645845, 586674, 229216}', to_date ('2000-08-02', 'YYYY-MM-DD'), 392723 );
+	VALUES ( 16, '24.472.862/6691-06', '{276916, 286647, 274273}', to_date ('2014-07-12', 'YYYY-MM-DD'), 638224 );
 INSERT INTO pontoEstrutura ( idEstruturacao, cnpjParque, coordenadas, data, quantidade )
-	VALUES ( 10, '88.645.659/8305-31', '{655912, 736452, 526374}', to_date ('2003-01-15', 'YYYY-MM-DD'), 361891 );
+	VALUES ( 16, '34.999.680/4170-36', '{824255, 304605, 728459}', to_date ('2004-05-22', 'YYYY-MM-DD'), 119493 );
 INSERT INTO pontoEstrutura ( idEstruturacao, cnpjParque, coordenadas, data, quantidade )
-	VALUES ( 16, '88.645.659/8305-31', '{655912, 736452, 526374}', to_date ('2013-12-14', 'YYYY-MM-DD'), 848524 );
+	VALUES ( 4, '61.306.096/7744-10', '{189431, 752474, 860644}', to_date ('2011-01-29', 'YYYY-MM-DD'), 438058 );
 INSERT INTO pontoEstrutura ( idEstruturacao, cnpjParque, coordenadas, data, quantidade )
-	VALUES ( 6, '35.791.354/5879-93', '{380290, 217876, 554128}', to_date ('2015-11-23', 'YYYY-MM-DD'), 206335 );
+	VALUES ( 7, '71.685.729/4726-89', '{152652, 378641, 153784}', to_date ('2000-04-10', 'YYYY-MM-DD'), 425040 );
 INSERT INTO pontoEstrutura ( idEstruturacao, cnpjParque, coordenadas, data, quantidade )
-	VALUES ( 11, '43.209.688/4316-92', '{263547, 279409, 540592}', to_date ('2013-01-18', 'YYYY-MM-DD'), 744035 );
+	VALUES ( 17, '26.874.389/1723-02', '{619643, 723813, 455696}', to_date ('2000-07-29', 'YYYY-MM-DD'), 832846 );
 INSERT INTO pontoEstrutura ( idEstruturacao, cnpjParque, coordenadas, data, quantidade )
-	VALUES ( 11, '43.209.688/4316-92', '{263547, 279409, 540592}', to_date ('2002-11-18', 'YYYY-MM-DD'), 644500 );
+	VALUES ( 4, '31.400.972/2310-96', '{166953, 427857, 329613}', to_date ('2006-12-06', 'YYYY-MM-DD'), 537255 );
 INSERT INTO pontoEstrutura ( idEstruturacao, cnpjParque, coordenadas, data, quantidade )
-	VALUES ( 2, '93.555.593/9937-39', '{785072, 586721, 435107}', to_date ('2001-05-16', 'YYYY-MM-DD'), 889832 );
+	VALUES ( 15, '09.538.863/6691-89', '{809911, 567110, 816699}', to_date ('2004-11-15', 'YYYY-MM-DD'), 789315 );
 INSERT INTO pontoEstrutura ( idEstruturacao, cnpjParque, coordenadas, data, quantidade )
-	VALUES ( 16, '93.555.593/9937-39', '{829942, 676672, 889016}', to_date ('2006-07-09', 'YYYY-MM-DD'), 720104 );
+	VALUES ( 19, '61.306.096/7744-10', '{189431, 752474, 860644}', to_date ('2014-08-29', 'YYYY-MM-DD'), 803843 );
 INSERT INTO pontoEstrutura ( idEstruturacao, cnpjParque, coordenadas, data, quantidade )
-	VALUES ( 14, '35.791.354/5879-93', '{380290, 217876, 554128}', to_date ('2008-09-03', 'YYYY-MM-DD'), 714272 );
+	VALUES ( 14, '89.545.773/6492-77', '{204789, 345458, 229680}', to_date ('2018-09-01', 'YYYY-MM-DD'), 766613 );
 INSERT INTO pontoEstrutura ( idEstruturacao, cnpjParque, coordenadas, data, quantidade )
-	VALUES ( 15, '43.209.688/4316-92', '{263547, 279409, 540592}', to_date ('2016-01-02', 'YYYY-MM-DD'), 588568 );
+	VALUES ( 14, '09.538.863/6691-89', '{809911, 567110, 816699}', to_date ('2010-03-03', 'YYYY-MM-DD'), 804741 );
 INSERT INTO pontoEstrutura ( idEstruturacao, cnpjParque, coordenadas, data, quantidade )
-	VALUES ( 13, '18.547.464/1813-58', '{852596, 605721, 219432}', to_date ('2014-02-09', 'YYYY-MM-DD'), 803306 );
+	VALUES ( 16, '26.874.389/1723-02', '{619643, 723813, 455696}', to_date ('2017-02-19', 'YYYY-MM-DD'), 617390 );
 INSERT INTO pontoEstrutura ( idEstruturacao, cnpjParque, coordenadas, data, quantidade )
-	VALUES ( 11, '35.791.354/5879-93', '{723779, 367128, 770930}', to_date ('2001-05-15', 'YYYY-MM-DD'), 836003 );
+	VALUES ( 18, '24.472.862/6691-06', '{276916, 286647, 274273}', to_date ('2008-10-28', 'YYYY-MM-DD'), 857292 );
 INSERT INTO pontoEstrutura ( idEstruturacao, cnpjParque, coordenadas, data, quantidade )
-	VALUES ( 6, '01.843.484/0763-30', '{621306, 788225, 822271}', to_date ('2003-02-00', 'YYYY-MM-DD'), 341799 );
+	VALUES ( 14, '09.538.863/6691-89', '{809911, 567110, 816699}', to_date ('2005-09-03', 'YYYY-MM-DD'), 477975 );
 INSERT INTO pontoEstrutura ( idEstruturacao, cnpjParque, coordenadas, data, quantidade )
-	VALUES ( 19, '08.887.577/2717-20', '{541215, 286348, 390687}', to_date ('2009-06-12', 'YYYY-MM-DD'), 512799 );
+	VALUES ( 12, '71.685.729/4726-89', '{323544, 845740, 556028}', to_date ('2008-08-11', 'YYYY-MM-DD'), 696792 );
 INSERT INTO pontoEstrutura ( idEstruturacao, cnpjParque, coordenadas, data, quantidade )
-	VALUES ( 17, '18.547.464/1813-58', '{852596, 605721, 219432}', to_date ('2017-11-20', 'YYYY-MM-DD'), 536286 );
+	VALUES ( 13, '54.132.251/1018-82', '{743836, 276798, 492453}', to_date ('2012-06-20', 'YYYY-MM-DD'), 880094 );
 INSERT INTO pontoEstrutura ( idEstruturacao, cnpjParque, coordenadas, data, quantidade )
-	VALUES ( 6, '09.738.620/6062-42', '{328046, 172933, 881661}', to_date ('2016-06-18', 'YYYY-MM-DD'), 607067 );
+	VALUES ( 18, '71.685.729/4726-89', '{152652, 378641, 153784}', to_date ('2014-08-27', 'YYYY-MM-DD'), 654411 );
 INSERT INTO pontoEstrutura ( idEstruturacao, cnpjParque, coordenadas, data, quantidade )
-	VALUES ( 1, '09.738.620/6062-42', '{328046, 172933, 881661}', to_date ('2000-09-23', 'YYYY-MM-DD'), 819012 );
+	VALUES ( 9, '31.400.972/2310-96', '{166953, 427857, 329613}', to_date ('2014-09-23', 'YYYY-MM-DD'), 261388 );
 INSERT INTO pontoEstrutura ( idEstruturacao, cnpjParque, coordenadas, data, quantidade )
-	VALUES ( 2, '08.887.577/2717-20', '{291983, 669904, 187355}', to_date ('2004-07-17', 'YYYY-MM-DD'), 354358 );
+	VALUES ( 12, '54.132.251/1018-82', '{882695, 159403, 135406}', to_date ('2005-05-03', 'YYYY-MM-DD'), 427485 );
 INSERT INTO pontoEstrutura ( idEstruturacao, cnpjParque, coordenadas, data, quantidade )
-	VALUES ( 14, '08.887.577/2717-20', '{268787, 147427, 286462}', to_date ('2013-05-16', 'YYYY-MM-DD'), 889545 );
+	VALUES ( 1, '71.685.729/4726-89', '{323544, 845740, 556028}', to_date ('2011-07-05', 'YYYY-MM-DD'), 730716 );
 
 /* TABLE pontoSom */
 /* NULL INSERTION FOR ATTRIBUTEnumeroGrafoAT TABLEpontoSom */
 INSERT INTO pontoSom ( idSonorizacao, cnpjParque, coordenadas, data, quantidade, numeroGrafo )
-	VALUES ( 3, '69.214.498/0179-48', '{620471, 494219, 263991}', to_date ('2011-06-03', 'YYYY-MM-DD'), 527681, NULL );
+	VALUES ( 3, '40.506.235/0656-92', '{637679, 696265, 561598}', to_date ('2017-05-17', 'YYYY-MM-DD'), 429289, NULL );
 /* NULL INSERTION FOR ATTRIBUTEdataAT TABLEpontoSom */
 INSERT INTO pontoSom ( idSonorizacao, cnpjParque, coordenadas, data, quantidade, numeroGrafo )
-	VALUES ( 3, '35.791.354/5879-93', '{723779, 367128, 770930}', NULL, 307285, 358688 );
+	VALUES ( 4, '19.015.770/8218-48', '{140430, 334593, 703034}', NULL, 552843, 585238 );
 INSERT INTO pontoSom ( idSonorizacao, cnpjParque, coordenadas, data, quantidade, numeroGrafo )
-	VALUES ( 9, '35.791.354/5879-93', '{380290, 217876, 554128}', to_date ('2008-09-29', 'YYYY-MM-DD'), 292639, 825892 );
+	VALUES ( 7, '54.132.251/1018-82', '{882695, 159403, 135406}', to_date ('2002-05-17', 'YYYY-MM-DD'), 128927, 348855 );
 INSERT INTO pontoSom ( idSonorizacao, cnpjParque, coordenadas, data, quantidade, numeroGrafo )
-	VALUES ( 2, '00.427.481/2502-93', '{759081, 790934, 833101}', to_date ('2018-04-26', 'YYYY-MM-DD'), 845907, 454529 );
+	VALUES ( 1, '71.685.729/4726-89', '{323544, 845740, 556028}', to_date ('2002-01-15', 'YYYY-MM-DD'), 626767, 356659 );
 INSERT INTO pontoSom ( idSonorizacao, cnpjParque, coordenadas, data, quantidade, numeroGrafo )
-	VALUES ( 1, '35.791.354/5879-93', '{380290, 217876, 554128}', to_date ('2009-08-24', 'YYYY-MM-DD'), 430462, 131600 );
+	VALUES ( 19, '19.015.770/8218-48', '{140430, 334593, 703034}', to_date ('2006-07-18', 'YYYY-MM-DD'), 875289, 877904 );
 INSERT INTO pontoSom ( idSonorizacao, cnpjParque, coordenadas, data, quantidade, numeroGrafo )
-	VALUES ( 4, '70.903.167/4006-03', '{890024, 755708, 565172}', to_date ('2005-04-05', 'YYYY-MM-DD'), 550306, 104288 );
+	VALUES ( 17, '24.472.862/6691-06', '{276916, 286647, 274273}', to_date ('2004-05-21', 'YYYY-MM-DD'), 582705, 545113 );
 INSERT INTO pontoSom ( idSonorizacao, cnpjParque, coordenadas, data, quantidade, numeroGrafo )
-	VALUES ( 2, '08.887.577/2717-20', '{541215, 286348, 390687}', to_date ('2016-01-23', 'YYYY-MM-DD'), 656917, 188338 );
+	VALUES ( 16, '71.685.729/4726-89', '{323544, 845740, 556028}', to_date ('2017-09-10', 'YYYY-MM-DD'), 138928, 130276 );
 INSERT INTO pontoSom ( idSonorizacao, cnpjParque, coordenadas, data, quantidade, numeroGrafo )
-	VALUES ( 6, '18.547.464/1813-58', '{852596, 605721, 219432}', to_date ('2001-04-19', 'YYYY-MM-DD'), 594730, 125046 );
+	VALUES ( 7, '64.566.386/0658-81', '{314566, 464694, 780316}', to_date ('2018-03-13', 'YYYY-MM-DD'), 284116, 687648 );
 INSERT INTO pontoSom ( idSonorizacao, cnpjParque, coordenadas, data, quantidade, numeroGrafo )
-	VALUES ( 8, '35.791.354/5879-93', '{380290, 217876, 554128}', to_date ('2011-11-28', 'YYYY-MM-DD'), 836539, 118460 );
+	VALUES ( 14, '19.015.770/8218-48', '{140430, 334593, 703034}', to_date ('2015-08-16', 'YYYY-MM-DD'), 240491, 853649 );
 INSERT INTO pontoSom ( idSonorizacao, cnpjParque, coordenadas, data, quantidade, numeroGrafo )
-	VALUES ( 17, '08.887.577/2717-20', '{291983, 669904, 187355}', to_date ('2011-11-20', 'YYYY-MM-DD'), 532581, 448510 );
+	VALUES ( 9, '71.685.729/4726-89', '{323544, 845740, 556028}', to_date ('2010-06-29', 'YYYY-MM-DD'), 460912, 368537 );
 INSERT INTO pontoSom ( idSonorizacao, cnpjParque, coordenadas, data, quantidade, numeroGrafo )
-	VALUES ( 8, '70.903.167/4006-03', '{239147, 374993, 523128}', to_date ('2007-07-17', 'YYYY-MM-DD'), 288568, 700555 );
+	VALUES ( 12, '40.506.235/0656-92', '{888269, 401345, 473265}', to_date ('2004-03-07', 'YYYY-MM-DD'), 322154, 710630 );
 INSERT INTO pontoSom ( idSonorizacao, cnpjParque, coordenadas, data, quantidade, numeroGrafo )
-	VALUES ( 18, '18.547.464/1813-58', '{852596, 605721, 219432}', to_date ('2012-01-20', 'YYYY-MM-DD'), 435632, 634108 );
+	VALUES ( 13, '26.874.389/1723-02', '{619643, 723813, 455696}', to_date ('2009-08-16', 'YYYY-MM-DD'), 787690, 744101 );
 INSERT INTO pontoSom ( idSonorizacao, cnpjParque, coordenadas, data, quantidade, numeroGrafo )
-	VALUES ( 9, '09.738.620/6062-42', '{328046, 172933, 881661}', to_date ('2017-11-18', 'YYYY-MM-DD'), 393648, 651892 );
+	VALUES ( 9, '71.685.729/4726-89', '{152652, 378641, 153784}', to_date ('2015-05-02', 'YYYY-MM-DD'), 351581, 104980 );
 INSERT INTO pontoSom ( idSonorizacao, cnpjParque, coordenadas, data, quantidade, numeroGrafo )
-	VALUES ( 1, '88.645.659/8305-31', '{655912, 736452, 526374}', to_date ('2014-09-01', 'YYYY-MM-DD'), 349070, 403526 );
+	VALUES ( 12, '71.685.729/4726-89', '{323544, 845740, 556028}', to_date ('2017-04-21', 'YYYY-MM-DD'), 169507, 152407 );
 INSERT INTO pontoSom ( idSonorizacao, cnpjParque, coordenadas, data, quantidade, numeroGrafo )
-	VALUES ( 2, '93.555.593/9937-39', '{785072, 586721, 435107}', to_date ('2009-08-10', 'YYYY-MM-DD'), 227628, 632134 );
+	VALUES ( 10, '61.306.096/7744-10', '{189431, 752474, 860644}', to_date ('2013-01-23', 'YYYY-MM-DD'), 290835, 441700 );
 INSERT INTO pontoSom ( idSonorizacao, cnpjParque, coordenadas, data, quantidade, numeroGrafo )
-	VALUES ( 11, '70.903.167/4006-03', '{890024, 755708, 565172}', to_date ('2018-10-26', 'YYYY-MM-DD'), 249754, 850348 );
+	VALUES ( 17, '71.685.729/4726-89', '{323544, 845740, 556028}', to_date ('2016-01-10', 'YYYY-MM-DD'), 853499, 773336 );
 INSERT INTO pontoSom ( idSonorizacao, cnpjParque, coordenadas, data, quantidade, numeroGrafo )
-	VALUES ( 3, '69.214.498/0179-48', '{620471, 494219, 263991}', to_date ('2008-09-27', 'YYYY-MM-DD'), 332945, 464308 );
+	VALUES ( 20, '56.282.116/5942-29', '{737772, 434936, 247984}', to_date ('2004-02-19', 'YYYY-MM-DD'), 371674, 321355 );
 INSERT INTO pontoSom ( idSonorizacao, cnpjParque, coordenadas, data, quantidade, numeroGrafo )
-	VALUES ( 13, '70.903.167/4006-03', '{645845, 586674, 229216}', to_date ('2001-07-05', 'YYYY-MM-DD'), 240047, 591628 );
+	VALUES ( 4, '34.999.680/4170-36', '{169203, 888875, 564591}', to_date ('2011-02-00', 'YYYY-MM-DD'), 715921, 381130 );
 INSERT INTO pontoSom ( idSonorizacao, cnpjParque, coordenadas, data, quantidade, numeroGrafo )
-	VALUES ( 2, '93.555.593/9937-39', '{785072, 586721, 435107}', to_date ('2002-08-09', 'YYYY-MM-DD'), 165160, 426171 );
+	VALUES ( 15, '54.132.251/1018-82', '{882695, 159403, 135406}', to_date ('2012-07-22', 'YYYY-MM-DD'), 388771, 357225 );
 INSERT INTO pontoSom ( idSonorizacao, cnpjParque, coordenadas, data, quantidade, numeroGrafo )
-	VALUES ( 17, '08.887.577/2717-20', '{291983, 669904, 187355}', to_date ('2014-02-26', 'YYYY-MM-DD'), 311769, 523551 );
+	VALUES ( 5, '71.685.729/4726-89', '{323544, 845740, 556028}', to_date ('2015-03-23', 'YYYY-MM-DD'), 286320, 612486 );
 INSERT INTO pontoSom ( idSonorizacao, cnpjParque, coordenadas, data, quantidade, numeroGrafo )
-	VALUES ( 12, '93.555.593/9937-39', '{785072, 586721, 435107}', to_date ('2006-04-15', 'YYYY-MM-DD'), 553528, 523210 );
+	VALUES ( 20, '71.685.729/4726-89', '{152652, 378641, 153784}', to_date ('2017-05-24', 'YYYY-MM-DD'), 649129, 441688 );
 INSERT INTO pontoSom ( idSonorizacao, cnpjParque, coordenadas, data, quantidade, numeroGrafo )
-	VALUES ( 5, '08.887.577/2717-20', '{268787, 147427, 286462}', to_date ('2011-06-29', 'YYYY-MM-DD'), 132036, 766128 );
+	VALUES ( 2, '54.132.251/1018-82', '{882695, 159403, 135406}', to_date ('2001-11-18', 'YYYY-MM-DD'), 584973, 522747 );
 
 /* TABLE opera */
 INSERT INTO opera ( cnpjParque, dataFesta, cpfPiloto, idDrone )
-	VALUES ( '00.427.481/2502-93', to_date ('2009-08-01', 'YYYY-MM-DD'), '996.257.521-19', 62133927 );
+	VALUES ( '94.231.713/9965-80', to_date ('2001-04-24', 'YYYY-MM-DD'), '616.020.558-98', 32029869 );
 INSERT INTO opera ( cnpjParque, dataFesta, cpfPiloto, idDrone )
-	VALUES ( '84.565.310/3060-15', to_date ('2017-07-10', 'YYYY-MM-DD'), '396.343.547-09', 38297369 );
+	VALUES ( '71.685.729/4726-89', to_date ('2012-01-18', 'YYYY-MM-DD'), '133.722.910-23', 36585503 );
 INSERT INTO opera ( cnpjParque, dataFesta, cpfPiloto, idDrone )
-	VALUES ( '70.937.568/8826-58', to_date ('2015-07-11', 'YYYY-MM-DD'), '969.304.789-35', 63936715 );
+	VALUES ( '64.566.386/0658-81', to_date ('2009-01-25', 'YYYY-MM-DD'), '432.789.595-66', 40993146 );
 INSERT INTO opera ( cnpjParque, dataFesta, cpfPiloto, idDrone )
-	VALUES ( '31.438.469/9557-08', to_date ('2009-09-23', 'YYYY-MM-DD'), '258.729.033-89', 36249969 );
+	VALUES ( '64.566.386/0658-81', to_date ('2009-01-25', 'YYYY-MM-DD'), '782.988.670-79', 12294668 );
 INSERT INTO opera ( cnpjParque, dataFesta, cpfPiloto, idDrone )
-	VALUES ( '93.555.593/9937-39', to_date ('2017-05-03', 'YYYY-MM-DD'), '258.729.033-89', 78895740 );
+	VALUES ( '40.506.235/0656-92', to_date ('2003-01-23', 'YYYY-MM-DD'), '432.789.595-66', 37191822 );
 INSERT INTO opera ( cnpjParque, dataFesta, cpfPiloto, idDrone )
-	VALUES ( '43.209.688/4316-92', to_date ('2014-12-10', 'YYYY-MM-DD'), '531.462.487-11', 20174592 );
+	VALUES ( '34.999.680/4170-36', to_date ('2004-08-15', 'YYYY-MM-DD'), '197.520.896-76', 86351412 );
 INSERT INTO opera ( cnpjParque, dataFesta, cpfPiloto, idDrone )
-	VALUES ( '88.645.659/8305-31', to_date ('2006-07-04', 'YYYY-MM-DD'), '621.135.750-86', 16848768 );
+	VALUES ( '31.400.972/2310-96', to_date ('2004-03-29', 'YYYY-MM-DD'), '624.975.827-59', 44799615 );
 INSERT INTO opera ( cnpjParque, dataFesta, cpfPiloto, idDrone )
-	VALUES ( '84.565.310/3060-15', to_date ('2017-07-10', 'YYYY-MM-DD'), '607.443.809-78', 80435974 );
+	VALUES ( '34.999.680/4170-36', to_date ('2004-08-15', 'YYYY-MM-DD'), '946.521.617-86', 19987904 );
 INSERT INTO opera ( cnpjParque, dataFesta, cpfPiloto, idDrone )
-	VALUES ( '27.877.188/3677-89', to_date ('2004-02-13', 'YYYY-MM-DD'), '583.596.699-39', 83145310 );
+	VALUES ( '64.566.386/0658-81', to_date ('2009-01-25', 'YYYY-MM-DD'), '924.966.747-52', 31520487 );
 INSERT INTO opera ( cnpjParque, dataFesta, cpfPiloto, idDrone )
-	VALUES ( '00.068.328/9899-17', to_date ('2010-05-11', 'YYYY-MM-DD'), '030.610.128-33', 53660854 );
+	VALUES ( '40.506.235/0656-92', to_date ('2017-10-11', 'YYYY-MM-DD'), '516.335.573-78', 41210535 );
 INSERT INTO opera ( cnpjParque, dataFesta, cpfPiloto, idDrone )
-	VALUES ( '69.214.498/0179-48', to_date ('2000-03-02', 'YYYY-MM-DD'), '459.131.430-66', 58064794 );
+	VALUES ( '94.231.713/9965-80', to_date ('2010-06-04', 'YYYY-MM-DD'), '121.199.607-14', 37703339 );
 INSERT INTO opera ( cnpjParque, dataFesta, cpfPiloto, idDrone )
-	VALUES ( '18.547.464/1813-58', to_date ('2006-11-17', 'YYYY-MM-DD'), '258.729.033-89', 13054471 );
+	VALUES ( '40.506.235/0656-92', to_date ('2002-01-06', 'YYYY-MM-DD'), '924.966.747-52', 72234071 );
 INSERT INTO opera ( cnpjParque, dataFesta, cpfPiloto, idDrone )
-	VALUES ( '27.877.188/3677-89', to_date ('2004-02-13', 'YYYY-MM-DD'), '522.502.996-95', 27814397 );
+	VALUES ( '30.485.345/5697-01', to_date ('2000-07-05', 'YYYY-MM-DD'), '632.034.959-23', 46880453 );
 INSERT INTO opera ( cnpjParque, dataFesta, cpfPiloto, idDrone )
-	VALUES ( '00.427.481/2502-93', to_date ('2008-03-15', 'YYYY-MM-DD'), '258.729.033-89', 18661421 );
+	VALUES ( '64.566.386/0658-81', to_date ('2009-01-25', 'YYYY-MM-DD'), '583.792.569-11', 17374070 );
 INSERT INTO opera ( cnpjParque, dataFesta, cpfPiloto, idDrone )
-	VALUES ( '43.209.688/4316-92', to_date ('2014-12-10', 'YYYY-MM-DD'), '299.967.704-87', 52236050 );
+	VALUES ( '64.566.386/0658-81', to_date ('2000-12-16', 'YYYY-MM-DD'), '833.488.525-02', 89181399 );
 INSERT INTO opera ( cnpjParque, dataFesta, cpfPiloto, idDrone )
-	VALUES ( '43.209.688/4316-92', to_date ('2015-07-08', 'YYYY-MM-DD'), '238.700.997-66', 87230096 );
+	VALUES ( '24.472.862/6691-06', to_date ('2000-10-24', 'YYYY-MM-DD'), '432.789.595-66', 22101249 );
 INSERT INTO opera ( cnpjParque, dataFesta, cpfPiloto, idDrone )
-	VALUES ( '27.877.188/3677-89', to_date ('2002-01-10', 'YYYY-MM-DD'), '998.627.534-11', 10036655 );
+	VALUES ( '26.874.389/1723-02', to_date ('2005-07-09', 'YYYY-MM-DD'), '133.722.910-23', 77678822 );
 INSERT INTO opera ( cnpjParque, dataFesta, cpfPiloto, idDrone )
-	VALUES ( '18.547.464/1813-58', to_date ('2003-03-19', 'YYYY-MM-DD'), '998.627.534-11', 16345761 );
+	VALUES ( '56.282.116/5942-29', to_date ('2013-09-25', 'YYYY-MM-DD'), '632.034.959-23', 66508439 );
 INSERT INTO opera ( cnpjParque, dataFesta, cpfPiloto, idDrone )
-	VALUES ( '66.367.523/9507-61', to_date ('2001-09-27', 'YYYY-MM-DD'), '621.135.750-86', 81630566 );
+	VALUES ( '40.506.235/0656-92', to_date ('2011-07-04', 'YYYY-MM-DD'), '924.966.747-52', 68621695 );
 INSERT INTO opera ( cnpjParque, dataFesta, cpfPiloto, idDrone )
-	VALUES ( '43.209.688/4316-92', to_date ('2015-07-08', 'YYYY-MM-DD'), '575.250.850-93', 49275610 );
+	VALUES ( '94.231.713/9965-80', to_date ('2010-06-04', 'YYYY-MM-DD'), '523.255.716-37', 13509502 );
 
 /* TABLE auxilia */
 INSERT INTO auxilia ( cnpjParque, dataFesta, cpfPiloto, cpfCopiloto )
-	VALUES ( '84.565.310/3060-15', to_date ('2013-02-07', 'YYYY-MM-DD'), '459.131.430-66', '522.502.996-95' );
+	VALUES ( '40.506.235/0656-92', to_date ('2002-01-06', 'YYYY-MM-DD'), '478.696.780-28', '121.199.607-14' );
 INSERT INTO auxilia ( cnpjParque, dataFesta, cpfPiloto, cpfCopiloto )
-	VALUES ( '18.547.464/1813-58', to_date ('2006-11-17', 'YYYY-MM-DD'), '583.596.699-39', '969.304.789-35' );
+	VALUES ( '34.999.680/4170-36', to_date ('2005-06-15', 'YYYY-MM-DD'), '679.002.127-48', '490.990.422-75' );
 INSERT INTO auxilia ( cnpjParque, dataFesta, cpfPiloto, cpfCopiloto )
-	VALUES ( '27.877.188/3677-89', to_date ('2004-02-13', 'YYYY-MM-DD'), '529.827.160-27', '238.700.997-66' );
+	VALUES ( '56.282.116/5942-29', to_date ('2013-09-25', 'YYYY-MM-DD'), '736.917.544-50', '679.002.127-48' );
 INSERT INTO auxilia ( cnpjParque, dataFesta, cpfPiloto, cpfCopiloto )
-	VALUES ( '43.209.688/4316-92', to_date ('2014-12-10', 'YYYY-MM-DD'), '845.832.187-67', '996.257.521-19' );
+	VALUES ( '34.999.680/4170-36', to_date ('2005-06-15', 'YYYY-MM-DD'), '782.988.670-79', '197.520.896-76' );
 INSERT INTO auxilia ( cnpjParque, dataFesta, cpfPiloto, cpfCopiloto )
-	VALUES ( '27.877.188/3677-89', to_date ('2004-02-13', 'YYYY-MM-DD'), '258.729.033-89', '998.627.534-11' );
+	VALUES ( '26.874.389/1723-02', to_date ('2000-01-18', 'YYYY-MM-DD'), '624.975.827-59', '833.488.525-02' );
 INSERT INTO auxilia ( cnpjParque, dataFesta, cpfPiloto, cpfCopiloto )
-	VALUES ( '39.390.781/6989-35', to_date ('2002-11-12', 'YYYY-MM-DD'), '918.931.785-13', '424.447.919-31' );
+	VALUES ( '71.685.729/4726-89', to_date ('2012-01-18', 'YYYY-MM-DD'), '624.975.827-59', '736.917.544-50' );
 INSERT INTO auxilia ( cnpjParque, dataFesta, cpfPiloto, cpfCopiloto )
-	VALUES ( '43.209.688/4316-92', to_date ('2014-12-10', 'YYYY-MM-DD'), '602.809.454-84', '583.596.699-39' );
+	VALUES ( '89.545.773/6492-77', to_date ('2008-12-26', 'YYYY-MM-DD'), '736.917.544-50', '632.034.959-23' );
 INSERT INTO auxilia ( cnpjParque, dataFesta, cpfPiloto, cpfCopiloto )
-	VALUES ( '27.877.188/3677-89', to_date ('2002-01-10', 'YYYY-MM-DD'), '459.131.430-66', '299.967.704-87' );
+	VALUES ( '30.485.345/5697-01', to_date ('2000-07-05', 'YYYY-MM-DD'), '523.255.716-37', '133.722.910-23' );
 INSERT INTO auxilia ( cnpjParque, dataFesta, cpfPiloto, cpfCopiloto )
-	VALUES ( '18.547.464/1813-58', to_date ('2003-03-19', 'YYYY-MM-DD'), '396.343.547-09', '575.250.850-93' );
+	VALUES ( '94.231.713/9965-80', to_date ('2014-10-27', 'YYYY-MM-DD'), '851.398.230-44', '583.792.569-11' );
 INSERT INTO auxilia ( cnpjParque, dataFesta, cpfPiloto, cpfCopiloto )
-	VALUES ( '84.565.310/3060-15', to_date ('2017-07-10', 'YYYY-MM-DD'), '607.443.809-78', '602.809.454-84' );
+	VALUES ( '26.874.389/1723-02', to_date ('2000-01-18', 'YYYY-MM-DD'), '121.199.607-14', '782.988.670-79' );
 INSERT INTO auxilia ( cnpjParque, dataFesta, cpfPiloto, cpfCopiloto )
-	VALUES ( '66.367.523/9507-61', to_date ('2010-07-16', 'YYYY-MM-DD'), '602.809.454-84', '845.832.187-67' );
+	VALUES ( '34.999.680/4170-36', to_date ('2004-08-15', 'YYYY-MM-DD'), '679.002.127-48', '192.393.547-19' );
 INSERT INTO auxilia ( cnpjParque, dataFesta, cpfPiloto, cpfCopiloto )
-	VALUES ( '00.427.481/2502-93', to_date ('2008-03-15', 'YYYY-MM-DD'), '845.832.187-67', '030.610.128-33' );
+	VALUES ( '94.231.713/9965-80', to_date ('2010-06-04', 'YYYY-MM-DD'), '851.398.230-44', '516.335.573-78' );
 INSERT INTO auxilia ( cnpjParque, dataFesta, cpfPiloto, cpfCopiloto )
-	VALUES ( '18.547.464/1813-58', to_date ('2006-11-17', 'YYYY-MM-DD'), '238.700.997-66', '607.443.809-78' );
+	VALUES ( '71.685.729/4726-89', to_date ('2012-01-18', 'YYYY-MM-DD'), '192.393.547-19', '432.789.595-66' );
 INSERT INTO auxilia ( cnpjParque, dataFesta, cpfPiloto, cpfCopiloto )
-	VALUES ( '69.214.498/0179-48', to_date ('2000-03-02', 'YYYY-MM-DD'), '602.809.454-84', '258.729.033-89' );
+	VALUES ( '26.874.389/1723-02', to_date ('2005-07-09', 'YYYY-MM-DD'), '782.988.670-79', '478.696.780-28' );
 INSERT INTO auxilia ( cnpjParque, dataFesta, cpfPiloto, cpfCopiloto )
-	VALUES ( '27.877.188/3677-89', to_date ('2002-01-10', 'YYYY-MM-DD'), '030.610.128-33', '621.135.750-86' );
+	VALUES ( '94.231.713/9965-80', to_date ('2010-06-04', 'YYYY-MM-DD'), '432.789.595-66', '616.020.558-98' );
 INSERT INTO auxilia ( cnpjParque, dataFesta, cpfPiloto, cpfCopiloto )
-	VALUES ( '66.367.523/9507-61', to_date ('2001-09-27', 'YYYY-MM-DD'), '522.502.996-95', '396.343.547-09' );
+	VALUES ( '26.643.718/3469-52', to_date ('2003-06-21', 'YYYY-MM-DD'), '523.255.716-37', '624.975.827-59' );
 INSERT INTO auxilia ( cnpjParque, dataFesta, cpfPiloto, cpfCopiloto )
-	VALUES ( '93.555.593/9937-39', to_date ('2017-05-03', 'YYYY-MM-DD'), '918.931.785-13', '918.931.785-13' );
+	VALUES ( '64.566.386/0658-81', to_date ('2000-12-16', 'YYYY-MM-DD'), '133.722.910-23', '851.398.230-44' );
 INSERT INTO auxilia ( cnpjParque, dataFesta, cpfPiloto, cpfCopiloto )
-	VALUES ( '00.068.328/9899-17', to_date ('2010-05-11', 'YYYY-MM-DD'), '583.596.699-39', '531.462.487-11' );
+	VALUES ( '94.231.713/9965-80', to_date ('2001-04-24', 'YYYY-MM-DD'), '478.696.780-28', '523.255.716-37' );
 INSERT INTO auxilia ( cnpjParque, dataFesta, cpfPiloto, cpfCopiloto )
-	VALUES ( '31.438.469/9557-08', to_date ('2009-09-23', 'YYYY-MM-DD'), '998.627.534-11', '459.131.430-66' );
+	VALUES ( '40.506.235/0656-92', to_date ('2017-10-11', 'YYYY-MM-DD'), '946.521.617-86', '946.521.617-86' );
 INSERT INTO auxilia ( cnpjParque, dataFesta, cpfPiloto, cpfCopiloto )
-	VALUES ( '84.565.310/3060-15', to_date ('2017-07-10', 'YYYY-MM-DD'), '621.135.750-86', '529.827.160-27' );
+	VALUES ( '89.545.773/6492-77', to_date ('2008-12-26', 'YYYY-MM-DD'), '583.792.569-11', '924.966.747-52' );
 
 /* TABLE manutencao */
 INSERT INTO manutencao ( cpfTecnico, idEquipamento, data )
-	VALUES ( '575.250.850-93', 6, to_date ('2000-01-04', 'YYYY-MM-DD') );
+	VALUES ( '924.966.747-52', 17, to_date ('2004-06-27', 'YYYY-MM-DD') );
 INSERT INTO manutencao ( cpfTecnico, idEquipamento, data )
-	VALUES ( '998.627.534-11', 13, to_date ('2012-08-10', 'YYYY-MM-DD') );
+	VALUES ( '192.393.547-19', 1, to_date ('2008-02-10', 'YYYY-MM-DD') );
 INSERT INTO manutencao ( cpfTecnico, idEquipamento, data )
-	VALUES ( '424.447.919-31', 16, to_date ('2002-01-03', 'YYYY-MM-DD') );
+	VALUES ( '478.696.780-28', 13, to_date ('2016-09-12', 'YYYY-MM-DD') );
 INSERT INTO manutencao ( cpfTecnico, idEquipamento, data )
-	VALUES ( '030.610.128-33', 15, to_date ('2012-06-29', 'YYYY-MM-DD') );
+	VALUES ( '197.520.896-76', 20, to_date ('2010-03-04', 'YYYY-MM-DD') );
 INSERT INTO manutencao ( cpfTecnico, idEquipamento, data )
-	VALUES ( '238.700.997-66', 15, to_date ('2008-09-18', 'YYYY-MM-DD') );
+	VALUES ( '616.020.558-98', 5, to_date ('2006-06-01', 'YYYY-MM-DD') );
 INSERT INTO manutencao ( cpfTecnico, idEquipamento, data )
-	VALUES ( '299.967.704-87', 14, to_date ('2010-06-19', 'YYYY-MM-DD') );
+	VALUES ( '490.990.422-75', 19, to_date ('2002-10-10', 'YYYY-MM-DD') );
 INSERT INTO manutencao ( cpfTecnico, idEquipamento, data )
-	VALUES ( '607.443.809-78', 5, to_date ('2016-04-06', 'YYYY-MM-DD') );
+	VALUES ( '624.975.827-59', 16, to_date ('2011-09-01', 'YYYY-MM-DD') );
 INSERT INTO manutencao ( cpfTecnico, idEquipamento, data )
-	VALUES ( '396.343.547-09', 18, to_date ('2002-08-06', 'YYYY-MM-DD') );
+	VALUES ( '851.398.230-44', 11, to_date ('2000-03-16', 'YYYY-MM-DD') );
 INSERT INTO manutencao ( cpfTecnico, idEquipamento, data )
-	VALUES ( '522.502.996-95', 17, to_date ('2003-07-03', 'YYYY-MM-DD') );
+	VALUES ( '192.393.547-19', 11, to_date ('2014-02-25', 'YYYY-MM-DD') );
 INSERT INTO manutencao ( cpfTecnico, idEquipamento, data )
-	VALUES ( '531.462.487-11', 7, to_date ('2008-08-28', 'YYYY-MM-DD') );
+	VALUES ( '523.255.716-37', 10, to_date ('2016-05-19', 'YYYY-MM-DD') );
 INSERT INTO manutencao ( cpfTecnico, idEquipamento, data )
-	VALUES ( '299.967.704-87', 19, to_date ('2000-09-11', 'YYYY-MM-DD') );
+	VALUES ( '624.975.827-59', 8, to_date ('2005-10-30', 'YYYY-MM-DD') );
 INSERT INTO manutencao ( cpfTecnico, idEquipamento, data )
-	VALUES ( '969.304.789-35', 17, to_date ('2007-12-05', 'YYYY-MM-DD') );
+	VALUES ( '851.398.230-44', 8, to_date ('2009-04-16', 'YYYY-MM-DD') );
 INSERT INTO manutencao ( cpfTecnico, idEquipamento, data )
-	VALUES ( '459.131.430-66', 18, to_date ('2008-05-11', 'YYYY-MM-DD') );
+	VALUES ( '679.002.127-48', 7, to_date ('2018-11-16', 'YYYY-MM-DD') );
 INSERT INTO manutencao ( cpfTecnico, idEquipamento, data )
-	VALUES ( '969.304.789-35', 14, to_date ('2005-06-30', 'YYYY-MM-DD') );
+	VALUES ( '736.917.544-50', 4, to_date ('2011-03-29', 'YYYY-MM-DD') );
 INSERT INTO manutencao ( cpfTecnico, idEquipamento, data )
-	VALUES ( '396.343.547-09', 9, to_date ('2005-12-16', 'YYYY-MM-DD') );
+	VALUES ( '478.696.780-28', 11, to_date ('2011-06-21', 'YYYY-MM-DD') );
 INSERT INTO manutencao ( cpfTecnico, idEquipamento, data )
-	VALUES ( '531.462.487-11', 13, to_date ('2014-02-16', 'YYYY-MM-DD') );
+	VALUES ( '924.966.747-52', 11, to_date ('2018-08-25', 'YYYY-MM-DD') );
 INSERT INTO manutencao ( cpfTecnico, idEquipamento, data )
-	VALUES ( '258.729.033-89', 10, to_date ('2015-04-14', 'YYYY-MM-DD') );
+	VALUES ( '121.199.607-14', 8, to_date ('2015-08-03', 'YYYY-MM-DD') );
 INSERT INTO manutencao ( cpfTecnico, idEquipamento, data )
-	VALUES ( '459.131.430-66', 11, to_date ('2011-01-02', 'YYYY-MM-DD') );
+	VALUES ( '833.488.525-02', 8, to_date ('2008-06-17', 'YYYY-MM-DD') );
 INSERT INTO manutencao ( cpfTecnico, idEquipamento, data )
-	VALUES ( '459.131.430-66', 18, to_date ('2014-08-11', 'YYYY-MM-DD') );
+	VALUES ( '197.520.896-76', 13, to_date ('2005-03-05', 'YYYY-MM-DD') );
 INSERT INTO manutencao ( cpfTecnico, idEquipamento, data )
-	VALUES ( '996.257.521-19', 20, to_date ('2000-02-17', 'YYYY-MM-DD') );
+	VALUES ( '478.696.780-28', 3, to_date ('2003-06-20', 'YYYY-MM-DD') );
 
 /* TABLE NUMBER TOTAL: 36 */
 END TRANSACTION;
