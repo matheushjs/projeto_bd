@@ -27,9 +27,13 @@ class InsertionInterface : public QWidget
 
 private :
 
+    //Interface layout
+    QVBoxLayout *m_vbox;
+
     //Employees atributes
     QPushButton *m_insertButton;
     QPushButton *m_cancelButton;
+    QPushButton *m_insertEmpButton;
     QComboBox *m_employeeFunction;
     QLineEdit *m_employeeName;
     QLineEdit *m_employeeCpf;
@@ -42,6 +46,7 @@ private :
     QRadioButton *m_newEmployee;
     QRadioButton *m_existEmployee;
     QTableView *m_eTableView;
+    TableModel m_viewModel;
 
     //Party atributes
     QComboBox *m_partyType;
@@ -58,8 +63,16 @@ private :
     QGroupBox *m_parkPartyInfos;
     QGroupBox *m_cruiserInfos;
 
+    //Equipments Atributes
+    QGroupBox *m_equipments; 
+
     //Database atributes
     EISEDatabase m_database;
+
+    void drawPartyBox();
+    void drawEmployeeBox();
+    void drawEquipmentBox();
+    void drawBandBox();
 
 public:
     explicit InsertionInterface(QWidget *parent = 0);
