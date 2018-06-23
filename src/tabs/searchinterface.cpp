@@ -18,6 +18,7 @@ SearchInterface::SearchInterface(QWidget *parent)
               new QPushButton("Festas no Parque"),
               new QPushButton("Festas no Cruzeiro"),
               }),
+    m_currentButton(NULL),
     m_dataDisplay(new DataSelectionDisplay),
     m_database("SearchConn")
 {
@@ -44,7 +45,16 @@ SearchInterface::SearchInterface(QWidget *parent)
 
     // Connect signals
     connect(m_buttons[0], &QPushButton::clicked, this, [this](){
+        m_currentButton = m_buttons[0];
         this->m_dataDisplay->setReport(this->m_database.getSelect1());
+    });
+    connect(m_buttons[1], &QPushButton::clicked, this, [this](){
+        m_currentButton = m_buttons[1];
+        this->m_dataDisplay->setReport(this->m_database.getSelect2());
+    });
+    connect(m_buttons[2], &QPushButton::clicked, this, [this](){
+        m_currentButton = m_buttons[2];
+        this->m_dataDisplay->setReport(this->m_database.getSelect3());
     });
 
     connect(m_dataDisplay, SIGNAL(itemClicked(int)), this, SLOT(editItem(int)));
@@ -52,5 +62,8 @@ SearchInterface::SearchInterface(QWidget *parent)
 
 void SearchInterface::editItem(int itemNum){
     StringPairVector vec = m_dataDisplay->getItem(itemNum);
-    emit editParque(vec[0].second);
+
+    if(m_currentButton->text() == "Parques"){
+        emit editParque(vec[0].second);
+    }
 }

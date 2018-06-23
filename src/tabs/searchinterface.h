@@ -13,6 +13,7 @@ class SearchInterface : public QWidget
     Q_OBJECT
 
     QVector<QPushButton *> m_buttons;
+    QPushButton *m_currentButton;
     DataSelectionDisplay *m_dataDisplay;
     EISEDatabase m_database;
 
