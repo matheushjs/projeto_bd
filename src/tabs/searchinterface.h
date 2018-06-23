@@ -22,6 +22,8 @@ public:
 
 signals:
     void editParque(QString cpnj);
+    void editFestaParque(QString cnpj, QString dataInicio);
+    void editFestaCruzeiro(QString imo, QString dataInicio);
 
 private slots:
     void editItem(int itemNum);

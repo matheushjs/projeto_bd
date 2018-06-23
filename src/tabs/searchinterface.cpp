@@ -14,6 +14,7 @@
 SearchInterface::SearchInterface(QWidget *parent)
   : QWidget(parent),
     m_buttons({
+              // Do not change the buttons' text.
               new QPushButton("Parques"),
               new QPushButton("Festas no Parque"),
               new QPushButton("Festas no Cruzeiro"),
@@ -63,7 +64,13 @@ SearchInterface::SearchInterface(QWidget *parent)
 void SearchInterface::editItem(int itemNum){
     StringPairVector vec = m_dataDisplay->getItem(itemNum);
 
-    if(m_currentButton->text() == "Parques"){
+    QString butText = m_currentButton->text();
+
+    if(butText == "Parques"){
         emit editParque(vec[0].second);
+    } else if (butText == "Festas no Parque"){
+        emit editFestaParque(vec[0].second, vec[1].second);
+    } else if (butText == "Festas no Cruzeiro"){
+        emit editFestaCruzeiro(vec[0].second, vec[1].second);
     }
 }
