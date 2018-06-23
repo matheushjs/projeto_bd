@@ -11,12 +11,16 @@
 UpdateInterface::UpdateInterface(QWidget *parent)
   : QWidget(parent),
     m_buttons({
+              // Do not change buttons' text
               new QPushButton("Parques"),
               new QPushButton("Festas no Parque"),
               new QPushButton("Festas no Cruzeiro")
               }),
     m_checkedButton(-1),
-    m_keyLineEdit(new QLineEdit),
+    m_keyLineEdit1(new QLineEdit),
+    m_keyLineEdit2(new QLineEdit),
+    m_keyLabel1(new QLabel("CNPJ")),
+    m_keyLabel2(new QLabel("Data Início")),
     m_updateBox(new QGroupBox),
     m_database("UpdateConn")
 {
@@ -43,7 +47,9 @@ UpdateInterface::UpdateInterface(QWidget *parent)
 
     // Create the box for the LineEdit for writing the 'key' by which we will search on the database
     QFormLayout *keyInputLayout = new QFormLayout;
-    keyInputLayout->addRow("Chave da busca", m_keyLineEdit);
+    keyInputLayout->addRow(m_keyLabel1, m_keyLineEdit1);
+    keyInputLayout->addRow(m_keyLabel2, m_keyLineEdit2);
+    m_keyLineEdit2->setDisabled(true);
 
     // Create Group Box where the updating will happen
     m_updateBox->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -64,7 +70,8 @@ UpdateInterface::UpdateInterface(QWidget *parent)
     }
 
     // Connect signal on the line edit for when the user presses enter
-    connect(m_keyLineEdit, SIGNAL(returnPressed()), this, SLOT(handleReturnPressed()));
+    connect(m_keyLineEdit1, SIGNAL(returnPressed()), this, SLOT(handleReturnPressed()));
+    connect(m_keyLineEdit2, SIGNAL(returnPressed()), this, SLOT(handleReturnPressed()));
 }
 
 void UpdateInterface::cleanUpdateBox(){
@@ -179,9 +186,15 @@ void UpdateInterface::handleWrongKey(){
 }
 
 void UpdateInterface::handleReturnPressed(){
-    QString line = m_keyLineEdit->text();
+    QString line1 = m_keyLineEdit1->text();
+    QString line2 = m_keyLineEdit2->text();
+
     if(m_checkedButton == 0){
-        beginUpdateParque(line);
+        beginUpdateParque(line1);
+    } else if(m_checkedButton == 1){
+        beginUpdateFestaParque(line1, line2);
+    } else if(m_checkedButton == 2){
+        beginUpdateFestaCruzeiro(line1, line2);
     }
 }
 
@@ -195,6 +208,27 @@ void UpdateInterface::handleGroupButtonsPressed(QPushButton *clickedButton){
 
     // Enable current button
     clickedButton->setChecked(true);
+
+    // Change lineEdits accordingly
+    QString butText = clickedButton->text();
+    if(butText == "Parques"){
+        m_keyLabel1->setText("CNPJ");
+
+        m_keyLineEdit1->setDisabled(false);
+        m_keyLineEdit2->setDisabled(true);
+    } else if(butText == "Festas no Parque") {
+        m_keyLabel1->setText("CNPJ");
+        m_keyLabel2->setText("Data Início");
+
+        m_keyLineEdit1->setDisabled(false);
+        m_keyLineEdit2->setDisabled(false);
+    } else if(butText == "Festas no Cruzeiro") {
+        m_keyLabel1->setText("IMO");
+        m_keyLabel2->setText("Data Início");
+
+        m_keyLineEdit1->setDisabled(false);
+        m_keyLineEdit2->setDisabled(false);
+    }
 
     // Update m_checkedButton to reflect which button is pressed
     m_checkedButton = m_buttons.indexOf(clickedButton);

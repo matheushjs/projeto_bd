@@ -9,6 +9,7 @@
 class QPushButton;
 class QLineEdit;
 class QGroupBox;
+class QLabel;
 
 class UpdateInterface: public QWidget
 {
@@ -16,7 +17,10 @@ class UpdateInterface: public QWidget
 
     QVector<QPushButton *> m_buttons;
     int m_checkedButton;
-    QLineEdit *m_keyLineEdit;
+    QLineEdit *m_keyLineEdit1;
+    QLineEdit *m_keyLineEdit2;
+    QLabel *m_keyLabel1;
+    QLabel *m_keyLabel2;
     QGroupBox *m_updateBox;
     EISEDatabase m_database;
 
