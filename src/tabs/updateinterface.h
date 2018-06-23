@@ -9,6 +9,7 @@
 class QPushButton;
 class QLineEdit;
 class QGroupBox;
+class QLabel;
 
 class UpdateInterface: public QWidget
 {
@@ -16,19 +17,32 @@ class UpdateInterface: public QWidget
 
     QVector<QPushButton *> m_buttons;
     int m_checkedButton;
-    QLineEdit *m_keyLineEdit;
+    QLineEdit *m_keyLineEdit1;
+    QLineEdit *m_keyLineEdit2;
+    QLabel *m_keyLabel1;
+    QLabel *m_keyLabel2;
     QGroupBox *m_updateBox;
     EISEDatabase m_database;
 
     // Removes all widgets from the update box
     void cleanUpdateBox();
 
+    // Fills the QFormLayout with widgets for updating a database item
+    QVector<QLineEdit *> setUpdateBox(StringPairVector data, QVector<QString> keys);
+
 public:
     explicit UpdateInterface(QWidget *parent = 0);
 
 public slots:
-    void beginUpdate1(QString searchKey);
+    void beginUpdateParque(QString cnpj);
+    void beginUpdateFestaParque(QString cnpj, QString dataInicio);
+    void beginUpdateFestaCruzeiro(QString imo, QString dataInicio);
     void handleWrongKey();
+
+private slots:
+    void handleReturnPressed();
+    void handleGroupButtonsPressed(QPushButton *clickedButton);
+    void launchDialog(QString message);
 };
 
 #endif // DELETIONINTERFACE_H

@@ -14,10 +14,12 @@
 SearchInterface::SearchInterface(QWidget *parent)
   : QWidget(parent),
     m_buttons({
+              // Do not change the buttons' text.
               new QPushButton("Parques"),
               new QPushButton("Festas no Parque"),
               new QPushButton("Festas no Cruzeiro"),
               }),
+    m_currentButton(NULL),
     m_dataDisplay(new DataSelectionDisplay),
     m_database("SearchConn")
 {
@@ -33,12 +35,6 @@ SearchInterface::SearchInterface(QWidget *parent)
     butLayout1->addWidget(m_buttons[1]);
     butLayout1->addWidget(m_buttons[2]);
 
-    connect(m_buttons[0], &QPushButton::clicked, this, [this](){
-        this->m_dataDisplay->setReport(this->m_database.getSelect1());
-    });
-
-    connect(m_dataDisplay, SIGNAL(itemClicked(int)), this, SLOT(editItem(int)));
-
     mainLayout->addWidget(buttonBox);
 
     QScrollArea *scroll = new QScrollArea(this);
@@ -47,9 +43,34 @@ SearchInterface::SearchInterface(QWidget *parent)
     vbox->addWidget(m_dataDisplay);
 
     mainLayout->addWidget(scroll);
+
+    // Connect signals
+    connect(m_buttons[0], &QPushButton::clicked, this, [this](){
+        m_currentButton = m_buttons[0];
+        this->m_dataDisplay->setReport(this->m_database.getSelect1());
+    });
+    connect(m_buttons[1], &QPushButton::clicked, this, [this](){
+        m_currentButton = m_buttons[1];
+        this->m_dataDisplay->setReport(this->m_database.getSelect2());
+    });
+    connect(m_buttons[2], &QPushButton::clicked, this, [this](){
+        m_currentButton = m_buttons[2];
+        this->m_dataDisplay->setReport(this->m_database.getSelect3());
+    });
+
+    connect(m_dataDisplay, SIGNAL(itemClicked(int)), this, SLOT(editItem(int)));
 }
 
 void SearchInterface::editItem(int itemNum){
     StringPairVector vec = m_dataDisplay->getItem(itemNum);
-    emit editParque(vec[0].second);
+
+    QString butText = m_currentButton->text();
+
+    if(butText == "Parques"){
+        emit editParque(vec[0].second);
+    } else if (butText == "Festas no Parque"){
+        emit editFestaParque(vec[0].second, vec[1].second);
+    } else if (butText == "Festas no Cruzeiro"){
+        emit editFestaCruzeiro(vec[0].second, vec[1].second);
+    }
 }
