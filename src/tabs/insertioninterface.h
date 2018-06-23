@@ -86,6 +86,7 @@ private slots:
     void rollbackInsertion();
     void newEChecked();
     void existEChecked();
+    void insertEmployee();
     
 };
 
