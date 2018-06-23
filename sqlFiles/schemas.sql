@@ -333,7 +333,9 @@ CREATE TABLE fotografoCruzeiro (
 	CONSTRAINT fk_album
 		FOREIGN KEY (IMOFesta, dataFesta)
 		REFERENCES festaNoCruzeiro
-		ON DELETE RESTRICT /* Histórico */
+		ON DELETE RESTRICT	/* Histórico */
+	--CONSTRAINT ck_data_fotografoCruzeiro
+	--	CHECK (data = dataFesta) /* Checa se a data em que irá trabalhar é a data da festa. */
 );
 
 /* TABELA 25 */
@@ -352,6 +354,8 @@ CREATE TABLE cinegrafistaCruzeiro (
 		FOREIGN KEY (IMOFesta, dataFesta)
 		REFERENCES festaNoCruzeiro
 		ON DELETE RESTRICT /* Histórico */	
+	--CONSTRAINT ck_data_cinegrafistaCruzeiro
+	--	CHECK (data = dataFesta) /* Checa se a data em que irá trabalhar é a data da festa. */
 );
 
 /* TABELA 26 */
@@ -424,6 +428,8 @@ CREATE TABLE opParque (
 		FOREIGN KEY (cpfAssistente)
 		REFERENCES assistente
 		ON DELETE RESTRICT
+	--CONSTRAINT ck_data_opParque
+	--	CHECK (data = dataInicioParque) /* Checa se a data em que irá trabalhar é a data da festa. */
 );
 
 /* TABELA 30 */
