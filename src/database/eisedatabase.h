@@ -40,6 +40,10 @@ public:
     // Updates parque that has the given cnpj with the given information.
     // Returns an error string, or empty string if successful.
     QString updateParque(QString cnpj, QString nome, QString mapa, QString endereco);
+    QString updateFestaParque(QString cnpj, QString dataInicio, QString dataFim,
+                              QString nroConvidados, QString nome);
+    QString updateFestaCruzeiro(QString imo, QString dataInicio, QString dataFim,
+                                QString nroConvidados, QString nome);
 
     QString insertCruiseParty(QVector<QString> insertData);
     void commitTransaction();

@@ -260,6 +260,42 @@ QString EISEDatabase::updateParque(QString cnpj, QString nome,
         "";
 }
 
+QString EISEDatabase::updateFestaParque(QString cnpj, QString dataInicio, QString dataFim, QString nroConvidados, QString nome){
+    const QString query = QString(
+                "UPDATE festanoparque "
+                "SET datafim = '%1', "
+                "    numeroconvidados = '%2', "
+                "    nome = '%3'"
+                "WHERE cnpjparque = '%4' "
+                "AND   datainicio = '%5'"
+                ).arg(dataFim, nroConvidados, nome, cnpj, dataInicio);
+
+    QSqlQuery rows = m_database.exec(query);
+    QSqlError err = rows.lastError();
+
+    return err.isValid() ?
+        err.databaseText() + "\n" + err.driverText() :
+        "";
+}
+
+QString EISEDatabase::updateFestaCruzeiro(QString imo, QString dataInicio, QString dataFim, QString nroConvidados, QString nome){
+    const QString query = QString(
+                "UPDATE festanocruzeiro "
+                "SET datafim = '%1', "
+                "    numeroconvidados = '%2', "
+                "    nome = '%3'"
+                "WHERE imo = '%4' "
+                "AND   datainicio = '%5'"
+                ).arg(dataFim, nroConvidados, nome, imo, dataInicio);
+
+    QSqlQuery rows = m_database.exec(query);
+    QSqlError err = rows.lastError();
+
+    return err.isValid() ?
+        err.databaseText() + "\n" + err.driverText() :
+        "";
+}
+
 void EISEDatabase::commitTransaction()
 {
     const QString query("COMMIT;");
