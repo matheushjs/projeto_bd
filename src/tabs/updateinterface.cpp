@@ -141,7 +141,34 @@ void UpdateInterface::beginUpdateFestaParque(QString cnpj, QString dataInicio){
 }
 
 void UpdateInterface::beginUpdateFestaCruzeiro(QString imo, QString dataInicio){
+    // Clean update box
+    cleanUpdateBox();
 
+    // Get information of the searched festa
+    StringPairVector vec = m_database.selectFestaCruzeiro(imo, dataInicio);
+
+    if(vec.empty()){
+        handleWrongKey();
+    } else {
+        // Fills the QFormBox with LineEdits
+        QVector<QLineEdit *> leVec = setUpdateBox(vec, {"IMO", "Data Início"});
+
+        QFormLayout *layout = (QFormLayout *) m_updateBox->layout();
+
+        // Add a button and connect signals for performing the UPDATE
+        QPushButton *button = new QPushButton("Modificar");
+        connect(button, &QPushButton::clicked, this, [this, leVec](){
+            // Insert on database
+            QString error = "Not Implemented!";
+
+            if(error != ""){
+                launchDialog(error);
+            } else {
+                launchDialog("Modificado com sucesso.");
+            }
+        });
+        layout->addWidget(button);
+    }
 }
 
 void UpdateInterface::handleWrongKey(){
