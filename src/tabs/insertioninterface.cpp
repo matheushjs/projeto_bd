@@ -7,6 +7,7 @@ InsertionInterface::InsertionInterface(QWidget *parent)
 {
     //Set the principal layout
     m_vbox = new QVBoxLayout(this);
+    m_log = new InsertionLog();
     
     //Drawing the insertion party interface
     this->drawPartyBox();

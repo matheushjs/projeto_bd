@@ -20,6 +20,7 @@
 
 #include "models/tablemodel.h"
 #include "database/eisedatabase.h"
+#include "data_structures/insertionlog.h"
 
 class InsertionInterface : public QWidget
 {
@@ -68,6 +69,9 @@ private :
 
     //Database atributes
     EISEDatabase m_database;
+
+    //Data atributes
+    InsertionLog *m_log;
 
     void drawPartyBox();
     void drawEmployeeBox();
