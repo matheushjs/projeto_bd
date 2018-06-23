@@ -24,13 +24,15 @@ class UpdateInterface: public QWidget
     void cleanUpdateBox();
 
     // Fills the QFormLayout with widgets for updating a database item
-    QVector<QLineEdit *> setUpdateBox(StringPairVector data, QString key);
+    QVector<QLineEdit *> setUpdateBox(StringPairVector data, QVector<QString> keys);
 
 public:
     explicit UpdateInterface(QWidget *parent = 0);
 
 public slots:
     void beginUpdateParque(QString cnpj);
+    void beginUpdateFestaParque(QString cnpj, QString dataInicio);
+    void beginUpdateFestaCruzeiro(QString imo, QString dataInicio);
     void handleWrongKey();
 
 private slots:

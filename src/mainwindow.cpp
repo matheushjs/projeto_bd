@@ -40,9 +40,17 @@ MainWindow::MainWindow()
     //   the application begins an update in the update tab
     connect(m_searchInterface, SIGNAL(editParque(QString)),
             m_updateInterface, SLOT(beginUpdateParque(QString)));
+    connect(m_searchInterface, SIGNAL(editFestaParque(QString,QString)),
+            m_updateInterface, SLOT(beginUpdateFestaParque(QString,QString)));
+    connect(m_searchInterface, SIGNAL(editFestaCruzeiro(QString,QString)),
+            m_updateInterface, SLOT(beginUpdateFestaCruzeiro(QString,QString)));
 
     // Then we switch to the update tab itself
     connect(m_searchInterface, &SearchInterface::editParque,
+            this, [this](){ m_tabs->setCurrentIndex(2); });
+    connect(m_searchInterface, &SearchInterface::editFestaParque,
+            this, [this](){ m_tabs->setCurrentIndex(2); });
+    connect(m_searchInterface, &SearchInterface::editFestaCruzeiro,
             this, [this](){ m_tabs->setCurrentIndex(2); });
 }
 

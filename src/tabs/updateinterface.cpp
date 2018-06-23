@@ -89,7 +89,7 @@ void UpdateInterface::beginUpdateParque(QString cnpj){
         handleWrongKey();
     } else {
         // Fills the QFormBox with LineEdits
-        QVector<QLineEdit *> leVec = setUpdateBox(vec, "CNPJ");
+        QVector<QLineEdit *> leVec = setUpdateBox(vec, {"CNPJ"});
 
         QFormLayout *layout = (QFormLayout *) m_updateBox->layout();
 
@@ -107,6 +107,41 @@ void UpdateInterface::beginUpdateParque(QString cnpj){
         });
         layout->addWidget(button);
     }
+}
+
+void UpdateInterface::beginUpdateFestaParque(QString cnpj, QString dataInicio){
+    // Clean update box
+    cleanUpdateBox();
+
+    // Get information of the searched festa
+    StringPairVector vec = m_database.selectFestaParque(cnpj, dataInicio);
+
+    if(vec.empty()){
+        handleWrongKey();
+    } else {
+        // Fills the QFormBox with LineEdits
+        QVector<QLineEdit *> leVec = setUpdateBox(vec, {"CNPJ do Parque", "Data Início"});
+
+        QFormLayout *layout = (QFormLayout *) m_updateBox->layout();
+
+        // Add a button and connect signals for performing the UPDATE
+        QPushButton *button = new QPushButton("Modificar");
+        connect(button, &QPushButton::clicked, this, [this, leVec](){
+            // Insert on database
+            QString error = "Not Implemented!";
+
+            if(error != ""){
+                launchDialog(error);
+            } else {
+                launchDialog("Modificado com sucesso.");
+            }
+        });
+        layout->addWidget(button);
+    }
+}
+
+void UpdateInterface::beginUpdateFestaCruzeiro(QString imo, QString dataInicio){
+
 }
 
 void UpdateInterface::handleWrongKey(){
@@ -149,7 +184,7 @@ void UpdateInterface::launchDialog(QString message){
     diag->exec();
 }
 
-QVector<QLineEdit *> UpdateInterface::setUpdateBox(StringPairVector data, QString key){
+QVector<QLineEdit *> UpdateInterface::setUpdateBox(StringPairVector data, QVector<QString> keys){
     QFormLayout *layout = (QFormLayout *) m_updateBox->layout();
 
     // Add editable information on the box
@@ -158,7 +193,7 @@ QVector<QLineEdit *> UpdateInterface::setUpdateBox(StringPairVector data, QStrin
         QLineEdit *le = new QLineEdit(pair.second);
         layout->addRow(pair.first, le);
 
-        if(pair.first == key){
+        if(keys.indexOf(pair.first) >= 0){
             le->setEnabled(false);
             le->setReadOnly(true);
         }
