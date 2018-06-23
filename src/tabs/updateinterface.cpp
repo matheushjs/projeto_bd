@@ -88,21 +88,10 @@ void UpdateInterface::beginUpdate1(QString searchKey){
     if(vec.empty()){
         handleWrongKey();
     } else {
+        // Fills the QFormBox with LineEdits
+        QVector<QLineEdit *> leVec = setUpdateBox(vec, "CNPJ");
+
         QFormLayout *layout = (QFormLayout *) m_updateBox->layout();
-
-        // Add editable information on the box
-        QVector<QLineEdit *> leVec;
-        for(QPair<QString, QString> &pair: vec){
-            QLineEdit *le = new QLineEdit(pair.second);
-            layout->addRow(pair.first, le);
-
-            if(pair.first == "CNPJ"){
-                le->setEnabled(false);
-                le->setReadOnly(true);
-            }
-
-            leVec.append(le);
-        }
 
         // Add a button and connect signals for performing the UPDATE
         QPushButton *button = new QPushButton("Modificar");
@@ -158,4 +147,24 @@ void UpdateInterface::launchDialog(QString message){
     diag->setWindowModality(Qt::ApplicationModal);
 
     diag->exec();
+}
+
+QVector<QLineEdit *> UpdateInterface::setUpdateBox(StringPairVector data, QString key){
+    QFormLayout *layout = (QFormLayout *) m_updateBox->layout();
+
+    // Add editable information on the box
+    QVector<QLineEdit *> leVec;
+    for(QPair<QString, QString> &pair: data){
+        QLineEdit *le = new QLineEdit(pair.second);
+        layout->addRow(pair.first, le);
+
+        if(pair.first == key){
+            le->setEnabled(false);
+            le->setReadOnly(true);
+        }
+
+        leVec.append(le);
+    }
+
+    return leVec;
 }

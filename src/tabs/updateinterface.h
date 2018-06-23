@@ -23,6 +23,9 @@ class UpdateInterface: public QWidget
     // Removes all widgets from the update box
     void cleanUpdateBox();
 
+    // Fills the QFormLayout with widgets for updating a database item
+    QVector<QLineEdit *> setUpdateBox(StringPairVector data, QString key);
+
 public:
     explicit UpdateInterface(QWidget *parent = 0);
 
