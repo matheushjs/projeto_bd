@@ -33,12 +33,6 @@ SearchInterface::SearchInterface(QWidget *parent)
     butLayout1->addWidget(m_buttons[1]);
     butLayout1->addWidget(m_buttons[2]);
 
-    connect(m_buttons[0], &QPushButton::clicked, this, [this](){
-        this->m_dataDisplay->setReport(this->m_database.getSelect1());
-    });
-
-    connect(m_dataDisplay, SIGNAL(itemClicked(int)), this, SLOT(editItem(int)));
-
     mainLayout->addWidget(buttonBox);
 
     QScrollArea *scroll = new QScrollArea(this);
@@ -47,6 +41,13 @@ SearchInterface::SearchInterface(QWidget *parent)
     vbox->addWidget(m_dataDisplay);
 
     mainLayout->addWidget(scroll);
+
+    // Connect signals
+    connect(m_buttons[0], &QPushButton::clicked, this, [this](){
+        this->m_dataDisplay->setReport(this->m_database.getSelect1());
+    });
+
+    connect(m_dataDisplay, SIGNAL(itemClicked(int)), this, SLOT(editItem(int)));
 }
 
 void SearchInterface::editItem(int itemNum){

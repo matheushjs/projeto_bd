@@ -29,6 +29,11 @@ public:
 public slots:
     void beginUpdate1(QString searchKey);
     void handleWrongKey();
+
+private slots:
+    void handleReturnPressed();
+    void handleGroupButtonsPressed(QPushButton *clickedButton);
+    void launchDialog(QString message);
 };
 
 #endif // DELETIONINTERFACE_H

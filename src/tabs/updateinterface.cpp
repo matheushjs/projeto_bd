@@ -27,24 +27,6 @@ UpdateInterface::UpdateInterface(QWidget *parent)
         but->setCheckable(true);
     }
 
-    // Connect signals on the buttons
-    for(QPushButton *but: m_buttons){
-        connect(but, &QPushButton::clicked, this, [this, but](void){
-            // Empty the delete box
-            this->cleanUpdateBox();
-
-            // Disable all buttons
-            for(QPushButton *b: m_buttons)
-                b->setChecked(false);
-
-            // Enable current button
-            but->setChecked(true);
-
-            // Update m_checkedButton to reflect which button is pressed
-            m_checkedButton = m_buttons.indexOf(but);
-        });
-    }
-
     // Toggle first button as default
     m_checkedButton = 0;
     m_buttons[m_checkedButton]->setChecked(true);
@@ -63,14 +45,6 @@ UpdateInterface::UpdateInterface(QWidget *parent)
     QFormLayout *keyInputLayout = new QFormLayout;
     keyInputLayout->addRow("Chave da busca", m_keyLineEdit);
 
-    // Connect signal on the line edit for when the user presses enter
-    connect(m_keyLineEdit, &QLineEdit::returnPressed, this, [this](){
-        QString line = m_keyLineEdit->text();
-        if(this->m_checkedButton == 0){
-            this->beginUpdate1(line);
-        }
-    });
-
     // Create Group Box where the updating will happen
     m_updateBox->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     m_updateBox->setLayout(new QFormLayout);
@@ -78,6 +52,19 @@ UpdateInterface::UpdateInterface(QWidget *parent)
     mainLayout->addWidget(buttonBox);
     mainLayout->addLayout(keyInputLayout);
     mainLayout->addWidget(m_updateBox);
+
+
+    // Connect signals
+
+    // Connect signals for allowing only 1 pressed button at a time
+    for(QPushButton *but: m_buttons){
+        connect(but, &QPushButton::clicked, this, [this, but](void){
+            handleGroupButtonsPressed(but);
+        });
+    }
+
+    // Connect signal on the line edit for when the user presses enter
+    connect(m_keyLineEdit, SIGNAL(returnPressed()), this, SLOT(handleReturnPressed()));
 }
 
 void UpdateInterface::cleanUpdateBox(){
@@ -123,20 +110,11 @@ void UpdateInterface::beginUpdate1(QString searchKey){
             // Insert on database
             QString error = m_database.updateParque(leVec[0]->text(), leVec[1]->text(),
                                                     leVec[2]->text(), leVec[3]->text());
-            QDialog *diag = new QDialog(this);
-            QVBoxLayout *diagLayout = new QVBoxLayout;
-            QLabel *lab = new QLabel;
-            diag->setLayout(diagLayout);
-            diagLayout->addWidget(lab);
-            diag->setWindowModality(Qt::ApplicationModal);
-
             if(error != ""){
-                lab->setText(error);
+                launchDialog(error);
             } else {
-                lab->setText("Modificado com sucesso.");
+                launchDialog("Modificado com sucesso.");
             }
-
-            diag->exec();
         });
         layout->addWidget(button);
     }
@@ -147,4 +125,37 @@ void UpdateInterface::handleWrongKey(){
     cleanUpdateBox();
 
     m_updateBox->layout()->addWidget(new QLabel("Chave não encontrada."));
+}
+
+void UpdateInterface::handleReturnPressed(){
+    QString line = m_keyLineEdit->text();
+    if(m_checkedButton == 0){
+        beginUpdate1(line);
+    }
+}
+
+void UpdateInterface::handleGroupButtonsPressed(QPushButton *clickedButton){
+    // Empty the delete box
+    this->cleanUpdateBox();
+
+    // Disable all buttons
+    for(QPushButton *b: m_buttons)
+        b->setChecked(false);
+
+    // Enable current button
+    clickedButton->setChecked(true);
+
+    // Update m_checkedButton to reflect which button is pressed
+    m_checkedButton = m_buttons.indexOf(clickedButton);
+}
+
+void UpdateInterface::launchDialog(QString message){
+    QDialog *diag = new QDialog(this);
+    QVBoxLayout *diagLayout = new QVBoxLayout;
+    QLabel *lab = new QLabel(message);
+    diag->setLayout(diagLayout);
+    diagLayout->addWidget(lab);
+    diag->setWindowModality(Qt::ApplicationModal);
+
+    diag->exec();
 }
