@@ -1,26 +1,24 @@
 #ifndef CRUISEEMPLOYEE_H
 #define CRUISEEMPLOYEE_H
 
+#include <QtWidgets>
 
 class CruiseEmployee
 {
 
 public:
-	CruiseEmployee(QString function);
-	QString camera();
-	QString makingOf();
-	QString album();
-	QString tipo();
-	void setTipo(QString tipo);
-	void setCamera();
-	void setMakingOf();
-	void setAlbum();
+	CruiseEmployee(QString function);//Especify if the employee is photographer, cameraman or musician 
+	QString name();
+	QString cpf();
+	QString function();
+	void setFunction(QString function);
+	void setName(QString name);
+	void setCpf(QString cpf);
 
 private:
-	QString m_camera;
-	QString m_makingOf;
-	QString m_album;
-	QString m_tipo;
+	QString m_name;
+	QString m_cpf;
+	QString m_function;
 	
 };
 
