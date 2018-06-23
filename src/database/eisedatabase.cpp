@@ -249,3 +249,8 @@ StringPairVectorList EISEDatabase::getEquipmentsData()
 
     return items;
 }
+
+QString EISEDatabase::insertEmployees(QStringList empCpfs)
+{
+    //QString query1 = QString() 
+}

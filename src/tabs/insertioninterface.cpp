@@ -36,6 +36,7 @@ InsertionInterface::InsertionInterface(QWidget *parent)
  	QObject::connect(m_insertParty, SIGNAL(pressed()),this,SLOT(insertCruiseParty()));
     QObject::connect(m_insertButton,SIGNAL(pressed()),this,SLOT(commitInsertion()));
     QObject::connect(m_cancelButton,SIGNAL(pressed()),this,SLOT(rollbackInsertion()));
+    QObject::connect(m_insertEmpButton,SIGNAL(pressed()),this,SLOT(insertEmployee()));
 }
 void InsertionInterface::drawPartyBox()
 {
@@ -248,7 +249,6 @@ void InsertionInterface::insertCruiseParty()
     m_insertEmpButton->setEnabled(true);
     m_existEmployees->setEnabled(true);
 
-
 }
 void InsertionInterface::commitInsertion()
 {
@@ -259,8 +259,22 @@ void InsertionInterface::rollbackInsertion()
 {
     m_database.rollbackTransaction();
 }
+void InsertionInterface::insertEmployee()
+{
+    QItemSelectionModel *selectedEmp = m_eTableView->selectionModel();
+    QModelIndexList sEList = selectedEmp->selectedIndexes();
+    QString cpfs;
 
+    for(int i = 0; i < sEList.size(); i++)
+    {
+        QVariant empCpf = m_eTableView->model()->data(sEList[i],Qt::DisplayRole);
+        cpfs += empCpf.toString() + ",";
+    }
+
+    QMessageBox::information(this,"Test",cpfs);
+
+}
 void InsertionInterface::insertParkParty()
 {
-    //
+    
 }
