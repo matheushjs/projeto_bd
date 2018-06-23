@@ -294,35 +294,9 @@ CREATE TABLE showSonorizacao (
 		ON DELETE RESTRICT /* Histórico */
 );
 
-/* TABELA 21 */
-CREATE TABLE album (
-	id BIGSERIAL,
-	IMOFesta INTEGER NOT NULL,
-	dataFesta DATE NOT NULL,
-	CONSTRAINT pk_album
-		PRIMARY KEY(id),
-	CONSTRAINT un_album
-		UNIQUE (IMOFesta, dataFesta),
-	CONSTRAINT fk_album
-		FOREIGN KEY (IMOFesta, dataFesta)
-		REFERENCES festaNoCruzeiro
-		ON DELETE RESTRICT /* Histórico */
-);
+/* TABELA 21 album */
 
-/* TABELA 22 */
-CREATE TABLE makingof (
-	id BIGSERIAL,
-	IMOFesta INTEGER NOT NULL,
-	dataFesta DATE NOT NULL,
-	CONSTRAINT pk_makingof
-		PRIMARY KEY(id),
-	CONSTRAINT un_makingof
-		UNIQUE (IMOFesta, dataFesta),
-	CONSTRAINT fk_makingof
-		FOREIGN KEY (IMOFesta, dataFesta)
-		REFERENCES festaNoCruzeiro
-		ON DELETE RESTRICT /* Histórico */
-);
+/* TABELA 22 makingof */
 
 /* TABELA 23 */
 CREATE TABLE opComCamera (
@@ -346,35 +320,38 @@ CREATE TABLE fotografoCruzeiro (
 	data DATE,
 	categoria CHAR(12) NOT NULL,
 	idAlbum BIGINT NOT NULL,
+	IMOFesta INTEGER NOT NULL,
+	dataFesta DATE NOT NULL,		
 	CONSTRAINT pk_fotografoCruzeiro
 		PRIMARY KEY (cpfOpCamera, data),
 	CONSTRAINT fk1_fotografoCruzeiro
 		FOREIGN KEY (cpfOpCamera, data)
 		REFERENCES opComCamera
-		ON DELETE RESTRICT, /* Histórico */
-	CONSTRAINT fk2_fotografoCruzeiro
-		FOREIGN KEY (idAlbum)
-		REFERENCES album
-		ON DELETE RESTRICT, /* Historico */
+		ON DELETE RESTRICT, /* Histórico */	
 	CONSTRAINT ck_fotografoCruzeiro
-		CHECK ( upper(categoria) IN ('ESPECIALISTA', 'TECNICO', 'JUNIOR') )
+		CHECK ( upper(categoria) IN ('ESPECIALISTA', 'TECNICO', 'JUNIOR') ),
+	CONSTRAINT fk_album
+		FOREIGN KEY (IMOFesta, dataFesta)
+		REFERENCES festaNoCruzeiro
+		ON DELETE RESTRICT /* Histórico */
 );
 
 /* TABELA 25 */
 CREATE TABLE cinegrafistaCruzeiro (
 	cpfOpCamera CHAR(14),
-	data DATE,
-	idMakingof BIGINT NOT NULL,
+	data DATE,	
+	IMOFesta INTEGER NOT NULL,
+	dataFesta DATE NOT NULL,
 	CONSTRAINT pk_cinegrafistaCruzeiro
 		PRIMARY KEY (cpfOpCamera, data),
 	CONSTRAINT fk1_cinegrafistaCruzeiro
 		FOREIGN KEY (cpfOpCamera, data)
 		REFERENCES opComCamera
-		ON DELETE RESTRICT, /* Histórico */
-	CONSTRAINT fk2_cinegrafistaCruzeiro
-		FOREIGN KEY (idMakingof)
-		REFERENCES makingof
-		ON DELETE RESTRICT /* Historico */
+		ON DELETE RESTRICT, /* Histórico */	
+	CONSTRAINT fk_makingof
+		FOREIGN KEY (IMOFesta, dataFesta)
+		REFERENCES festaNoCruzeiro
+		ON DELETE RESTRICT /* Histórico */	
 );
 
 /* TABELA 26 */
