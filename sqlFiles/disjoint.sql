@@ -11,113 +11,119 @@
 	of this script).
 */
 
-ALTER TABLE auxilia DROP CONSTRAINT fk2_auxilia;
-ALTER TABLE auxilia ADD CONSTRAINT fk2_auxilia
-                FOREIGN KEY (cpfPiloto)
-                REFERENCES piloto
+ALTER TABLE AUXILIA DROP CONSTRAINT FK2_AUXILIA;
+ALTER TABLE AUXILIA ADD CONSTRAINT FK2_AUXILIA
+                FOREIGN KEY(CPFPILOTO)
+                REFERENCES PILOTO
                 ON DELETE CASCADE; /* RESTRICT -> CASCADE */
 
-ALTER TABLE auxilia DROP CONSTRAINT fk3_auxilia;
-ALTER TABLE auxilia ADD CONSTRAINT fk3_auxilia
-                FOREIGN KEY (cpfCopiloto)
-                REFERENCES copiloto
+ALTER TABLE AUXILIA DROP CONSTRAINT FK3_AUXILIA;
+ALTER TABLE AUXILIA ADD CONSTRAINT FK3_AUXILIA
+                FOREIGN KEY(CPFCOPILOTO)
+                REFERENCES COPILOTO
                 ON DELETE CASCADE; /* RESTRICT -> CASCADE */
 
-ALTER TABLE opera DROP CONSTRAINT fk2_opera;
-ALTER TABLE opera ADD CONSTRAINT fk2_opera
-                FOREIGN KEY (cpfPiloto)
-                REFERENCES piloto
+ALTER TABLE OPERA DROP CONSTRAINT FK2_OPERA;
+ALTER TABLE OPERA ADD CONSTRAINT FK2_OPERA
+                FOREIGN KEY(CPFPILOTO)
+                REFERENCES PILOTO
                 ON DELETE CASCADE; /* RESTRICT -> CASCADE */
 
-ALTER TABLE opParque DROP CONSTRAINT fk4_opParque;
-ALTER TABLE opParque ADD CONSTRAINT fk4_opParque
-                FOREIGN KEY (cpfAssistente)
-                REFERENCES assistente
+ALTER TABLE OPERA DROP CONSTRAINT FK3_OPERA;
+ALTER TABLE OPERA ADD CONSTRAINT FK3_OPERA
+                FOREIGN KEY(IDDRONE)
+                REFERENCES DRONE
                 ON DELETE CASCADE; /* RESTRICT -> CASCADE */
 
-ALTER TABLE opParque DROP CONSTRAINT fk1_opParque;
-ALTER TABLE opParque ADD CONSTRAINT fk1_opParque
-                FOREIGN KEY (cpfAssistente)
-                REFERENCES assistente
+ALTER TABLE OPPARQUE DROP CONSTRAINT FK4_OPPARQUE;
+ALTER TABLE OPPARQUE ADD CONSTRAINT FK4_OPPARQUE
+                FOREIGN KEY(CPFASSISTENTE)
+                REFERENCES ASSISTENTE
                 ON DELETE CASCADE; /* RESTRICT -> CASCADE */
 
-ALTER TABLE opComCamera DROP CONSTRAINT fk_opComCamera;
-ALTER TABLE opComCamera ADD CONSTRAINT fk_opComCamera
-		FOREIGN KEY (cpfOpCamera)
-		REFERENCES opCamera
-		ON DELETE CASCADE; /* RESTRICT -> CASCADE */ 
+ALTER TABLE OPPARQUE DROP CONSTRAINT FK1_OPPARQUE;
+ALTER TABLE OPPARQUE ADD CONSTRAINT FK1_OPPARQUE
+                FOREIGN KEY(CPFASSISTENTE)
+                REFERENCES ASSISTENTE
+                ON DELETE CASCADE; /* RESTRICT -> CASCADE */
 
-ALTER TABLE fotografoCruzeiro DROP CONSTRAINT fk1_fotografoCruzeiro;
-ALTER TABLE fotografoCruzeiro ADD CONSTRAINT fk1_fotografoCruzeiro
-		FOREIGN KEY (cpfOpCamera, data)
-		REFERENCES opComCamera
-		ON DELETE CASCADE; /* RESTRICT -> CASCADE */
+ALTER TABLE OPCOMCAMERA DROP CONSTRAINT FK_OPCOMCAMERA;
+ALTER TABLE OPCOMCAMERA ADD CONSTRAINT FK_OPCOMCAMERA
+                FOREIGN KEY(CPFOPCAMERA)
+                REFERENCES OPCAMERA
+                ON DELETE CASCADE; /* RESTRICT -> CASCADE */ 
 
-ALTER TABLE cinegrafistaCruzeiro DROP CONSTRAINT fk1_cinegrafistaCruzeiro;
-ALTER TABLE cinegrafistaCruzeiro ADD CONSTRAINT fk1_cinegrafistaCruzeiro
-		FOREIGN KEY (cpfOpCamera, data)
-		REFERENCES opComCamera
-		ON DELETE CASCADE; /* RESTRICT -> CASCADE */ 
+ALTER TABLE FOTOGRAFOCRUZEIRO DROP CONSTRAINT FK1_FOTOGRAFOCRUZEIRO;
+ALTER TABLE FOTOGRAFOCRUZEIRO ADD CONSTRAINT FK1_FOTOGRAFOCRUZEIRO
+                FOREIGN KEY(CPFOPCAMERA, DATA)
+                REFERENCES OPCOMCAMERA
+                ON DELETE CASCADE; /* RESTRICT -> CASCADE */
 
-ALTER TABLE opParque DROP CONSTRAINT fk1_opParque;
-ALTER TABLE opParque ADD CONSTRAINT fk1_opParque
-                FOREIGN KEY (cpfOpCamera, data)
-                REFERENCES opComCamera
+ALTER TABLE CINEGRAFISTACRUZEIRO DROP CONSTRAINT FK1_CINEGRAFISTACRUZEIRO;
+ALTER TABLE CINEGRAFISTACRUZEIRO ADD CONSTRAINT FK1_CINEGRAFISTACRUZEIRO
+                FOREIGN KEY(CPFOPCAMERA, DATA)
+                REFERENCES OPCOMCAMERA
+                ON DELETE CASCADE; /* RESTRICT -> CASCADE */ 
+
+ALTER TABLE OPPARQUE DROP CONSTRAINT FK1_OPPARQUE;
+ALTER TABLE OPPARQUE ADD CONSTRAINT FK1_OPPARQUE
+                FOREIGN KEY(CPFOPCAMERA, DATA)
+                REFERENCES OPCOMCAMERA
                 ON DELETE CASCADE; /* RESTRICT -> CASCADE */
 
 
-ALTER TABLE manutencao DROP CONSTRAINT fk1_manutencao;
-ALTER TABLE manutencao ADD CONSTRAINT fk1_manutencao
-                FOREIGN KEY (cpfTecnico)
-                REFERENCES tecnico
+ALTER TABLE MANUTENCAO DROP CONSTRAINT FK1_MANUTENCAO;
+ALTER TABLE MANUTENCAO ADD CONSTRAINT FK1_MANUTENCAO
+                FOREIGN KEY(CPFTECNICO)
+                REFERENCES TECNICO
                 ON DELETE CASCADE; /* RESTRICT -> CASCADE */
 
-ALTER TABLE showsonorizacao DROP CONSTRAINT fk2_showsonorizacao;
-ALTER TABLE showsonorizacao ADD CONSTRAINT fk2_showsonorizacao
-                FOREIGN KEY (sonorizacaoid)
-                REFERENCES sonorizacao
+ALTER TABLE UTILIZA DROP CONSTRAINT FK2_UTILIZA;
+ALTER TABLE UTILIZA ADD CONSTRAINT FK2_UTILIZA
+                FOREIGN KEY(SONORIZACAOID)
+                REFERENCES SONORIZACAO
                 ON DELETE CASCADE; /* RESTRICT -> CASCADE */
 
-ALTER TABLE pontosom DROP CONSTRAINT fk1_pontosom;
-ALTER TABLE pontosom ADD CONSTRAINT fk1_pontosom
-                FOREIGN KEY (idsonorizacao)
-                REFERENCES sonorizacao
+ALTER TABLE PONTOSOM DROP CONSTRAINT FK1_PONTOSOM;
+ALTER TABLE PONTOSOM ADD CONSTRAINT FK1_PONTOSOM
+                FOREIGN KEY(IDSONORIZACAO)
+                REFERENCES SONORIZACAO
                 ON DELETE CASCADE; /* RESTRICT -> CASCADE */
 
-ALTER TABLE cameraaerea DROP CONSTRAINT fk2_cameraaerea;
-ALTER TABLE cameraaerea ADD CONSTRAINT fk2_cameraaerea
-                FOREIGN KEY (drone)
-                REFERENCES drone
+ALTER TABLE CAMERAAEREA DROP CONSTRAINT FK2_CAMERAAEREA;
+ALTER TABLE CAMERAAEREA ADD CONSTRAINT FK2_CAMERAAEREA
+                FOREIGN KEY(DRONE)
+                REFERENCES DRONE
                 ON DELETE CASCADE; /* RESTRICT -> CASCADE */
 
-ALTER TABLE registros DROP CONSTRAINT fk_registros;
-ALTER TABLE registros ADD CONSTRAINT fk_registros
-                FOREIGN KEY (iddrone)
-                REFERENCES drone
+ALTER TABLE REGISTROS DROP CONSTRAINT FK_REGISTROS;
+ALTER TABLE REGISTROS ADD CONSTRAINT FK_REGISTROS
+                FOREIGN KEY(IDDRONE)
+                REFERENCES DRONE
                 ON DELETE CASCADE; /* RESTRICT -> CASCADE */
 
-ALTER TABLE pontoestrutura DROP CONSTRAINT fk1_pontoestrutura;
-ALTER TABLE pontoestrutura ADD CONSTRAINT fk1_pontoestrutura
-                FOREIGN KEY (idestruturacao)
-                REFERENCES estruturacao
+ALTER TABLE PONTOESTRUTURA DROP CONSTRAINT FK1_PONTOESTRUTURA;
+ALTER TABLE PONTOESTRUTURA ADD CONSTRAINT FK1_PONTOESTRUTURA
+                FOREIGN KEY(IDESTRUTURACAO)
+                REFERENCES ESTRUTURACAO
                 ON DELETE CASCADE; /* RESTRICT -> CASCADE */
 
-ALTER TABLE pontocamera DROP CONSTRAINT fk1_pontocamera;
-ALTER TABLE pontocamera ADD CONSTRAINT fk1_pontocamera
-                FOREIGN KEY (idcamera)
-                REFERENCES camera
+ALTER TABLE PONTOCAMERA DROP CONSTRAINT FK1_PONTOCAMERA;
+ALTER TABLE PONTOCAMERA ADD CONSTRAINT FK1_PONTOCAMERA
+                FOREIGN KEY(IDCAMERA)
+                REFERENCES CAMERA
                 ON DELETE CASCADE; /* RESTRICT -> CASCADE */
 
-ALTER TABLE opparque DROP CONSTRAINT fk2_opparque;
-ALTER TABLE opparque ADD CONSTRAINT fk2_opparque
-                FOREIGN KEY (idcamerasecundaria)
-                REFERENCES camera
+ALTER TABLE OPPARQUE DROP CONSTRAINT FK2_OPPARQUE;
+ALTER TABLE OPPARQUE ADD CONSTRAINT FK2_OPPARQUE
+                FOREIGN KEY(IDCAMERASECUNDARIA)
+                REFERENCES CAMERA
                 ON DELETE CASCADE; /* RESTRICT -> CASCADE */
 
-ALTER TABLE cameraaerea DROP CONSTRAINT fk1_cameraaerea;
-ALTER TABLE cameraaerea ADD CONSTRAINT fk1_cameraaerea
-                FOREIGN KEY (camera)
-                REFERENCES camera
+ALTER TABLE CAMERAAEREA DROP CONSTRAINT FK1_CAMERAAEREA;
+ALTER TABLE CAMERAAEREA ADD CONSTRAINT FK1_CAMERAAEREA
+                FOREIGN KEY(CAMERA)
+                REFERENCES CAMERA
                 ON DELETE CASCADE; /* RESTRICT -> CASCADE */
 
 /*
@@ -125,79 +131,79 @@ ALTER TABLE cameraaerea ADD CONSTRAINT fk1_cameraaerea
 
 	Effectively delete instances
 */
-
+        
 /* Mantém somente os copilotos na tabela de Copilotos */
-DELETE FROM copiloto WHERE cpf IN 
-	(SELECT C.cpf FROM copiloto C, 
-		funcionario F WHERE C.cpf = F.cpf AND 
-		F.cargo <> 'COPILOTO');
+DELETE FROM COPILOTO WHERE CPF IN 
+        (SELECT C.CPF FROM COPILOTO C, 
+                FUNCIONARIO F WHERE C.CPF = F.CPF AND 
+                F.CARGO <> 'COPILOTO');
 
 /* Mantém somente os pilotos na tabela de pilotos */
-DELETE FROM piloto WHERE cpf IN 
-	(SELECT P.cpf FROM piloto P, 
-		funcionario F WHERE P.cpf = F.cpf AND 
-		F.cargo <> 'PILOTO');
+DELETE FROM PILOTO WHERE CPF IN 
+        (SELECT P.CPF FROM PILOTO P, 
+                FUNCIONARIO F WHERE P.CPF = F.CPF AND 
+                F.CARGO <> 'PILOTO');
 
 /* Mantém somente os assistentes na tabela de assistentes */
-DELETE FROM assistente WHERE cpf IN 
-	(SELECT A.cpf FROM assistente A, 
-		funcionario F WHERE A.cpf = F.cpf AND 
-		F.cargo <> 'ASSISTENTE');
+DELETE FROM ASSISTENTE WHERE CPF IN 
+        (SELECT A.CPF FROM ASSISTENTE A, 
+                FUNCIONARIO F WHERE A.CPF = F.CPF AND 
+                F.CARGO <> 'ASSISTENTE');
 
 /* Mantém somente os op. de camera na tabela de opCamera */
-DELETE FROM opCamera WHERE cpf IN 
-	(SELECT O.cpf FROM opCamera O, 
-		funcionario F WHERE O.cpf = F.cpf AND 
-		F.cargo <> 'OPCAMERA');
+DELETE FROM OPCAMERA WHERE CPF IN 
+        (SELECT O.CPF FROM OPCAMERA O, 
+                FUNCIONARIO F WHERE O.CPF = F.CPF AND 
+                F.CARGO <> 'OPCAMERA');
 
 /* Mantém somente os tecnicos na tabela de tecnicos */
-DELETE FROM tecnico WHERE cpf IN 
-	(SELECT T.cpf FROM tecnico T, 
-		funcionario F WHERE T.cpf = F.cpf AND 
-		F.cargo <> 'TECNICO');
+DELETE FROM TECNICO WHERE CPF IN 
+        (SELECT T.CPF FROM TECNICO T, 
+                FUNCIONARIO F WHERE T.CPF = F.CPF AND 
+                F.CARGO <> 'TECNICO');
 
 
 /* Mantém somente SONORIZACAO na tabela de sonorizacao */
-DELETE FROM sonorizacao WHERE id IN 
-	(SELECT S.id FROM sonorizacao S, 
-		equipamento E WHERE E.id = S.id AND 
-		E.tipo <> 'SONORIZACAO');
+DELETE FROM SONORIZACAO WHERE ID IN 
+        (SELECT S.ID FROM SONORIZACAO S, 
+                EQUIPAMENTO E WHERE E.ID = S.ID AND 
+                E.TIPO <> 'SONORIZACAO');
 
 /* Mantém somente DRONE na tabela de drone */
-DELETE FROM drone WHERE id IN 
-	(SELECT D.id FROM drone D, 
-		equipamento E WHERE E.id = D.id AND 
-		E.tipo <> 'DRONE');
+DELETE FROM DRONE WHERE ID IN 
+        (SELECT D.ID FROM DRONE D, 
+                EQUIPAMENTO E WHERE E.ID = D.ID AND 
+                E.TIPO <> 'DRONE');
 
 /* Mantém somente ESTRUTURACAO na tabela de estruturacao */
-DELETE FROM estruturacao WHERE id IN 
-	(SELECT S.id FROM estruturacao S, 
-		equipamento E WHERE E.id = S.id AND 
-		E.tipo <> 'ESTRUTURACAO');
+DELETE FROM ESTRUTURACAO WHERE ID IN 
+        (SELECT S.ID FROM ESTRUTURACAO S, 
+                EQUIPAMENTO E WHERE E.ID = S.ID AND 
+                E.TIPO <> 'ESTRUTURACAO');
 
 /* Mantém somente CAMERA na tabela de camera */
-DELETE FROM camera WHERE id IN 
-	(SELECT C.id FROM camera C, 
-		equipamento E WHERE E.id = C.id AND 
-		E.tipo <> 'CAMERA');
+DELETE FROM CAMERA WHERE ID IN 
+        (SELECT C.ID FROM CAMERA C, 
+                EQUIPAMENTO E WHERE E.ID = C.ID AND 
+                E.TIPO <> 'CAMERA');
 
 /* Mantém somente FOTOGRAFO na tabela de fotografocruzeiro */
-DELETE FROM fotografocruzeiro FC
-	USING (SELECT FC.cpfopcamera, FC.data 
-		FROM fotografocruzeiro FC, opcomcamera OC WHERE 
-			FC.cpfopcamera = OC.cpfopcamera AND 
-			FC.data = OC.data AND
-			OC.tipo <> 'FOTOGRAFO') AS AUX
-	WHERE FC.cpfopcamera = AUX.cpfopcamera AND FC.data = AUX.data;
+DELETE FROM FOTOGRAFOCRUZEIRO FC
+        USING(SELECT FC.CPFOPCAMERA, FC.DATA 
+                FROM FOTOGRAFOCRUZEIRO FC, OPCOMCAMERA OC WHERE 
+                        FC.CPFOPCAMERA = OC.CPFOPCAMERA AND 
+                        FC.DATA = OC.DATA AND
+                        OC.TIPO <> 'FOTOGRAFO') AS AUX
+        WHERE FC.CPFOPCAMERA = AUX.CPFOPCAMERA AND FC.DATA = AUX.DATA;
 
 /* Mantém somente CINEGRAFISTA na tabela de cinegrafistacruzeiro */
-DELETE FROM cinegrafistacruzeiro CC
-	USING (SELECT CC.cpfopcamera, CC.data 
-		FROM cinegrafistacruzeiro CC, opcomcamera OC WHERE 
-			CC.cpfopcamera = OC.cpfopcamera AND 
-			CC.data = OC.data AND
-			OC.tipo <> 'CINEGRAFISTA') AS AUX
-	WHERE CC.cpfopcamera = AUX.cpfopcamera AND CC.data = AUX.data;
+DELETE FROM CINEGRAFISTACRUZEIRO CC
+        USING(SELECT CC.CPFOPCAMERA, CC.DATA 
+                FROM CINEGRAFISTACRUZEIRO CC, OPCOMCAMERA OC WHERE 
+                        CC.CPFOPCAMERA = OC.CPFOPCAMERA AND 
+                        CC.DATA = OC.DATA AND
+                        OC.TIPO <> 'CINEGRAFISTA') AS AUX
+        WHERE CC.CPFOPCAMERA = AUX.CPFOPCAMERA AND CC.DATA = AUX.DATA;
 
 /* 
 	Finally, 
@@ -205,104 +211,110 @@ DELETE FROM cinegrafistacruzeiro CC
 	Turn back modified constraints back to
 	its original form 
 */
-ALTER TABLE pontocamera DROP CONSTRAINT fk1_pontocamera;
-ALTER TABLE pontocamera ADD CONSTRAINT fk1_pontocamera
-                FOREIGN KEY (idcamera)
-                REFERENCES camera
+ALTER TABLE PONTOCAMERA DROP CONSTRAINT FK1_PONTOCAMERA;
+ALTER TABLE PONTOCAMERA ADD CONSTRAINT FK1_PONTOCAMERA
+                FOREIGN KEY(IDCAMERA)
+                REFERENCES CAMERA
                 ON DELETE RESTRICT; 
 
-ALTER TABLE opparque DROP CONSTRAINT fk2_opparque;
-ALTER TABLE opparque ADD CONSTRAINT fk2_opparque
-                FOREIGN KEY (idcamerasecundaria)
-                REFERENCES camera
+ALTER TABLE OPPARQUE DROP CONSTRAINT FK2_OPPARQUE;
+ALTER TABLE OPPARQUE ADD CONSTRAINT FK2_OPPARQUE
+                FOREIGN KEY(IDCAMERASECUNDARIA)
+                REFERENCES CAMERA
                 ON DELETE RESTRICT; 
 
-ALTER TABLE cameraaerea DROP CONSTRAINT fk1_cameraaerea;
-ALTER TABLE cameraaerea ADD CONSTRAINT fk1_cameraaerea
-                FOREIGN KEY (camera)
-                REFERENCES camera
+ALTER TABLE CAMERAAEREA DROP CONSTRAINT FK1_CAMERAAEREA;
+ALTER TABLE CAMERAAEREA ADD CONSTRAINT FK1_CAMERAAEREA
+                FOREIGN KEY(CAMERA)
+                REFERENCES CAMERA
                 ON DELETE RESTRICT; 
 
-ALTER TABLE pontoestrutura DROP CONSTRAINT fk1_pontoestrutura;
-ALTER TABLE pontoestrutura ADD CONSTRAINT fk1_pontoestrutura
-                FOREIGN KEY (idestruturacao)
-                REFERENCES estruturacao
+ALTER TABLE PONTOESTRUTURA DROP CONSTRAINT FK1_PONTOESTRUTURA;
+ALTER TABLE PONTOESTRUTURA ADD CONSTRAINT FK1_PONTOESTRUTURA
+                FOREIGN KEY(IDESTRUTURACAO)
+                REFERENCES ESTRUTURACAO
                 ON DELETE RESTRICT; 
 
-ALTER TABLE cameraaerea DROP CONSTRAINT fk2_cameraaerea;
-ALTER TABLE cameraaerea ADD CONSTRAINT fk2_cameraaerea
-                FOREIGN KEY (drone)
-                REFERENCES drone
+ALTER TABLE CAMERAAEREA DROP CONSTRAINT FK2_CAMERAAEREA;
+ALTER TABLE CAMERAAEREA ADD CONSTRAINT FK2_CAMERAAEREA
+                FOREIGN KEY(DRONE)
+                REFERENCES DRONE
                 ON DELETE RESTRICT; 
 
-ALTER TABLE registros DROP CONSTRAINT fk_registros;
-ALTER TABLE registros ADD CONSTRAINT fk_registros
-                FOREIGN KEY (iddrone)
-                REFERENCES drone
+ALTER TABLE REGISTROS DROP CONSTRAINT FK_REGISTROS;
+ALTER TABLE REGISTROS ADD CONSTRAINT FK_REGISTROS
+                FOREIGN KEY(IDDRONE)
+                REFERENCES DRONE
                 ON DELETE RESTRICT; 
 
-ALTER TABLE pontosom DROP CONSTRAINT fk1_pontosom;
-ALTER TABLE pontosom ADD CONSTRAINT fk1_pontosom
-                FOREIGN KEY (idsonorizacao)
-                REFERENCES sonorizacao
+ALTER TABLE PONTOSOM DROP CONSTRAINT FK1_PONTOSOM;
+ALTER TABLE PONTOSOM ADD CONSTRAINT FK1_PONTOSOM
+                FOREIGN KEY(IDSONORIZACAO)
+                REFERENCES SONORIZACAO
                 ON DELETE RESTRICT;
 
-ALTER TABLE showsonorizacao DROP CONSTRAINT fk2_showsonorizacao;
-ALTER TABLE showsonorizacao ADD CONSTRAINT fk2_showsonorizacao
-                FOREIGN KEY (sonorizacaoid)
-                REFERENCES sonorizacao
+ALTER TABLE UTILIZA DROP CONSTRAINT FK2_UTILIZA;
+ALTER TABLE UTILIZA ADD CONSTRAINT FK2_UTILIZA
+                FOREIGN KEY(SONORIZACAOID)
+                REFERENCES SONORIZACAO
                 ON DELETE RESTRICT;
 
-ALTER TABLE auxilia DROP CONSTRAINT fk2_auxilia;
-ALTER TABLE auxilia ADD CONSTRAINT fk2_auxilia
-                FOREIGN KEY (cpfPiloto)
-                REFERENCES piloto
+ALTER TABLE AUXILIA DROP CONSTRAINT FK2_AUXILIA;
+ALTER TABLE AUXILIA ADD CONSTRAINT FK2_AUXILIA
+                FOREIGN KEY(CPFPILOTO)
+                REFERENCES PILOTO
                 ON DELETE RESTRICT;
 
-ALTER TABLE auxilia DROP CONSTRAINT fk3_auxilia;
-ALTER TABLE auxilia ADD CONSTRAINT fk3_auxilia
-                FOREIGN KEY (cpfCopiloto)
-                REFERENCES copiloto
+ALTER TABLE AUXILIA DROP CONSTRAINT FK3_AUXILIA;
+ALTER TABLE AUXILIA ADD CONSTRAINT FK3_AUXILIA
+                FOREIGN KEY(CPFCOPILOTO)
+                REFERENCES COPILOTO
                 ON DELETE RESTRICT;
 
-ALTER TABLE opera DROP CONSTRAINT fk2_opera;
-ALTER TABLE opera ADD CONSTRAINT fk2_opera
-                FOREIGN KEY (cpfPiloto)
-                REFERENCES piloto
+ALTER TABLE OPERA DROP CONSTRAINT FK2_OPERA;
+ALTER TABLE OPERA ADD CONSTRAINT FK2_OPERA
+                FOREIGN KEY(CPFPILOTO)
+                REFERENCES PILOTO
                 ON DELETE RESTRICT;
 
-ALTER TABLE opParque DROP CONSTRAINT fk4_opParque;
-ALTER TABLE opParque ADD CONSTRAINT fk4_opParque
-                FOREIGN KEY (cpfAssistente)
-                REFERENCES assistente
+ALTER TABLE OPERA DROP CONSTRAINT FK3_OPERA;
+ALTER TABLE OPERA ADD CONSTRAINT FK3_OPERA
+                FOREIGN KEY(IDDRONE)
+                REFERENCES DRONE
                 ON DELETE RESTRICT;
 
-ALTER TABLE opComCamera DROP CONSTRAINT fk_opComCamera;
-ALTER TABLE opComCamera ADD CONSTRAINT fk_opComCamera
-		FOREIGN KEY (cpfOpCamera)
-		REFERENCES opCamera
-		ON DELETE RESTRICT; 
-
-ALTER TABLE fotografoCruzeiro DROP CONSTRAINT fk1_fotografoCruzeiro;
-ALTER TABLE fotografoCruzeiro ADD CONSTRAINT fk1_fotografoCruzeiro
-		FOREIGN KEY (cpfOpCamera, data)
-		REFERENCES opComCamera
-		ON DELETE RESTRICT;
-
-ALTER TABLE cinegrafistaCruzeiro DROP CONSTRAINT fk1_cinegrafistaCruzeiro;
-ALTER TABLE cinegrafistaCruzeiro ADD CONSTRAINT fk1_cinegrafistaCruzeiro
-		FOREIGN KEY (cpfOpCamera, data)
-		REFERENCES opComCamera
-		ON DELETE RESTRICT;
-
-ALTER TABLE opParque DROP CONSTRAINT fk1_opParque;
-ALTER TABLE opParque ADD CONSTRAINT fk1_opParque
-                FOREIGN KEY (cpfOpCamera, data)
-                REFERENCES opComCamera
+ALTER TABLE OPPARQUE DROP CONSTRAINT FK4_OPPARQUE;
+ALTER TABLE OPPARQUE ADD CONSTRAINT FK4_OPPARQUE
+                FOREIGN KEY(CPFASSISTENTE)
+                REFERENCES ASSISTENTE
                 ON DELETE RESTRICT;
 
-ALTER TABLE manutencao DROP CONSTRAINT fk1_manutencao;
-ALTER TABLE manutencao ADD CONSTRAINT fk1_manutencao
-                FOREIGN KEY (cpfTecnico)
-                REFERENCES tecnico
+ALTER TABLE OPCOMCAMERA DROP CONSTRAINT FK_OPCOMCAMERA;
+ALTER TABLE OPCOMCAMERA ADD CONSTRAINT FK_OPCOMCAMERA
+                FOREIGN KEY(CPFOPCAMERA)
+                REFERENCES OPCAMERA
+                ON DELETE RESTRICT; 
+
+ALTER TABLE FOTOGRAFOCRUZEIRO DROP CONSTRAINT FK1_FOTOGRAFOCRUZEIRO;
+ALTER TABLE FOTOGRAFOCRUZEIRO ADD CONSTRAINT FK1_FOTOGRAFOCRUZEIRO
+                FOREIGN KEY(CPFOPCAMERA, DATA)
+                REFERENCES OPCOMCAMERA
+                ON DELETE RESTRICT;
+
+ALTER TABLE CINEGRAFISTACRUZEIRO DROP CONSTRAINT FK1_CINEGRAFISTACRUZEIRO;
+ALTER TABLE CINEGRAFISTACRUZEIRO ADD CONSTRAINT FK1_CINEGRAFISTACRUZEIRO
+                FOREIGN KEY(CPFOPCAMERA, DATA)
+                REFERENCES OPCOMCAMERA
+                ON DELETE RESTRICT;
+
+ALTER TABLE OPPARQUE DROP CONSTRAINT FK1_OPPARQUE;
+ALTER TABLE OPPARQUE ADD CONSTRAINT FK1_OPPARQUE
+                FOREIGN KEY(CPFOPCAMERA, DATA)
+                REFERENCES OPCOMCAMERA
+                ON DELETE RESTRICT;
+
+ALTER TABLE MANUTENCAO DROP CONSTRAINT FK1_MANUTENCAO;
+ALTER TABLE MANUTENCAO ADD CONSTRAINT FK1_MANUTENCAO
+                FOREIGN KEY(CPFTECNICO)
+                REFERENCES TECNICO
                 ON DELETE RESTRICT;
