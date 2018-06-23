@@ -39,7 +39,7 @@ MainWindow::MainWindow()
     // When the user clicks an item on the search interface,
     //   the application begins an update in the update tab
     connect(m_searchInterface, SIGNAL(editParque(QString)),
-            m_updateInterface, SLOT(beginUpdate1(QString)));
+            m_updateInterface, SLOT(beginUpdateParque(QString)));
 
     // Then we switch to the update tab itself
     connect(m_searchInterface, &SearchInterface::editParque,

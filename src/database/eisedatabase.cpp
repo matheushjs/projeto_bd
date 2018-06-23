@@ -203,6 +203,44 @@ StringPairVector EISEDatabase::selectParque(QString cnpj){
     return vec;
 }
 
+StringPairVector EISEDatabase::selectFestaParque(QString cnpj, QString dataInicio){
+    const QString query = QString(
+            "SELECT * FROM festanoparque "
+            "WHERE cnpjparque = '%1' AND datainicio = '%2'"
+        ).arg(cnpj, dataInicio);
+
+    QSqlQuery rows = m_database.exec(query);
+    StringPairVector vec;
+    while(rows.next()){
+        vec.append( {"CNPJ do Parque", rows.value(0).toString()} );
+        vec.append( {"Data Início", rows.value(1).toString()} );
+        vec.append( {"Data Fim", rows.value(2).toString()} );
+        vec.append( {"# Convidados", rows.value(3).toString()} );
+        vec.append( {"Nome", rows.value(4).toString()} );
+    }
+
+    return vec;
+}
+
+StringPairVector EISEDatabase::selectFestaCruzeiro(QString imo, QString dataInicio){
+    const QString query = QString(
+            "SELECT * FROM festanocruzeiro "
+            "WHERE imo = '%1' AND datainicio = '%2'"
+        ).arg(imo, dataInicio);
+
+    QSqlQuery rows = m_database.exec(query);
+    StringPairVector vec;
+    while(rows.next()){
+        vec.append( {"IMO", rows.value(0).toString()} );
+        vec.append( {"Data Início", rows.value(1).toString()} );
+        vec.append( {"Data Fim", rows.value(2).toString()} );
+        vec.append( {"# Convidados", rows.value(3).toString()} );
+        vec.append( {"Nome", rows.value(4).toString()} );
+    }
+
+    return vec;
+}
+
 QString EISEDatabase::updateParque(QString cnpj, QString nome,
                                 QString mapa, QString endereco)
 {

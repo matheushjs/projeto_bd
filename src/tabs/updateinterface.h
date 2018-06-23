@@ -30,7 +30,7 @@ public:
     explicit UpdateInterface(QWidget *parent = 0);
 
 public slots:
-    void beginUpdate1(QString searchKey);
+    void beginUpdateParque(QString cnpj);
     void handleWrongKey();
 
 private slots:

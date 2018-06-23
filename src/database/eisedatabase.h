@@ -30,9 +30,11 @@ public:
     ReportTextData getSelect1(); // parque
     ReportTextData getSelect2(); // festa no parque
     ReportTextData getSelect3(); // festa no cruzeiro
-    // Returns information of a single parque
-    // If parque is not found, returns an empty vector
+    // Returns information of a single parque/festaNoParque/festaNoCruzeiro
+    // If not found, returns an empty vector
     StringPairVector selectParque(QString cnpj);
+    StringPairVector selectFestaParque(QString cnpj, QString dataInicio);
+    StringPairVector selectFestaCruzeiro(QString imo, QString dataInicio);
 
     /* UPDATES */
     // Updates parque that has the given cnpj with the given information.

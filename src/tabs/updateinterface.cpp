@@ -78,12 +78,12 @@ void UpdateInterface::cleanUpdateBox(){
     m_updateBox->setLayout(new QFormLayout);
 }
 
-void UpdateInterface::beginUpdate1(QString searchKey){
+void UpdateInterface::beginUpdateParque(QString cnpj){
     // Clean update box
     cleanUpdateBox();
 
     // Get information of the searched parque
-    StringPairVector vec = m_database.selectParque(searchKey);
+    StringPairVector vec = m_database.selectParque(cnpj);
 
     if(vec.empty()){
         handleWrongKey();
@@ -119,7 +119,7 @@ void UpdateInterface::handleWrongKey(){
 void UpdateInterface::handleReturnPressed(){
     QString line = m_keyLineEdit->text();
     if(m_checkedButton == 0){
-        beginUpdate1(line);
+        beginUpdateParque(line);
     }
 }
 
