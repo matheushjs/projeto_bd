@@ -120,6 +120,54 @@ ReportTextData EISEDatabase::getSelect1(){
     return report;
 }
 
+ReportTextData EISEDatabase::getSelect2(){
+    const static QString query = "SELECT * FROM festanoparque;";
+
+    QSqlQuery rows = m_database.exec(query);
+    StringPairVectorList items;
+    while(rows.next()){
+        QVector<QPair<QString,QString> > vec;
+
+        vec.append( {"CNPJ do Parque", rows.value(0).toString()} );
+        vec.append( {"Data Início", rows.value(1).toString()} );
+        vec.append( {"Data Fim", rows.value(2).toString()} );
+        vec.append( {"# Convidados", rows.value(3).toString()} );
+        vec.append( {"Nome", rows.value(4).toString()} );
+
+        items.append(vec);
+    }
+
+    ReportTextData report;
+    report.setHeader("Festas no Parque");
+    report.setItems(items);
+
+    return report;
+}
+
+ReportTextData EISEDatabase::getSelect3(){
+    const static QString query = "SELECT * FROM festanocruzeiro;";
+
+    QSqlQuery rows = m_database.exec(query);
+    StringPairVectorList items;
+    while(rows.next()){
+        QVector<QPair<QString,QString> > vec;
+
+        vec.append( {"IMO", rows.value(0).toString()} );
+        vec.append( {"Data Início", rows.value(1).toString()} );
+        vec.append( {"Data Fim", rows.value(2).toString()} );
+        vec.append( {"# Convidados", rows.value(3).toString()} );
+        vec.append( {"Nome", rows.value(4).toString()} );
+
+        items.append(vec);
+    }
+
+    ReportTextData report;
+    report.setHeader("Festas no Cruzeiro");
+    report.setItems(items);
+
+    return report;
+}
+
 QString EISEDatabase::insertCruiseParty(QVector<QString> insertData)
 {
     const QString partyQuery = QString("INSERT INTO festaNoCruzeiro ( IMO, dataInicio, dataFim, numeroConvidados, nome ) "
