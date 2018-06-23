@@ -16,6 +16,7 @@ DISJOINT_PATH=sqlFiles/disjoint.sql
 OUTPUT=dbDump.sql
 ROLE_CHECK=`sudo su -- postgres -c "psql -c \"\du\""`
 DATABASE_CHECK=`sudo su -- postgres -c "psql -c \"\l\""`
+WHICHPYTHON=python3
 
 # Checa se o usuário tem os privilégios necessários
 if echo "$ROLE_CHECK" | grep -q "$USER"; then
@@ -42,7 +43,7 @@ psql $DATABASE < $SCHEMA_PATH && \
 
 # Gerando os inserts
 echo "Gerando os inserts para o database $DATABASE..."
-python3 $GENERATOR_PATH $SCHEMA_PATH $NUM_INSERTS > $INSERT_OUT && \
+$WHICHPYTHON $GENERATOR_PATH $SCHEMA_PATH $NUM_INSERTS > $INSERT_OUT && \
 
 # Alimentando o banco de dados com os inserts
 echo "Alimentando $DATABASE com os inserts gerados..."

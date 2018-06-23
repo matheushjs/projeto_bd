@@ -181,6 +181,24 @@ DELETE FROM camera WHERE id IN
 		equipamento E WHERE E.id = C.id AND 
 		E.tipo <> 'CAMERA');
 
+/* Mantém somente FOTOGRAFO na tabela de fotografocruzeiro */
+DELETE FROM fotografocruzeiro FC
+	USING (SELECT FC.cpfopcamera, FC.data 
+		FROM fotografocruzeiro FC, opcomcamera OC WHERE 
+			FC.cpfopcamera = OC.cpfopcamera AND 
+			FC.data = OC.data AND
+			OC.tipo <> 'FOTOGRAFO') AS AUX
+	WHERE FC.cpfopcamera = AUX.cpfopcamera AND FC.data = AUX.data;
+
+/* Mantém somente CINEGRAFISTA na tabela de cinegrafistacruzeiro */
+DELETE FROM cinegrafistacruzeiro CC
+	USING (SELECT CC.cpfopcamera, CC.data 
+		FROM cinegrafistacruzeiro CC, opcomcamera OC WHERE 
+			CC.cpfopcamera = OC.cpfopcamera AND 
+			CC.data = OC.data AND
+			OC.tipo <> 'CINEGRAFISTA') AS AUX
+	WHERE CC.cpfopcamera = AUX.cpfopcamera AND CC.data = AUX.data;
+
 /* 
 	Finally, 
 	

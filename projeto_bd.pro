@@ -22,13 +22,19 @@ SOURCES += src/main.cpp\
     src/widgets/dataselectiondisplay.cpp \
     src/widgets/clickablelabel.cpp \
     src/tabs/updateinterface.cpp \
-    src/models/tablemodel.cpp
+    src/models/tablemodel.cpp \
+    src/data_structures/cameraman.cpp \ 
+    src/data_structures/cruiseemployee.cpp \ 
+    src/data_structures/photographer.cpp
 
 HEADERS  += src/mainwindow.h \
     src/tabs/insertioninterface.h \
     src/tabs/reportsinterface.h \
     src/database/eisedatabase.h \
     src/data_structures/reporttextdata.h \
+    src/data_structures/cameraman.h \
+    src/data_structures/cruiseemployee.h \
+    src/data_structures/photographer.h \
     src/tabs/searchinterface.h \
     src/widgets/dataselectiondisplay.h \
     src/widgets/clickablelabel.h \

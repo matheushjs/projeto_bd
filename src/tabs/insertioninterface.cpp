@@ -220,6 +220,11 @@ void InsertionInterface::insertCruiseParty()
         QMessageBox::critical(this,"Erro","A data de fim não pode ser inferior a data de início.");
         return;
     }
+    else if(m_startDate->date() < (QDate::currentDate()))
+    {
+        QMessageBox::critical(this,"Erro","A data início não pode ser inferior a data atual.");
+        return;
+    }   
 
 	partyData.append(QString("%1").arg(m_imoNumber->value()));
     aux = m_startDate->date();
