@@ -135,7 +135,10 @@ void UpdateInterface::beginUpdateFestaParque(QString cnpj, QString dataInicio){
         QPushButton *button = new QPushButton("Modificar");
         connect(button, &QPushButton::clicked, this, [this, leVec](){
             // Insert on database
-            QString error = "Not Implemented!";
+            QString error = m_database.updateFestaParque(
+                    leVec[0]->text(), leVec[1]->text(), leVec[2]->text(),
+                    leVec[3]->text(), leVec[4]->text()
+                );
 
             if(error != ""){
                 launchDialog(error);
@@ -166,7 +169,10 @@ void UpdateInterface::beginUpdateFestaCruzeiro(QString imo, QString dataInicio){
         QPushButton *button = new QPushButton("Modificar");
         connect(button, &QPushButton::clicked, this, [this, leVec](){
             // Insert on database
-            QString error = "Not Implemented!";
+            QString error = m_database.updateFestaCruzeiro(
+                    leVec[0]->text(), leVec[1]->text(), leVec[2]->text(),
+                    leVec[3]->text(), leVec[4]->text()
+                );
 
             if(error != ""){
                 launchDialog(error);
