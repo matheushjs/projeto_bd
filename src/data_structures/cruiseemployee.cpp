@@ -55,3 +55,11 @@ void CruiseEmployee::setAddress(QString address)
 {
 	m_address = address;
 }
+bool CruiseEmployee::isNew()
+{
+	return m_new;
+}
+QString CruiseEmployee::camera()
+{
+	return m_camera;
+}

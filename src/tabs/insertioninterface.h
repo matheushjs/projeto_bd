@@ -45,9 +45,12 @@ private :
     QComboBox *m_employeeTeam;
     QGroupBox *m_newEmployees;
     QGroupBox *m_existEmployees;
+    QGroupBox *m_cameras;
     QRadioButton *m_newEmployee;
     QRadioButton *m_existEmployee;
+    QRadioButton *m_camera;
     QTableView *m_eTableView;
+    QTableView *m_cTableView;
     TableModel m_viewModel;
     bool m_funcType;
 
@@ -92,6 +95,7 @@ private slots:
     void rollbackInsertion();
     void newEChecked();
     void existEChecked();
+    void camerasChecked();
     void insertEmployee();
 
 };

@@ -14,6 +14,7 @@ public:
 	QString rg();
 	QString celphone();
 	QString address();
+	QString camera();
 
 	void setFunction(QString function);
 	void setName(QString name);
@@ -21,6 +22,8 @@ public:
 	void setRg(QString rg);
 	void setCelphone(QString celphone);
 	void setAddress(QString address);
+	void setCamera(QString camera);
+	bool isNew();
 
 private:
 	QString m_name;
@@ -29,6 +32,8 @@ private:
 	QString m_rg;
 	QString m_celphone;
 	QString m_address;
+	QString m_camera;
+	bool m_new;
 	
 };
 

@@ -34,6 +34,7 @@ InsertionInterface::InsertionInterface(QWidget *parent)
     QObject::connect(m_pPark,SIGNAL(pressed()),this,SLOT(ParkChecked()));
     QObject::connect(m_newEmployee,SIGNAL(pressed()),this,SLOT(newEChecked()));
     QObject::connect(m_existEmployee,SIGNAL(pressed()),this,SLOT(existEChecked()));
+    QObject::connect(m_camera,SIGNAL(pressed()),this,SLOT(camerasChecked()));
  	QObject::connect(m_insertParty, SIGNAL(pressed()),this,SLOT(insertCruiseParty()));
     QObject::connect(m_insertButton,SIGNAL(pressed()),this,SLOT(commitInsertion()));
     QObject::connect(m_cancelButton,SIGNAL(pressed()),this,SLOT(rollbackInsertion()));
@@ -108,26 +109,32 @@ void InsertionInterface::drawEmployeeBox()
     QVBoxLayout *erbLayout = new QVBoxLayout;
     m_newEmployee = new QRadioButton("Alocar um novo funcionário");
     m_existEmployee = new QRadioButton("Alocar um funcionário existente");
+    m_camera = new QRadioButton("Alocar cameras");
     m_insertEmpButton = new QPushButton("Alocar funcionário");
     
     m_newEmployee->setEnabled(false);
     m_existEmployee->setEnabled(false);
     m_insertEmpButton->setEnabled(false);
+    m_camera->setEnabled(false);
     
     erbLayout->addWidget(m_newEmployee);
     erbLayout->addWidget(m_existEmployee);
+    erbLayout->addWidget(m_camera);
     erbLayout->addWidget(m_insertEmpButton,0, Qt::AlignLeft);
 
     //2.2 Set up the boxes of new and exist employees
     QHBoxLayout *employeeEltsLayout = new QHBoxLayout;
     m_existEmployees = new QGroupBox("Funcionários existentes");
     m_newEmployees = new QGroupBox("Funcionário novo");
-    
+    m_cameras = new QGroupBox("Cameras disponíveis");
+
     m_existEmployees->setEnabled(false);
     m_newEmployees->setVisible(false);
+    m_cameras->setVisible(false);
     
     employeeEltsLayout->addWidget(m_existEmployees);
     employeeEltsLayout->addWidget(m_newEmployees);
+    employeeEltsLayout->addWidget(m_cameras);
     
     //2.3 Set up the form layout of new employee
     QFormLayout *newEmployeeFormLayout = new QFormLayout;
@@ -153,18 +160,22 @@ void InsertionInterface::drawEmployeeBox()
     newEmployeeFormLayout->addRow("&Endereço:", m_employeeAddress);
     newEmployeeFormLayout->addRow("&Categoria:", m_employeeTeam);
 
-
     //2.4 Set up the form layout of exist employee
     m_eTableView = new QTableView;
-    QHBoxLayout *tbvLayout = new QHBoxLayout;
+    m_cTableView = new QTableView;
+    QHBoxLayout *tbveLayout = new QHBoxLayout;
+    QHBoxLayout *tbvcLayout = new QHBoxLayout;
     
-    tbvLayout->addWidget(m_eTableView);
+    tbveLayout->addWidget(m_eTableView);
+    tbvcLayout->addWidget(m_cTableView);
     
     m_newEmployees->setLayout(newEmployeeFormLayout);
-    m_existEmployees->setLayout(tbvLayout);
+    m_existEmployees->setLayout(tbveLayout);
+    m_cameras->setLayout(tbvcLayout);
 
     m_vbox->addLayout(erbLayout);
     m_vbox->addLayout(employeeEltsLayout);
+  
 }
 void InsertionInterface::drawEquipmentBox()
 {
@@ -191,6 +202,7 @@ void InsertionInterface::ParkChecked()
 void InsertionInterface::newEChecked()
 {
     m_existEmployees->setVisible(false);
+    m_cameras->setVisible(false);
     m_newEmployees->setVisible(true);
     m_funcType = false;
 }
@@ -198,11 +210,18 @@ void InsertionInterface::newEChecked()
 void InsertionInterface::existEChecked()
 {
     m_newEmployees->setVisible(false);
+    m_cameras->setVisible(false);
     m_existEmployees->setVisible(true);
     m_funcType = true;
     m_eTableView->setModel(m_viewModel.employeesModel(m_log->party().initialDate(),m_log->party().endDate()));
 }
-
+void InsertionInterface::camerasChecked()
+{
+    m_newEmployees->setVisible(false);
+    m_existEmployees->setVisible(false);
+    m_cameras->setVisible(true);
+    m_cTableView->setModel(m_viewModel.camerasModel(m_log->party().initialDate()));
+}
 void InsertionInterface::insertCruiseParty()
 {
 
@@ -230,53 +249,41 @@ void InsertionInterface::insertCruiseParty()
     {
         QMessageBox::critical(this,"Erro","A data início não pode ser inferior a data atual.");
         return;
-    }   
+    }
 
+    QString day;
+    QString month;
+    
     aux = m_startDate->date();
+    if(aux.day() < 10)
+        day = QString("0%1").arg(QString::number(aux.day()));
+    else 
+        day = QString::number(aux.day());
+
+    if(aux.month() < 10)
+        month = QString("0%1").arg(QString::number(aux.month()));
+    else
+       month = QString::number(aux.month());
+
     CruiseParty cparty(QString::number(m_imoNumber->value()),
-        QString("%1-%2-%3").arg(QString::number(aux.year()),QString::number(aux.month()),QString::number(aux.day())),
+        QString("%1-%2-%3").arg(QString::number(aux.year()),month,day),
         m_cruisePartyName->text());
 
     aux = m_endDate->date();
-    cparty.setEndDate(QString("%1-%2-%3").arg(QString::number(aux.year()),QString::number(aux.month()),QString::number(aux.day())));
+    if(aux.day() < 10)
+        day = QString("0%1").arg(QString::number(aux.day()));
+    else 
+        day = QString::number(aux.day());
+
+    if(aux.month() < 10)
+        month = QString("0%1").arg(QString::number(aux.month()));
+    else
+       month = QString::number(aux.month());
+
+    cparty.setEndDate(QString("%1-%2-%3").arg(QString::number(aux.year()),month,day));
     cparty.setNOfGuest(QString("%1").arg(m_nOfGuest->value()));
     cparty.setLocal(m_location->text());
     m_log->setCruiseParty(cparty);
-
-    /*
-    partyData.append(QString("%1").arg(m_imoNumber->value()));
-    aux = m_startDate->date();
-	partyData.append(QString("%1-%2-%3").arg(QString::number(aux.year()),QString::number(aux.month()),QString::number(aux.day())));
-    aux = m_endDate->date();
-	
-    partyData.append(QString("%1-%2-%3").arg(QString::number(aux.year()),QString::number(aux.month()),QString::number(aux.day())));
-	partyData.append(QString("%1").arg(m_nOfGuest->value()));
-	partyData.append(m_cruisePartyName->text());
-    partyData.append(m_location->text());
-
-
-    QString feedback = m_database.insertCruiseParty(partyData);
-
-	if(feedback == "")
-		QMessageBox::information(this,"Resultado da inserção", "Festa inserida com sucesso!");
-	else
-		QMessageBox::critical(this,"Erro na hora de inserir.", feedback);
-    */
-
-    m_cruiserInfos->setVisible(false);
-    m_parkPartyInfos->setVisible(false);
-    m_pCruise->setEnabled(false);
-    m_pPark->setEnabled(false);
-    m_insertParty->setEnabled(false);
-    m_newEmployee->setEnabled(true);
-    m_existEmployee->setEnabled(true);
-    m_insertEmpButton->setEnabled(true);
-    m_existEmployees->setEnabled(true);
-
-}
-void InsertionInterface::commitInsertion()
-{
-    m_database.commitTransaction();
 
     QString feedback = m_database.insertCruiseParty(m_log->party());
     
@@ -285,6 +292,21 @@ void InsertionInterface::commitInsertion()
     else
         QMessageBox::critical(this,"Erro na hora de inserir.", feedback);
 
+    m_cruiserInfos->setVisible(false);
+    m_parkPartyInfos->setVisible(false);
+    m_pCruise->setEnabled(false);
+    m_pPark->setEnabled(false);
+    m_insertParty->setEnabled(false);
+    m_newEmployee->setEnabled(true);
+    m_existEmployee->setEnabled(true);
+    m_camera->setEnabled(true);
+    m_insertEmpButton->setEnabled(true);
+    m_existEmployees->setEnabled(true);
+
+}
+void InsertionInterface::commitInsertion()
+{
+    m_database.commitTransaction();
 }
 
 void InsertionInterface::rollbackInsertion()
@@ -371,5 +393,4 @@ void InsertionInterface::insertEmployee()
 
 void InsertionInterface::insertParkParty()
 {
-    
 }

@@ -17,6 +17,7 @@ class TableModel: public QStandardItemModel
 public:
 	TableModel(QObject * parent = 0);	
 	QStandardItemModel *employeesModel(QString sartDate, QString endDate);
+	QStandardItemModel *camerasModel(QString sartDate);
 	QStandardItemModel *equipmentsModel();
 	QStandardItemModel *bandsModel();
 	Qt::ItemFlags flags(const QModelIndex &index) const override;

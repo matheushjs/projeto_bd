@@ -385,6 +385,28 @@ StringPairVectorList EISEDatabase::getEquipmentsData()
 
     return items;
 }
+
+StringPairVectorList EISEDatabase::getCamerasData(QString partyStartDate)
+{
+    const static QString query = QString("SELECT e.nome, e.marca, e.modelo, e.quantidade FROM equipamento e, opcomcamera op WHERE e.id = op.camera"
+    "AND e.tipo = 'CAMERA' AND TO_DATE('%1', 'DD-MM-YYYY') != op.data;").arg(partyStartDate);
+
+    QSqlQuery rows = m_database.exec(query);
+    StringPairVectorList items;
+
+    while(rows.next()){
+        QVector<QPair<QString,QString> > vec;
+
+        vec.append( {"Nome", rows.value(0).toString()} );
+        vec.append( {"Marca", rows.value(1).toString()} );
+        vec.append( {"Modelo", rows.value(2).toString()} );
+        vec.append( {"Qtd", rows.value(3).toString()} );
+
+        items.append(vec);
+    }
+
+    return items;
+}
 /*
 QString EISEDatabase::insertEmployees(QStringList empCpfs)
 {

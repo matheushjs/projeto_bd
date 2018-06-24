@@ -50,6 +50,7 @@ public:
     void commitTransaction();
     void rollbackTransaction();
     StringPairVectorList getEmployeesData(QString partyStartDate, QString partyEndDate);
+    StringPairVectorList getCamerasData(QString partyStartDate);
     StringPairVectorList getEquipmentsData();
     StringPairVectorList getBandsData();
 };
