@@ -311,20 +311,20 @@ void EISEDatabase::rollbackTransaction()
 StringPairVectorList EISEDatabase::getEmployeesData(QString partyStartDate, QString partyEndDate)
 {
     
-    const static QString query = QString("SELECT OP.CPF, F.NOME, OP.INICIOCARREIRA, F.TEL1 FROM OPCAMERA OP JOIN ("
+    const static QString query = QString("SELECT OP.CPF, F.NOME, OP.INICIOCARREIRA, F.TEL1 FROM OPCAMERA OP JOIN ( "
     "SELECT CPFOPCAMERA AS CPF FROM FOTOGRAFOCRUZEIRO JOIN FESTANOCRUZEIRO ON IMOFESTA = IMO AND DATAFESTA = DATAINICIO "
-    "WHERE TO_DATE('%1', 'DD-MM-YYYY') < DATAINICIO OR TO_DATE('%2', 'DD-MM-YYYY') > DATAFIM" 
+    "WHERE TO_DATE('%1', 'YYYY-MM-DD') < DATAINICIO OR TO_DATE('%2', 'YYYY-MM-DD') > DATAFIM " 
     "UNION SELECT CPFOPCAMERA AS CPF FROM CINEGRAFISTACRUZEIRO JOIN FESTANOCRUZEIRO ON IMOFESTA = IMO AND DATAFESTA = DATAINICIO "
-    "WHERE TO_DATE('%3', 'DD-MM-YYYY') < DATAINICIO " 
-    "OR TO_DATE('%4', 'DD-MM-YYYY') > DATAFIM UNION SELECT OP.CPFOPCAMERA AS CPF " 
+    "WHERE TO_DATE('%1', 'YYYY-MM-DD') < DATAINICIO " 
+    "OR TO_DATE('%2', 'YYYY-MM-DD') > DATAFIM UNION SELECT OP.CPFOPCAMERA AS CPF " 
     "FROM OPPARQUE OP JOIN FESTANOPARQUE FP ON OP.CNPJPARQUE = FP.CNPJPARQUE AND OP.DATAINICIOPARQUE = FP.DATAINICIO " 
-    "WHERE TO_DATE('%5', 'DD-MM-YYYY') < FP.DATAINICIO OR TO_DATE('%6', 'DD-MM-YYYY') > FP.DATAFIM "
+    "WHERE TO_DATE('%1', 'YYYY-MM-DD') < FP.DATAINICIO OR TO_DATE('%2', 'YYYY-MM-DD') > FP.DATAFIM "
     ") AS DT ON OP.CPF IN (DT.CPF) JOIN FUNCIONARIO F ON OP.CPF = F.CPF WHERE F.CARGO = 'OPCAMERA';").arg(partyStartDate, 
-    partyEndDate, partyStartDate, partyEndDate, partyEndDate, partyEndDate);
+    partyEndDate);
 
     const static QString query2 = "SELECT * FROM funcionario;";
 
-    QSqlQuery rows = m_database.exec(query2);
+    QSqlQuery rows = m_database.exec(query);
     StringPairVectorList items;
 
     while(rows.next()){
@@ -332,11 +332,8 @@ StringPairVectorList EISEDatabase::getEmployeesData(QString partyStartDate, QStr
 
         vec.append( {"CPF", rows.value(0).toString()} );
         vec.append( {"Nome", rows.value(1).toString()} );
-        vec.append( {"RG", rows.value(2).toString()} );
-        vec.append( {"Endereço", rows.value(3).toString()} );
-        vec.append( {"Cargo", rows.value(4).toString()} );
-        vec.append( {"Equipe", rows.value(5).toString()} );
-        vec.append( {"Telefone", rows.value(6).toString()} );
+        vec.append( {"Inicio Carreira", rows.value(2).toString()} );
+        vec.append( {"Telefone", rows.value(3).toString()} );
 
         items.append(vec);
     }
@@ -388,19 +385,41 @@ StringPairVectorList EISEDatabase::getEquipmentsData()
 
 StringPairVectorList EISEDatabase::getCamerasData(QString partyStartDate)
 {
-    const static QString query = QString("SELECT e.nome, e.marca, e.modelo, e.quantidade FROM equipamento e, opcomcamera op WHERE e.id = op.camera"
-    "AND e.tipo = 'CAMERA' AND TO_DATE('%1', 'DD-MM-YYYY') != op.data;").arg(partyStartDate);
 
+ const static QString query = QString("SELECT E.*, CASE WHEN D.QTD_UTILIZADA IS NULL THEN '0' "
+        "ELSE D.QTD_UTILIZADA END AS QTD_UTILIZADA, CAM.* FROM EQUIPAMENTO E LEFT JOIN( "
+    "SELECT C.CAMERA, SUM(C.QTD) AS QTD_UTILIZADA "
+        "FROM( SELECT CAMERA, DATA, COUNT(*) AS QTD FROM OPCOMCAMERA "
+                    "WHERE DATA BETWEEN TO_DATE('%1', 'YYYY-MM-DD') AND TO_DATE('%1', 'YYYY-MM-DD') "
+                    "GROUP BY(CAMERA, DATA) "
+            "UNION ALL SELECT IDCAMERASECUNDARIA AS CAMERA, DATA, COUNT(*) AS QTD "
+                "FROM OPPARQUE WHERE DATA BETWEEN TO_DATE('%1', 'YYYY-MM-DD') AND TO_DATE('%1', 'YYYY-MM-DD') "
+                    "GROUP BY(CAMERA, DATA) "
+            "UNION ALL "
+            "SELECT IDCAMERA AS CAMERA, DATA, SUM(QUANTIDADE) AS QTD "
+                "FROM PONTOCAMERA "
+                    "WHERE DATA BETWEEN TO_DATE('%1', 'YYYY-MM-DD') AND TO_DATE('%1', 'YYYY-MM-DD') "
+                    "GROUP BY(CAMERA, DATA) "
+            "UNION ALL "
+            "SELECT CAMERA, DATA, SUM(QUANTIDADE) AS QTD "
+                "FROM CAMERAAEREA WHERE DATA BETWEEN TO_DATE('%1', 'YYYY-MM-DD') AND TO_DATE('%1', 'YYYY-MM-DD') "
+                    "GROUP BY(CAMERA, DATA) "
+        ") AS C GROUP BY(C.CAMERA) "
+    ") AS D ON E.ID = D.CAMERA JOIN CAMERA CAM ON E.ID = CAM.ID WHERE(D.QTD_UTILIZADA "
+    "< E.QUANTIDADE OR D.QTD_UTILIZADA IS NULL) AND TIPO = 'CAMERA';").arg(partyStartDate);
+    
     QSqlQuery rows = m_database.exec(query);
     StringPairVectorList items;
 
     while(rows.next()){
         QVector<QPair<QString,QString> > vec;
 
-        vec.append( {"Nome", rows.value(0).toString()} );
-        vec.append( {"Marca", rows.value(1).toString()} );
-        vec.append( {"Modelo", rows.value(2).toString()} );
+        vec.append( {"Id", rows.value(0).toString()} );
+        vec.append( {"Modelo", rows.value(1).toString()} );
+        vec.append( {"Nome", rows.value(2).toString()} );
         vec.append( {"Qtd", rows.value(3).toString()} );
+        vec.append( {"Marca", rows.value(4).toString()} );
+        vec.append( {"Qtd utlizada", rows.value(7).toString()} );
 
         items.append(vec);
     }
