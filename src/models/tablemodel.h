@@ -7,16 +7,22 @@
 #include "database/eisedatabase.h"
 #include "data_structures/reporttextdata.h"
 
-class TableModel
+class TableModel: public QStandardItemModel
 {
+	
+	Q_OBJECT
 	
 	EISEDatabase m_database;
 
 public:
-	TableModel();	
-	QStandardItemModel *employeesModel();
+	TableModel(QObject * parent = 0);	
+	QStandardItemModel *employeesModel(QString sartDate, QString endDate);
 	QStandardItemModel *equipmentsModel();
 	QStandardItemModel *bandsModel();
+	Qt::ItemFlags flags(const QModelIndex &index) const override;
+
+
+	
 };
 
 #endif

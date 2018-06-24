@@ -93,7 +93,7 @@ private slots:
     void newEChecked();
     void existEChecked();
     void insertEmployee();
-    
+
 };
 
 #endif // INSERTIONINTERFACE_H

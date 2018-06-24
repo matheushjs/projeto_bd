@@ -307,11 +307,23 @@ void EISEDatabase::rollbackTransaction()
     const QString query("ROLLBACK;");
 }
 
-StringPairVectorList EISEDatabase::getEmployeesData()
+StringPairVectorList EISEDatabase::getEmployeesData(QString partyStartDate, QString partyEndDate)
 {
-    const static QString query = "SELECT * FROM funcionario;";
+    /*
+    const static QString query = QString("SELECT OP.CPF, F.NOME, OP.INICIOCARREIRA, F.TEL1 FROM OPCAMERA OP JOIN ("
+    "SELECT CPFOPCAMERA AS CPF FROM FOTOGRAFOCRUZEIRO JOIN FESTANOCRUZEIRO ON IMOFESTA = IMO AND DATAFESTA = DATAINICIO "
+    "WHERE TO_DATE('%1', 'DD-MM-YYYY') < DATAINICIO OR TO_DATE('%2', 'DD-MM-YYYY') > DATAFIM" 
+    "UNION SELECT CPFOPCAMERA AS CPF FROM CINEGRAFISTACRUZEIRO JOIN FESTANOCRUZEIRO ON IMOFESTA = IMO AND DATAFESTA = DATAINICIO "
+    "WHERE TO_DATE('%3', 'DD-MM-YYYY') < DATAINICIO " 
+    "OR TO_DATE('%4', 'DD-MM-YYYY') > DATAFIM UNION SELECT OP.CPFOPCAMERA AS CPF " 
+    "FROM OPPARQUE OP JOIN FESTANOPARQUE FP ON OP.CNPJPARQUE = FP.CNPJPARQUE AND OP.DATAINICIOPARQUE = FP.DATAINICIO " 
+    "WHERE TO_DATE('%5', 'DD-MM-YYYY') < FP.DATAINICIO OR TO_DATE('%6', 'DD-MM-YYYY') > FP.DATAFIM "
+    ") AS DT ON OP.CPF IN (DT.CPF) JOIN FUNCIONARIO F ON OP.CPF = F.CPF WHERE F.CARGO = 'OPCAMERA';").arg(partyStartDate, 
+    partyEndDate, partyStartDate, partyEndDate, partyEndDate, partyEndDate);*/
 
-    QSqlQuery rows = m_database.exec(query);
+    const static QString query2 = "SELECT * FROM funcionario;";
+
+    QSqlQuery rows = m_database.exec(query2);
     StringPairVectorList items;
 
     while(rows.next()){

@@ -48,7 +48,7 @@ public:
     QString insertCruiseParty(QVector<QString> insertData);
     void commitTransaction();
     void rollbackTransaction();
-    StringPairVectorList getEmployeesData();
+    StringPairVectorList getEmployeesData(QString partyStartDate, QString partyEndDate);
     StringPairVectorList getEquipmentsData();
     StringPairVectorList getBandsData();
 };

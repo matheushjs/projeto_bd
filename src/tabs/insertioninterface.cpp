@@ -200,7 +200,7 @@ void InsertionInterface::existEChecked()
     m_newEmployees->setVisible(false);
     m_existEmployees->setVisible(true);
     m_funcType = true;
-    m_eTableView->setModel(m_viewModel.employeesModel());
+    m_eTableView->setModel(m_viewModel.employeesModel(m_log->party().initialDate(),m_log->party().endDate()));
 }
 
 void InsertionInterface::insertCruiseParty()
@@ -232,14 +232,17 @@ void InsertionInterface::insertCruiseParty()
         return;
     }   
 
+    aux = m_startDate->date();
     CruiseParty cparty(QString::number(m_imoNumber->value()),
         QString("%1-%2-%3").arg(QString::number(aux.year()),QString::number(aux.month()),QString::number(aux.day())),
         m_cruisePartyName->text());
 
+    aux = m_endDate->date();
     cparty.setEndDate(QString("%1-%2-%3").arg(QString::number(aux.year()),QString::number(aux.month()),QString::number(aux.day())));
     cparty.setNOfGuest(QString("%1").arg(m_nOfGuest->value()));
     m_log->setCruiseParty(cparty);
 
+    QMessageBox::information(this,"Test",cparty.initialDate(),cparty.endDate());
     /*
     partyData.append(QString("%1").arg(m_imoNumber->value()));
     aux = m_startDate->date();
@@ -323,13 +326,17 @@ void InsertionInterface::insertEmployee()
             
             QVariant empCpf = m_eTableView->model()->data(sEList[i],Qt::DisplayRole);
             QVariant empName = m_eTableView->model()->data(sEList[i].sibling(sEList[i].row(),1),Qt::DisplayRole);
-            QString function = QInputDialog::getItem(this,
-                "Cargo do funcionário","Especifique o cargo do " + empName.toString() + " :", functions);
+            QInputDialog diag;
+            diag.setOkButtonText("Confirmar");
+            diag.setCancelButtonText("");
+
+            QString function = diag.getItem(this,
+                "Cargo do funcionário","Especifique o cargo do " + empName.toString() + " :", functions,0,false);
 
             if(function == "Fotógrafo")
             {
-                QString category = QInputDialog::getItem(this, 
-                    "Categoria do fotógrafo", "Especifique a caetgoria do fotógrafo " + empName.toString() + " :", categories);
+                QString category = diag.getItem(this, 
+                    "Categoria do fotógrafo", "Especifique a caetgoria do fotógrafo " + empName.toString() + " :", categories,0,false);
                 
                 Photographer *ph = new Photographer(category);
                 ph->setAlbum(m_log->party().IMO(),m_log->party().initialDate());

@@ -1,12 +1,12 @@
 #include "models/tablemodel.h"
 
-TableModel::TableModel(): m_database("getDataConn") 
+TableModel::TableModel(QObject * parent): QStandardItemModel(parent),m_database("getDataConn") 
 {
 }
 
-QStandardItemModel *TableModel::employeesModel()
+QStandardItemModel *TableModel::employeesModel(QString sartDate, QString endDate)
 {
-	StringPairVectorList employees = m_database.getEmployeesData();
+	StringPairVectorList employees = m_database.getEmployeesData(sartDate,endDate);
 	QStandardItemModel *eModel = new QStandardItemModel;
 	bool fill = true;
 	QStringList hHeaders;
@@ -44,4 +44,11 @@ QStandardItemModel *TableModel::bandsModel()
 	StringPairVectorList bands = m_database.getBandsData();
 	QStandardItemModel *bModel = new QStandardItemModel;
 	return bModel;
+}
+Qt::ItemFlags TableModel::flags(const QModelIndex &index) const overri
+{
+	if (index.column() == 0)
+		return Qt::ItemIsEnabled | Qt::ItemIsSelectable;
+    else
+        return Qt::ItemIsSelectable;
 }
