@@ -39,17 +39,11 @@
   - Funcionários da empresa  
   - Equipamentos da empresa
   - Festas que a empresa participou
-- Montar equipes de filmagem(sistema/drone) e suporte
-- Alocar equipes para festas em parques
-- Definir pontos de instalação [(?)](#myfootnote1)
-- Alocar equipamentos nos pontos de instalação
-- Alocar câmeras nos drones
-- Cadastrar/Alterar festas em parques
-- Cadastrar/Alterar festas em cruzeiros
-- Cadastrar/Alterar shows
-- Cadastrar/Alterar atrações
-- Incluir fotógrafos em festas em cruzeiros
-- Incluir cinegrafistas em festas em cruzeiros
+- CRUD festas em cruzeiros
+- CRUD shows
+- Alocar operador de câmera com câmera para uma festa no cruzeiro
+  - Incluir fotógrafos em festas em cruzeiros
+  - Incluir cinegrafistas em festas em cruzeiros
 
 `A partir do sistema de banco de dados, será possível consultar quais operadores de câmera
 trabalharam com quais modelos de câmeras e em quais festas, as características dessas câmeras,

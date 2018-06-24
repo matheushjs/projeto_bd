@@ -1,19 +1,25 @@
-select f.cpf, f.nome, f.cargo, opc.inicioCarreira, datas.dataInicio, datas.dataFim from funcionario f join (
-	select op.cpfOpCamera as cpf, op.data as data, fc.dataInicio as dataInicio, fc.dataFim as dataFim 
-		from fotografoCruzeiro op join festaNoCruzeiro fc 
-			on op.IMOfesta = fc.IMO and op.dataFesta = fc.dataInicio 
-			where '2012-06-24'::date < fc.dataInicio or '2007-11-29'::date > fc.dataFim
-		union
-	select op.cpfOpCamera as cpf, op.data as data, fc.dataInicio as dataInicio, fc.dataFim as dataFim 
-		from cinegrafistaCruzeiro op join festaNoCruzeiro fc 
-			on op.IMOfesta = fc.IMO and op.dataFesta = fc.dataInicio 
-			where '2012-06-24'::date < fc.dataInicio or '2007-11-29'::date > fc.dataFim
-		union
-	select op.cpfOpCamera as cpf, op.data as data, fp.dataInicio as dataInicio, fp.dataFim as dataFim 
-		from opParque op join festaNoParque fp
-			on op.cnpjParque = fp.cnpjParque and op.dataInicioParque = fp.dataInicio 
-			where '2012-06-24'::date < fp.dataInicio or '2007-11-29'::date > fp.dataFim
-) as datas on f.cpf in (datas.cpf) join opCamera opc on f.cpf = opc.cpf where f.cargo = 'OPCAMERA';
+SELECT OP.CPF, F.NOME, OP.INICIOCARREIRA, F.TEL1 FROM OPCAMERA OP JOIN (
+	SELECT CPFOPCAMERA AS CPF
+		FROM FOTOGRAFOCRUZEIRO 
+		JOIN FESTANOCRUZEIRO ON IMOFESTA = IMO AND DATAFESTA = DATAINICIO
+			WHERE TO_DATE('24-06-2012', 'DD-MM-YYYY') < DATAINICIO /* Data de fim menor que data início. */
+				OR TO_DATE('29-11-2007', 'DD-MM-YYYY') > DATAFIM /* Data de nova festa maior que data fim. */
+	UNION
+	SELECT CPFOPCAMERA AS CPF
+		FROM CINEGRAFISTACRUZEIRO 
+		JOIN FESTANOCRUZEIRO ON IMOFESTA = IMO AND DATAFESTA = DATAINICIO
+			WHERE TO_DATE('24-06-2012', 'DD-MM-YYYY') < DATAINICIO /* Data de fim menor que data início. */
+				OR TO_DATE('29-11-2007', 'DD-MM-YYYY') > DATAFIM /* Data de nova festa maior que data fim. */
+	UNION
+	SELECT OP.CPFOPCAMERA AS CPF 
+		FROM OPPARQUE OP 
+		JOIN FESTANOPARQUE FP ON OP.CNPJPARQUE = FP.CNPJPARQUE AND OP.DATAINICIOPARQUE = FP.DATAINICIO 
+			WHERE TO_DATE('24-06-2012', 'DD-MM-YYYY') < FP.DATAINICIO /* Data de fim menor que data início. */
+				OR TO_DATE('29-11-2007', 'DD-MM-YYYY') > FP.DATAFIM /* Data de nova festa maior que data fim. */
+) AS DT ON OP.CPF IN (DT.CPF) JOIN FUNCIONARIO F ON OP.CPF = F.CPF WHERE F.CARGO = 'OPCAMERA';
 
-select nome, datacriacao, estilomusical, tipo from banda where (nome, datacriacao) not in 
-	(select nomebanda, datacriacaobanda from show where data = '2015-04-04'::date);
+SELECT NOME, DATACRIACAO, ESTILOMUSICAL, TIPO 
+	FROM BANDA 
+	WHERE (NOME, DATACRIACAO) 
+		NOT IN 
+	(SELECT NOMEBANDA, DATACRIACAOBANDA FROM SHOW WHERE DATA = TO_DATE('04-04-2015', 'DD-MM-YYYY'));
