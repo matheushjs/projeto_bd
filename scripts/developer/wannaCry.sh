@@ -14,7 +14,7 @@ OUTPUT=errors.txt
 CLEAN_OUTPUT=cleanErrors.txt
 
 # PATHS
-PROGRAM_PATH=./run.sh
+PROGRAM_PATH=./sqlFiles/run.sh
 
 # Limpa o arquivo de output
 echo -n > $OUTPUT
