@@ -46,14 +46,15 @@ fake=Faker(locale='pt_BR')
 	
 """
 specialDataFuncs={
-	'nome': {'equipamento': fake.name, 'DEFAULT': fake.name},
+	'NOME': {'EQUIPAMENTO': fake.name, 'DEFAULT': fake.name},
 	'RG': fake.ssn,
-	'nomeBanda': fake.name,
-	'endereco': fake.address,
-	'endereco': fake.address,
-	'descricao': fake.text,
-	'telefoneCsv': fake.phone_number,
-	'equipe': None,
+	'NOMEBANDA': fake.name,
+	'ENDERECO': fake.address,
+	'ENDERECO': fake.address,
+	'DESCRICAO': fake.text,
+	'TEL1': fake.phone_number,
+	'TEL2': fake.phone_number,
+	'EQUIPE': None,
 }
 
 """
