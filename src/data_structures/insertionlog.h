@@ -5,15 +5,19 @@
 #include "data_structures/cruiseemployee.h"
 #include "data_structures/show.h"
 #include "data_structures/soundequipment.h"
+#include "data_structures/photographer.h"
+#include "data_structures/cameraman.h"
+
 
 class InsertionLog
 {
 public:
 	InsertionLog();
 	void setCruiseParty(CruiseParty party);
-	void setPartyEmployees(QList<CruiseEmployee*> cruiseEmployees);
+	void addPartyEmployee(CruiseEmployee *cruiseEmployee);
 	void setPartyShows(QList<Show*> shows);	
-	void setPartySoundEquipments(QList<SoundEquipment*> soundEquipments);	
+	void setPartySoundEquipments(QList<SoundEquipment*> soundEquipments);
+	CruiseParty party();
 
 private:
 	CruiseParty m_party;

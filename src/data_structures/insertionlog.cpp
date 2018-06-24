@@ -2,7 +2,6 @@
 
 InsertionLog::InsertionLog()
 {
-
 }
 
 void InsertionLog::setCruiseParty(CruiseParty party)
@@ -10,9 +9,9 @@ void InsertionLog::setCruiseParty(CruiseParty party)
 	m_party = party;	
 }
 
-void InsertionLog::setPartyEmployees(QList<CruiseEmployee*> cruiseEmployees)
+void InsertionLog::addPartyEmployee(CruiseEmployee *cruiseEmployee)
 {
-	m_cruiseEmployees = cruiseEmployees;
+	m_cruiseEmployees.append(cruiseEmployee);
 }
 
 void InsertionLog::setPartyShows(QList<Show*> shows)
@@ -23,3 +22,7 @@ void InsertionLog::setPartySoundEquipments(QList<SoundEquipment*> soundEquipment
 {
 	m_soundEquipments = soundEquipments;	
 }	
+CruiseParty InsertionLog::party()
+{
+	return m_party;
+}

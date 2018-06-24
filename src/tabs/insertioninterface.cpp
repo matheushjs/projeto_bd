@@ -136,11 +136,14 @@ void InsertionInterface::drawEmployeeBox()
     m_employeeRg = new QLineEdit;
     m_employeeTelefone = new QLineEdit;
     m_employeeAddress = new QLineEdit;
-    m_employeeTeam = new QLineEdit;
+    m_employeeTeam = new QComboBox;
     m_employeeFunction = new QComboBox;
     
-    QStringList functions = {"Operador de Câmera", "Assistente", "Técnico", "Piloto", "Co-Piloto"};
+    QStringList functions = {"Fotógrafo", "Cinegrafista"};
+    QStringList categories = {"ESPECIALISTA","TECNICO","JUNIOR"};
+
     m_employeeFunction->addItems(functions);
+    m_employeeTeam->addItems(categories);
 
     newEmployeeFormLayout->addRow("&Cargo:", m_employeeFunction);
     newEmployeeFormLayout->addRow("&Nome:", m_employeeName);
@@ -148,7 +151,7 @@ void InsertionInterface::drawEmployeeBox()
     newEmployeeFormLayout->addRow("&RG:", m_employeeRg);
     newEmployeeFormLayout->addRow("&Telefone", m_employeeTelefone);
     newEmployeeFormLayout->addRow("&Endereço:", m_employeeAddress);
-    newEmployeeFormLayout->addRow("&Equipe:", m_employeeTeam);
+    newEmployeeFormLayout->addRow("&Categoria:", m_employeeTeam);
 
 
     //2.4 Set up the form layout of exist employee
@@ -189,12 +192,14 @@ void InsertionInterface::newEChecked()
 {
     m_existEmployees->setVisible(false);
     m_newEmployees->setVisible(true);
+    m_funcType = false;
 }
 
 void InsertionInterface::existEChecked()
 {
     m_newEmployees->setVisible(false);
     m_existEmployees->setVisible(true);
+    m_funcType = true;
     m_eTableView->setModel(m_viewModel.employeesModel());
 }
 
@@ -227,7 +232,16 @@ void InsertionInterface::insertCruiseParty()
         return;
     }   
 
-	partyData.append(QString("%1").arg(m_imoNumber->value()));
+    CruiseParty cparty(QString::number(m_imoNumber->value()),
+        QString("%1-%2-%3").arg(QString::number(aux.year()),QString::number(aux.month()),QString::number(aux.day())),
+        m_cruisePartyName->text());
+
+    cparty.setEndDate(QString("%1-%2-%3").arg(QString::number(aux.year()),QString::number(aux.month()),QString::number(aux.day())));
+    cparty.setNOfGuest(QString("%1").arg(m_nOfGuest->value()));
+    m_log->setCruiseParty(cparty);
+
+    /*
+    partyData.append(QString("%1").arg(m_imoNumber->value()));
     aux = m_startDate->date();
 	partyData.append(QString("%1-%2-%3").arg(QString::number(aux.year()),QString::number(aux.month()),QString::number(aux.day())));
     aux = m_endDate->date();
@@ -244,6 +258,7 @@ void InsertionInterface::insertCruiseParty()
 		QMessageBox::information(this,"Resultado da inserção", "Festa inserida com sucesso!");
 	else
 		QMessageBox::critical(this,"Erro na hora de inserir.", feedback);
+    */
 
     m_cruiserInfos->setVisible(false);
     m_parkPartyInfos->setVisible(false);
@@ -267,19 +282,78 @@ void InsertionInterface::rollbackInsertion()
 }
 void InsertionInterface::insertEmployee()
 {
-    QItemSelectionModel *selectedEmp = m_eTableView->selectionModel();
-    QModelIndexList sEList = selectedEmp->selectedIndexes();
-    QString cpfs;
-
-    for(int i = 0; i < sEList.size(); i++)
+    
+    if(!m_funcType)
     {
-        QVariant empCpf = m_eTableView->model()->data(sEList[i],Qt::DisplayRole);
-        cpfs += empCpf.toString() + ",";
+        if(m_employeeFunction->currentText() == "Fotógrafo")
+        {
+            Photographer *nph = new Photographer(m_employeeTeam->currentText());
+            nph->setAlbum(m_log->party().IMO(),m_log->party().initialDate());
+            nph->setName(m_employeeName->text());
+            nph->setCpf(m_employeeCpf->text());
+            nph->setRg(m_employeeRg->text());
+            nph->setCelphone(m_employeeTelefone->text());
+            nph->setAddress(m_employeeAddress->text());
+            m_log->addPartyEmployee(nph);
+        }
+        else 
+        {
+            Cameraman *nca = new Cameraman;
+            nca->setMakingOf(m_log->party().IMO(),m_log->party().initialDate());
+            nca->setName(m_employeeName->text());
+            nca->setCpf(m_employeeCpf->text());
+            nca->setRg(m_employeeRg->text());
+            nca->setCelphone(m_employeeTelefone->text());
+            nca->setAddress(m_employeeAddress->text());
+            m_log->addPartyEmployee(nca);
+        }
     }
 
-    QMessageBox::information(this,"Test",cpfs);
+    else if(m_funcType)
+    {
+        QItemSelectionModel *selectedEmp = m_eTableView->selectionModel();
+        QModelIndexList sEList = selectedEmp->selectedIndexes();
+        QStringList functions = {"Fotógrafo", "Cinegrafista"};
+        QStringList categories = {"ESPECIALISTA","TECNICO","JUNIOR"};
+        int nOfPh = 0;
+        //bool ok = false;
 
+        for(int i = 0; i < sEList.size(); i++)
+        {
+            
+            QVariant empCpf = m_eTableView->model()->data(sEList[i],Qt::DisplayRole);
+            QVariant empName = m_eTableView->model()->data(sEList[i].sibling(sEList[i].row(),1),Qt::DisplayRole);
+            QString function = QInputDialog::getItem(this,
+                "Cargo do funcionário","Especifique o cargo do " + empName.toString() + " :", functions);
+
+            if(function == "Fotógrafo")
+            {
+                QString category = QInputDialog::getItem(this, 
+                    "Categoria do fotógrafo", "Especifique a caetgoria do fotógrafo " + empName.toString() + " :", categories);
+                
+                Photographer *ph = new Photographer(category);
+                ph->setAlbum(m_log->party().IMO(),m_log->party().initialDate());
+                ph->setCpf(empCpf.toString());
+                m_log->addPartyEmployee(ph);
+                
+                if(++nOfPh == 6)
+                {
+                    QMessageBox::information(this,"Aviso","Limite de 5 fotógrafos atigindos.");
+                    functions.removeFirst();
+                }
+
+            }
+            else if (function == "Cinegrafista")
+            {
+                Cameraman *ca = new Cameraman;
+                ca->setMakingOf(m_log->party().IMO(),m_log->party().initialDate());
+                ca->setCpf(empCpf.toString());
+                m_log->addPartyEmployee(ca);
+            }
+        }
+    }
 }
+
 void InsertionInterface::insertParkParty()
 {
     

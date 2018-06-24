@@ -11,6 +11,11 @@ public:
 	CruiseParty();
 	void setEndDate(QString endDate);
 	void setNOfGuest(QString nOfGuest);
+	QString IMO(); 
+	QString initialDate();
+	QString name();
+	QString endDate();
+	QString nOfGuest();
 
 private:
 	QString m_IMO; 

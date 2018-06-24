@@ -102,6 +102,7 @@ ReportTextData EISEDatabase::getSelect1(){
 
     QSqlQuery rows = m_database.exec(query);
     StringPairVectorList items;
+    
     while(rows.next()){
         QVector<QPair<QString,QString> > vec;
 

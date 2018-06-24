@@ -30,3 +30,28 @@ QString CruiseEmployee::function()
 {
 	return m_function;
 }
+
+QString CruiseEmployee::rg()
+{
+	return m_rg;
+}
+QString CruiseEmployee::celphone()
+{
+	return m_celphone;
+}
+QString CruiseEmployee::address()
+{
+	return m_address;
+}
+void CruiseEmployee::setRg(QString rg)
+{
+	m_rg = rg;
+}
+void CruiseEmployee::setCelphone(QString celphone)
+{
+	m_celphone =  celphone;
+}
+void CruiseEmployee::setAddress(QString address)
+{
+	m_address = address;
+}

@@ -16,6 +16,7 @@
 #include <QRadioButton>
 #include <QMessageBox>
 #include <QTableView>
+#include <QInputDialog>
 
 
 #include "models/tablemodel.h"
@@ -41,13 +42,14 @@ private :
     QLineEdit *m_employeeRg;
     QLineEdit *m_employeeTelefone;
     QLineEdit *m_employeeAddress;
-    QLineEdit *m_employeeTeam;
+    QComboBox *m_employeeTeam;
     QGroupBox *m_newEmployees;
     QGroupBox *m_existEmployees;
     QRadioButton *m_newEmployee;
     QRadioButton *m_existEmployee;
     QTableView *m_eTableView;
     TableModel m_viewModel;
+    bool m_funcType;
 
     //Party atributes
     QComboBox *m_partyType;
