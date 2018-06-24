@@ -13,7 +13,7 @@ select f.cpf, f.nome, f.cargo, opc.inicioCarreira, datas.dataInicio, datas.dataF
 		from opParque op join festaNoParque fp
 			on op.cnpjParque = fp.cnpjParque and op.dataInicioParque = fp.dataInicio 
 			where '2012-06-24'::date < fp.dataInicio or '2007-11-29'::date > fp.dataFim
-) as datas on f.cpf in (datas.cpf) join opCamera opc on f.cpf = opc.cpf;
+) as datas on f.cpf in (datas.cpf) join opCamera opc on f.cpf = opc.cpf where f.cargo = 'OPCAMERA';
 
 select nome, datacriacao, estilomusical, tipo from banda where (nome, datacriacao) not in 
 	(select nomebanda, datacriacaobanda from show where data = '2015-04-04'::date);
