@@ -169,17 +169,18 @@ ReportTextData EISEDatabase::getSelect3(){
     return report;
 }
 
-QString EISEDatabase::insertCruiseParty(QVector<QString> insertData)
+QString EISEDatabase::insertCruiseParty(CruiseParty party)
 {
     const QString partyQuery = QString("INSERT INTO festaNoCruzeiro ( IMO, dataInicio, dataFim, numeroConvidados, nome ) "
-     "VALUES (%1, to_date ('%2', 'YYYY-MM-DD'), to_date ('%3', 'YYYY-MM-DD'), %4, '%5');").arg(insertData[0],insertData[1],insertData[2], insertData[3],insertData[4]);
+     "VALUES (%1, to_date ('%2', 'YYYY-MM-DD'), to_date ('%3', 'YYYY-MM-DD'), %4, '%5');").arg(party.IMO(),party.initialDate(),
+     party.endDate(), party.nOfGuest(),party.name());
 
 
     QSqlQuery partyRows = m_database.exec(partyQuery);
     QSqlError err1 = partyRows.lastError();
 
     const QString localQuery = QString("INSERT INTO locaisCruzeiro ( IMO, dataFesta, local ) "
-    "VALUES (%1, to_date ('%2', 'YYYY-MM-DD'), '%3')").arg(insertData[0],insertData[1],insertData[5]);
+    "VALUES (%1, to_date ('%2', 'YYYY-MM-DD'), '%3')").arg(party.local(),party.IMO(),party.initialDate());
 
     QSqlQuery localRows = m_database.exec(localQuery);
     QSqlError err2 = localRows.lastError();    
@@ -309,7 +310,7 @@ void EISEDatabase::rollbackTransaction()
 
 StringPairVectorList EISEDatabase::getEmployeesData(QString partyStartDate, QString partyEndDate)
 {
-    /*
+    
     const static QString query = QString("SELECT OP.CPF, F.NOME, OP.INICIOCARREIRA, F.TEL1 FROM OPCAMERA OP JOIN ("
     "SELECT CPFOPCAMERA AS CPF FROM FOTOGRAFOCRUZEIRO JOIN FESTANOCRUZEIRO ON IMOFESTA = IMO AND DATAFESTA = DATAINICIO "
     "WHERE TO_DATE('%1', 'DD-MM-YYYY') < DATAINICIO OR TO_DATE('%2', 'DD-MM-YYYY') > DATAFIM" 
@@ -319,7 +320,7 @@ StringPairVectorList EISEDatabase::getEmployeesData(QString partyStartDate, QStr
     "FROM OPPARQUE OP JOIN FESTANOPARQUE FP ON OP.CNPJPARQUE = FP.CNPJPARQUE AND OP.DATAINICIOPARQUE = FP.DATAINICIO " 
     "WHERE TO_DATE('%5', 'DD-MM-YYYY') < FP.DATAINICIO OR TO_DATE('%6', 'DD-MM-YYYY') > FP.DATAFIM "
     ") AS DT ON OP.CPF IN (DT.CPF) JOIN FUNCIONARIO F ON OP.CPF = F.CPF WHERE F.CARGO = 'OPCAMERA';").arg(partyStartDate, 
-    partyEndDate, partyStartDate, partyEndDate, partyEndDate, partyEndDate);*/
+    partyEndDate, partyStartDate, partyEndDate, partyEndDate, partyEndDate);
 
     const static QString query2 = "SELECT * FROM funcionario;";
 

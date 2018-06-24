@@ -20,7 +20,14 @@ void CruiseParty::setNOfGuest(QString nOfGuest)
 {
 	m_nOfGuest = nOfGuest;
 }
-
+void CruiseParty::setLocal(QString local)
+{
+	m_local = local;	
+}
+QString CruiseParty::local()
+{
+	return m_local;
+}
 QString CruiseParty::IMO()
 {
 	return m_IMO;

@@ -240,9 +240,9 @@ void InsertionInterface::insertCruiseParty()
     aux = m_endDate->date();
     cparty.setEndDate(QString("%1-%2-%3").arg(QString::number(aux.year()),QString::number(aux.month()),QString::number(aux.day())));
     cparty.setNOfGuest(QString("%1").arg(m_nOfGuest->value()));
+    cparty.setLocal(m_location->text());
     m_log->setCruiseParty(cparty);
 
-    QMessageBox::information(this,"Test",cparty.initialDate(),cparty.endDate());
     /*
     partyData.append(QString("%1").arg(m_imoNumber->value()));
     aux = m_startDate->date();
@@ -277,6 +277,14 @@ void InsertionInterface::insertCruiseParty()
 void InsertionInterface::commitInsertion()
 {
     m_database.commitTransaction();
+
+    QString feedback = m_database.insertCruiseParty(m_log->party());
+    
+    if(feedback == "")
+        QMessageBox::information(this,"Resultado da inserção", "Festa inserida com sucesso!");
+    else
+        QMessageBox::critical(this,"Erro na hora de inserir.", feedback);
+
 }
 
 void InsertionInterface::rollbackInsertion()

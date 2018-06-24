@@ -7,6 +7,7 @@
 
 
 #include "data_structures/reporttextdata.h"
+#include "data_structures/cruiseparty.h"
 
 class EISEDatabase
 {
@@ -45,7 +46,7 @@ public:
     QString updateFestaCruzeiro(QString imo, QString dataInicio, QString dataFim,
                                 QString nroConvidados, QString nome);
 
-    QString insertCruiseParty(QVector<QString> insertData);
+    QString insertCruiseParty(CruiseParty party);
     void commitTransaction();
     void rollbackTransaction();
     StringPairVectorList getEmployeesData(QString partyStartDate, QString partyEndDate);
