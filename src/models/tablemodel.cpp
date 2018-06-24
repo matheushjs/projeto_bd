@@ -45,8 +45,9 @@ QStandardItemModel *TableModel::bandsModel()
 	QStandardItemModel *bModel = new QStandardItemModel;
 	return bModel;
 }
-Qt::ItemFlags TableModel::flags(const QModelIndex &index) const overri
+Qt::ItemFlags TableModel::flags(const QModelIndex &index) const
 {
+	
 	if (index.column() == 0)
 		return Qt::ItemIsEnabled | Qt::ItemIsSelectable;
     else

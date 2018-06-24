@@ -319,16 +319,16 @@ void InsertionInterface::insertEmployee()
         QStringList functions = {"Fotógrafo", "Cinegrafista"};
         QStringList categories = {"ESPECIALISTA","TECNICO","JUNIOR"};
         int nOfPh = 0;
-        //bool ok = false;
-
+        QInputDialog diag;
+        diag.setOkButtonText("Confirmar");
+        diag.setCancelButtonText("");
+        
         for(int i = 0; i < sEList.size(); i++)
         {
             
             QVariant empCpf = m_eTableView->model()->data(sEList[i],Qt::DisplayRole);
             QVariant empName = m_eTableView->model()->data(sEList[i].sibling(sEList[i].row(),1),Qt::DisplayRole);
-            QInputDialog diag;
-            diag.setOkButtonText("Confirmar");
-            diag.setCancelButtonText("");
+            m_eTableView->model()->removeRow(sEList[i].row());
 
             QString function = diag.getItem(this,
                 "Cargo do funcionário","Especifique o cargo do " + empName.toString() + " :", functions,0,false);
