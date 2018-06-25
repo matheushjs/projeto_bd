@@ -1,0 +1,4 @@
+regex
+rstr
+faker
+numpy
