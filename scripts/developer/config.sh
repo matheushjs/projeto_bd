@@ -27,7 +27,7 @@ rm -rf *.o moc* Makefile && \
 echo "Done."
 
 echo "Setting up database..."
-./scripts/developer/run.sh 50 >> ./logs/log
+./scripts/developer/run.sh $1 >> ./logs/log
 echo "Done."
 
 echo "Sucessfully configured."
