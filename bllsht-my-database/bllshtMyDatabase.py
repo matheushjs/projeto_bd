@@ -47,7 +47,7 @@ def bllshtMyDatabase(sqlFilepath, instNum):
 			print('BEGIN TRANSACTION;')
 		insertGenerator().genInsertCommands(dbStructure, dbFKHandler, instNum)
 		if scriptConfig.BEGIN_TRANSACTION:
-			print('ROLLBACK;' if scriptConfig.ROLLBACK_AT_END \
+			print('END TRANSACTION;' if scriptConfig.ROLLBACK_AT_END \
 			else 'END TRANSACTION;')
 
 """
