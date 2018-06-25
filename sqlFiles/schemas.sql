@@ -241,9 +241,9 @@ CREATE TABLE FESTANOCRUZEIRO(
 	CONSTRAINT PK_FESTANOCRUZEIRO
 		PRIMARY KEY(IMO, DATAINICIO),
 	CONSTRAINT CK1_FESTANOCRUZEIRO /* Ao menos um convidado deve ter. */
-		CHECK(NUMEROCONVIDADOS > 1)--,
-	--CONSTRAINT CK2_FESTANOCRUZEIRO /* Data de início de uma festa não pode ser posterior a data de fim. */
-	--	CHECK(DATAINICIO < DATAFIM)
+		CHECK(NUMEROCONVIDADOS > 1),
+	CONSTRAINT CK2_FESTANOCRUZEIRO /* Data de início de uma festa não pode ser posterior a data de fim. */
+		CHECK(DATAINICIO < DATAFIM)
 );
 
 CREATE TABLE LOCAISCRUZEIRO(
@@ -383,9 +383,9 @@ CREATE TABLE FESTANOPARQUE(
 		REFERENCES PARQUE
 		ON DELETE RESTRICT,
 	CONSTRAINT CK1_FESTANOPARQUE /* Ao menos um convidado deve ter. */
-		CHECK(NUMEROCONVIDADOS > 0)--,
-	--CONSTRAINT CK2_FESTANOPARQUE /* Data de início de uma festa não pode ser posterior a data de fim. */
-	--	CHECK(DATAINICIO < DATAFIM)
+		CHECK(NUMEROCONVIDADOS > 0),
+	CONSTRAINT CK2_FESTANOPARQUE /* Data de início de uma festa não pode ser posterior a data de fim. */
+		CHECK(DATAINICIO < DATAFIM)
 );
 
 CREATE TABLE ATRACAO(
