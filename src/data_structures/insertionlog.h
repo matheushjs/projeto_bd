@@ -17,11 +17,12 @@ public:
 	void addPartyEmployee(CruiseEmployee *cruiseEmployee);
 	void setPartyShows(QList<Show*> shows);	
 	void setPartySoundEquipments(QList<SoundEquipment*> soundEquipments);
+	QMap<QString,CruiseEmployee*> cruiseEmployees();
 	CruiseParty party();
 
 private:
 	CruiseParty m_party;
-	QList<CruiseEmployee*> m_cruiseEmployees;
+	QMap<QString,CruiseEmployee*> m_cruiseEmployees;
 	QList<Show*> m_shows;	
 	QList<SoundEquipment*> m_soundEquipments;
 };

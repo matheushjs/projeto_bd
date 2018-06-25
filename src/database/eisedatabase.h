@@ -8,6 +8,8 @@
 
 #include "data_structures/reporttextdata.h"
 #include "data_structures/cruiseparty.h"
+#include "data_structures/cruiseemployee.h"
+#include "data_structures/cameraman.h"
 
 class EISEDatabase
 {

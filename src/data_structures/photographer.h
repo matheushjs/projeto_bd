@@ -9,7 +9,7 @@ class Photographer: public CruiseEmployee
 public:
 
 	Photographer(QString category);
-
+	Photographer();
 	void setCategory(QString category);
 	void setAlbum(QString partyIMO, QString partyDate);
 	QString category();

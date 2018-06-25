@@ -55,11 +55,38 @@ void CruiseEmployee::setAddress(QString address)
 {
 	m_address = address;
 }
+void CruiseEmployee::setCamera(QString camera)
+{
+	m_camera = camera;
+}
 bool CruiseEmployee::isNew()
 {
 	return m_new;
 }
+
+void CruiseEmployee::setNew(bool isNew)
+{
+	m_new = isNew;
+}
+
 QString CruiseEmployee::camera()
 {
 	return m_camera;
+}
+void CruiseEmployee::setOffice(QString office)
+{
+	m_office = office;
+}
+
+QString CruiseEmployee::office()
+{
+	return m_office;
+}
+void CruiseEmployee::setInitialCarea(QString initialCarea)
+{
+	m_initialCarea = initialCarea;	
+}
+QString CruiseEmployee::initialCarea()
+{
+	return m_initialCarea;	
 }

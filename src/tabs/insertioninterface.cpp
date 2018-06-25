@@ -39,6 +39,9 @@ InsertionInterface::InsertionInterface(QWidget *parent)
     QObject::connect(m_insertButton,SIGNAL(pressed()),this,SLOT(commitInsertion()));
     QObject::connect(m_cancelButton,SIGNAL(pressed()),this,SLOT(rollbackInsertion()));
     QObject::connect(m_insertEmpButton,SIGNAL(pressed()),this,SLOT(insertEmployee()));
+    QObject::connect(m_alocateCamButton,SIGNAL(pressed()),this,SLOT(insertCams()));
+    QObject::connect(m_finishEmpButton,SIGNAL(pressed()),this,SLOT(insertEmployeeIntoDb()));
+    //QObject::connect(m_employeeFunction,SIGNAL(currentTextChanged(m_employeeFunction->currentText())),this,SLOT(notFotografoEmp())); Still not working
 }
 void InsertionInterface::drawPartyBox()
 {
@@ -107,20 +110,28 @@ void InsertionInterface::drawEmployeeBox()
     
     //2.1 Set up the radio buttons and push button
     QVBoxLayout *erbLayout = new QVBoxLayout;
+    QHBoxLayout *epbLayout = new QHBoxLayout;
+    
     m_newEmployee = new QRadioButton("Alocar um novo funcionário");
     m_existEmployee = new QRadioButton("Alocar um funcionário existente");
     m_camera = new QRadioButton("Alocar cameras");
     m_insertEmpButton = new QPushButton("Alocar funcionário");
+    m_alocateCamButton = new QPushButton("Alocar Câmeras");
+    m_finishEmpButton = new QPushButton("Confirmar");
     
     m_newEmployee->setEnabled(false);
     m_existEmployee->setEnabled(false);
     m_insertEmpButton->setEnabled(false);
+    m_alocateCamButton->setEnabled(false);
+    m_finishEmpButton->setEnabled(false);
     m_camera->setEnabled(false);
     
     erbLayout->addWidget(m_newEmployee);
     erbLayout->addWidget(m_existEmployee);
     erbLayout->addWidget(m_camera);
-    erbLayout->addWidget(m_insertEmpButton,0, Qt::AlignLeft);
+    epbLayout->addWidget(m_insertEmpButton,0);
+    epbLayout->addWidget(m_alocateCamButton,0);
+    epbLayout->addWidget(m_finishEmpButton,0);
 
     //2.2 Set up the boxes of new and exist employees
     QHBoxLayout *employeeEltsLayout = new QHBoxLayout;
@@ -174,6 +185,7 @@ void InsertionInterface::drawEmployeeBox()
     m_cameras->setLayout(tbvcLayout);
 
     m_vbox->addLayout(erbLayout);
+    m_vbox->addLayout(epbLayout);
     m_vbox->addLayout(employeeEltsLayout);
   
 }
@@ -221,6 +233,13 @@ void InsertionInterface::camerasChecked()
     m_existEmployees->setVisible(false);
     m_cameras->setVisible(true);
     m_cTableView->setModel(m_viewModel.camerasModel(m_log->party().initialDate()));
+}
+void InsertionInterface::notFotografoEmp()//Does not working...
+{
+    if(m_employeeFunction->currentText() == "Cinegrafista")
+        m_employeeTeam->setEnabled(false);
+    else
+        m_employeeTeam->setEnabled(true);
 }
 void InsertionInterface::insertCruiseParty()
 {
@@ -301,6 +320,8 @@ void InsertionInterface::insertCruiseParty()
     m_existEmployee->setEnabled(true);
     m_camera->setEnabled(true);
     m_insertEmpButton->setEnabled(true);
+    m_alocateCamButton->setEnabled(true);
+    m_finishEmpButton->setEnabled(true);
     m_existEmployees->setEnabled(true);
 
 }
@@ -327,6 +348,7 @@ void InsertionInterface::insertEmployee()
             nph->setRg(m_employeeRg->text());
             nph->setCelphone(m_employeeTelefone->text());
             nph->setAddress(m_employeeAddress->text());
+            nph->setNew(true);
             m_log->addPartyEmployee(nph);
         }
         else 
@@ -338,6 +360,7 @@ void InsertionInterface::insertEmployee()
             nca->setRg(m_employeeRg->text());
             nca->setCelphone(m_employeeTelefone->text());
             nca->setAddress(m_employeeAddress->text());
+            nca->setNew(true);
             m_log->addPartyEmployee(nca);
         }
     }
@@ -358,10 +381,11 @@ void InsertionInterface::insertEmployee()
             
             QVariant empCpf = m_eTableView->model()->data(sEList[i],Qt::DisplayRole);
             QVariant empName = m_eTableView->model()->data(sEList[i].sibling(sEList[i].row(),1),Qt::DisplayRole);
-            m_eTableView->model()->removeRow(sEList[i].row());
+            QVariant empInitCar = m_eTableView->model()->data(sEList[i].sibling(sEList[i].row(),2),Qt::DisplayRole);
 
             QString function = diag.getItem(this,
                 "Cargo do funcionário","Especifique o cargo do " + empName.toString() + " :", functions,0,false);
+            m_eTableView->hideRow(sEList[i].row());
 
             if(function == "Fotógrafo")
             {
@@ -371,6 +395,9 @@ void InsertionInterface::insertEmployee()
                 Photographer *ph = new Photographer(category);
                 ph->setAlbum(m_log->party().IMO(),m_log->party().initialDate());
                 ph->setCpf(empCpf.toString());
+                ph->setName(empName.toString());
+                ph->setInitialCarea(empInitCar.toString());
+                ph->setNew(false);
                 m_log->addPartyEmployee(ph);
                 
                 if(++nOfPh == 6)
@@ -385,6 +412,9 @@ void InsertionInterface::insertEmployee()
                 Cameraman *ca = new Cameraman;
                 ca->setMakingOf(m_log->party().IMO(),m_log->party().initialDate());
                 ca->setCpf(empCpf.toString());
+                ca->setName(empName.toString());
+                ca->setInitialCarea(empInitCar.toString());
+                ca->setNew(false);
                 m_log->addPartyEmployee(ca);
             }
         }
@@ -393,4 +423,50 @@ void InsertionInterface::insertEmployee()
 
 void InsertionInterface::insertParkParty()
 {
+}
+
+void InsertionInterface::insertCams()
+{
+
+    QItemSelectionModel *selectedCams = m_cTableView->selectionModel();
+    QModelIndexList sCList = selectedCams->selectedIndexes();
+    QStringList employees;
+    
+    if(m_log->cruiseEmployees().isEmpty() < sCList.isEmpty())
+    {
+         QMessageBox::warning(this,"Aviso","O número de cameras alocados deve ser igual ao número de funcionários alocados.");
+         return;
+    }
+
+    if(m_log->cruiseEmployees().isEmpty() || sCList.isEmpty())
+    {
+        QMessageBox::warning(this,"Aviso","Nenhum funcionário/Câmera selecionado(a).");
+        return;
+    }   
+
+    QMapIterator<QString,CruiseEmployee*> i(m_log->cruiseEmployees());
+    
+    while(i.hasNext())
+    {
+        i.next();
+        QString aux = i.key() + ": ";
+        aux += i.value()->name();
+        employees <<  aux;
+    }
+
+    for(int i = 0; i < sCList.size(); i++)
+    {
+        
+        QVariant camId = m_cTableView->model()->data(sCList[i],Qt::DisplayRole);
+        QVariant camName = m_cTableView->model()->data(sCList[i].sibling(sCList[i].row(),1),Qt::DisplayRole);
+
+        QString empCpf = QInputDialog::getItem(this,
+            "Funcionário associado","Especifique o associado ao aparelho " + camId.toString() + " : " + 
+            camName.toString(),employees,0,false);
+        
+        m_cTableView->hideRow(sCList[i].row());
+        employees.removeOne(empCpf);
+
+        m_log->cruiseEmployees().value(empCpf.section(":",0,0))->setCamera(camId.toString());
+    }
 }

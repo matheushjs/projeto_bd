@@ -11,7 +11,7 @@ void InsertionLog::setCruiseParty(CruiseParty party)
 
 void InsertionLog::addPartyEmployee(CruiseEmployee *cruiseEmployee)
 {
-	m_cruiseEmployees.append(cruiseEmployee);
+	m_cruiseEmployees.insert(cruiseEmployee->cpf(),cruiseEmployee);
 }
 
 void InsertionLog::setPartyShows(QList<Show*> shows)
@@ -25,4 +25,9 @@ void InsertionLog::setPartySoundEquipments(QList<SoundEquipment*> soundEquipment
 CruiseParty InsertionLog::party()
 {
 	return m_party;
+}
+
+QMap<QString,CruiseEmployee*> InsertionLog::cruiseEmployees()
+{
+	return m_cruiseEmployees;
 }

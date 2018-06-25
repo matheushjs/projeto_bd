@@ -36,6 +36,8 @@ private :
     QPushButton *m_insertButton;
     QPushButton *m_cancelButton;
     QPushButton *m_insertEmpButton;
+    QPushButton *m_alocateCamButton;
+    QPushButton *m_finishEmpButton;
     QComboBox *m_employeeFunction;
     QLineEdit *m_employeeName;
     QLineEdit *m_employeeCpf;
@@ -52,6 +54,7 @@ private :
     QTableView *m_eTableView;
     QTableView *m_cTableView;
     TableModel m_viewModel;
+
     bool m_funcType;
 
     //Party atributes
@@ -97,6 +100,8 @@ private slots:
     void existEChecked();
     void camerasChecked();
     void insertEmployee();
+    void insertCams();
+    void notFotografoEmp();
 
 };
 

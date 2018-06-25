@@ -360,7 +360,6 @@ StringPairVectorList EISEDatabase::getBandsData()
 
     return items;
 }
-
 StringPairVectorList EISEDatabase::getEquipmentsData()
 {
     const static QString query = "SELECT  e.tipo, e.nome, e.marca, e.modelo, e.quantidade FROM equipamento e WHERE e.tipo = 'CAMERA';";
@@ -415,8 +414,8 @@ StringPairVectorList EISEDatabase::getCamerasData(QString partyStartDate)
         QVector<QPair<QString,QString> > vec;
 
         vec.append( {"Id", rows.value(0).toString()} );
-        vec.append( {"Modelo", rows.value(1).toString()} );
-        vec.append( {"Nome", rows.value(2).toString()} );
+        vec.append( {"Nome", rows.value(1).toString()} );
+        vec.append( {"Modelo", rows.value(2).toString()} );
         vec.append( {"Qtd", rows.value(3).toString()} );
         vec.append( {"Marca", rows.value(4).toString()} );
         vec.append( {"Qtd utlizada", rows.value(7).toString()} );
@@ -426,8 +425,4 @@ StringPairVectorList EISEDatabase::getCamerasData(QString partyStartDate)
 
     return items;
 }
-/*
-QString EISEDatabase::insertEmployees(QStringList empCpfs)
-{
-    //QString query1 = QString() 
-}*/
+
