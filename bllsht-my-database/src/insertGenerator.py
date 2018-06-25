@@ -39,7 +39,8 @@ class insertGenerator:
 				# For each comparison-based CHECK constrain...
 				refValNum = len(curTableGenValues[refColumn])
 				curValNum = len(curTableGenValues[columnName])
-				value=curTableGenValues[refColumn][-1]
+				if refValNum:
+					value=curTableGenValues[refColumn][-1]
 				refColType=curTable[refColumn]['TYPE'].upper()
 			else:
 				value = c[1]
